@@ -1,0 +1,4 @@
+<launch>
+	<rosparam command="load" file="$(find dynamixel_pro_atj)/config/joints.yaml"/>
+	<node name="dynamixel_pro_action_server" pkg="dynamixel_pro_atj" type="action_server" output="screen" />
+</launch>
