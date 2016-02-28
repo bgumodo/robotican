@@ -1,0 +1,8 @@
+<launch>
+	<include file="$(find dynamixel_pro_controller)/launch/test.launch" />
+	<include file="$(find dynamixel_pro_atj)/launch/server_start.launch" />
+	<include file="$(find test_arm_nadiv)/launch/gripper.launch" />
+	<include file="$(find test_arm_nadiv)/launch/move_group.launch" />
+	<include file="$(find dynamixel_gripper_atj)/launch/run_gripper.launch" />
+        <node name="$(anon rviz)" pkg="rviz" type="rviz" respawn="false" args="-d $(find test_arm_nadiv)/config/move_group.rviz" output="screen" />
+</launch>
