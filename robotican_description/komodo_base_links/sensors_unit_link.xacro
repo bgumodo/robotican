@@ -1,0 +1,23 @@
+<robot name="sensors_unit_link"><link name="sensors_unit_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0414414719218708 -0.000373289194023478 0.0507806551833217" />
+      <mass value="3.00493541386534" />
+      <inertia ixx="0.0317419196615914" ixy="-0.000328957251382255" ixz="-0.0101477531293138" iyy="0.0944166881470797" iyz="2.04069229359132E-05" izz="0.116969738863327" />
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://ric_description/komodo/meshes/sensors_unit_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.6509803921568627 0.6537254901960784 0.656078431372549 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://ric_description/komodo/meshes/sensors_unit_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  </robot>
