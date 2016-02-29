@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/ric_gazebo" name="komodo">
+
+<robot name="komodo">
+
+	<!-- Load all the links  -->
+	<xacro:include filename="$(find robotican_description)/komodo/komodo_base_links/base_link.xacro" />
+	<xacro:include filename="$(find robotican_description)/komodo/komodo_base_links/FR_Wheel_link.xacro" />
+	<xacro:include filename="$(find robotican_description)/komodo/komodo_base_links/FL_Wheel_link.xacro" />
+	<xacro:include filename="$(find robotican_description)/komodo/komodo_base_links/Front_Camera_link.xacro" />
+	<xacro:include filename="$(find robotican_description)/komodo/komodo_base_links/Asus_Camera_link.xacro" />
+	<xacro:include filename="$(find robotican_description)/komodo/komodo_base_links/Laser_link.xacro" />
+	<xacro:include filename="$(find robotican_description)/komodo/komodo_base_links/Left_URF_link.xacro" />
+	<xacro:include filename="$(find robotican_description)/komodo/komodo_base_links/Rear_URF_link.xacro" />
+	<xacro:include filename="$(find robotican_description)/komodo/komodo_base_links/Right_URF_link.xacro" />
+	<xacro:include filename="$(find robotican_description)/komodo/komodo_base_links/RL_Wheel_link.xacro" />
+	<xacro:include filename="$(find robotican_description)/komodo/komodo_base_links/RR_Wheel_link.xacro" />
+	<xacro:include filename="$(find robotican_description)/komodo/komodo_base_links/sensors_unit_link.xacro" />
+	<!--         END         -->
+
+	<!-- Load all the joints -->	
+	<joint name="FR_Wheel_joint" type="fixed">
+    		<origin xyz="0.173999999999995 -0.2009 0" rpy="2.62229105359916E-15 6.9308460464278E-17 1.5707963267949" />
+    		<parent link="base_link" />
+    		<child link="FR_Wheel_link" />
+    		<axis xyz="1 0 0" />
+  	</joint>
+		
+	<joint name="FL_Wheel_joint" type="fixed">
+    		<origin xyz="0.173999999999995 0.2009 0" rpy="-2.62229105359916E-15 6.93084604642783E-17 -1.5707963267949" />
+    		<parent link="base_link" />
+    		<child link="FL_Wheel_link" />
+    		<axis xyz="-1 0 0" />
+  	</joint>
+
+	<joint name="RR_Wheel_joint" type="fixed">
+    		<origin xyz="-0.156000000000005 -0.2009 0" rpy="2.62229105359916E-15 -1.59433090848306E-31 1.5707963267949" />
+    		<parent link="base_link" />
+    		<child link="RR_Wheel_link" />
+    		<axis xyz="1 0 0" />
+  	</joint>
+
+	<joint name="RL_Wheel_joint" type="fixed">
+    		<origin xyz="-0.156000000000005 0.2009 0" rpy="-2.62229105359916E-15 -5.57680208627196E-32 -1.5707963267949" />
+    		<parent link="base_link" />
+    		<child link="RL_Wheel_link" />
+    		<axis xyz="-1 0 0" />
+  	</joint>
+
+
+	<joint name="Left_URF_joint" type="fixed">
+    		<origin xyz="-0.0223133326154785 0.137250000000005 0.138508176066688" rpy="-2.73331335606168E-15 1.59433090848306E-31 1.5707963267949" />
+    		<parent link="base_link" />
+    		<child link="Left_URF_link" />
+    		<axis xyz="-1 0 0" />
+  	</joint>
+	
+	<joint name="Rear_URF_joint" type="fixed">
+    		<origin xyz="-0.267499972183238 0 0.107999999999999" rpy="-6.16297582203915E-33 2.73331335606168E-15 3.14159265358979" />
+    		<parent link="base_link" />
+    		<child link="Rear_URF_link" />
+    		<axis xyz="-1 0 0" />
+  	</joint>
+
+
+	<joint name="Right_URF_joint" type="fixed">
+    		<origin xyz="-0.0223133326154785 -0.137249999999995 0.138508176066688" rpy="2.73331335606168E-15 -1.59433090848306E-31 -1.5707963267949" />
+    		<parent link="base_link" />
+    		<child link="Right_URF_link" />
+    		<axis xyz="-1 0 0" />
+  	</joint>
+
+	<joint name="Front_Camera_joint" type="fixed">
+    		<origin xyz="0.262250027816762 0.0875000000000051 0.100000000000001" rpy="0 0 0" />
+    		<parent link="base_link" />
+    		<child link="Front_Camera_link" />
+    		<axis xyz="0 0 1" />
+  	</joint>
+
+	<joint name="Laser_joint" type="fixed">
+    		<origin xyz="0.234263427816762 0 0.145827195177237" rpy="-6.93084604642783E-17 -2.62229105359916E-15 5.55111512312578E-17" />
+    		<parent link="base_link" />
+    		<child link="Laser_link" />
+    		<axis xyz="0 0 -1" />
+  	</joint>
+	
+	<joint name="Asus_Camera_joint" type="fixed">
+    		<origin xyz="0.262250027816762 0 0.0635000000000008" rpy="-6.93084604642783E-17 -2.62229105359916E-15 5.55111512312578E-17" />
+    		<parent link="base_link" />
+    		<child link="Asus_Camera_link" />
+    		<axis xyz="-1 0 0" />
+  	</joint>
+	
+	<joint name="sensors_unit_joint" type="fixed">
+    		<origin xyz="-0.00199997218323841 0 0.0835000000000001" rpy="-1.59433090848306E-31 -2.62229105359916E-15 5.55111512312578E-17" />
+    		<parent link="base_link" />
+    		<child link="sensors_unit_link" />
+    		<axis xyz="1 0 0" />
+  	</joint>
+
+	<!--         END         -->
+</robot>
