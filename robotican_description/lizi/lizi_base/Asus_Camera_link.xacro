@@ -1,0 +1,23 @@
+<robot name="Asus_Camera_link"><link name="Asus_Camera_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.00010275 -0.00025849 0.00032822" />
+      <mass value="0.14689" />
+      <inertia ixx="0.00037709" ixy="-2.2879E-08" ixz="1.0241E-05" iyy="0.00038351" iyz="1.2981E-08" izz="2.2432E-05" />
+    </inertial>
+    <visual>
+      <origin rpy="1.57 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotican_description/lizi/meshes/Asus_Camera_Link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.2 0.2 0.2 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotican_description/lizi/meshes/Asus_Camera_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  </robot>

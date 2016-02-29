@@ -1,0 +1,23 @@
+<robot name="RR_Wheel_link"><link name="RR_Wheel_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="-2.9411E-11 0.0035967 5.8231E-11" />
+      <mass value="0.4084" />
+      <inertia ixx="0.00059356" ixy="3.4979E-14" ixz="4.6514E-14" iyy="0.0011268" iyz="-5.6928E-14" izz="0.00059356" />
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotican_description/lizi/meshes/RR_Wheel_Link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.2 0.2 0.2 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotican_description/lizi/meshes/RR_Wheel_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  </robot>
