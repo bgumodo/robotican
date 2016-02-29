@@ -1,0 +1,15 @@
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+FastRunningMedian	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+addValue	KEYWORD2
+getMedian
+
+

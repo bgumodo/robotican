@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<launch>
+   <group ns="komodo_1">
+    <node name="RiCTraffic" output="screen" pkg="ric_board" type="Start.py" >
+   </node>
+    <include file="$(find ric_robot)/launch/elevator.launch"/>
+    <param command="$(find xacro)/xacro.py '$(find ric_description)/komodo/komodo_elevator2.xacro'" name="robot_description"/>
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
+    <include file="$(find openni2_launch)/launch/openni2.launch">
+      <arg name="camera" value="Asus_Camera"/>
+    </include>
+    <node name="hokuyo_node" output="screen" pkg="hokuyo_node" type="hokuyo_node">
+      <param name="port" value="/dev/Hokuyo"/>
+      <param name="frame_id" value="Laser_link"/>
+    </node>
+    <node name="front_cam_node" output="screen" pkg="usb_cam" respawn="true" type="usb_cam_node">
+      <param name="video_device" value="/dev/video0"/>
+      <param name="camera_frame_id" value="Front_Camera_link"/>
+      <param name="pixel_format" value="yuyv"/>
+      <param name="image_width" value="320"/>
+      <param name="image_height" value="240"/>
+    </node>
+    <node name="arm_cam_node" output="screen" pkg="usb_cam" respawn="true" type="usb_cam_node">
+      <param name="video_device" value="/dev/video2"/>
+      <param name="camera_frame_id" value="Arm_Camera_link"/>
+      <param name="pixel_format" value="yuyv"/>
+      <param name="image_width" value="320"/>
+      <param name="image_height" value="240"/>
+    </node>
+    <node name="rear_cam_node" output="screen" pkg="usb_cam" respawn="true" type="usb_cam_node">
+      <param name="video_device" value="/dev/video1"/>
+      <param name="camera_frame_id" value="Rear_Camera_link"/>
+      <param name="pixel_format" value="yuyv"/>
+      <param name="image_width" value="320"/>
+      <param name="image_height" value="240"/>
+    </node>
+    <node name="top_cam_node" output="screen" pkg="usb_cam" respawn="true" type="usb_cam_node">
+      <param name="video_device" value="/dev/video4"/>
+      <param name="camera_frame_id" value="Top_Camera_link"/>
+      <param name="pixel_format" value="yuyv"/>
+      <param name="image_width" value="320"/>
+      <param name="image_height" value="240"/>
+    </node>
+    <rosparam command="load" file="$(find ric_board)/config/komodo_bgu.yaml"/>
+  </group>
+</launch>

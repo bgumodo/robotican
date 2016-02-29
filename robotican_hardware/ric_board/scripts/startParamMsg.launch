@@ -1,0 +1,4 @@
+<?xml version="1.0" ?>
+<launch>
+	<node name="ParamMsg" output="screen" pkg="ric_board" type="StartSetParams.py"/>
+</launch>

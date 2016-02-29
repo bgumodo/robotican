@@ -1,0 +1,5 @@
+<launch>
+	<group ns="komodo_1">
+		<include file="$(find komodo_arm_moveit_config)/launch/move_group.launch"/>
+	</group>
+</launch>

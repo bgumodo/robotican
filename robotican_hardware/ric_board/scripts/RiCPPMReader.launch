@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<launch>
+	<arg name="ppmTopic" default='/RiC_PPM'/> 
+	<arg name="diffTopic" default='/diff'/> 
+	<node name="RiC_PPM_Reader" output="screen" pkg="ric_board" type="RiCPPMWatcher.py" args="$(arg ppmTopic) $(arg diffTopic)"/>
+</launch>
