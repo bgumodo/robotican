@@ -7,7 +7,7 @@
     <visual>
       <origin rpy="-1.57079632649567 1.57079632649567 -1.57079632649567" xyz="0 0 0" />
       <geometry>
-        <mesh filename="package://ric_description/komodo/meshes/Front_Camera_link.STL" />
+        <mesh filename="package://robotican_description/komodo/meshes/Front_Camera_link.STL" />
       </geometry>
       <material name="">
         <color rgba="0.1 0.1 0.1 1" />

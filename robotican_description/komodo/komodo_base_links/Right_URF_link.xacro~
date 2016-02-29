@@ -1,0 +1,23 @@
+<robot name="Right_URF_link"><link name="Right_URF_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.00942258060476561 1.68888278493408E-05 -0.000193183712129202" />
+      <mass value="0.00277487854391409" />
+      <inertia ixx="1.28314681514115E-07" ixy="-1.54585356342962E-10" ixz="3.11030599725548E-09" iyy="1.18940672500041E-07" iyz="4.3526583036484E-09" izz="1.28434121553124E-07" />
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotican_description/komodo/meshes/Right_URF_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://ric_description/komodo/meshes/Right_URF_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  </robot>

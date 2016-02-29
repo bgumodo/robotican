@@ -7,7 +7,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0" />
       <geometry>
-        <mesh filename="package://ric_description/komodo/meshes/sensors_unit_link.STL" />
+        <mesh filename="package://robotican_description/komodo/meshes/sensors_unit_link.STL" />
       </geometry>
       <material name="">
         <color rgba="0.6509803921568627 0.6537254901960784 0.656078431372549 1" />
