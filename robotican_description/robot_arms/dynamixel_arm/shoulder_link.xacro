@@ -1,0 +1,23 @@
+<robot name="shoulder_link"><link name="shoulder_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="-4.66231481405233E-06 -9.82289126283389E-05 0.0772888499682157" />
+      <mass value="0.191480823048406" />
+      <inertia ixx="0.00107301595696304" ixy="-2.9789063890745E-07" ixz="-2.01216953964121E-08" iyy="0.000975953125213584" iyz="-1.19601921452086E-06" izz="0.000217659789393094" />
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotican_description/komodo/meshes/shoulder_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.4 0.4 0.4 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotican_description/komodo/meshes/shoulder_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  </robot>

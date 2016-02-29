@@ -1,0 +1,23 @@
+<robot name="elbow2_link"><link name="elbow2_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="-2.29085121194481E-05 -0.000512185919169572 0.0885118786028204" />
+      <mass value="1.12138857800426" />
+      <inertia ixx="0.0110599202589784" ixy="3.04261287700186E-07" ixz="-1.22468079415109E-06" iyy="0.0110437302875007" iyz="-7.91547787630536E-05" izz="0.000331598270284794" />
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotican_description/komodo/meshes/elbow2_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.4 0.4 0.4 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotican_description/komodo/meshes/elbow2_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  </robot>

@@ -1,0 +1,23 @@
+<robot name="wrist_link"><link name="wrist_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.000140374211043626 4.00707618562063E-10 0.0303673809619358" />
+      <mass value="0.717337417215465" />
+      <inertia ixx="0.000486392340366094" ixy="4.20757000035677E-12" ixz="-3.91843889020299E-06" iyy="0.000211170064630335" iyz="2.79335159568522E-12" izz="0.000437528795624211" />
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotican_description/komodo/meshes/wrist_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.3 0.3 0.3 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotican_description/komodo/meshes/wrist_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  </robot>

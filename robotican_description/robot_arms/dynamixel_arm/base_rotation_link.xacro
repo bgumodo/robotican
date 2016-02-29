@@ -1,0 +1,23 @@
+<robot name="base_rotation_link"><link name="base_rotation_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="-1.11022302462516E-16 -7.80223872637444E-17 0.0660708417371112" />
+      <mass value="1.4054258533062" />
+      <inertia ixx="0.00159425912810341" ixy="-8.40269196653518E-08" ixz="-1.60925604895535E-19" iyy="0.000605522001732049" iyz="-6.08768470792684E-19" izz="0.00123388334665811" />
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotican_description/komodo/meshes/base_rotation_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.3 0.3 0.3 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotican_description/komodo/meshes/base_rotation_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  </robot>
