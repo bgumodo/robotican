@@ -1,0 +1,1 @@
+gripper_joints: ['gripper_l_joint', 'gripper_r_joint']
