@@ -2,22 +2,13 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="komodo">
 
 <robot name="komodo_with_arm" >
-
-	<!--    LOAD LINKS     -->
-	<xacro:include filename="$(find robotican_description)/robot_arms/dynamixel_arm/Arm_base_link.xacro" >
-	<xacro:include filename="$(find robotican_description)/robot_arms/dynamixel_arm/Arm_Camera_link.xacro" >
-	<xacro:include filename="$(find robotican_description)/robot_arms/dynamixel_arm/base_rotation_link.xacro" >
-	<xacro:include filename="$(find robotican_description)/robot_arms/dynamixel_arm/elbow1_link.xacro" >
-	<xacro:include filename="$(find robotican_description)/robot_arms/dynamixel_arm/elbow2_link.xacro" >
-	<xacro:include filename="$(find robotican_description)/robot_arms/dynamixel_arm/left_finger_link.xacro" >
-	<xacro:include filename="$(find robotican_description)/robot_arms/dynamixel_arm/right_finger_link.xacro" >
-	<xacro:include filename="$(find robotican_description)/robot_arms/dynamixel_arm/RL_Wheel_link.xacro" >
-	<xacro:include filename="$(find robotican_description)/robot_arms/dynamixel_arm/shoulder_link.xacro" >
-	<xacro:include filename="$(find robotican_description)/robot_arms/dynamixel_arm/wrist_link.xacro" >
-	<!--        END        -->
 	
 	<!--    BASE ROBOT     -->
 	<xacro:include filename="$(find robotican_description)/komodo/models/komodo_base.xacro" >
+	<!--        END        -->
+	
+	<!--        ARM        -->
+	<xacro:include filename="$(find robotican_description)/robot_arms/dynamixel_arm/arm.xacro" >
 	<!--        END        -->	
 
 	<!--    LOAD JOINTS    -->
@@ -28,70 +19,6 @@
     		<child link="Arm_base_link" />
     		<axis xyz="0 0 1" />
   	</joint>
-
-	<joint name="base_rotation_joint" type="revolute">
-    		<origin xyz="-0.096277996026178 0 0.0549000000000002" rpy="-5.46369598732866E-16 1.34659130519145E-15 -2.1922983760752E-31" />
-    		<parent link="Arm_base_link" />
-    		<child link="base_rotation_link" />
-    		<axis xyz="0 0 1" />
-    		<limit lower="-1.57079" upper="1.57079" effort="0" velocity="0" />
-	</joint>
-	
-	<joint name="shoulder_joint" type="revolute">
-    		<origin xyz="0 0 0.0834999999999999" rpy="-4.20159904047482E-15 -5.97509793174248E-16 9.93431320775303E-15" />
-    		<parent link="base_rotation_link" />
-    		<child link="shoulder_link" />
-    		<axis xyz="0 1 0" />
-    		<limit lower="-1.692969" upper="1.692969" effort="0" velocity="0" />
-  	</joint>
-	
-	<joint name="elbow1_joint" type="revolute">
-    		<origin xyz="0 -0.000251155668932789 0.266305434894181" rpy="1.44504380352115E-15 1.11628850952447E-06 -9.93431159466724E-15" />
-    		<parent link="shoulder_link" />
-    		<child link="elbow1_link" />
-    		<axis xyz="-0.999999999998754 0 0" />
-    		<limit lower="-2.4434" upper="2.4434" effort="0" velocity="0" />
-  	</joint>
-
-	<joint name="elbow2_joint" type="revolute">
-    		<origin xyz="0 0 0.223999999999899" rpy="-4.51048856041191E-16 3.35869632765754E-16 1.57079632687657" />
-    		<parent link="elbow1_link" />
-    		<child link="elbow2_link" />
-    		<axis xyz="1 0 0" />
-    		<limit lower="-2.4434" upper="2.4434" effort="0" velocity="0" />
-  	</joint>	
-
-	<joint name="wrist_joint" type="revolute">
-    		<origin xyz="0 -0.0130999999999997 0.244749999999997" rpy="-4.43972025628984E-16 -3.35842401421639E-15 -1.57079632687657" />
-    		<parent link="elbow2_link" />
-    		<child link="wrist_link" />
-    		<axis xyz="0 0 0.999999999998754" />
-    		<limit lower="-1.91986" upper="1.91986" effort="0" velocity="0" />
-  	</joint>
-
-	<joint name="left_finger_joint" type="revolute">
-    		<origin xyz="-0.000250000000000111 0.021 0.0422500000000001" rpy="2.85979682697881E-15 1.01870746742143E-16 3.19235832636806E-21" />
-    		<parent link="wrist_link" />
-   		<child link="left_finger_link" />
-    		<axis xyz="1 0 0" />
-    		<limit lower="-0.87266" upper="0.87266" effort="0" velocity="0" />
-  	</joint>	
-	
-	<joint name="right_finger_joint" type="revolute">
-    		<origin xyz="-0.00024999999999889 -0.021 0.0422499999999999" rpy="0 3.19686557214722E-37 0" />
-    		<parent link="wrist_link" />
-    		<child link="right_finger_link" />
-    		<axis xyz="1 0 0" />
-    		<limit lower="-0.87266" upper="0.87266" effort="0" velocity="0" />
-  	</joint>	
-	
-	<joint name="Arm_camera_joint" type="fixed">
-    		<origin xyz="-0.0552499999999999 0 0.0340250000000002" rpy="1.60129334747211E-25 2.01127359533543E-16 -1.57079632649567" />
-    		<parent link="wrist_link" />
-    		<child link="Arm_Camera_link" />
-    		<axis xyz="0 0 0.999999999998754" />
-  	</joint>	
-	
 	<!--        END        -->
 
 	
