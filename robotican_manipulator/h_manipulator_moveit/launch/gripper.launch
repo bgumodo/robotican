@@ -1,6 +1,6 @@
 <launch>
-	<rosparam file="$(find test_arm_nadiv)/config/gripper.yaml" command="load"/>
-	<rosparam file="$(find test_arm_nadiv)/config/gripper_action_server.yaml" command="load"/>
+	<rosparam file="$(find h_manipulator_moveit)/config/gripper.yaml" command="load"/>
+	<rosparam file="$(find h_manipulator_moveit)/config/gripper_action_server.yaml" command="load"/>
     <node name="dynamixel_manager" pkg="dynamixel_controllers" type="controller_manager.py" required="true" output="screen">
         <rosparam>
             namespace: dxl_manager

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(test_arm_nadiv)
+project(h_manipulator_moveit)
 
 find_package(catkin REQUIRED)
 

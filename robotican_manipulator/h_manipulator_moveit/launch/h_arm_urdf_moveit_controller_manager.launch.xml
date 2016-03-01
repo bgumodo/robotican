@@ -10,6 +10,6 @@
     <arg name="moveit_controller_manager" default="moveit_simple_controller_manager/MoveItSimpleControllerManager"/>
     <param name="moveit_controller_manager" value="$(arg moveit_controller_manager)"/>
 
-    <rosparam file="$(find test_arm_nadiv)/config/controllers.yaml"/> 
+    <rosparam file="$(find h_manipulator_moveit)/config/controllers.yaml"/> 
 
 </launch>
