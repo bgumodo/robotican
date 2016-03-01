@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="komodo">
+	<!-- Load all the links  -->
+	<xacro:include filename="$(find robotican_description)/lizi/lizi_links/lizi_rover.xacro" />
+	<xacro:include filename="$(find robotican_description)/lizi/lizi_links/Asus_Camera_link.xacro" />
+	<xacro:include filename="$(find robotican_description)/lizi/lizi_links/Asus_Pan_link.xacro" />
+	<xacro:include filename="$(find robotican_description)/lizi/lizi_links/Camera_link.xacro" />
+	<xacro:include filename="$(find robotican_description)/lizi/lizi_links/Laser_link.xacro" />
+	<xacro:include filename="$(find robotican_description)/lizi/lizi_links/Left_URF_link.xacro" />
+	<xacro:include filename="$(find robotican_description)/lizi/lizi_links/Rear_URF_link.xacro" />
+	<xacro:include filename="$(find robotican_description)/lizi/lizi_links/Right_URF_link.xacro" />
+	<!--         END         -->
+	<!-- Load all the joints -->
+	
+	<joint name="Asus_Pan_Joint" type="fixed">
+    		<origin xyz="0.081249 0 0.092091" rpy="2.1253E-16 8.5011E-16 0" />
+    		<parent link="base_link" />
+    		<child link="Asus_Pan_link" />
+    		<axis xyz="0 0 -1" />
+    		<limit effort="0" velocity="0" />
+  	</joint>
+
+	<joint name="Asus_Tilt_Joint" type="fixed">
+    		<origin xyz="-0.0004889 -0.00041349 0.08" rpy="0 0 0" />
+    		<parent link="Asus_Pan_link" />
+    		<child link="Asus_Camera_link" />
+    		<axis xyz="0 1 0" />
+    		<limit effort="0" velocity="0" />
+  	</joint>
+
+	<joint name="Right_URF_Joint" type="fixed">
+    		<origin xyz="-0.0074577 -0.1055 0.07895" rpy="0 2.6072E-16 -1.57" />
+    		<parent link="base_link" />
+    		<child link="Right_URF_link" />
+    		<axis xyz="0 0 0" />
+  	</joint>
+
+	<joint name="Left_URF_Joint" type="fixed">
+    		<origin xyz="-0.0074577 0.1055 0.07895" rpy="0 0 1.57" />
+    		<parent link="base_link" />
+    		<child link="Left_URF_link" />
+    		<axis xyz="0 0 0" />
+  	</joint>	
+
+	<joint name="Rear_URF_Joint" type="fixed">
+    		<origin xyz="-0.182 0.085 0.093934" rpy="0 0 3.14" />
+    		<parent link="base_link" />
+    		<child link="Rear_URF_link" />
+    		<axis xyz="0 0 0" />
+  	</joint>
+
+	<joint name="Laser_Joint" type="fixed">
+    		<origin xyz="0.14276 -1.1564E-05 0.10781" rpy="2.1253E-16 8.5011E-16 -2.6741E-16" />
+    		<parent link="base_link" />
+    		<child link="Laser_link" />
+    		<axis xyz="0 0 0" />
+  	</joint>
+
+	<joint name="Camera_Joint" type="fixed">
+    		<origin xyz="0.178 0.05775 0.054305" rpy="1.6519E-18 -0.0061583 -2.6824E-16" />
+    		<parent link="base_link" />
+    		<child link="Camera_link" />
+    		<axis xyz="0 0 0" />
+  	</joint>
+
+	<!--         END         -->
+</robot>
