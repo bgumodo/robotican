@@ -1,0 +1,9 @@
+<launch>
+<launch>
+        <param name="robot_description" textfile="$(find h_arm_urdfV3)/robots/h_arm_urdf.URDF" />
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
+ 	<node pkg="dynamixel_pro_controller" type="dynamixel_pro_controller_node" name="hope_this_work" >
+           <rosparam command="load" file="$(find h_manipulator_moveit)/config/motors_config.yaml"/>
+        </node>
+</launch>
+</launch>

@@ -1,5 +1,5 @@
 <launch>
-	<include file="$(find dynamixel_pro_controller)/launch/test.launch" /> <!-- run the arm atj -->
+	<include file="$(find h_manipulator_moveit)/launch/arm.launch" /> <!-- run the arm atj -->
 	<rosparam command="load" file="$(find h_manipulator_moveit)/config/arm_joints.yaml"/>
 	<include file="$(find dynamixel_pro_action_server)/launch/action_server.launch" />
 	
