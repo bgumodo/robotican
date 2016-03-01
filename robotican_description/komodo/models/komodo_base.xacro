@@ -58,13 +58,5 @@
     		<child link="Asus_Camera_link" />
     		<axis xyz="-1 0 0" />
   	</joint>
-	
-	<joint name="sensors_unit_joint" type="fixed">
-    		<origin xyz="-0.00199997218323841 0 0.0835000000000001" rpy="-1.59433090848306E-31 -2.62229105359916E-15 5.55111512312578E-17" />
-    		<parent link="base_link" />
-    		<child link="sensors_unit_link" />
-    		<axis xyz="1 0 0" />
-  	</joint>
-
 	<!--         END         -->
 </robot>
