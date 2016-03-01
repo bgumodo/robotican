@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(dynamixel_gripper_action_server)
+project(dynamixel_gripper_two_fingers_action_server)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -102,7 +102,7 @@ find_package(Boost REQUIRED COMPONENTS system)
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
   INCLUDE_DIRS include
-  LIBRARIES dynamixel_gripper_action_server
+  LIBRARIES dynamixel_gripper_two_fingers_action_server
   CATKIN_DEPENDS actionlib actionlib_msgs control_msgs roscpp
   DEPENDS system_lib
 )
