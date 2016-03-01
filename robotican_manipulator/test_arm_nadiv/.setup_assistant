@@ -1,0 +1,8 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: h_arm_urdfV3
+    relative_path: robots/h_arm_urdf.URDF
+  SRDF:
+    relative_path: config/h_arm_urdf.srdf
+  CONFIG:
+    generated_timestamp: 1453641265

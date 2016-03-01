@@ -1,0 +1,20 @@
+controller_list:
+    - name: dynamixel_pro_action_server
+      default: true
+      type: FollowJointTrajectory
+
+      joints: 
+        - arm_rotation1_joint
+        - arm_shoulder1_joint
+        - arm_shoulder2_joint
+        - arm_rotation2_joint
+        - arm_shoulder3_joint
+        - arm_wrist_joint
+
+    - name: gripper_server
+      default: true
+      type: GripperCommand
+
+      joints: 
+        - gripper_l_joint
+        - gripper_r_joint

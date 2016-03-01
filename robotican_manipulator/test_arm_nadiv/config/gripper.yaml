@@ -1,0 +1,27 @@
+right_finger_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: gripper_r_joint
+    joint_speed: 0.2
+    max_torque: 0.1
+    motor:
+        id: 1
+        init: 2048
+        min: 1480
+        max: 2622
+
+left_finger_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: gripper_l_joint
+    joint_speed: 0.2
+    max_torque: 0.1
+    motor:
+        id: 2
+        init: 2048
+        min: 1480
+        max: 2622
