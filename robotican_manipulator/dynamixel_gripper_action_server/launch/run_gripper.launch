@@ -1,0 +1,4 @@
+<launch>
+	<rosparam command="load" file="$(find dynamixel_gripper_action_server)/config/joints.yaml"/>
+	<node name="gripper_server" pkg="dynamixel_gripper_action_server" type="gripper_server" output="screen" /> 
+</launch>

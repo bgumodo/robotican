@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package>
-  <name>dynamixel_pro_atj</name>
+  <name>dynamixel_pro_action_server</name>
   <version>0.0.0</version>
-  <description>The dynamixel_pro_atj package</description>
+  <description>The dynamixel_pro_action_server package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag --> 
   <!-- Example:  -->
