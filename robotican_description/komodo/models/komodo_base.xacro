@@ -1,8 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="komodo">
 
-<robot name="komodo">
-
 	<!-- Load all the links  -->
 	<xacro:include filename="$(find robotican_description)/komodo/komodo_base_links/komodo_rover.xacro" />
 	<xacro:include filename="$(find robotican_description)/komodo/komodo_base_links/Front_Camera_link.xacro" />
