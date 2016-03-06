@@ -41,7 +41,7 @@
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/>
     
     
-    <node name="pcloud_rot_node" pkg="ric_gazebo" type="pcloud_rot_node" cwd="node" output="screen" /> 
+    <!-- <node name="pcloud_rot_node" pkg="ric_gazebo" type="pcloud_rot_node" cwd="node" output="screen" /> -->
     
     <rosparam file="$(find robotican_simulation)/config/komodo/komodo_controllers.yaml" command="load"/>
     

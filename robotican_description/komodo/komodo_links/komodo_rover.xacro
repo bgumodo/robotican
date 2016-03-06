@@ -119,28 +119,28 @@
 
 
 	<!-- Load all the joints -->
-	<joint name="FR_Wheel_joint" type="fixed">
+	<joint name="FR_Wheel_joint" type="continuous">
     		<origin xyz="0.173999999999995 -0.2009 0" rpy="2.62229105359916E-15 6.9308460464278E-17 1.5707963267949" />
     		<parent link="base_link" />
     		<child link="FR_Wheel_link" />
     		<axis xyz="1 0 0" />
   	</joint>
 
-	<joint name="FL_Wheel_joint" type="fixed">
+	<joint name="FL_Wheel_joint" type="continuous">
     		<origin xyz="0.173999999999995 0.2009 0" rpy="-2.62229105359916E-15 6.93084604642783E-17 -1.5707963267949" />
     		<parent link="base_link" />
     		<child link="FL_Wheel_link" />
     		<axis xyz="-1 0 0" />
   	</joint>
 
-	<joint name="RR_Wheel_joint" type="fixed">
+	<joint name="RR_Wheel_joint" type="continuous">
     		<origin xyz="-0.156000000000005 -0.2009 0" rpy="2.62229105359916E-15 -1.59433090848306E-31 1.5707963267949" />
     		<parent link="base_link" />
     		<child link="RR_Wheel_link" />
     		<axis xyz="1 0 0" />
   	</joint>
 
-	<joint name="RL_Wheel_joint" type="fixed">
+	<joint name="RL_Wheel_joint" type="continuous">
     		<origin xyz="-0.156000000000005 0.2009 0" rpy="-2.62229105359916E-15 -5.57680208627196E-32 -1.5707963267949" />
     		<parent link="base_link" />
     		<child link="RL_Wheel_link" />

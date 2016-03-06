@@ -2,21 +2,19 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="komodo_with_arm">
 	
 	<!--    BASE ROBOT     -->
-	<xacro:include filename="$(find robotican_description)/komodo/models/komodo_base.xacro" >
+	<xacro:include filename="$(find robotican_description)/komodo/models/komodo_base.xacro" />
 	<!--        END        -->
 	
 	<!--        ARM        -->
-	<xacro:include filename="$(find robotican_description)/robot_arms/dynamixel_arm/arm.xacro" >
+	<xacro:include filename="$(find robotican_description)/robot_arms/dynamixel_arm/arm.xacro" />
 	<!--        END        -->	
-
 	<!--    LOAD JOINTS    -->
 	
 	<joint name="Arm_base_joint" type="fixed">
     		<origin xyz="-0.112249972183238 0 0.167160698455407" rpy="3.54761842723405E-15 -3.56763412295181E-15 -3.35371649289343E-30" />
     		<parent link="base_link" />
-    		<child link="Arm_base_link" />
+ga    		<child link="Arm_base_link" />
     		<axis xyz="0 0 1" />
-  	</joint>
+  	</joint>gazebo	
 	<!--        END        -->
-
 </robot>

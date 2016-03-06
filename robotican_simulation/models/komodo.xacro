@@ -253,7 +253,7 @@
 				<rightRearJoint>RR_Wheel_joint</rightRearJoint>
 				<wheelSeparation>0.5</wheelSeparation>
 				<wheelDiameter>0.2</wheelDiameter>
-				<robotBaseFrame>dummy_link</robotBaseFrame>
+				<robotBaseFrame>base_link</robotBaseFrame>
 				<odometryTopic>diff_driver/odometry</odometryTopic>
 				<odometryFrame>odom_link</odometryFrame>
 				<torque>20</torque>
