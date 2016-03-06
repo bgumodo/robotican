@@ -7,6 +7,7 @@
   	<arg name="debug" default="false"/>
   	
 	<!-- We resume the logic in empty_world.launch -->
+
   	<include file="$(find gazebo_ros)/launch/empty_world.launch">
   		<!--  <arg name="world_name" value="$(find robotican_simulation)/worlds/gas_station.world"/> -->
     		<arg name="debug" value="$(arg debug)" />
@@ -15,6 +16,7 @@
     		<arg name="use_sim_time" value="$(arg use_sim_time)"/>
     		<arg name="headless" value="$(arg headless)"/>
   	</include>
+
 	<param name="robot_description" command="$(find xacro)/xacro.py '$(find robotican_simulation)/models/komodo.xacro'  ns:='init' color_name:='Grey'" />
     	<!-- Colors: Black, Blue, Green, Grey, Orange, Brown, Red, White -->
     

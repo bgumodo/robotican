@@ -220,7 +220,7 @@
     		<parent link="Arm_base_link" />
     		<child link="base_rotation_link" />
     		<axis xyz="0 0 1" />
-    		<limit lower="-1.57079" upper="1.57079" effort="0" velocity="0" />
+    		<limit lower="-1.57079" upper="1.57079" effort="10" velocity="0" />
 	</joint>
 	
 	<joint name="shoulder_joint" type="revolute">
@@ -228,7 +228,7 @@
     		<parent link="base_rotation_link" />
     		<child link="shoulder_link" />
     		<axis xyz="0 1 0" />
-    		<limit lower="-1.692969" upper="1.692969" effort="0" velocity="0" />
+    		<limit lower="-1.692969" upper="1.692969" effort="2000" velocity="0" />
   	</joint>
 	
 	<joint name="elbow1_joint" type="revolute">
@@ -236,7 +236,7 @@
     		<parent link="shoulder_link" />
     		<child link="elbow1_link" />
     		<axis xyz="-0.999999999998754 0 0" />
-    		<limit lower="-2.4434" upper="2.4434" effort="0" velocity="0" />
+    		<limit lower="-2.4434" upper="2.4434" effort="100" velocity="0" />
   	</joint>
 
 	<joint name="elbow2_joint" type="revolute">
@@ -244,7 +244,7 @@
     		<parent link="elbow1_link" />
     		<child link="elbow2_link" />
     		<axis xyz="1 0 0" />
-    		<limit lower="-2.4434" upper="2.4434" effort="0" velocity="0" />
+    		<limit lower="-2.4434" upper="2.4434" effort="10" velocity="0" />
   	</joint>	
 
 	<joint name="wrist_joint" type="revolute">
@@ -252,7 +252,7 @@
     		<parent link="elbow2_link" />
     		<child link="wrist_link" />
     		<axis xyz="0 0 0.999999999998754" />
-    		<limit lower="-1.91986" upper="1.91986" effort="0" velocity="0" />
+    		<limit lower="-1.91986" upper="1.91986" effort="10" velocity="0" />
   	</joint>
 
 	<joint name="left_finger_joint" type="revolute">
@@ -260,7 +260,7 @@
     		<parent link="wrist_link" />
    		<child link="left_finger_link" />
     		<axis xyz="1 0 0" />
-    		<limit lower="-0.87266" upper="0.87266" effort="0" velocity="0" />
+    		<limit lower="-0.87266" upper="0.87266" effort="10" velocity="0" />
   	</joint>	
 	
 	<joint name="right_finger_joint" type="revolute">
@@ -268,7 +268,7 @@
     		<parent link="wrist_link" />
     		<child link="right_finger_link" />
     		<axis xyz="1 0 0" />
-    		<limit lower="-0.87266" upper="0.87266" effort="0" velocity="0" />
+    		<limit lower="-0.87266" upper="0.87266" effort="10" velocity="0" />
   	</joint>	
 	
 	<joint name="Arm_camera_joint" type="fixed">

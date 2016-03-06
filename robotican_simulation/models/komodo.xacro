@@ -4,7 +4,7 @@
 	
 	<xacro:arg name="ns" default="komodo"/>
 	<xacro:arg name="color" default="Grey"/>
-	<xacro:arg name="gazebo" default="false"/>
+	<xacro:arg name="gazebo" default="true"/>
 	<xacro:arg name="arm_camera" default="false"/>
 	<xacro:arg name="front_camera" default="false"/>
 	<xacro:arg name="depth_camera" default="false"/>
@@ -253,7 +253,7 @@
 				<rightRearJoint>RR_Wheel_joint</rightRearJoint>
 				<wheelSeparation>0.5</wheelSeparation>
 				<wheelDiameter>0.2</wheelDiameter>
-				<robotBaseFrame>base_link</robotBaseFrame>
+				<robotBaseFrame>dummy_link</robotBaseFrame>
 				<odometryTopic>diff_driver/odometry</odometryTopic>
 				<odometryFrame>odom_link</odometryFrame>
 				<torque>20</torque>
