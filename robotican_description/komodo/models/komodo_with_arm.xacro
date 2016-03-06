@@ -13,8 +13,8 @@
 	<joint name="Arm_base_joint" type="fixed">
     		<origin xyz="-0.112249972183238 0 0.167160698455407" rpy="3.54761842723405E-15 -3.56763412295181E-15 -3.35371649289343E-30" />
     		<parent link="base_link" />
-ga    		<child link="Arm_base_link" />
+   		<child link="Arm_base_link" />
     		<axis xyz="0 0 1" />
-  	</joint>gazebo	
+  	</joint>	
 	<!--        END        -->
 </robot>

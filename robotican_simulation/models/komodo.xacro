@@ -27,6 +27,11 @@
 	
 	<xacro:include filename="$(find robotican_description)/komodo/models/komodo_with_arm.xacro" />
 	<xacro:if value="$(arg gazebo)">
+		<gazebo> 
+			<plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+				<robotNamespace>$(arg ns)</robotNamespace> 
+			</plugin> 
+		</gazebo>
 		<transmission name="tran1">
 			<type>transmission_interface/SimpleTransmission</type>
 			<joint name="FR_Wheel_joint">

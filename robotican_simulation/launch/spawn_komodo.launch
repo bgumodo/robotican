@@ -47,16 +47,7 @@
     <rosparam file="$(find robotican_simulation)/config/komodo/komodo_controllers.yaml" command="load"/>
     
     <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
-	output="screen" args="
-					   base_rotation_controller
-					   shoulder_controller
-					   elbow1_controller
-					   elbow2_controller
-					   wrist_controller
-					   left_finger_controller
-					   right_finger_controller
-					   joint_state_controller 
-					   "/>
+	output="screen" args="joint_state_controller base_rotation_controller shoulder_controller elbow1_controller elbow2_controller wrist_controller left_finger_controller right_finger_controller"/>
     
     <node pkg="tf" type="static_transform_publisher" name="map_odom_broadcaster" args="0 0 0 0 0 0 /map /$(arg name)/odom_link 20" /> 
   </group>
