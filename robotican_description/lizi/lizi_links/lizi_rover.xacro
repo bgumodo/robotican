@@ -117,29 +117,29 @@
 
 	<!--         END         -->
 	<!-- Load all the joints -->
-	<joint name="FL_Wheel_Joint" type="fixed">
+	<joint name="FL_Wheel_Joint" type="continuous">
     		<origin xyz="0.118 0.1338 0.026" rpy="0 0 -1.3371E-16" />
     		<parent link="base_link" />
     		<child link="FL_Wheel_link" />
-    		<axis xyz="0 -1 0" />
+    		<axis xyz="0 1 0" />
   	</joint>
 
-	<joint name="RL_Wheel_Joint" type="fixed">
+	<joint name="RL_Wheel_Joint" type="continuous">
     		<origin xyz="-0.118 0.1338 0.026" rpy="0 0 -6.6853E-16" />
     		<parent link="base_link" />
     		<child link="RL_Wheel_link" />
-    		<axis xyz="0 -1 0" />
+    		<axis xyz="0 1 0" />
     		<limit effort="0" velocity="0" />
   	</joint>
 
-	<joint name="RR_Wheel_Joint" type="fixed">
+	<joint name="RR_Wheel_Joint" type="continuous">
     		<origin xyz="-0.118 -0.1338 0.026" rpy="-1.2938E-16 -1.2938E-15 -6.6853E-16" />
     		<parent link="base_link" />
     		<child link="RR_Wheel_link" />
     		<axis xyz="0 1 0" />
   	</joint>
 	
-	<joint name="FR_Wheel_Joint" type="fixed">
+	<joint name="FR_Wheel_Joint" type="continuous">
     		<origin xyz="0.118 -0.1338 0.026" rpy="4.4216E-16 -0.0061583 -2.6824E-16" />
     		<parent link="base_link" />
     		<child link="FR_Wheel_link" />
