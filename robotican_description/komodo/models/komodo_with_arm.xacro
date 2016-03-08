@@ -7,8 +7,44 @@
 	
 	<!--        ARM        -->
 	<xacro:include filename="$(find robotican_description)/robot_arms/dynamixel_arm/arm.xacro" />
-	<!--        END        -->	
+	<!--        END        -->
+	
+	<!--	LOAD LINKS	   -->
+
+	<link name="Arm_base_link">
+    		<inertial>
+      			<origin rpy="0 0 0" xyz="-0.0168723530982394 -5.23224904403848E-05 0.038112696778507" />
+      			<mass value="1.08982930885161" />
+      			<inertia ixx="0.00311458437968986" ixy="-7.0610782277189E-06" ixz="-0.000262941654993437" iyy="0.00855106134499406" iyz="1.00391927392762E-06" izz="0.0104177337437887" />
+    		</inertial>
+    		<visual>
+      			<origin rpy="0 0 0" xyz="0 0 0" />
+      			<geometry>
+        			<mesh filename="package://robotican_description/komodo/meshes/Arm_base_link.STL" />
+      			</geometry>
+      			<material name="">
+        			<color rgba="0.4 0.4 0.4 1" />
+      			</material>
+    		</visual>
+    		<collision>
+      			<origin rpy="0 0 0" xyz="0 0 0" />
+      			<geometry>
+        			<mesh filename="package://robotican_description/komodo/meshes/Arm_base_link.STL" />
+      			</geometry>
+    		</collision>
+  	</link>
+  	
+  	<!--        END        -->
+  	
 	<!--    LOAD JOINTS    -->
+	
+	<joint name="base_rotation_joint" type="revolute">
+    		<origin xyz="-0.096277996026178 0 0.0549000000000002" rpy="-5.46369598732866E-16 1.34659130519145E-15 -2.1922983760752E-31" />
+    		<parent link="Arm_base_link" />
+    		<child link="base_rotation_link" />
+    		<axis xyz="0 0 1" />
+    		<limit lower="-1.57079" upper="1.57079" effort="10" velocity="0" />
+	</joint>
 	
 	<joint name="Arm_base_joint" type="fixed">
     		<origin xyz="-0.112249972183238 0 0.167160698455407" rpy="3.54761842723405E-15 -3.56763412295181E-15 -3.35371649289343E-30" />
@@ -16,5 +52,6 @@
    		<child link="Arm_base_link" />
     		<axis xyz="0 0 1" />
   	</joint>	
+	
 	<!--        END        -->
 </robot>
