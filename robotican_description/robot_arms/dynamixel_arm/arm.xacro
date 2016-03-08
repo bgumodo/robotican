@@ -1,7 +1,8 @@
 <robot name="dynamixel_arm">
 
 	<!-- Load all the links  -->
-
+	
+	<!--
 	<link name="Arm_Camera_link">
     		<inertial>
       			<origin rpy="0 0 0" xyz="3.63554297842268E-06 0.000213444909942184 -0.00979905208116372" />
@@ -24,6 +25,8 @@
       			</geometry>
     		</collision>
   	</link>
+	-->
+	
 	<link name="base_rotation_link">
     		<inertial>
       			<origin rpy="0 0 0" xyz="-1.11022302462516E-16 -7.80223872637444E-17 0.0660708417371112" />
@@ -46,6 +49,7 @@
       			</geometry>
     		</collision>
   	</link>
+
 	<link name="elbow1_link">
     		<inertial>
       			<origin rpy="0 0 0" xyz="3.38561240652013E-05 2.66604610292575E-06 0.0239321015909688" />
@@ -91,6 +95,7 @@
       			</geometry>
     		</collision>
   	</link>
+
 	<link name="left_finger_link">
     		<inertial>
       			<origin rpy="0 0 0" xyz="-6.10622663543836E-16 0.0205697573116852 0.0301832532936965" />
@@ -159,6 +164,7 @@
       			</geometry>
     		</collision>
   	</link>
+
 	<link name="wrist_link">
     		<inertial>
       			<origin rpy="0 0 0" xyz="-0.000140374211043626 4.00707618562063E-10 0.0303673809619358" />
@@ -241,12 +247,15 @@
     		<limit lower="-0.87266" upper="0.87266" effort="10" velocity="0" />
   	</joint>	
 	
+	<!--
 	<joint name="Arm_camera_joint" type="fixed">
     		<origin xyz="-0.0552499999999999 0 0.0340250000000002" rpy="1.60129334747211E-25 2.01127359533543E-16 -1.57079632649567" />
     		<parent link="wrist_link" />
     		<child link="Arm_Camera_link" />
     		<axis xyz="0 0 0.999999999998754" />
-  	</joint>
+  	</joint> 
+	-->
+	
 	<!--         END         -->
 
 </robot>
