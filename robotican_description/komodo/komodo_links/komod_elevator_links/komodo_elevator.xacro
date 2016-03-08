@@ -124,6 +124,14 @@
 	
 	<!-- Load ALL THE JOINTS -->
 	
+	<joint name="base_rotation_joint" type="revolute">
+		<origin xyz="0.113 0 -0.00400000000000003" rpy="-5.46369598732866E-16 1.34659130519145E-15 -2.1922983760752E-31" />
+		<parent link="elevator_link" />
+		<child link="base_rotation_link" />
+		<axis xyz="0 0 1" />
+		<limit lower="-1.57079" upper="1.57079" effort="10" velocity="0" />
+	</joint>
+	
 	<joint name="elevator_joint" type="prismatic">
 		<origin xyz="0.101457996026178 0 0.0740000000000002" rpy="0 0 0" />
 		<parent link="Arm_base_link" />

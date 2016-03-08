@@ -76,7 +76,7 @@
     		<axis xyz="0 0 1" />
   	</joint>
   	
-  		<joint name="Arm_camera_joint" type="fixed">
+	<joint name="Arm_camera_joint" type="fixed">
     		<origin xyz="-0.0552499999999999 0 0.0340250000000002" rpy="1.60129334747211E-25 2.01127359533543E-16 -1.57079632649567" />
     		<parent link="wrist_link" />
     		<child link="Arm_Camera_link" />
