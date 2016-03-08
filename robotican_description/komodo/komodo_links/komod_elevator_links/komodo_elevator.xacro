@@ -1,0 +1,163 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="komodo">
+	<!--      LOAD MODEL     -->
+	<xacro:include filename="$(find robotican_description)/robot_arms/dynamixel_arm/arm.xacro" />
+	<!--         END         -->
+	
+	<!-- Load ALL THE LINKS  -->
+	<link name="Arm_base_link">
+		<inertial>
+			<origin rpy="0 0 0" xyz="0.0787832367713514 1.63894955207658E-05 0.30372182598738" />
+			<mass value="5.82785061945851" />
+			<inertia ixx="0.262040399352781" ixy="-1.20613586206922E-05" ixz="0.0219696026578" iyy="0.271705564666912" iyz="3.10612186063073E-05" izz="0.0337682852586326" />
+		</inertial>
+		<visual>
+			<origin rpy="0 0 0" xyz="0 0 0" />
+			<geometry>
+				<mesh filename="package://robotican_description/komodo/meshes/Arm_base_elevator_link.STL" />
+			</geometry>
+			<material name="">
+				<color rgba="0.4 0.4 0.4 1" />
+			</material>
+		</visual>
+		<collision>
+			<origin rpy="0 0 0" xyz="0 0 0" />
+			<geometry>
+				<mesh filename="package://robotican_description/komodo/meshes/Arm_base_elevator_link.STL" />
+			</geometry>
+		</collision>
+	  </link>
+	  
+	<link name="Creative_Camera_link">
+		<inertial>
+			<origin rpy="0 0 0" xyz="0.000246466472824558 6.40214461760665E-06 -3.77569804070194E-05" />
+			<mass value="0.0917411732955106" />
+			<inertia ixx="9.42830385924344E-05" ixy="7.20275321596364E-09" ixz="-9.53710985095244E-09" iyy="1.31046061468615E-05" iyz="2.49172946580444E-11" izz="9.18985906934582E-05" />
+		</inertial>
+		<visual>
+			<origin rpy="0 0 0" xyz="0 0 0" />
+			<geometry>
+				<mesh filename="package://robotican_description/komodo/meshes/Creative_Camera_link.STL" />
+			</geometry>
+			<material name="">
+				<color rgba="0.2 0.2 0.2 1" />
+			</material>
+		</visual>
+		<collision>
+			<origin rpy="0 0 0" xyz="0 0 0" />
+			<geometry>
+				<mesh filename="package://robotican_description/komodo/meshes/Creative_Camera_link.STL" />
+			</geometry>
+		</collision>
+	</link>
+	
+	<link name="elevator_link">
+		<inertial>
+			<origin rpy="0 0 0" xyz="0.0954671716579415 1.91586249009607E-06 -0.0185743175743276" />
+			<mass value="1.09057945344451" />
+			<inertia ixx="0.000835857275985966" ixy="5.81870910353681E-08" ixz="-3.13493979506258E-05" iyy="0.00128840659932805" iyz="1.45397132642805E-07" izz="0.00136461371089342" />
+		</inertial>
+		<visual>
+			<origin rpy="0 0 0" xyz="0 0 0" />
+			<geometry>
+				<mesh filename="package://robotican_description/komodo/meshes/elevator_link.STL" />
+			</geometry>
+			<material name="">
+				<color rgba="0.35 0.35 0.35 1" />
+			</material>
+		</visual>
+		<collision>
+			<origin rpy="0 0 0" xyz="0 0 0" />
+			<geometry>
+				<mesh filename="package://robotican_description/komodo/meshes/elevator_link.STL" />
+			</geometry>
+		</collision>
+	</link>
+
+	<link name="Rear_Camera_link">
+		<inertial>
+			<origin rpy="0 0 0" xyz="3.63553471786722E-06 0.000213443852905448 -0.00979905092954501" />
+			<mass value="0.0346828331927957" />
+			<inertia ixx="6.28790547336403E-06" ixy="-2.06834495042828E-09" ixz="1.17994816083997E-09" iyy="6.08020816375982E-06" iyz="3.61787794070637E-08" izz="9.95214453956502E-06" />
+		</inertial>
+		<visual>
+			<origin rpy="0 0 0" xyz="0 0 0" />
+			<geometry>
+				<mesh filename="package://robotican_description/komodo/meshes/Rear_Camera_link.STL" />
+			</geometry>
+			<material name="">
+				<color rgba="0.1 0.1 0.1 1" />
+			</material>
+		</visual>
+		<collision>
+			<origin rpy="0 0 0" xyz="0 0 0" />
+			<geometry>
+				<mesh filename="package://robotican_description/komodo/meshes/Rear_Camera_link.STL" />
+			</geometry>
+		</collision>
+	</link>
+	
+	<link name="Top_Camera_link">
+		<inertial>
+			<origin rpy="0 0 0" xyz="4.37351127445876E-06 0.000213430006923504 -0.00979905092954436" />
+			<mass value="0.0346828331927942" />
+			<inertia ixx="6.28791729321072E-06" ixy="-1.35017062474835E-09" ixz="1.30503198120059E-09" iyy="6.08019634391293E-06" iyz="3.61744833904195E-08" izz="9.95214453956468E-06" />
+		</inertial>
+		<visual>
+			<origin rpy="0 0 0" xyz="0 0 0" />
+			<geometry>
+				<mesh filename="package://robotican_description/komodo/meshes/Top_Camera_link.STL" />
+			</geometry>
+			<material name="">
+				<color rgba="0.1 0.1 0.1 1" />
+			</material>
+		</visual>
+		<collision>
+			<origin rpy="0 0 0" xyz="0 0 0" />
+			<geometry>
+				<mesh filename="package://robotican_description/komodo/meshes/Top_Camera_link.STL" />
+			</geometry>
+		</collision>
+	</link>
+	 
+	<!--         END         -->
+	
+	<!-- Load ALL THE JOINTS -->
+	<joint name="Arm_base_joint" type="fixed">
+		<origin xyz="-0.112249972183238 0 0.167160698455407" rpy="0 0 0" />
+		<parent link="base_link" />
+		<child link="Arm_base_link" />
+		<axis xyz="0 0 0" />
+	</joint>
+	
+	<joint name="elevator_joint" type="prismatic">
+		<origin xyz="0.101457996026178 0 0.0740000000000002" rpy="0 0 0" />
+		<parent link="Arm_base_link" />
+		<child link="elevator_link" />
+		<axis xyz="0 0 1" />
+		<dynamics damping="1000.0" friction="100000.0"/>
+		<limit lower="0" upper="0.50" effort="100" velocity="0.000000000000001" />
+	</joint>
+	
+	<joint name="Creative_Camera_joint" type="fixed">
+		<origin xyz="0.0260250000000002 0 0.0520000000000001" rpy="-1.41059322098675E-37 0 -6.20247191139794E-16" />
+		<parent link="wrist_link" />
+		<child link="Creative_Camera_link" />
+		<axis xyz="0 0 0" />
+	</joint>
+	
+	<joint name="Rear_Camera_joint" type="fixed">
+		<origin xyz="0.0329579960261737 0 0.354500000000001" rpy="0 0 -3.15" />
+		<parent link="Arm_base_link" />
+		<child link="Rear_Camera_link" />
+		<axis xyz="0 0 0" />
+	</joint>
+	
+	<joint name="Top_Camera_joint" type="fixed">
+		<origin xyz="0.0622079960261761 0.0152829991418538 0.660000000000001" rpy="0 -1.57 0" />
+		<parent link="Arm_base_link" />
+		<child link="Top_Camera_link" />
+		<axis xyz="0 0 0" />
+	</joint>
+	
+	<!--         END         -->
+</robot>

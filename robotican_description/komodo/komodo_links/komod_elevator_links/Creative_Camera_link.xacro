@@ -1,0 +1,23 @@
+<robot name="Creative_Camera_link"><link name="Creative_Camera_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.000246466472824558 6.40214461760665E-06 -3.77569804070194E-05" />
+      <mass value="0.0917411732955106" />
+      <inertia ixx="9.42830385924344E-05" ixy="7.20275321596364E-09" ixz="-9.53710985095244E-09" iyy="1.31046061468615E-05" iyz="2.49172946580444E-11" izz="9.18985906934582E-05" />
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotican_description/komodo/meshes/Creative_Camera_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.2 0.2 0.2 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotican_description/komodo/meshes/Creative_Camera_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  </robot>
