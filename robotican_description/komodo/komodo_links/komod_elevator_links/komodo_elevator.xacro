@@ -4,6 +4,7 @@
 	<!--         END         -->
 	
 	<!-- Load ALL THE LINKS  -->
+	
 	<link name="Arm_base_link">
 		<inertial>
 			<origin rpy="0 0 0" xyz="0.0787832367713514 1.63894955207658E-05 0.30372182598738" />
@@ -122,12 +123,6 @@
 	<!--         END         -->
 	
 	<!-- Load ALL THE JOINTS -->
-	<joint name="Arm_base_joint" type="fixed">
-		<origin xyz="-0.112249972183238 0 0.167160698455407" rpy="0 0 0" />
-		<parent link="base_link" />
-		<child link="Arm_base_link" />
-		<axis xyz="0 0 0" />
-	</joint>
 	
 	<joint name="elevator_joint" type="prismatic">
 		<origin xyz="0.101457996026178 0 0.0740000000000002" rpy="0 0 0" />
