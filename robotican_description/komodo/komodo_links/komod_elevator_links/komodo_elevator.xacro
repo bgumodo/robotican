@@ -142,10 +142,10 @@
 	</joint>
 	
 	<joint name="Creative_Camera_joint" type="fixed">
-		<origin xyz="0.0260250000000002 0 0.0520000000000001" rpy="-1.41059322098675E-37 0 -6.20247191139794E-16" />
+		<origin xyz="0.037 0 0.052" rpy="0.0 -1.57 3.14" />
 		<parent link="wrist_link" />
 		<child link="Creative_Camera_link" />
-		<axis xyz="0 0 0" />
+		<axis xyz="0 0 1" />
 	</joint>
 	
 	<joint name="Rear_Camera_joint" type="fixed">
