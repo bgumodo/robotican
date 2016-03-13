@@ -1,0 +1,5 @@
+<launch>
+	<arg name="from" default="/komodo_1/diff_driver/command" />
+	<arg name="to" default="/cmd_vel" />
+	<node name="ric_remaper" pkg="komodo_2dnav" type="startDriverCommand.py" output="screen" args="$(arg from) $(arg to)" />
+</launch>
