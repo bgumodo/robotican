@@ -32,6 +32,10 @@ sudo ./setup.sh
 cd ~/catkin_ws/src/robotican/robotican_installation/robot_pkg_setup
 sudo ./setup.sh
 
+if [ $? == 0 ]; then
+	
+fi
+
 cd ~/catkin_ws
 catkin_make
 sudo rosdep fix-permissions
