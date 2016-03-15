@@ -17,20 +17,20 @@ if [ -z $sn ]; then
 	exit 1
 fi
 
-set DIR=./test
+DIR=./Robot
 
 if [ -d $DIR ]; then
-	rm -R ./test
+	rm -R $DIR
 fi 
 
-wget --quiet https://raw.githubusercontent.com/robotican/robots/master/$pn"_"$sn/doc/test -P ./test
+wget --quiet https://raw.githubusercontent.com/robotican/robots/master/$pn"_"$sn/doc/test -P $DIR/Manual
 if [ $? != 0 ]; then
 	echo -e "\e[31m[Error]: Manual not found" 
 	echo -en "\e[39m"
 	exit 2
 fi
 
-wget --quiet https://raw.githubusercontent.com/robotican/robots/master/$pn"_"$sn/setup/setup.bash -P ./test
+wget --quiet https://raw.githubusercontent.com/robotican/robots/master/$pn"_"$sn/setup/setup.bash -P $DIR/Setup
 if [ $? != 0 ]; then
 	echo -e "\e[31m[Error]: Setup not found" 
 	echo -en "\e[39m"
@@ -39,7 +39,19 @@ fi
 
 if [ $? == 0 ]; then
 	echo -e "\e[32mCustom setup was downloaded successfully"
+	echo -e "\e[32mBeginning robot custom setup..."
 	echo -en "\e[39m"
+	
+	chmod +x $DIR/Setup/setup.bash
+	sudo $DIR/Setup/setup.bash
+	if [ $? == 0 ]; then
+		echo -e "\e[32mCustom setup complete"
+		echo -en "\e[39m"
+	else
+		echo -e "\e[31m[Error]: could not complate setup" 
+		echo -en "\e[39m"
+		exit 3
+	fi
 fi
 
 exit 0 
