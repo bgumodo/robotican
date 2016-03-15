@@ -22,10 +22,16 @@ source devel/setup.bash
 echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 cd ~/catkin_ws/src
 git clone https://github.com/robotican/robotican.git
+
 cd ~/catkin_ws/src/robotican/robotican_installation/third_pkg_setup
 sudo ./setup.sh
+
 cd ~/catkin_ws/src/robotican/robotican_installation/usb_rules_setup
 sudo ./setup.sh
+
+cd ~/catkin_ws/src/robotican/robotican_installation/robot_pkg_setup
+sudo ./setup.sh
+
 cd ~/catkin_ws
 catkin_make
 sudo rosdep fix-permissions
