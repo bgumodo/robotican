@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo -n "Please enter the robot mane adn press [ENTER]: "
+read name
 echo -n "Please enter your robot P.N and press [ENTER]: "
 read pn
 echo -n "Please enter your robot S.N and press [ENTER]: "
@@ -17,7 +19,7 @@ if [ -z $sn ]; then
 	exit 1
 fi
 
-DIR=./Robot
+DIR=./$name
 
 if [ -d $DIR ]; then
 	rm -R $DIR
@@ -43,7 +45,7 @@ if [ $? == 0 ]; then
 	echo -en "\e[39m"
 	
 	chmod +x $DIR/Setup/setup.bash
-	sudo $DIR/Setup/setup.bash
+	sudo $DIR/Setup/setup.bash $name
 	if [ $? == 0 ]; then
 		echo -e "\e[32mCustom setup complete"
 		echo -en "\e[39m"
