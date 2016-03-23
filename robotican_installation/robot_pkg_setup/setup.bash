@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function usage() {
-	echo "Usage: ./setup -N <Name of root> -P <Robot P.N> -S <Robot S.N>"
+	echo "Usage: ./setup -n <Name of root> -p <Robot P.N> -s <Robot S.N>"
 }
 
 OPTIND=1
@@ -11,15 +11,15 @@ if [ $# == 0 ]; then
 	exit 1
 fi
 
-while getopts "N:P:S:" opt; do
+while getopts "n:p:s:" opt; do
 	case $opt in
-		N)
+		n)
 			name=$OPTARG
 			;;
-		P)
+		p)
 			pn=$OPTARG
 			;;
-		S)
+		s)
 			sn=$OPTARG
 			;;
 		:) 
