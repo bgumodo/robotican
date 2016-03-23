@@ -1,3 +1,11 @@
+<?xml version="1.0" ?>
 <launch>
-<node pkg="tf" type="static_transform_publisher" name="map_odom_broadcaster" args="0 0 0 0 0 0 /map /odom_link 20" /> 
+  <node name="front_camera" output="screen" pkg="usb_cam" respawn="true" type="usb_cam_node">
+    <param name="video_device" value="/dev/video0"/>
+    <param name="camera_frame_id" value="Head_Camera"/>
+    <param name="pixel_format" value="yuyv"/>
+    <param name="image_width" value="640"/>
+    <param name="image_height" value="480"/>
+  </node>
+  <rosparam command="load" file="$(find ric_board)/config/test.yaml"/>
 </launch>

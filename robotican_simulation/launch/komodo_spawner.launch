@@ -27,7 +27,7 @@
 	    	<arg name="arm_camera" value='true'/>
 	    	<arg name="depth_camera" value='false'/>
 	    	<arg name="laser_scanner" value='true'/>
-	    	<arg name="urf" value='false'/>
+	    	<arg name="urf" value='true'/>
 	    	<arg name="imu" value='false'/>
 	    	<arg name="x" value="0.0" />
 	    	<arg name="y" value="0.0" />

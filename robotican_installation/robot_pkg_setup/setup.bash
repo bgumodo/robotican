@@ -1,11 +1,37 @@
 #!/bin/bash
 
-echo -n "Please enter the robot mane adn press [ENTER]: "
-read name
-echo -n "Please enter your robot P.N and press [ENTER]: "
-read pn
-echo -n "Please enter your robot S.N and press [ENTER]: "
-read sn
+function usage() {
+	echo "Usage: ./setup -N <Name of root> -P <Robot P.N> -S <Robot S.N>"
+}
+
+OPTIND=1
+
+if [ $# == 0 ]; then
+	usage
+	exit 1
+fi
+
+while getopts "N:P:S:" opt; do
+	case $opt in
+		N)
+			name=$OPTARG
+			;;
+		P)
+			pn=$OPTARG
+			;;
+		S)
+			sn=$OPTARG
+			;;
+		:) 
+			echo "Option $OPTARG requires an argument." >&2
+			exit 1
+			;;
+		?)
+			usage
+			exit 1
+			;;
+	esac
+done
 
 if [ -z $pn ]; then
 	echo -e "\e[31m[Error]: P.N can't be empty."
@@ -19,7 +45,17 @@ if [ -z $sn ]; then
 	exit 1
 fi
 
-DIR=./$name
+
+numOfPaths=$(echo $ROS_PACKAGE_PATH | awk -F ':' '{print NF}')
+
+if [ $numOfPaths -le 0 ]; then
+	echo -e "\e[31m[Error]: ROS not found on the system please install see the manual http://wiki.ros.org/robotican/Tutorials/PC%20installation" 
+	echo -en "\e[39m"
+	exit 4
+fi
+ 
+CATKIN=$(echo $ROS_PACKAGE_PATH | tr ":" "\n" | awk -F '/' '{if ($2 == "home") {print}}') 
+DIR=$CATKIN/robotican/robotican_robots/$name
 
 if [ -d $DIR ]; then
 	rm -R $DIR
