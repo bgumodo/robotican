@@ -61,7 +61,7 @@ if [ -d $DIR ]; then
 	rm -R $DIR
 fi 
 
-wget --quiet https://raw.githubusercontent.com/robotican/robots/master/$pn"_"$sn/doc/test -P $DIR/Manual
+wget --quiet https://raw.githubusercontent.com/robotican/robots/master/$pn"_"$sn/doc/manual -P $DIR/Manual
 if [ $? != 0 ]; then
 	echo -e "\e[31m[Error]: Manual not found" 
 	echo -en "\e[39m"
