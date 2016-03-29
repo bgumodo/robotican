@@ -348,7 +348,7 @@
 					<plugin name="gazebo_ros_Right_URF_controller" filename="libhector_gazebo_ros_sonar.so">
 		  				<!--gaussianNoise>0.005</gaussianNoise-->
 		  				<!-- <robotNamespace>$(arg ns)</robotNamespace> -->
-		  				<topicName>Rangers/Right_URF</topicName>
+		  				<topicName>right_urf</topicName>
 		  				<frameId>$(arg ns)/Right_URF_link</frameId>
 					</plugin>
 		  			<always_on>true</always_on>
@@ -386,7 +386,7 @@
 					<plugin name="gazebo_ros_Left_URF_controller" filename="libhector_gazebo_ros_sonar.so">
 		  				<!--gaussianNoise>0.005</gaussianNoise-->
 		  				<!-- <robotNamespace>$(arg ns)</robotNamespace> -->
-		  				<topicName>Rangers/Left_URF</topicName>
+		  				<topicName>left_urf</topicName>
 		  				<frameId>$(arg ns)/Left_URF_link</frameId>
 					</plugin>
 	  				<always_on>true</always_on>
@@ -424,7 +424,7 @@
 					<plugin name="gazebo_ros_Rear_URF_controller" filename="libhector_gazebo_ros_sonar.so">
 		  				<!--gaussianNoise>0.005</gaussianNoise-->
 						<!-- <robotNamespace>$(arg ns)</robotNamespace> -->
-						<topicName>Rangers/Rear_URF</topicName>
+						<topicName>rear_urf</topicName>
 						<frameId>$(arg ns)/Rear_URF_link</frameId>
 					</plugin>
 	  				<always_on>true</always_on>

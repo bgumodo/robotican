@@ -23,10 +23,10 @@
 	<include file="$(find robotican_simulation)/launch/spawn_lizi.launch">
 		<arg name="name" value="lizi_1"/>
 		<arg name="color" value='Green'/> 
-		<arg name="front_camera" value='false'/>
+		<arg name="front_camera" value='true'/>
 		<arg name="depth_camera" value='false'/>
 		<arg name="laser_scanner" value='true'/>
-		<arg name="urf" value='false'/>
+		<arg name="urf" value='true'/>
 		<arg name="imu" value='false'/>
 		<arg name="pan_tilt" value='false'/>
 		<arg name="x" value="0.0" />
