@@ -32,6 +32,7 @@
 			urf:=$(arg urf)
 			imu:=$(arg imu)
 			pan_tilt:=$(arg pan_tilt)
+			wheels_type:=continuous
 	   " /> 
 
     
