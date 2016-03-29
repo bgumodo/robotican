@@ -81,7 +81,7 @@ if [ $? == 0 ]; then
 	echo -en "\e[39m"
 	
 	chmod +x $DIR/Setup/setup.bash
-	sudo $DIR/Setup/setup.bash $name $DIR
+	sudo $DIR/Setup/setup.bash $name $DIR $pn $sn
 	if [ $? == 0 ]; then
 		echo -e "\e[32mCustom setup complete"
 		echo -en "\e[39m"
