@@ -4,6 +4,7 @@
 	<arg name="gui" default="true"/>
 	<arg name="headless" default="false"/>
 	<arg name="debug" default="false"/>
+	<arg name="robot_name" default="lizi_1"/>
 	
 	<!-- We resume the logic in empty_world.launch -->
 	<include file="$(find gazebo_ros)/launch/empty_world.launch">
@@ -21,7 +22,7 @@
 	<!-- Colors: Black, Blue, Green, Grey, Orange, Brown, Red, White -->
   
 	<include file="$(find robotican_simulation)/launch/spawn_lizi.launch">
-		<arg name="name" value="lizi_1"/>
+		<arg name="name" value="$(arg robot_name)"/>
 		<arg name="color" value='Green'/> 
 		<arg name="front_camera" value='true'/>
 		<arg name="depth_camera" value='false'/>
