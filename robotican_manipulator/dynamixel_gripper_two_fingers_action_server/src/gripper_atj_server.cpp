@@ -71,13 +71,13 @@ protected:
         sprintf(buff, "Incomming goal { pos: %f , effort: %f }", goal->command.position, goal->command.max_effort);
         rosInfo(buff);
 #endif
-
-        double computeGap = ((goal->command.position / 2.0f) - 0.02f) / 0.09f;
-        if(fabs(computeGap) < 1.0f && goal->command.position > 0) {
-            const double gap2Pos = asin(computeGap) - 0.35f;
+	if ((goal->command.position>=0)&&(goal->command.position<=0.15)){
+        	double computeGap = ((goal->command.position / 2.0f) - 0.02f) / 0.09f;
+       // if(fabs(computeGap) < 1.0f && goal->command.position > 0) {
+            const double gap2Pos = asin(computeGap) - 0.3f;
             std_msgs::Float64 leftCommand, rightCommand;
-            leftCommand.data = gap2Pos;
-            rightCommand.data = -gap2Pos;
+            leftCommand.data = -gap2Pos;
+            rightCommand.data = gap2Pos;
             _leftCommand.publish(leftCommand);
             _rightCommand.publish(rightCommand);
             waitToFinish(gap2Pos, 0.009, goal->command.max_effort);
