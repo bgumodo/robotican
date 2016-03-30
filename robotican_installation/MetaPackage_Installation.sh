@@ -31,6 +31,7 @@ if [ $? == 0 ]; then
 	
 	cd ~/catkin_ws/src/robotican/robotican_installation/usb_rules_setup
 	sudo ./setup.sh
+	chown -R $(logname):$(logname) ~/catkin_ws
 
 else
 	echo -e "\e[31m[Error]: ROS catkin_ws not found"
