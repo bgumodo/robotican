@@ -22,7 +22,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://h_arm_urdf/meshes/arm_base_link.STL" />
+          filename="package://robotican_description/robot_arms/h_arm_urdfV3/meshes/arm_base_link.STL" />
       </geometry>
       <material
         name="">
@@ -36,7 +36,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://h_arm_urdf/meshes/arm_base_link.STL" />
+          filename="package://robotican_description/robot_arms/h_arm_urdfV3/meshes/arm_base_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -62,7 +62,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://h_arm_urdf/meshes/arm_rotation1_link.STL" />
+          filename="package://robotican_description/robot_arms/h_arm_urdfV3/meshes/arm_rotation1_link.STL" />
       </geometry>
       <material
         name="">
@@ -76,7 +76,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://h_arm_urdf/meshes/arm_rotation1_link.STL" />
+          filename="package://robotican_description/robot_arms/h_arm_urdfV3/meshes/arm_rotation1_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -121,7 +121,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://h_arm_urdf/meshes/arm_shoulder1_link.STL" />
+          filename="package://robotican_description/robot_arms/h_arm_urdfV3/meshes/arm_shoulder1_link.STL" />
       </geometry>
       <material
         name="">
@@ -135,7 +135,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://h_arm_urdf/meshes/arm_shoulder1_link.STL" />
+          filename="package://robotican_description/robot_arms/h_arm_urdfV3/meshes/arm_shoulder1_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -179,7 +179,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://h_arm_urdf/meshes/arm_shoulder2_link.STL" />
+          filename="package://robotican_description/robot_arms/h_arm_urdfV3/meshes/arm_shoulder2_link.STL" />
       </geometry>
       <material
         name="">
@@ -193,7 +193,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://h_arm_urdf/meshes/arm_shoulder2_link.STL" />
+          filename="package://robotican_description/robot_arms/h_arm_urdfV3/meshes/arm_shoulder2_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -237,7 +237,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://h_arm_urdf/meshes/arm_rotation2_link.STL" />
+          filename="package://robotican_description/robot_arms/h_arm_urdfV3/meshes/arm_rotation2_link.STL" />
       </geometry>
       <material
         name="">
@@ -251,7 +251,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://h_arm_urdf/meshes/arm_rotation2_link.STL" />
+          filename="package://robotican_description/robot_arms/h_arm_urdfV3/meshes/arm_rotation2_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -295,7 +295,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://h_arm_urdf/meshes/arm_shoulder3_link.STL" />
+          filename="package://robotican_description/robot_arms/h_arm_urdfV3/meshes/arm_shoulder3_link.STL" />
       </geometry>
       <material
         name="">
@@ -309,7 +309,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://h_arm_urdf/meshes/arm_shoulder3_link.STL" />
+          filename="package://robotican_description/robot_arms/h_arm_urdfV3/meshes/arm_shoulder3_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -353,7 +353,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://h_arm_urdf/meshes/arm_wrist_link.STL" />
+          filename="package://robotican_description/robot_arms/h_arm_urdfV3/meshes/arm_wrist_link.STL" />
       </geometry>
       <material
         name="">
@@ -367,7 +367,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://h_arm_urdf/meshes/arm_wrist_link.STL" />
+          filename="package://robotican_description/robot_arms/h_arm_urdfV3/meshes/arm_wrist_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -411,7 +411,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://h_arm_urdf/meshes/gripper_r_link.STL" />
+          filename="package://robotican_description/robot_arms/h_arm_urdfV3/meshes/gripper_r_link.STL" />
       </geometry>
       <material
         name="">
@@ -425,7 +425,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://h_arm_urdf/meshes/gripper_r_link.STL" />
+          filename="package://robotican_description/robot_arms/h_arm_urdfV3/meshes/gripper_r_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -469,7 +469,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://h_arm_urdf/meshes/gripper_l_link.STL" />
+          filename="package://robotican_description/robot_arms/h_arm_urdfV3/meshes/gripper_l_link.STL" />
       </geometry>
       <material
         name="">
@@ -483,7 +483,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://h_arm_urdf/meshes/gripper_l_link.STL" />
+          filename="package://robotican_description/robot_arms/h_arm_urdfV3/meshes/gripper_l_link.STL" />
       </geometry>
     </collision>
   </link>
