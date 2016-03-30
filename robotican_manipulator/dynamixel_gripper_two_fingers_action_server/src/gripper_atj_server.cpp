@@ -145,6 +145,7 @@ public:
             ros::spinOnce();
             sensor_msgs::JointState msg;
             msg.name = _names;
+	    msg.header.stamp = ros::Time::now();
             msg.position.push_back(_leftPos);
             msg.position.push_back(_rightPos);
             msg.effort.push_back(_leftEffort);

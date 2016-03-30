@@ -7,7 +7,7 @@ right_finger_controller:
     joint_speed: 0.2
     max_torque: 0.1
     motor:
-        id: 1
+        id: 2
         init: 2048
         min: 1480
         max: 2622
@@ -21,7 +21,7 @@ left_finger_controller:
     joint_speed: 0.2
     max_torque: 0.1
     motor:
-        id: 2
+        id: 1
         init: 2048
         min: 1480
         max: 2622

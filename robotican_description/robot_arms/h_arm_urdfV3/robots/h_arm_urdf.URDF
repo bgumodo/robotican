@@ -434,13 +434,13 @@
     type="revolute">
     <origin
       xyz="0 0.021 0.04225"
-      rpy="0 0 0" />
+      rpy="-0.1 0 0" />
     <parent
       link="arm_wrist_link" />
     <child
       link="gripper_r_link" />
     <axis
-      xyz="1 0 0" />
+      xyz="-1 0 0" />
     <limit
       lower="-1.0"
       upper="0.4"
@@ -492,13 +492,13 @@
     type="revolute">
     <origin
       xyz="0 -0.021 0.04225"
-      rpy="0 0 0" />
+      rpy="0.1 0 0" />
     <parent
       link="arm_wrist_link" />
     <child
       link="gripper_l_link" />
     <axis
-      xyz="1 0 0" />
+      xyz="-1 0 0" />
     <limit
       lower="-0.4"
       upper="1.0"
