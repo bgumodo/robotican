@@ -1,9 +1,0 @@
-<?xml version="1.0" ?>
-<launch>
-  <node name="RiCTraffic" output="screen" pkg="ric_board" type="Start.py"/>
-  <param command="$(find xacro)/xacro.py '$(find ric_description)/komodo/komodo_ronin_no_plugins2.xacro'" name="robot_description"/>
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
-  <include file="$(find flir_gige)/launch/node.launch"/>
-  <include file="$(find ueye_cam)/launch/rgb8.launch"/>
-  <rosparam command="load" file="$(find ric_board)/config/komodo_tlv_test.yaml"/>
-</launch>

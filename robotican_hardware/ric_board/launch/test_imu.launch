@@ -1,5 +1,0 @@
-<?xml version="1.0" ?>
-<launch>
-  <node name="RiCTraffic" output="screen" pkg="ric_board" type="Start.py"/>
-  <rosparam command="load" file="$(find ric_board)/config/test_imu.yaml"/>
-</launch>

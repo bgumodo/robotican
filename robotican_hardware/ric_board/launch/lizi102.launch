@@ -1,7 +1,0 @@
-<?xml version="1.0" ?>
-<launch>
-  <node name="RiCTraffic" output="screen" pkg="ric_board" type="Start.py"/>
-  <param command="$(find xacro)/xacro.py '$(find ric_description)/lizi/lizi_no_plugins.xacro'" name="robot_description"/>
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
-  <rosparam command="load" file="$(find ric_board)/config/lizi102.yaml"/>
-</launch>
