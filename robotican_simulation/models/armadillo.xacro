@@ -17,6 +17,7 @@
 		</plugin> 
 	</gazebo>
 	
+
 	  <!-- hokuyo URG-04LX-UG01-->
   <gazebo reference="laser_link">
      <sensor type="ray" name="head_hokuyo_sensor">
@@ -256,9 +257,7 @@
 			</actuator>
 	</transmission>
 	
-	
-	
-  <gazebo reference="base_link">
+	<gazebo reference="base_link">
 	<selfCollide>true</selfCollide>
     <mu1>0.0</mu1>
     <mu2>0.0</mu2>

@@ -35,11 +35,13 @@
 	base_joint_state_controller
 	mobile_base_controller
 	elevator_controller
-	dynamixel_pro_action_server
 	head_pan_controller
 	head_tilt_controller
-	
+	dynamixel_pro_action_server
 	" />
+
+
+
 	<!--  <node pkg="tf" type="static_transform_publisher" name="base_arm_link_broadcaster" args="0 0 0 0 0 0 map base_arm_link 50" /> -->
 	
   	
