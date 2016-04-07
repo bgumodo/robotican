@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="komodo">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="Armadillo" description="Armadillo robot">
 	<xacro:include filename="$(find robotican_description)/armadillo/robots/armadillo.xacro" />
 	
 	<link name="dummy_link">
@@ -17,12 +17,120 @@
 		</plugin> 
 	</gazebo>
 	
+<xacro:property name="M_PI" value="3.1415926535897931" />
+<xacro:property name="URF_FOV" value="${10.0*M_PI/180}" />
 
+	<!-- Sonars -->
+<gazebo reference="left_urf_link">
+    <sensor type="ray" name="range">
+        <always_on>true</always_on>
+        <update_rate>10</update_rate>
+        <pose>0 0 0 0 0 0</pose>
+        <visualize>false</visualize>
+        <ray>
+            <scan>
+                <horizontal>
+                    <samples>10</samples>
+                    <resolution>1</resolution>
+                    <min_angle>${-URF_FOV/2.0}</min_angle>
+                    <max_angle>${URF_FOV/2.0}</max_angle>
+                </horizontal>
+		<vertical>
+                    <samples>10</samples>
+                    <resolution>1</resolution>
+                    <min_angle>${-URF_FOV/2.0}</min_angle>
+                    <max_angle>${URF_FOV/2.0}</max_angle>
+                </vertical>
+            </scan>
+            <range>
+                <min>0.01</min>
+                <max>5.0</max>
+                <resolution>0.001</resolution>
+            </range>
+        </ray>
+        <plugin name="gazebo_ros_left_urf_controller" filename="libhector_gazebo_ros_sonar.so">
+        <gaussianNoise>0.0001</gaussianNoise>
+        <topicName>URF/left</topicName>
+        <frameId>left_urf_link</frameId>
+        </plugin>
+    </sensor>
+</gazebo>
+<gazebo reference="right_urf_link">
+    <sensor type="ray" name="range">
+        <always_on>true</always_on>
+        <update_rate>10</update_rate>
+        <pose>0 0 0 0 0 0</pose>
+        <visualize>false</visualize>
+        <ray>
+            <scan>
+                <horizontal>
+                    <samples>10</samples>
+                    <resolution>1</resolution>
+                    <min_angle>${-URF_FOV/2.0}</min_angle>
+                    <max_angle>${URF_FOV/2.0}</max_angle>
+                </horizontal>
+		<vertical>
+                    <samples>10</samples>
+                    <resolution>1</resolution>
+                    <min_angle>${-URF_FOV/2.0}</min_angle>
+                    <max_angle>${URF_FOV/2.0}</max_angle>
+                </vertical>
+            </scan>
+            <range>
+                <min>0.01</min>
+                <max>5.0</max>
+                <resolution>0.01</resolution>
+            </range>
+        </ray>
+        <plugin name="gazebo_ros_left_urf_controller" filename="libhector_gazebo_ros_sonar.so">
+        <gaussianNoise>0.001</gaussianNoise>
+        <topicName>URF/right</topicName>
+        <frameId>right_urf_link</frameId>
+        </plugin>
+    </sensor>
+</gazebo>
+<gazebo reference="rear_urf_link">
+    <sensor type="ray" name="range">
+        <always_on>true</always_on>
+        <update_rate>10</update_rate>
+        <pose>0 0 0 0 0 0</pose>
+        <visualize>false</visualize>
+        <ray>
+            <scan>
+                <horizontal>
+                    <samples>10</samples>
+                    <resolution>1</resolution>
+                    <min_angle>${-URF_FOV/2.0}</min_angle>
+                    <max_angle>${URF_FOV/2.0}</max_angle>
+                </horizontal>
+		<vertical>
+                    <samples>10</samples>
+                    <resolution>1</resolution>
+                    <min_angle>${-URF_FOV/2.0}</min_angle>
+                    <max_angle>${URF_FOV/2.0}</max_angle>
+                </vertical>
+            </scan>
+            <range>
+                <min>0.01</min>
+                <max>5.0</max>
+                <resolution>0.01</resolution>
+            </range>
+        </ray>
+        <plugin name="gazebo_ros_left_urf_controller" filename="libhector_gazebo_ros_sonar.so">
+        <gaussianNoise>0.0001</gaussianNoise>
+        <topicName>URF/rear</topicName>
+        <frameId>rear_urf_link</frameId>
+        </plugin>
+    </sensor>
+</gazebo>
+	
+	
+	
 	  <!-- hokuyo URG-04LX-UG01-->
   <gazebo reference="laser_link">
      <sensor type="ray" name="head_hokuyo_sensor">
       <pose>0 0 0 0 0 0</pose>
-      <visualize>true</visualize>
+      <visualize>false</visualize>
       <update_rate>10</update_rate>
       <ray>
         <scan>
@@ -61,7 +169,7 @@
       <updateRate>50.0</updateRate>
       <bodyName>base_link</bodyName>
       <frameId>base_link</frameId>
-      <topicName>GPS/data</topicName>
+      <topicName>GPS/fix</topicName>
       <serviceName>SERVICE_GPS</serviceName>
       <velocityTopicName>GPS/fix_velocity</velocityTopicName>
       <gaussianNoise>2.89e-08 2.89e-08 2.89e-08</gaussianNoise>
@@ -73,7 +181,7 @@
     <gazebo>
       <plugin name="GazeboRosImu" filename="libhector_gazebo_ros_imu.so">
       <alwaysOn>true</alwaysOn>
-      <updateRate>20.0</updateRate> 
+      <updateRate>50.0</updateRate> 
       <bodyName>base_link</bodyName>
       <frameId>base_link</frameId>
       <topicName>IMU/data</topicName>
@@ -84,6 +192,19 @@
       <material>Gazebo/Red</material>
        </plugin>
   </gazebo>
+  
+  <!-- Magnetic -->
+    <gazebo>
+      <plugin name="GazeboRosMagnetic" filename="libhector_gazebo_ros_magnetic.so">
+      <updateRate>50.0</updateRate>
+      <bodyName>base_link</bodyName>
+      <frameId>base_link</frameId>
+      <topicName>IMU/magnetic</topicName>
+      <offset>0 0 0</offset>
+      <drift>0.0 0.0 0.0</drift>
+      <gaussianNoise>1.3e-2 1.3e-2 1.3e-2</gaussianNoise>
+    </plugin>
+   </gazebo>
   
   <!-- camera -->
   <gazebo reference="front_cam_link">
