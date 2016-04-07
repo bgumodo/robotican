@@ -9,7 +9,8 @@
 #include <sensor_msgs/JointState.h>
 #include <std_msgs/Float64.h>
 
-#define GRIPPER_DEBUG
+
+//#define GRIPPER_DEBUG
 
 class DynamixelGripperServer {
 protected:

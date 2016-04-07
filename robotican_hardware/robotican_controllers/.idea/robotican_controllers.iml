@@ -3,10 +3,11 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/include/robotican_controllers/gripper_action_controller_impl.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/package.xml" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/robotican_controllers/robot.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/robotican_controllers/two_finger_controller.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/robotican_controllers/utils.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/run_controller.cpp" isTestSource="false" />
     </content>
     <content url="file:///usr/src/gtest">
       <sourceFolder url="file:///usr/src/gtest/CMakeLists.txt" isTestSource="false" />
@@ -36,6 +37,9 @@
           <root url="file:///usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed" />
           <root url="file:///usr/local/include" />
         </SOURCES>
+        <excluded>
+          <root url="file://$MODULE_DIR$/include/robotican_controllers/gripper_action_controller_impl.h" />
+        </excluded>
       </library>
     </orderEntry>
   </component>

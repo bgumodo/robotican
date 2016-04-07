@@ -2,40 +2,41 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" assignedExecutableTargets="true" buildAllGenerated="true">
     <generated>
-      <config projectName="dynamixel_gripper_atj" targetName="std_msgs_generate_messages_cpp" />
-      <config projectName="dynamixel_gripper_atj" targetName="rosgraph_msgs_generate_messages_cpp" />
-      <config projectName="dynamixel_gripper_atj" targetName="gripper_test_client" />
-      <config projectName="dynamixel_gripper_atj" targetName="std_msgs_generate_messages_lisp" />
-      <config projectName="dynamixel_gripper_atj" targetName="actionlib_generate_messages_lisp" />
+      <config projectName="dynamixel_gripper_atj" targetName="std_msgs_generate_messages_py" />
       <config projectName="dynamixel_gripper_atj" targetName="gtest_main" />
+      <config projectName="dynamixel_gripper_atj" targetName="roscpp_generate_messages_lisp" />
       <config projectName="dynamixel_gripper_atj" targetName="geometry_msgs_generate_messages_py" />
+      <config projectName="dynamixel_gripper_atj" targetName="tests" />
+      <config projectName="dynamixel_gripper_atj" targetName="doxygen" />
+      <config projectName="dynamixel_gripper_atj" targetName="trajectory_msgs_generate_messages_py" />
+      <config projectName="dynamixel_gripper_atj" targetName="gripper_server" />
+      <config projectName="dynamixel_gripper_atj" targetName="trajectory_msgs_generate_messages_cpp" />
+      <config projectName="dynamixel_gripper_atj" targetName="clean_test_results_dynamixel_gripper_atj" />
       <config projectName="dynamixel_gripper_atj" targetName="rosgraph_msgs_generate_messages_lisp" />
       <config projectName="dynamixel_gripper_atj" targetName="actionlib_generate_messages_py" />
-      <config projectName="dynamixel_gripper_atj" targetName="control_msgs_generate_messages_lisp" />
-      <config projectName="dynamixel_gripper_atj" targetName="control_msgs_generate_messages_py" />
-      <config projectName="dynamixel_gripper_atj" targetName="rosgraph_msgs_generate_messages_py" />
-      <config projectName="dynamixel_gripper_atj" targetName="control_msgs_generate_messages_cpp" />
-      <config projectName="dynamixel_gripper_atj" targetName="std_msgs_generate_messages_py" />
-      <config projectName="dynamixel_gripper_atj" targetName="trajectory_msgs_generate_messages_cpp" />
+      <config projectName="dynamixel_gripper_atj" targetName="rosgraph_msgs_generate_messages_cpp" />
       <config projectName="dynamixel_gripper_atj" targetName="gtest" />
-      <config projectName="dynamixel_gripper_atj" targetName="download_extra_data" />
-      <config projectName="dynamixel_gripper_atj" targetName="geometry_msgs_generate_messages_lisp" />
-      <config projectName="dynamixel_gripper_atj" targetName="trajectory_msgs_generate_messages_lisp" />
-      <config projectName="dynamixel_gripper_atj" targetName="doxygen" />
-      <config projectName="dynamixel_gripper_atj" targetName="actionlib_msgs_generate_messages_lisp" />
-      <config projectName="dynamixel_gripper_atj" targetName="run_tests" />
-      <config projectName="dynamixel_gripper_atj" targetName="actionlib_msgs_generate_messages_cpp" />
-      <config projectName="dynamixel_gripper_atj" targetName="actionlib_generate_messages_cpp" />
-      <config projectName="dynamixel_gripper_atj" targetName="tests" />
-      <config projectName="dynamixel_gripper_atj" targetName="roscpp_generate_messages_py" />
-      <config projectName="dynamixel_gripper_atj" targetName="roscpp_generate_messages_cpp" />
-      <config projectName="dynamixel_gripper_atj" targetName="roscpp_generate_messages_lisp" />
-      <config projectName="dynamixel_gripper_atj" targetName="trajectory_msgs_generate_messages_py" />
-      <config projectName="dynamixel_gripper_atj" targetName="clean_test_results_dynamixel_gripper_atj" />
-      <config projectName="dynamixel_gripper_atj" targetName="clean_test_results" />
       <config projectName="dynamixel_gripper_atj" targetName="geometry_msgs_generate_messages_cpp" />
-      <config projectName="dynamixel_gripper_atj" targetName="gripper_server" />
+      <config projectName="dynamixel_gripper_atj" targetName="roscpp_generate_messages_cpp" />
+      <config projectName="dynamixel_gripper_atj" targetName="control_msgs_generate_messages_lisp" />
+      <config projectName="dynamixel_gripper_atj" targetName="download_extra_data" />
+      <config projectName="dynamixel_gripper_atj" targetName="actionlib_msgs_generate_messages_cpp" />
+      <config projectName="dynamixel_gripper_atj" targetName="gripper_test_client" />
+      <config projectName="dynamixel_gripper_atj" targetName="actionlib_generate_messages_cpp" />
+      <config projectName="dynamixel_gripper_atj" targetName="rosgraph_msgs_generate_messages_py" />
+      <config projectName="dynamixel_gripper_atj" targetName="trajectory_msgs_generate_messages_lisp" />
+      <config projectName="dynamixel_gripper_atj" targetName="control_msgs_generate_messages_cpp" />
+      <config projectName="dynamixel_gripper_two_fingers_action_server" targetName="clean_test_results_dynamixel_gripper_two_fingers_action_server" />
+      <config projectName="dynamixel_gripper_atj" targetName="control_msgs_generate_messages_py" />
+      <config projectName="dynamixel_gripper_atj" targetName="actionlib_generate_messages_lisp" />
+      <config projectName="dynamixel_gripper_atj" targetName="clean_test_results" />
+      <config projectName="dynamixel_gripper_atj" targetName="std_msgs_generate_messages_lisp" />
+      <config projectName="dynamixel_gripper_atj" targetName="roscpp_generate_messages_py" />
+      <config projectName="dynamixel_gripper_atj" targetName="geometry_msgs_generate_messages_lisp" />
       <config projectName="dynamixel_gripper_atj" targetName="actionlib_msgs_generate_messages_py" />
+      <config projectName="dynamixel_gripper_atj" targetName="run_tests" />
+      <config projectName="dynamixel_gripper_atj" targetName="std_msgs_generate_messages_cpp" />
+      <config projectName="dynamixel_gripper_atj" targetName="actionlib_msgs_generate_messages_lisp" />
     </generated>
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="false" GENERATION_PASS_SYSTEM_ENVIRONMENT="true">
@@ -68,7 +69,7 @@
         <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="144" column="41" selection-start-line="144" selection-start-column="41" selection-end-line="144" selection-end-column="41" />
+              <caret line="123" column="49" selection-start-line="123" selection-start-column="4" selection-end-line="123" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -77,19 +78,16 @@
       <file leaf-file-name="gripper_atj_server.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/gripper_atj_server.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9054622">
-              <caret line="86" column="48" selection-start-line="86" selection-start-column="48" selection-end-line="86" selection-end-column="48" />
+            <state vertical-scroll-proportion="0.59800667">
+              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
               <folding>
                 <element signature="e#38#58#0" expanded="true" />
-                <element signature="e#919#1108#0" expanded="false" />
-                <element signature="e#1114#1223#0" expanded="false" />
-                <element signature="e#1229#1347#0" expanded="false" />
-                <element signature="e#1353#1532#0" expanded="false" />
-                <element signature="e#1538#1900#0" expanded="false" />
-                <element signature="e#3381#3527#0" expanded="false" />
-                <element signature="e#3533#3682#0" expanded="false" />
-                <element signature="e#3688#3805#0" expanded="false" />
-                <element signature="e#5149#5937#0" expanded="false" />
+                <element signature="e#922#1111#0" expanded="false" />
+                <element signature="e#1117#1226#0" expanded="false" />
+                <element signature="e#1232#1350#0" expanded="false" />
+                <element signature="e#1356#1535#0" expanded="false" />
+                <element signature="e#1541#1903#0" expanded="false" />
+                <element signature="e#2174#2338#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -112,10 +110,10 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1431" />
-    <option name="y" value="24" />
-    <option name="width" value="1855" />
-    <option name="height" value="1056" />
+    <option name="x" value="65" />
+    <option name="y" value="-4" />
+    <option name="width" value="1301" />
+    <option name="height" value="772" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -170,7 +168,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="dynamixel_gripper_atj" />
+              <option name="myItemId" value="dynamixel_gripper_two_fingers_action_server" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -184,7 +182,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="dynamixel_gripper_atj" />
+              <option name="myItemId" value="dynamixel_gripper_two_fingers_action_server" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -197,9 +195,9 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../caja/caja_servotronix" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager" selected="Application.gripper_test_client">
+  <component name="RunManager" selected="Application.Build All">
     <configuration default="true" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="dynamixel_gripper_atj" TARGET_NAME="actionlib_generate_messages_cpp" CONFIG_NAME="Debug" TEST_MODE="SUITE_TEST">
       <envs />
       <method />
@@ -365,7 +363,11 @@
       <envs />
       <method />
     </configuration>
-    <list size="35">
+    <configuration default="false" name="clean_test_results_dynamixel_gripper_two_fingers_action_server" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="dynamixel_gripper_two_fingers_action_server" TARGET_NAME="clean_test_results_dynamixel_gripper_two_fingers_action_server" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <list size="36">
       <item index="0" class="java.lang.String" itemvalue="Application.Build All" />
       <item index="1" class="java.lang.String" itemvalue="Application.actionlib_generate_messages_cpp" />
       <item index="2" class="java.lang.String" itemvalue="Application.actionlib_generate_messages_lisp" />
@@ -401,6 +403,7 @@
       <item index="32" class="java.lang.String" itemvalue="Application.gtest_main" />
       <item index="33" class="java.lang.String" itemvalue="Application.gripper_server" />
       <item index="34" class="java.lang.String" itemvalue="Application.gripper_test_client" />
+      <item index="35" class="java.lang.String" itemvalue="Application.clean_test_results_dynamixel_gripper_two_fingers_action_server" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
@@ -417,27 +420,27 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1431" y="24" width="1855" height="1056" extended-state="6" />
-    <editor active="false" />
+    <frame x="65" y="-4" width="1301" height="772" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24851751" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35602504" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.48840803" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299389" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299389" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39918533" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3299389" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299389" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39918533" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -473,7 +476,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="9" />
+      <option name="time" value="12" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -492,15 +495,12 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#38#58#0" expanded="true" />
-            <element signature="e#919#1108#0" expanded="false" />
-            <element signature="e#1114#1223#0" expanded="false" />
-            <element signature="e#1229#1347#0" expanded="false" />
-            <element signature="e#1353#1532#0" expanded="false" />
-            <element signature="e#1538#1900#0" expanded="false" />
-            <element signature="e#3381#3527#0" expanded="false" />
-            <element signature="e#3533#3682#0" expanded="false" />
-            <element signature="e#3688#3805#0" expanded="false" />
-            <element signature="e#5149#5937#0" expanded="false" />
+            <element signature="e#922#1111#0" expanded="false" />
+            <element signature="e#1117#1226#0" expanded="false" />
+            <element signature="e#1232#1350#0" expanded="false" />
+            <element signature="e#1356#1535#0" expanded="false" />
+            <element signature="e#1541#1903#0" expanded="false" />
+            <element signature="e#2174#2338#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -519,15 +519,12 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#38#58#0" expanded="true" />
-            <element signature="e#919#1108#0" expanded="false" />
-            <element signature="e#1114#1223#0" expanded="false" />
-            <element signature="e#1229#1347#0" expanded="false" />
-            <element signature="e#1353#1532#0" expanded="false" />
-            <element signature="e#1538#1900#0" expanded="false" />
-            <element signature="e#3381#3527#0" expanded="false" />
-            <element signature="e#3533#3682#0" expanded="false" />
-            <element signature="e#3688#3805#0" expanded="false" />
-            <element signature="e#5149#5937#0" expanded="false" />
+            <element signature="e#922#1111#0" expanded="false" />
+            <element signature="e#1117#1226#0" expanded="false" />
+            <element signature="e#1232#1350#0" expanded="false" />
+            <element signature="e#1356#1535#0" expanded="false" />
+            <element signature="e#1541#1903#0" expanded="false" />
+            <element signature="e#2174#2338#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -546,15 +543,12 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#38#58#0" expanded="true" />
-            <element signature="e#919#1108#0" expanded="false" />
-            <element signature="e#1114#1223#0" expanded="false" />
-            <element signature="e#1229#1347#0" expanded="false" />
-            <element signature="e#1353#1532#0" expanded="false" />
-            <element signature="e#1538#1900#0" expanded="false" />
-            <element signature="e#3381#3527#0" expanded="false" />
-            <element signature="e#3533#3682#0" expanded="false" />
-            <element signature="e#3688#3805#0" expanded="false" />
-            <element signature="e#5149#5937#0" expanded="false" />
+            <element signature="e#922#1111#0" expanded="false" />
+            <element signature="e#1117#1226#0" expanded="false" />
+            <element signature="e#1232#1350#0" expanded="false" />
+            <element signature="e#1356#1535#0" expanded="false" />
+            <element signature="e#1541#1903#0" expanded="false" />
+            <element signature="e#2174#2338#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -573,15 +567,12 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#38#58#0" expanded="true" />
-            <element signature="e#919#1108#0" expanded="false" />
-            <element signature="e#1114#1223#0" expanded="false" />
-            <element signature="e#1229#1347#0" expanded="false" />
-            <element signature="e#1353#1532#0" expanded="false" />
-            <element signature="e#1538#1900#0" expanded="false" />
-            <element signature="e#3381#3527#0" expanded="false" />
-            <element signature="e#3533#3682#0" expanded="false" />
-            <element signature="e#3688#3805#0" expanded="false" />
-            <element signature="e#5149#5937#0" expanded="false" />
+            <element signature="e#922#1111#0" expanded="false" />
+            <element signature="e#1117#1226#0" expanded="false" />
+            <element signature="e#1232#1350#0" expanded="false" />
+            <element signature="e#1356#1535#0" expanded="false" />
+            <element signature="e#1541#1903#0" expanded="false" />
+            <element signature="e#2174#2338#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -600,15 +591,60 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#38#58#0" expanded="true" />
-            <element signature="e#919#1108#0" expanded="false" />
-            <element signature="e#1114#1223#0" expanded="false" />
-            <element signature="e#1229#1347#0" expanded="false" />
-            <element signature="e#1353#1532#0" expanded="false" />
-            <element signature="e#1538#1900#0" expanded="false" />
-            <element signature="e#3381#3527#0" expanded="false" />
-            <element signature="e#3533#3682#0" expanded="false" />
-            <element signature="e#3688#3805#0" expanded="false" />
-            <element signature="e#5149#5937#0" expanded="false" />
+            <element signature="e#922#1111#0" expanded="false" />
+            <element signature="e#1117#1226#0" expanded="false" />
+            <element signature="e#1232#1350#0" expanded="false" />
+            <element signature="e#1356#1535#0" expanded="false" />
+            <element signature="e#1541#1903#0" expanded="false" />
+            <element signature="e#2174#2338#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="144" column="41" selection-start-line="144" selection-start-column="41" selection-end-line="144" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gripper_atj_server.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#38#58#0" expanded="true" />
+            <element signature="e#922#1111#0" expanded="false" />
+            <element signature="e#1117#1226#0" expanded="false" />
+            <element signature="e#1232#1350#0" expanded="false" />
+            <element signature="e#1356#1535#0" expanded="false" />
+            <element signature="e#1541#1903#0" expanded="false" />
+            <element signature="e#2174#2338#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="144" column="41" selection-start-line="144" selection-start-column="41" selection-end-line="144" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gripper_atj_server.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#38#58#0" expanded="true" />
+            <element signature="e#922#1111#0" expanded="false" />
+            <element signature="e#1117#1226#0" expanded="false" />
+            <element signature="e#1232#1350#0" expanded="false" />
+            <element signature="e#1356#1535#0" expanded="false" />
+            <element signature="e#1541#1903#0" expanded="false" />
+            <element signature="e#2174#2338#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -676,15 +712,12 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#38#58#0" expanded="true" />
-            <element signature="e#919#1108#0" expanded="false" />
-            <element signature="e#1114#1223#0" expanded="false" />
-            <element signature="e#1229#1347#0" expanded="false" />
-            <element signature="e#1353#1532#0" expanded="false" />
-            <element signature="e#1538#1900#0" expanded="false" />
-            <element signature="e#3381#3527#0" expanded="false" />
-            <element signature="e#3533#3682#0" expanded="false" />
-            <element signature="e#3688#3805#0" expanded="false" />
-            <element signature="e#5149#5937#0" expanded="false" />
+            <element signature="e#922#1111#0" expanded="false" />
+            <element signature="e#1117#1226#0" expanded="false" />
+            <element signature="e#1232#1350#0" expanded="false" />
+            <element signature="e#1356#1535#0" expanded="false" />
+            <element signature="e#1541#1903#0" expanded="false" />
+            <element signature="e#2174#2338#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -710,15 +743,12 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#38#58#0" expanded="true" />
-            <element signature="e#919#1108#0" expanded="false" />
-            <element signature="e#1114#1223#0" expanded="false" />
-            <element signature="e#1229#1347#0" expanded="false" />
-            <element signature="e#1353#1532#0" expanded="false" />
-            <element signature="e#1538#1900#0" expanded="false" />
-            <element signature="e#3381#3527#0" expanded="false" />
-            <element signature="e#3533#3682#0" expanded="false" />
-            <element signature="e#3688#3805#0" expanded="false" />
-            <element signature="e#5149#5937#0" expanded="false" />
+            <element signature="e#922#1111#0" expanded="false" />
+            <element signature="e#1117#1226#0" expanded="false" />
+            <element signature="e#1232#1350#0" expanded="false" />
+            <element signature="e#1356#1535#0" expanded="false" />
+            <element signature="e#1541#1903#0" expanded="false" />
+            <element signature="e#2174#2338#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -744,15 +774,12 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#38#58#0" expanded="true" />
-            <element signature="e#919#1108#0" expanded="false" />
-            <element signature="e#1114#1223#0" expanded="false" />
-            <element signature="e#1229#1347#0" expanded="false" />
-            <element signature="e#1353#1532#0" expanded="false" />
-            <element signature="e#1538#1900#0" expanded="false" />
-            <element signature="e#3381#3527#0" expanded="false" />
-            <element signature="e#3533#3682#0" expanded="false" />
-            <element signature="e#3688#3805#0" expanded="false" />
-            <element signature="e#5149#5937#0" expanded="false" />
+            <element signature="e#922#1111#0" expanded="false" />
+            <element signature="e#1117#1226#0" expanded="false" />
+            <element signature="e#1232#1350#0" expanded="false" />
+            <element signature="e#1356#1535#0" expanded="false" />
+            <element signature="e#1541#1903#0" expanded="false" />
+            <element signature="e#2174#2338#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -783,14 +810,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.09243698">
           <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="144" column="41" selection-start-line="144" selection-start-column="41" selection-end-line="144" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -850,21 +869,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="123" column="49" selection-start-line="123" selection-start-column="4" selection-end-line="123" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///opt/ros/indigo/include/joint_trajectory_controller/joint_trajectory_controller.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///opt/ros/indigo/include/gripper_action_controller/gripper_action_controller.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.10534846">
+          <caret line="73" column="10" selection-start-line="73" selection-start-column="10" selection-end-line="73" selection-end-column="10" />
+          <folding>
+            <element signature="e#1915#1933#0" expanded="true" />
+            <element signature="e#2003#2034#0" expanded="true" />
+            <element signature="e#2276#2331#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///opt/ros/indigo/include/gripper_action_controller/gripper_action_controller_impl.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5116279">
+          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/gripper_atj_server.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9054622">
-          <caret line="86" column="48" selection-start-line="86" selection-start-column="48" selection-end-line="86" selection-end-column="48" />
+        <state vertical-scroll-proportion="0.59800667">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding>
             <element signature="e#38#58#0" expanded="true" />
-            <element signature="e#919#1108#0" expanded="false" />
-            <element signature="e#1114#1223#0" expanded="false" />
-            <element signature="e#1229#1347#0" expanded="false" />
-            <element signature="e#1353#1532#0" expanded="false" />
-            <element signature="e#1538#1900#0" expanded="false" />
-            <element signature="e#3381#3527#0" expanded="false" />
-            <element signature="e#3533#3682#0" expanded="false" />
-            <element signature="e#3688#3805#0" expanded="false" />
-            <element signature="e#5149#5937#0" expanded="false" />
+            <element signature="e#922#1111#0" expanded="false" />
+            <element signature="e#1117#1226#0" expanded="false" />
+            <element signature="e#1232#1350#0" expanded="false" />
+            <element signature="e#1356#1535#0" expanded="false" />
+            <element signature="e#1541#1903#0" expanded="false" />
+            <element signature="e#2174#2338#0" expanded="true" />
           </folding>
         </state>
       </provider>
