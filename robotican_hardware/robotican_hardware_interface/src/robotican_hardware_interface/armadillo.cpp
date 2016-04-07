@@ -12,7 +12,8 @@ namespace robotican_hardware {
                                        _dynamixelProController(&_jointStateInterface, &_positionJointInterface) {
         _dynamixelProController.startBroadcastingJointStates();
         std::string elevatorPubTopic, elevatorSubTopic, elevatorJointName,
-                panPubTopic, panSubTopic, panJointName, tiltPubTopic, tiltSubTopic, tiltJointName;
+                panPubTopic, panSubTopic, panJointName,
+                tiltPubTopic, tiltSubTopic, tiltJointName;
 #ifdef DEBUG_ARMADILLO
         ros::param::param<std::string>("elevator_topic_pub", elevatorPubTopic, "left_motor/command");
         ros::param::param<std::string>("elevator_topic_sub", elevatorSubTopic, "left_motor/feedback");
@@ -28,23 +29,57 @@ namespace robotican_hardware {
 #else
         if(!_nodeHandle.getParam("elevator_topic_pub", elevatorPubTopic) ||
                 ! _nodeHandle.getParam("elevator_topic_sub", elevatorSubTopic) ||
-                !_nodeHandle.getParam("elevator_joint", elevatorJointName)) {
+                !_nodeHandle.getParam("elevator_joint", elevatorJointName) ||
+                !_nodeHandle.getParam("pan_topic_pub", panPubTopic) ||
+                !_nodeHandle.getParam("pan_topic_sub", panSubTopic) ||
+                !_nodeHandle.getParam("pam_joint", panJointName) ||
+                !_nodeHandle.getParam("tilt_topic_pub", tiltPubTopic) ||
+                !_nodeHandle.getParam("tilt_topic_sub", tiltSubTopic) ||
+                !_nodeHandle.getParam("tilt_joint", tiltJointName)) {
             ros::shutdown();
         }
 #endif
 
         _elevetorCmd = _nodeHandle.advertise<std_msgs::Float32>(elevatorPubTopic, 10);
+        _panCmd = _nodeHandle.advertise<std_msgs::Float32>(panPubTopic, 10);
+        _tiltCmd = _nodeHandle.advertise<std_msgs::Float32>(tiltPubTopic, 10);
+        _tiltCmd = _nodeHandle.advertise<std_msgs::Float32>(tiltPubTopic, 10);
+        _tiltCmd = _nodeHandle.advertise<std_msgs::Float32>(tiltPubTopic, 10);
+
         _elevetorState = _nodeHandle.subscribe<std_msgs::Float32>(elevatorSubTopic, 10, &ArmadilloRobot::elevatorCallback, this);
+        _panState = _nodeHandle.subscribe<std_msgs::Float32>(elevatorSubTopic, 10, &ArmadilloRobot::panCallback, this);
+        _tiltState = _nodeHandle.subscribe<std_msgs::Float32>(elevatorSubTopic, 10, &ArmadilloRobot::tiltCallback, this);
+
+
 
         _elevatorInfo = std::pair<std::string, JointInfo_t>(elevatorJointName, JointInfo_t());
-        hardware_interface::JointStateHandle jointStateHandle(_elevatorInfo.first,
-                                                              &_elevatorInfo.second.position,
-                                                              &_elevatorInfo.second.velocity,
-                                                              &_elevatorInfo.second.effort );
-        _jointStateInterface.registerHandle(jointStateHandle);
+        _panInfo = std::pair<std::string, JointInfo_t>(panJointName, JointInfo_t());
+        _tiltInfo = std::pair<std::string, JointInfo_t>(tiltJointName, JointInfo_t());
 
-        hardware_interface::JointHandle jointHandle(_jointStateInterface.getHandle(_elevatorInfo.first), &_elevatorInfo.second.cmd);
-        _positionJointInterface.registerHandle(jointHandle);
+        hardware_interface::JointStateHandle elevatorJointStateHandle(_elevatorInfo.first,
+                                                                      &_elevatorInfo.second.position,
+                                                                      &_elevatorInfo.second.velocity,
+                                                                      &_elevatorInfo.second.effort );
+
+        hardware_interface::JointStateHandle panJointStateHandle(_panInfo.first,
+                                                                      &_panInfo.second.position,
+                                                                      &_panInfo.second.velocity,
+                                                                      &_panInfo.second.effort );
+        hardware_interface::JointStateHandle tiltJointStateHandle(_tiltInfo.first,
+                                                                      &_tiltInfo.second.position,
+                                                                      &_tiltInfo.second.velocity,
+                                                                      &_tiltInfo.second.effort );
+        _jointStateInterface.registerHandle(elevatorJointStateHandle);
+        _jointStateInterface.registerHandle(panJointStateHandle);
+        _jointStateInterface.registerHandle(tiltJointStateHandle);
+
+        hardware_interface::JointHandle elevatorJointHandle(_jointStateInterface.getHandle(_elevatorInfo.first), &_elevatorInfo.second.cmd);
+        hardware_interface::JointHandle panJointHandle(_jointStateInterface.getHandle(_panInfo.first), &_panInfo.second.cmd);
+        hardware_interface::JointHandle tiltJointHandle(_jointStateInterface.getHandle(_tiltInfo.first), &_tiltInfo.second.cmd);
+
+        _positionJointInterface.registerHandle(elevatorJointHandle);
+        _positionJointInterface.registerHandle(panJointHandle);
+        _positionJointInterface.registerHandle(tiltJointHandle);
 
 
 
@@ -54,6 +89,14 @@ namespace robotican_hardware {
 
     void ArmadilloRobot::elevatorCallback(const std_msgs::Float32::ConstPtr &msg) {
         _elevatorInfo.second.position = msg->data;
+    }
+
+    void ArmadilloRobot::panCallback(const std_msgs::Float32::ConstPtr &msg) {
+        _panInfo.second.position = msg->data;
+    }
+
+    void ArmadilloRobot::tiltCallback(const std_msgs::Float32::ConstPtr &msg) {
+        _tiltInfo.second.position = msg->data;
     }
 
 
