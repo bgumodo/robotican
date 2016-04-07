@@ -11,11 +11,20 @@ namespace robotican_hardware {
                                        _positionJointInterface(),
                                        _dynamixelProController(&_jointStateInterface, &_positionJointInterface) {
         _dynamixelProController.startBroadcastingJointStates();
-        std::string elevatorPubTopic, elevatorSubTopic, elevatorJointName;
+        std::string elevatorPubTopic, elevatorSubTopic, elevatorJointName,
+                panPubTopic, panSubTopic, panJointName, tiltPubTopic, tiltSubTopic, tiltJointName;
 #ifdef DEBUG_ARMADILLO
         ros::param::param<std::string>("elevator_topic_pub", elevatorPubTopic, "left_motor/command");
         ros::param::param<std::string>("elevator_topic_sub", elevatorSubTopic, "left_motor/feedback");
         ros::param::param<std::string>("elevator_joint", elevatorJointName, "elevator_joint");
+
+        ros::param::param<std::string>("pan_topic_pub", panPubTopic, "left_motor/command");
+        ros::param::param<std::string>("pan_topic_sub", panSubTopic, "left_motor/feedback");
+        ros::param::param<std::string>("pam_joint", panJointName, "elevator_joint");
+
+        ros::param::param<std::string>("tilt_topic_pub", tiltPubTopic, "left_motor/command");
+        ros::param::param<std::string>("tilt_topic_sub", tiltSubTopic, "left_motor/feedback");
+        ros::param::param<std::string>("tilt_joint", tiltJointName, "elevator_joint");
 #else
         if(!_nodeHandle.getParam("elevator_topic_pub", elevatorPubTopic) ||
                 ! _nodeHandle.getParam("elevator_topic_sub", elevatorSubTopic) ||
@@ -36,6 +45,8 @@ namespace robotican_hardware {
 
         hardware_interface::JointHandle jointHandle(_jointStateInterface.getHandle(_elevatorInfo.first), &_elevatorInfo.second.cmd);
         _positionJointInterface.registerHandle(jointHandle);
+
+
 
 
 
