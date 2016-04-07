@@ -5,9 +5,19 @@ project(robotican_controllers)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  roscpp
-  std_msgs
-  controller_manager
+        actionlib
+        angles
+        cmake_modules
+        roscpp
+        urdf
+        control_toolbox
+        controller_interface
+        hardware_interface
+        realtime_tools
+        control_msgs
+        trajectory_msgs
+        controller_manager
+        xacro
 )
 
 ## System dependencies are found with CMake's conventions
@@ -102,7 +112,7 @@ find_package(Boost REQUIRED COMPONENTS system)
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES robotican_controllers
-  CATKIN_DEPENDS roscpp std_msgs
+  CATKIN_DEPENDS actionlib cmake_modules control_msgs controller_interface hardware_interface realtime_tools
   DEPENDS system_lib
 )
 
@@ -121,7 +131,9 @@ include_directories(
  add_library(robotican_controllers
    src/${PROJECT_NAME}/robot.cpp
    src/${PROJECT_NAME}/utils.cpp
- )
+   src/${PROJECT_NAME}/two_finger_controller.cpp
+   include/${PROJECT_NAME}/gripper_action_controller_impl.h
+   )
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -129,17 +141,18 @@ include_directories(
 # add_dependencies(robotican_controllers ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
- add_executable(robotican_controllers_node src/run_controller.cpp)
+ #add_executable(robotican_controllers_node src/run_controller.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 # add_dependencies(robotican_controllers_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(robotican_controllers_node
-   ${catkin_LIBRARIES}
-   robotican_controllers
- )
+target_link_libraries(robotican_controllers ${catkin_LIBRARIES})
+#target_link_libraries(robotican_controllers_node
+#   ${catkin_LIBRARIES}
+#   robotican_controllers
+# )
 
 #############
 ## Install ##
@@ -156,18 +169,22 @@ target_link_libraries(robotican_controllers_node
 # )
 
 ## Mark executables and/or libraries for installation
-# install(TARGETS robotican_controllers robotican_controllers_node
-#   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-#   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-#   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-# )
+ install(TARGETS robotican_controllers
+   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+ )
 
 ## Mark cpp header files for installation
-# install(DIRECTORY include/${PROJECT_NAME}/
-#   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+ install(DIRECTORY include/${PROJECT_NAME}/
+   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
 #   FILES_MATCHING PATTERN "*.h"
 #   PATTERN ".svn" EXCLUDE
-# )
+ )
+
+install(FILES ros_control_plugins.xml
+        DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+        )
 
 ## Mark other files for installation (e.g. launch and bag files, etc.)
 # install(FILES
