@@ -17,6 +17,7 @@ namespace robotican_hardware {
     class ArmadilloRobot : public RobotBase {
 
     private:
+        bool _first;
         dynamixel_pro_controller::DynamixelProController _dynamixelProController;
         std::pair<std::string, JointInfo_t> _elevatorInfo;
         std::pair<std::string, JointInfo_t> _panInfo;
