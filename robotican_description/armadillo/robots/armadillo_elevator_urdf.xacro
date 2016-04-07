@@ -1,5 +1,6 @@
+<?xml version="1.0"?>
 <robot
-  name="armadillo_elevator_urdf">
+  name="armadillo_elevator_urdf" description="Armadillo robot base">
   <link
     name="base_elevator_link">
     <inertial>

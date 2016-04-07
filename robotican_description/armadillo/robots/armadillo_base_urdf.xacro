@@ -1,22 +1,23 @@
+<?xml version="1.0"?>
 <robot
-  name="armadillo_base_urdf">
+  name="armadillo_base_urdf" description="Armadillo robot base">
   <link
     name="base_link">
-       <inertial>
+    <inertial>
       <origin
-        xyz="-0.060036 0.00010983 0.15247"
+        xyz="-0.058417 0.00010778 0.15422"
         rpy="0 0 0" />
       <mass
-        value="80.721" />
+        value="80.6548" />
       <inertia
-        ixx="0.62125"
-        ixy="-9.268E-05"
-        ixz="-0.090032"
-        iyy="0.58453"
-        iyz="5.0258E-05"
-        izz="0.36937" />
+        ixx="0.61639"
+        ixy="-9.1727E-05"
+        ixz="-0.093044"
+        iyy="0.57997"
+        iyz="5.3231E-05"
+        izz="0.36693" />
     </inertial>
-    <visual>
+   <visual name='chassis'>
       <origin
         xyz="0 0 0"
         rpy="0 0 0" />
@@ -30,7 +31,7 @@
           rgba="0.79216 0.81961 0.93333 1" />
       </material>
     </visual>
-    <collision>
+  <!--   <collision name='chassis'>
       <origin
         xyz="0 0 0"
         rpy="0 0 0" />
@@ -38,7 +39,33 @@
         <mesh
           filename="package://robotican_description/armadillo/meshes/base_link.STL" />
       </geometry>
-    </collision>
+    </collision> -->
+      <collision name='caster_collision'>
+      <origin
+        xyz="-0.35 0 -0.05"
+        rpy="0 0 0" />
+            <geometry>
+              <sphere radius="0.05"/>
+            </geometry>
+            <surface>
+              <friction>
+                <ode>
+                  <mu>0</mu>
+                  <mu2>0</mu2>
+                  <slip1>1.0</slip1>
+                  <slip2>1.0</slip2>
+                </ode>
+              </friction>
+            </surface>
+          </collision>
+	  <!-- <visual name='caster_visual'>
+	           <origin
+        xyz="-0.35 0 -0.05"
+        rpy="0 0 0" />
+            <geometry>
+	    <sphere radius="0.05"/>
+            </geometry>
+	        </visual>-->
   </link>
   <link
     name="front_cam_link">
@@ -411,4 +438,8 @@
     <axis
       xyz="0 0 0" />
   </joint>
+  
+  
+  
+  
 </robot>

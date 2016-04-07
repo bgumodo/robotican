@@ -126,7 +126,7 @@
 	
 	
 	
-	  <!-- hokuyo URG-04LX-UG01-->
+	  <!-- hokuyo URG-04LX-UG01   -->
   <gazebo reference="laser_link">
      <sensor type="ray" name="head_hokuyo_sensor">
       <pose>0 0 0 0 0 0</pose>
@@ -148,10 +148,6 @@
         </range>
         <noise>
           <type>gaussian</type>
-          <!-- Noise parameters based on published spec for Hokuyo laser
-               achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
-               stddev of 0.01m will put 99.7% of samples within 0.03m of the true
-               reading. -->
           <mean>0.0</mean>
           <stddev>0.01</stddev>
         </noise>
@@ -162,8 +158,8 @@
       </plugin>
     </sensor>
   </gazebo>
-  
-  <!-- GPS -->
+
+  <!-- GPS   -->
    <gazebo>
     <plugin name="GazeboRosGps" filename="libhector_gazebo_ros_gps.so">
       <updateRate>50.0</updateRate>
@@ -176,8 +172,8 @@
       <velocityGaussianNoise>2.89e-08 2.89e-08 2.89e-08</velocityGaussianNoise>
     </plugin>
    </gazebo>
-      
-  <!-- IMU -->
+    
+  <!-- IMU   -->
     <gazebo>
       <plugin name="GazeboRosImu" filename="libhector_gazebo_ros_imu.so">
       <alwaysOn>true</alwaysOn>
@@ -188,12 +184,11 @@
       <gaussianNoise>2.89e-08</gaussianNoise>
       <xyzOffsets>0 0 0</xyzOffsets>
       <rpyOffsets>0 0 0</rpyOffsets>
-      <!-- <interface:position name="imu_position"/> -->
       <material>Gazebo/Red</material>
        </plugin>
   </gazebo>
-  
-  <!-- Magnetic -->
+
+  <!-- Magnetic   -->
     <gazebo>
       <plugin name="GazeboRosMagnetic" filename="libhector_gazebo_ros_magnetic.so">
       <updateRate>50.0</updateRate>
@@ -205,8 +200,8 @@
       <gaussianNoise>1.3e-2 1.3e-2 1.3e-2</gaussianNoise>
     </plugin>
    </gazebo>
-  
-  <!-- camera -->
+
+  <!-- cameras  -->
   <gazebo reference="front_cam_link">
     <sensor type="camera" name="front_camera">
       <update_rate>30.0</update_rate>
@@ -223,9 +218,6 @@
         </clip>
         <noise>
           <type>gaussian</type>
-          <!-- Noise is sampled independently per pixel on each frame.
-               That pixel's noise value is added to each of its color
-               channels, which at that point lie in the range [0,1]. -->
           <mean>0.0</mean>
           <stddev>0.007</stddev>
         </noise>
@@ -246,8 +238,8 @@
       </plugin>
     </sensor>
   </gazebo>
-  
-  <!-- wheels -->
+ 
+  <!-- joints -->
 	<transmission name="left_wheel_joint_trans">
 		<type>transmission_interface/SimpleTransmission</type>
 		<joint name="left_wheel_joint">
@@ -378,11 +370,6 @@
 			</actuator>
 	</transmission>
 	
-	<gazebo reference="base_link">
-	<selfCollide>true</selfCollide>
-    <mu1>0.0</mu1>
-    <mu2>0.0</mu2>
-  </gazebo>
 
 	<gazebo reference="base_elevator_link">
 		<turnGravityOff>true</turnGravityOff>
