@@ -72,8 +72,12 @@ namespace gripper_action_controller
         command_struct_rt_.max_effort_ = default_max_effort_;
         command_.initRT(command_struct_rt_);
 
+        _lastPosition = command_struct_rt_.position_;
+
+
         // Hardware interface adapter
         left_hw_iface_adapter_.starting(ros::Time(0.0));
+        right_hw_iface_adapter_.starting(ros::Time(0.0));
         last_movement_time_ = time;
     }
 
@@ -208,12 +212,12 @@ namespace gripper_action_controller
         command_struct_rt_ = *(command_.readFromRT());
 
         double current_position = pos2Gap(leftjoint_.getPosition());
-        double current_velocity = std::max(leftjoint_.getVelocity(), rightjoint_.getVelocity());
+        double current_velocity =  current_position - _lastPosition / period.toSec();
         double current_effort = leftjoint_.getEffort() + rightjoint_.getEffort();
 
         double error_position = command_struct_rt_.position_ - current_position;
         double error_velocity = - current_velocity;
-
+        _lastPosition = current_position;
         checkForSuccess(time, error_position, current_position, current_velocity, current_effort);
 
         // Hardware interface adapter: Generate and send commands

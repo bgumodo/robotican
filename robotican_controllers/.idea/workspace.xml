@@ -2,47 +2,47 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" assignedExecutableTargets="true" buildAllGenerated="true">
     <generated>
-      <config projectName="robotican_controllers" targetName="roscpp_generate_messages_py" />
       <config projectName="robotican_controllers" targetName="robotican_controllers_node" />
       <config projectName="robotican_controllers" targetName="control_toolbox_generate_messages_cpp" />
-      <config projectName="robotican_controllers" targetName="dynamic_reconfigure_gencfg" />
+      <config projectName="robotican_controllers" targetName="std_msgs_generate_messages_py" />
       <config projectName="robotican_controllers" targetName="trajectory_msgs_generate_messages_cpp" />
       <config projectName="robotican_controllers" targetName="control_toolbox_generate_messages_lisp" />
       <config projectName="robotican_controllers" targetName="gtest" />
       <config projectName="robotican_controllers" targetName="dynamic_reconfigure_generate_messages_lisp" />
-      <config projectName="robotican_controllers" targetName="control_toolbox_generate_messages_py" />
+      <config projectName="robotican_controllers" targetName="controller_manager_msgs_generate_messages_lisp" />
       <config projectName="robotican_controllers" targetName="geometry_msgs_generate_messages_lisp" />
+      <config projectName="robotican_controllers" targetName="control_toolbox_gencfg" />
       <config projectName="robotican_controllers" targetName="actionlib_generate_messages_cpp" />
       <config projectName="robotican_controllers" targetName="tests" />
-      <config projectName="robotican_controllers" targetName="roscpp_generate_messages_cpp" />
+      <config projectName="robotican_controllers" targetName="control_msgs_generate_messages_cpp" />
+      <config projectName="robotican_controllers" targetName="dynamic_reconfigure_gencfg" />
       <config projectName="robotican_controllers" targetName="dynamic_reconfigure_generate_messages_cpp" />
       <config projectName="robotican_controllers" targetName="std_msgs_generate_messages_cpp" />
       <config projectName="robotican_controllers" targetName="geometry_msgs_generate_messages_cpp" />
       <config projectName="robotican_controllers" targetName="clean_test_results" />
       <config projectName="robotican_controllers" targetName="actionlib_generate_messages_py" />
+      <config projectName="robotican_controllers" targetName="controller_manager_msgs_generate_messages_py" />
       <config projectName="robotican_controllers" targetName="robotican_controllers" />
       <config projectName="robotican_controllers" targetName="doxygen" />
-      <config projectName="robotican_controllers" targetName="trajectory_msgs_generate_messages_py" />
+      <config projectName="robotican_controllers" targetName="control_toolbox_generate_messages_py" />
       <config projectName="robotican_controllers" targetName="actionlib_msgs_generate_messages_py" />
-      <config projectName="robotican_controllers" targetName="control_msgs_generate_messages_cpp" />
-      <config projectName="robotican_controllers" targetName="std_msgs_generate_messages_py" />
+      <config projectName="robotican_controllers" targetName="trajectory_msgs_generate_messages_py" />
+      <config projectName="robotican_controllers" targetName="roscpp_generate_messages_cpp" />
       <config projectName="robotican_controllers" targetName="actionlib_msgs_generate_messages_lisp" />
       <config projectName="robotican_controllers" targetName="controller_manager_msgs_generate_messages_cpp" />
       <config projectName="robotican_controllers" targetName="trajectory_msgs_generate_messages_lisp" />
-      <config projectName="robotican_controllers" targetName="control_msgs_generate_messages_lisp" />
       <config projectName="robotican_controllers" targetName="rosgraph_msgs_generate_messages_lisp" />
-      <config projectName="robotican_controllers" targetName="controller_manager_msgs_generate_messages_py" />
+      <config projectName="robotican_controllers" targetName="roscpp_generate_messages_py" />
       <config projectName="robotican_controllers" targetName="actionlib_msgs_generate_messages_cpp" />
       <config projectName="robotican_controllers" targetName="std_msgs_generate_messages_lisp" />
       <config projectName="robotican_controllers" targetName="rosgraph_msgs_generate_messages_py" />
       <config projectName="robotican_controllers" targetName="roscpp_generate_messages_lisp" />
       <config projectName="robotican_controllers" targetName="dynamic_reconfigure_generate_messages_py" />
       <config projectName="robotican_controllers" targetName="control_msgs_generate_messages_py" />
-      <config projectName="robotican_controllers" targetName="controller_manager_msgs_generate_messages_lisp" />
-      <config projectName="robotican_controllers" targetName="control_toolbox_gencfg" />
+      <config projectName="robotican_controllers" targetName="download_extra_data" />
+      <config projectName="robotican_controllers" targetName="control_msgs_generate_messages_lisp" />
       <config projectName="robotican_controllers" targetName="actionlib_generate_messages_lisp" />
       <config projectName="robotican_controllers" targetName="clean_test_results_robotican_controllers" />
-      <config projectName="robotican_controllers" targetName="download_extra_data" />
       <config projectName="robotican_controllers" targetName="rosgraph_msgs_generate_messages_cpp" />
       <config projectName="robotican_controllers" targetName="gtest_main" />
       <config projectName="robotican_controllers" targetName="run_tests" />
@@ -55,7 +55,11 @@
     </ADDITIONAL_GENERATION_ENVIRONMENT>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aa292360-ec6f-4dad-9f1d-dd6fdca041d3" name="Default" comment="" />
+    <list default="true" id="aa292360-ec6f-4dad-9f1d-dd6fdca041d3" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/robotican_controllers.iml" afterPath="$PROJECT_DIR$/.idea/robotican_controllers.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/robotican_controllers/gripper_action_controller_impl.h" afterPath="$PROJECT_DIR$/include/robotican_controllers/gripper_action_controller_impl.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/robotican_controllers/two_finger_controller.h" afterPath="$PROJECT_DIR$/include/robotican_controllers/two_finger_controller.h" />
+    </list>
     <ignored path="robotican_controllers.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -75,47 +79,30 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="two_finger_controller.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/robotican_controllers/two_finger_controller.cpp">
+      <file leaf-file-name="gripper_action_controller_impl.h" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/include/robotican_controllers/gripper_action_controller_impl.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.6916525">
+              <caret line="219" column="41" selection-start-line="219" selection-start-column="41" selection-end-line="219" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="two_finger_controller.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/include/robotican_controllers/two_finger_controller.h">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.26020408">
-              <caret line="114" column="108" selection-start-line="114" selection-start-column="108" selection-end-line="114" selection-end-column="108" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="package.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/package.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.267858">
-              <caret line="75" column="32" selection-start-line="75" selection-start-column="32" selection-end-line="75" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ros_control_plugins.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ros_control_plugins.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.3333335">
-              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <caret line="125" column="12" selection-start-line="125" selection-start-column="12" selection-end-line="125" selection-end-column="12" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -127,12 +114,12 @@
         <option value="$PROJECT_DIR$/src/run_controller.cpp" />
         <option value="$PROJECT_DIR$/src/robotican_controllers/robot.cpp" />
         <option value="$PROJECT_DIR$/include/robotican_controllers/gripper_action_controller_impl.h .h" />
-        <option value="$PROJECT_DIR$/include/robotican_controllers/gripper_action_controller_impl.h" />
-        <option value="$PROJECT_DIR$/include/robotican_controllers/two_finger_controller.h" />
         <option value="$PROJECT_DIR$/src/robotican_controllers/two_finger_controller.cpp" />
         <option value="$PROJECT_DIR$/ros_control_plugins.xml" />
         <option value="$PROJECT_DIR$/package.xml" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/include/robotican_controllers/two_finger_controller.h" />
+        <option value="$PROJECT_DIR$/include/robotican_controllers/gripper_action_controller_impl.h" />
       </list>
     </option>
   </component>
@@ -142,12 +129,12 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="65" />
-    <option name="y" value="24" />
-    <option name="width" value="1301" />
-    <option name="height" value="744" />
+    <option name="x" value="190" />
+    <option name="y" value="607" />
+    <option name="width" value="1291" />
+    <option name="height" value="742" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -279,7 +266,7 @@
       <recent name="$PROJECT_DIR$/src/robotican_controllers" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.robotican_controllers_node">
+  <component name="RunManager" selected="Application.Build All">
     <configuration default="true" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="robotican_controllers" TARGET_NAME="clean_test_results" CONFIG_NAME="Debug" TEST_MODE="SUITE_TEST">
       <envs />
       <method />
@@ -552,8 +539,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="24" width="1301" height="744" extended-state="6" />
-    <editor active="true" />
+    <frame x="190" y="607" width="1291" height="742" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.51251954" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -597,7 +584,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="50" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -605,7 +591,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -621,9 +606,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="22" selection-end-column="2" />
-          <folding>
-            <element signature="e#110#130#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -631,7 +613,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -639,7 +620,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -647,9 +627,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="2" selection-start-line="0" selection-start-column="2" selection-end-line="0" selection-end-column="2" />
-          <folding>
-            <element signature="e#427#439#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -657,7 +634,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="75" selection-start-line="16" selection-start-column="75" selection-end-line="16" selection-end-column="75" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -665,7 +641,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -673,9 +648,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#110#130#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -683,7 +655,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -691,7 +662,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -699,9 +669,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="2" selection-start-line="0" selection-start-column="2" selection-end-line="0" selection-end-column="2" />
-          <folding>
-            <element signature="e#427#439#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -709,7 +676,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="75" selection-start-line="16" selection-start-column="75" selection-end-line="16" selection-end-column="75" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -717,7 +683,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -725,9 +690,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="35" column="22" selection-start-line="35" selection-start-column="22" selection-end-line="35" selection-end-column="22" />
-          <folding>
-            <element signature="e#110#130#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -735,7 +697,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -743,9 +704,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="2" selection-start-line="0" selection-start-column="2" selection-end-line="0" selection-end-column="2" />
-          <folding>
-            <element signature="e#427#439#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -753,7 +711,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="17" column="10" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -761,7 +718,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -783,7 +739,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -791,7 +746,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="11" column="48" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="48" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -806,9 +760,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="39" column="20" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
-          <folding>
-            <element signature="e#110#130#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -879,9 +830,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="2" selection-start-line="0" selection-start-column="2" selection-end-line="0" selection-end-column="2" />
-          <folding>
-            <element signature="e#427#439#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -889,7 +837,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -904,7 +851,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -919,9 +865,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3412271">
           <caret line="18" column="15" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="15" />
-          <folding>
-            <element signature="e#110#130#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -929,9 +872,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="55" column="28" selection-start-line="55" selection-start-column="2" selection-end-line="55" selection-end-column="28" />
-          <folding>
-            <element signature="e#2319#2328#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -939,7 +879,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="2.4039087">
           <caret line="244" column="0" selection-start-line="244" selection-start-column="0" selection-end-line="244" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -947,7 +886,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2931596">
           <caret line="10" column="39" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -955,64 +893,28 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.20521173">
           <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robotican_controllers/two_finger_controller.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.78768235">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ros_control_plugins.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.3333335">
+        <state vertical-scroll-proportion="0.2440678">
           <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/robotican_controllers/two_finger_controller.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="77" column="36" selection-start-line="77" selection-start-column="36" selection-end-line="77" selection-end-column="36" />
-          <folding>
-            <element signature="e#146#164#0" expanded="false" />
-            <element signature="e#234#265#0" expanded="false" />
-            <element signature="e#507#562#0" expanded="false" />
-            <element signature="e#777#842#0" expanded="false" />
-            <element signature="e#931#962#0" expanded="false" />
-            <element signature="e#1204#1259#0" expanded="false" />
-            <element signature="e#1893#1918#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/robotican_controllers/gripper_action_controller_impl.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35818475">
-          <caret line="322" column="43" selection-start-line="322" selection-start-column="43" selection-end-line="322" selection-end-column="43" />
-          <folding>
-            <element signature="e#2352#2377#0" expanded="false" />
-            <element signature="e#2817#2842#0" expanded="false" />
-            <element signature="e#2998#3023#0" expanded="false" />
-            <element signature="e#3550#3575#0" expanded="false" />
-            <element signature="e#3744#3769#0" expanded="false" />
-            <element signature="e#7734#7759#0" expanded="false" />
-            <element signature="e#9160#9185#0" expanded="false" />
-            <element signature="e#10626#10651#0" expanded="false" />
-            <element signature="e#11381#11406#0" expanded="false" />
-            <element signature="e#11713#11738#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robotican_controllers/two_finger_controller.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/package.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.267858">
+        <state vertical-scroll-proportion="0.57288134">
           <caret line="75" column="32" selection-start-line="75" selection-start-column="32" selection-end-line="75" selection-end-column="32" />
           <folding />
         </state>
@@ -1020,8 +922,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26020408">
+        <state vertical-scroll-proportion="0.26094005">
           <caret line="114" column="108" selection-start-line="114" selection-start-column="108" selection-end-line="114" selection-end-column="108" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/robotican_controllers/two_finger_controller.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="125" column="12" selection-start-line="125" selection-start-column="12" selection-end-line="125" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/robotican_controllers/gripper_action_controller_impl.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6916525">
+          <caret line="219" column="41" selection-start-line="219" selection-start-column="41" selection-end-line="219" selection-end-column="41" />
           <folding />
         </state>
       </provider>
