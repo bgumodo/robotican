@@ -1,8 +1,0 @@
-joint_state_controller:
-    type: joint_state_controller/JointStateController
-    publish_rate: 20
-      
-arm_position_controller:
-    type: position_controllers/JointGroupPositionController
-    joints: ['rotation1_joint', 'rotation2_joint', 'shoulder1_joint', 'shoulder2_joint', 'shoulder3_joint', 'wrist_joint']
-    publish_rate: 20

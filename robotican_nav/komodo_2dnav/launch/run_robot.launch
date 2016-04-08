@@ -1,4 +1,0 @@
-﻿
-<launch>
-	<include file="$(find ric_gazebo)/launch/komodo_gazebo.launch" />
-</launch>

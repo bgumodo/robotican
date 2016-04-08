@@ -1,8 +1,0 @@
-moveit_setup_assistant_config:
-  URDF:
-    package: robotican_description
-    relative_path: armadillo/robots/armadillo.xacro
-  SRDF:
-    relative_path: config/komodo_with_arm.srdf
-  CONFIG:
-    generated_timestamp: 1459850395

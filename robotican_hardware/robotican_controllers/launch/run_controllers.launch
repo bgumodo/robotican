@@ -1,4 +1,0 @@
-<launch>
-	<rosparam command="load" file="$(find robotican_controllers)/config/arm_joints.yaml"/>
-	<node name="robotican_controllers_node" output="screen" pkg="robotican_controllers" type="robotican_controllers_node"/>
-</launch>

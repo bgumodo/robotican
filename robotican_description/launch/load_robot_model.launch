@@ -1,5 +1,0 @@
-<launch>
-  <arg name="model_des" default="/lizi/models/lizi_base.xacro" />
-  <param command="$(find xacro)/xacro.py '$(find robotican_description)$(arg model_des)'" name="robot_description"/>
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
-</launch>

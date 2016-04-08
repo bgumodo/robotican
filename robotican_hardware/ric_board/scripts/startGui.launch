@@ -1,6 +1,0 @@
-<?xml version="1.0" ?>
-<launch>
-
-    <node name="RiC_Gui" output="screen" pkg="ric_board" type="startGui.py"/>
-
-</launch>

@@ -1,3 +1,0 @@
-<launch>
-	<node name="dynamixel_pro_action_server" pkg="dynamixel_pro_action_server" type="action_server" output="screen" />
-</launch>
