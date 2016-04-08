@@ -53,6 +53,7 @@
 	head_pan_controller
 	head_tilt_controller
 	dynamixel_pro_action_server
+	gripper_controller
 	" />
   
   
