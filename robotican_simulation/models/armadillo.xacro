@@ -2,6 +2,14 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="Armadillo" description="Armadillo robot">
 	<xacro:include filename="$(find robotican_description)/armadillo/robots/armadillo.xacro" />
 	
+	
+	<xacro:arg name="front_camera" default="false"/>
+	<xacro:arg name="urf" default="false"/>
+	<xacro:arg name="imu" default="false"/>
+	<xacro:arg name="gps" default="false"/>	
+	<xacro:arg name="lidar" default="false"/>
+
+	
 	<link name="dummy_link">
 	</link>
 	<joint name="dummy_joint" type="fixed">
@@ -21,6 +29,7 @@
 <xacro:property name="URF_FOV" value="${10.0*M_PI/180}" />
 
 	<!-- Sonars -->
+<xacro:if value="$(arg urf)">
 <gazebo reference="left_urf_link">
     <sensor type="ray" name="range">
         <always_on>true</always_on>
@@ -123,10 +132,11 @@
         </plugin>
     </sensor>
 </gazebo>
-	
+</xacro:if>	
 	
 	
 	  <!-- hokuyo URG-04LX-UG01   -->
+<xacro:if value="$(arg lidar)">
   <gazebo reference="laser_link">
      <sensor type="ray" name="head_hokuyo_sensor">
       <pose>0 0 0 0 0 0</pose>
@@ -158,8 +168,11 @@
       </plugin>
     </sensor>
   </gazebo>
+</xacro:if>
+
 
   <!-- GPS   -->
+<xacro:if value="$(arg gps)">
    <gazebo>
     <plugin name="GazeboRosGps" filename="libhector_gazebo_ros_gps.so">
       <updateRate>50.0</updateRate>
@@ -172,8 +185,10 @@
       <velocityGaussianNoise>2.89e-08 2.89e-08 2.89e-08</velocityGaussianNoise>
     </plugin>
    </gazebo>
-    
+  </xacro:if>
+  
   <!-- IMU   -->
+  <xacro:if value="$(arg imu)">
     <gazebo>
       <plugin name="GazeboRosImu" filename="libhector_gazebo_ros_imu.so">
       <alwaysOn>true</alwaysOn>
@@ -200,8 +215,10 @@
       <gaussianNoise>1.3e-2 1.3e-2 1.3e-2</gaussianNoise>
     </plugin>
    </gazebo>
+</xacro:if>
 
   <!-- cameras  -->
+<xacro:if value="$(arg front_camera)">
   <gazebo reference="front_cam_link">
     <sensor type="camera" name="front_camera">
       <update_rate>30.0</update_rate>
@@ -238,7 +255,7 @@
       </plugin>
     </sensor>
   </gazebo>
- 
+ </xacro:if>
   <!-- joints -->
 	<transmission name="left_wheel_joint_trans">
 		<type>transmission_interface/SimpleTransmission</type>
