@@ -91,4 +91,4 @@ gripper_controller:
  rightJoint: 'right_finger_joint'
  goal_tolerance: 0.005
  stalled_velocity_threshold: 0.005
- stall_timeout: 1.0
+ stall_timeout: 5.0

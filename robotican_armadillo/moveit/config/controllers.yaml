@@ -11,10 +11,11 @@ controller_list:
         - shoulder3_joint
         - wrist_joint
 
-    #- name: gripper_server
-      #default: true
-      #type: GripperCommand
+    - name: gripper_controller
+      default: true
+      type: GripperCommand
+      action_ns: gripper_cmd
 
-      #joints: 
-        #- gripper_l_joint
-        #- gripper_r_joint
+      joints: 
+        - left_finger_joint
+        - right_finger_joint
