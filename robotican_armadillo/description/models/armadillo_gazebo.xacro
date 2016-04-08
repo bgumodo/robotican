@@ -4,7 +4,8 @@
   
 
   <xacro:arg name="front_camera" default="false"/>
-    <xacro:arg name="rear_camera" default="false"/>
+  <xacro:arg name="rear_camera" default="false"/>
+  <xacro:arg name="top_depth_camera" default="false"/>
   <xacro:arg name="urf" default="false"/>
   <xacro:arg name="imu" default="false"/>
   <xacro:arg name="gps" default="false"/>	
@@ -22,20 +23,20 @@
   
   <!-- controller manager and hardware interfaces -->
   
-  <!-- kinect 2 
-  
+  <!-- kinect 2 -->
+    <xacro:if value="$(arg top_depth_camera)">
   <gazebo>
-  <plugin name="${link_name}_controller" filename="libgazebo_ros_openni_kinect.so">
+  <plugin name="top_depth_camera_controller" filename="libgazebo_ros_openni_kinect.so">
     <baseline>0.2</baseline>
     <alwaysOn>true</alwaysOn>
     <updateRate>1.0</updateRate>
-    <cameraName>${camera_name}_ir</cameraName>
-    <imageTopicName>/${camera_name}/depth/image_raw</imageTopicName>
-    <cameraInfoTopicName>/${camera_name}/depth/camera_info</cameraInfoTopicName>
-    <depthImageTopicName>/${camera_name}/depth/image_raw</depthImageTopicName>
-    <depthImageInfoTopicName>/${camera_name}/depth/camera_info</depthImageInfoTopicName>
-    <pointCloudTopicName>/${camera_name}/depth/points</pointCloudTopicName>
-    <frameName>${frame_name}</frameName>
+    <cameraName>top_depth_camera</cameraName>
+    <imageTopicName>top_depth_camera/depth/image_raw</imageTopicName>
+    <cameraInfoTopicName>top_depth_camera/depth/camera_info</cameraInfoTopicName>
+    <depthImageTopicName>top_depth_camera/depth/image_raw</depthImageTopicName>
+    <depthImageInfoTopicName>top_depth_camera/depth/camera_info</depthImageInfoTopicName>
+    <pointCloudTopicName>top_depth_camera/depth/points</pointCloudTopicName>
+    <frameName>top_depth_camera_link</frameName>
     <pointCloudCutoff>0.5</pointCloudCutoff>
     <distortionK1>0.00000001</distortionK1>
     <distortionK2>0.00000001</distortionK2>
@@ -49,7 +50,7 @@
     <hackBaseline>0</hackBaseline>
   </plugin>
 </gazebo>
--->
+ </xacro:if>	
 
   <gazebo> 
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
