@@ -1,0 +1,4 @@
+<?xml version="1.0" ?>
+<launch>
+	<node name="gps_status" output="screen" pkg="ric_board" type="StartGps.py"/>
+</launch>

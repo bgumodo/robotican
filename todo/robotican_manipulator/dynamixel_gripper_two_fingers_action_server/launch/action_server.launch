@@ -1,0 +1,4 @@
+<launch>
+	
+	<node name="gripper_server" pkg="dynamixel_gripper_two_fingers_action_server" type="gripper_server" output="screen" /> 
+</launch>

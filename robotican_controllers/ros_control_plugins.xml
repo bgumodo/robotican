@@ -1,0 +1,8 @@
+<library path="lib/librobotican_controllers">
+    <class name="position_controllers/GripperActionControllerTwo"
+           type="position_controllers::GripperActionControllerTwo"
+           base_class_type="controller_interface::ControllerBase">
+        <description>
+        </description>
+    </class>
+</library>

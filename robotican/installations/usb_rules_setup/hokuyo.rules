@@ -1,0 +1,1 @@
+SUBSYSTEMS=="usb",ATTRS{manufacturer}=="Hokuyo Data Flex for USB", SYMLINK+="Hokuyo", MODE="0666"

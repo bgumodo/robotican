@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<package>
+  <name>robotican</name>
+  <version>1.0.0</version>
+  <description>robotican meta-package</description>
+  <url>http://wiki.ros.org/robotican</url>
+  <maintainer email="support@robotican.net">RoboTiCan</maintainer>
+  <author email="support@robotican.net">RoboTiCan</author>
+  <license>BSD</license>
+
+
+  <buildtool_depend>catkin</buildtool_depend>
+  
+<run_depend>robotican_hardware_interface</run_depend>
+<run_depend>robotican_controllers</run_depend>
+<run_depend>robotican_armadillo</run_depend>
+<run_depend>robotican_komodo</run_depend>
+<run_depend>robotican_lizi</run_depend>
+<run_depend>robotican_gui</run_depend>
+<run_depend>robotican_demos</run_depend>
+<run_depend>ric_board</run_depend>
+
+
+
+
+
+
+  <export>
+  	<metapackage/>
+  </export>
+  
+</package>

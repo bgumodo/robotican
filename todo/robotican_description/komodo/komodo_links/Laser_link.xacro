@@ -1,0 +1,23 @@
+<robot name="Laser_link"><link name="Laser_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="5.67786090348299E-05 -6.35639788811446E-05 -0.0320034700075499" />
+      <mass value="0.133672626323353" />
+      <inertia ixx="7.01753800311366E-05" ixy="-5.24162580339348E-08" ixz="1.6420597550453E-07" iyy="7.0476938858621E-05" iyz="1.92324838956078E-07" izz="4.61464878783427E-05" />
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotican_description/komodo/meshes/Laser_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.192156862745098 0.1819607843137255 0.1933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotican_description/komodo/meshes/Laser_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  </robot>

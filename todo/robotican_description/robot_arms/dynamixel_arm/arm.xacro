@@ -1,0 +1,261 @@
+<robot name="dynamixel_arm">
+
+	<!-- Load all the links  -->
+	
+	<!--
+	<link name="Arm_Camera_link">
+    		<inertial>
+      			<origin rpy="0 0 0" xyz="3.63554297842268E-06 0.000213444909942184 -0.00979905208116372" />
+      			<mass value="0.0346828395874569" />
+      			<inertia ixx="6.28790794550091E-06" ixy="-2.06796512209413E-09" ixz="1.17989404036011E-09" iyy="6.08020883541883E-06" iyz="3.61783344700129E-08" izz="9.95214525566595E-06" />
+    		</inertial>
+    		<visual>
+      			<origin rpy="0 0 0" xyz="0 0 0" />
+      			<geometry>
+        			<mesh filename="package://robotican_description/komodo/meshes/Arm_Camera_link.STL" />
+      			</geometry>
+      			<material name="">
+        			<color rgba="0.2 0.2 0.2 1" />
+      			</material>
+    		</visual>
+    		<collision>
+      			<origin rpy="0 0 0" xyz="0 0 0" />
+      			<geometry>
+        			<mesh filename="package://robotican_description/komodo/meshes/Arm_Camera_link.STL" />
+      			</geometry>
+    		</collision>
+  	</link>
+	-->
+	
+	<link name="base_rotation_link">
+    		<inertial>
+      			<origin rpy="0 0 0" xyz="-1.11022302462516E-16 -7.80223872637444E-17 0.0660708417371112" />
+      			<mass value="1.4054258533062" />
+      			<inertia ixx="0.00159425912810341" ixy="-8.40269196653518E-08" ixz="-1.60925604895535E-19" iyy="0.000605522001732049" iyz="-6.08768470792684E-19" izz="0.00123388334665811" />
+    		</inertial>
+    		<visual>
+      			<origin rpy="0 0 0" xyz="0 0 0" />
+      			<geometry>
+        			<mesh filename="package://robotican_description/komodo/meshes/base_rotation_link.STL" />
+      			</geometry>
+      			<material name="">
+        			<color rgba="0.3 0.3 0.3 1" />
+			</material>
+    		</visual>
+    		<collision>
+      			<origin rpy="0 0 0" xyz="0 0 0" />
+      			<geometry>
+        			<mesh filename="package://robotican_description/komodo/meshes/base_rotation_link.STL" />
+      			</geometry>
+    		</collision>
+  	</link>
+
+	<link name="elbow1_link">
+    		<inertial>
+      			<origin rpy="0 0 0" xyz="3.38561240652013E-05 2.66604610292575E-06 0.0239321015909688" />
+			<mass value="0.759959116000226" />
+      			<inertia ixx="0.0011156254663426" ixy="3.16193221175592E-07" ixz="2.89169705133133E-06" iyy="0.00114606034071406" iyz="-8.11914906919631E-08" izz="0.000237163435713384" />
+    		</inertial>
+    		<visual>
+      			<origin rpy="0 0 0" xyz="0 0 0" />
+			<geometry>
+        			<mesh filename="package://robotican_description/komodo/meshes/elbow1_link.STL" />
+      			</geometry>
+			<material name="">
+        			<color rgba="0.3 0.3 0.3 1" />
+      			</material>
+    		</visual>
+    		<collision>
+      			<origin rpy="0 0 0" xyz="0 0 0" />
+      			<geometry>
+        			<mesh filename="package://robotican_description/komodo/meshes/elbow1_link.STL" />
+      			</geometry>
+    		</collision>
+  	</link>
+	
+	<link name="elbow2_link">
+    		<inertial>
+      			<origin rpy="0 0 0" xyz="-2.29085121194481E-05 -0.000512185919169572 0.0885118786028204" />
+      			<mass value="1.12138857800426" />
+      			<inertia ixx="0.0110599202589784" ixy="3.04261287700186E-07" ixz="-1.22468079415109E-06" iyy="0.0110437302875007" iyz="-7.91547787630536E-05" izz="0.000331598270284794" />
+    		</inertial>
+    		<visual>
+      			<origin rpy="0 0 0" xyz="0 0 0" />
+      			<geometry>
+        			<mesh filename="package://robotican_description/komodo/meshes/elbow2_link.STL" />
+      			</geometry>
+      			<material name="">
+        			<color rgba="0.4 0.4 0.4 1" />
+      			</material>
+    		</visual>
+    		<collision>
+      			<origin rpy="0 0 0" xyz="0 0 0" />
+      			<geometry>
+        			<mesh filename="package://robotican_description/komodo/meshes/elbow2_link.STL" />
+      			</geometry>
+    		</collision>
+  	</link>
+
+	<link name="left_finger_link">
+    		<inertial>
+      			<origin rpy="0 0 0" xyz="-6.10622663543836E-16 0.0205697573116852 0.0301832532936965" />
+      			<mass value="0.0111981711598485" />
+      			<inertia ixx="9.77349829713274E-06" ixy="6.1354405537333E-20" ixz="3.95573177730842E-20" iyy="1.11277552627936E-05" iyz="2.19026618569787E-06" izz="3.8860219521149E-06" />
+    		</inertial>
+    		<visual>
+      			<origin rpy="0.185 0 0" xyz="0 0 0" />
+      			<geometry>
+        			<mesh filename="package://robotican_description/komodo/meshes/left_finger_link.STL" />
+      			</geometry>
+      			<material name="">
+        			<color rgba="0.4 0.4 0.4 1" />
+      			</material>
+    		</visual>
+    		<collision>
+      			<origin rpy="0 0 0" xyz="0 0 0" />
+      			<geometry>
+        			<mesh filename="package://robotican_description/komodo/meshes/left_finger_link.STL" />
+      			</geometry>
+    		</collision>
+	</link>
+	
+	<link name="right_finger_link">
+    		<inertial>
+      			<origin rpy="0 0 0" xyz="2.77555756156289E-16 -0.0205697573116854 0.0301832532936965" />
+      			<mass value="0.0111981711598485" />
+      			<inertia ixx="9.7734982971327E-06" ixy="1.80407068651258E-20" ixz="2.78908224261042E-20" iyy="1.11277552627935E-05" iyz="-2.19026618569788E-06" izz="3.88602195211489E-06" />
+    		</inertial>
+    		<visual>
+      			<origin rpy="-0.185 0 0" xyz="0 0 0" />
+      			<geometry>
+        			<mesh filename="package://robotican_description/komodo/meshes/right_finger_link.STL" />
+      			</geometry>
+     	 		<material name="">
+        			<color rgba="0.4 0.4 0.4 1" />
+      			</material>
+    		</visual>
+    		<collision>
+      			<origin rpy="0 0 0" xyz="0 0 0" />
+      			<geometry>
+        			<mesh filename="package://robotican_description/komodo/meshes/right_finger_link.STL" />
+      			</geometry>
+    		</collision>
+  	</link>
+
+	<link name="shoulder_link">
+    		<inertial>
+      			<origin rpy="0 0 0" xyz="-4.66231481405233E-06 -9.82289126283389E-05 0.0772888499682157" />
+      			<mass value="0.191480823048406" />
+      			<inertia ixx="0.00107301595696304" ixy="-2.9789063890745E-07" ixz="-2.01216953964121E-08" iyy="0.000975953125213584" iyz="-1.19601921452086E-06" izz="0.000217659789393094" />
+    		</inertial>
+    		<visual>
+      			<origin rpy="0 0 0" xyz="0 0 0" />
+      			<geometry>
+        			<mesh filename="package://robotican_description/komodo/meshes/shoulder_link.STL" />
+      			</geometry>
+      			<material name="">
+        			<color rgba="0.4 0.4 0.4 1" />
+      			</material>
+    		</visual>
+    		<collision>
+      			<origin rpy="0 0 0" xyz="0 0 0" />
+      			<geometry>
+        			<mesh filename="package://robotican_description/komodo/meshes/shoulder_link.STL" />
+      			</geometry>
+    		</collision>
+  	</link>
+
+	<link name="wrist_link">
+    		<inertial>
+      			<origin rpy="0 0 0" xyz="-0.000140374211043626 4.00707618562063E-10 0.0303673809619358" />
+      			<mass value="0.717337417215465" />
+      			<inertia ixx="0.000486392340366094" ixy="4.20757000035677E-12" ixz="-3.91843889020299E-06" iyy="0.000211170064630335" iyz="2.79335159568522E-12" izz="0.000437528795624211" />
+    		</inertial>
+    		<visual>
+      			<origin rpy="0 0 0" xyz="0 0 0" />
+      			<geometry>
+        			<mesh filename="package://robotican_description/komodo/meshes/wrist_link.STL" />
+      			</geometry>
+      			<material name="">
+        			<color rgba="0.3 0.3 0.3 1" />
+      			</material>
+    		</visual>
+    		<collision>
+      			<origin rpy="0 0 0" xyz="0 0 0" />
+      			<geometry>
+        			<mesh filename="package://robotican_description/komodo/meshes/wrist_link.STL" />
+      			</geometry>
+    		</collision>
+  	</link>
+	<!--         END         -->
+	
+	<!-- Load all the joints -->
+	<!--
+	<joint name="Arm_base_joint" type="fixed">
+    		<origin xyz="-0.112249972183238 0 0.167160698455407" rpy="3.54761842723405E-15 -3.56763412295181E-15 -3.35371649289343E-30" />
+    		<parent link="base_link" />
+    		<child link="Arm_base_link" />
+    		<axis xyz="0 0 1" />
+  	</joint>
+	-->
+	
+	<joint name="shoulder_joint" type="revolute">
+    		<origin xyz="0 0 0.0834999999999999" rpy="-4.20159904047482E-15 -5.97509793174248E-16 9.93431320775303E-15" />
+    		<parent link="base_rotation_link" />
+    		<child link="shoulder_link" />
+    		<axis xyz="0 1 0" />
+    		<limit lower="-1.692969" upper="1.692969" effort="2000" velocity="0" />
+  	</joint>
+	
+	<joint name="elbow1_joint" type="revolute">
+    		<origin xyz="0 -0.000251155668932789 0.266305434894181" rpy="1.44504380352115E-15 1.11628850952447E-06 -9.93431159466724E-15" />
+    		<parent link="shoulder_link" />
+    		<child link="elbow1_link" />
+    		<axis xyz="-0.999999999998754 0 0" />
+    		<limit lower="-2.4434" upper="2.4434" effort="100" velocity="0" />
+  	</joint>
+
+	<joint name="elbow2_joint" type="revolute">
+    		<origin xyz="0 0 0.223999999999899" rpy="-4.51048856041191E-16 3.35869632765754E-16 1.57079632687657" />
+    		<parent link="elbow1_link" />
+    		<child link="elbow2_link" />
+    		<axis xyz="1 0 0" />
+    		<limit lower="-2.4434" upper="2.4434" effort="10" velocity="0" />
+  	</joint>	
+
+	<joint name="wrist_joint" type="revolute">
+    		<origin xyz="0 0.0 0.244749999999997" rpy="-4.43972025628984E-16 -3.35842401421639E-15 -1.57079632687657" />
+    		<parent link="elbow2_link" />
+    		<child link="wrist_link" />
+    		<axis xyz="0 0 0.999999999998754" />
+    		<limit lower="-1.91986" upper="1.91986" effort="10" velocity="0" />
+  	</joint>
+
+	<joint name="left_finger_joint" type="revolute">
+    		<origin xyz="-0.000250000000000111 0.021 0.0422500000000001" rpy="2.85979682697881E-15 1.01870746742143E-16 3.19235832636806E-21" />
+    		<parent link="wrist_link" />
+   		<child link="left_finger_link" />
+    		<axis xyz="1 0 0" />
+    		<limit lower="-0.87266" upper="0.87266" effort="10" velocity="0" />
+  	</joint>	
+	
+	<joint name="right_finger_joint" type="revolute">
+    		<origin xyz="-0.00024999999999889 -0.021 0.0422499999999999" rpy="0 3.19686557214722E-37 0" />
+    		<parent link="wrist_link" />
+    		<child link="right_finger_link" />
+    		<axis xyz="1 0 0" />
+    		<limit lower="-0.87266" upper="0.87266" effort="10" velocity="0" />
+  	</joint>	
+	
+	<!--
+	<joint name="Arm_camera_joint" type="fixed">
+    		<origin xyz="-0.0552499999999999 0 0.0340250000000002" rpy="1.60129334747211E-25 2.01127359533543E-16 -1.57079632649567" />
+    		<parent link="wrist_link" />
+    		<child link="Arm_Camera_link" />
+    		<axis xyz="0 0 0.999999999998754" />
+  	</joint> 
+	-->
+	
+	<!--         END         -->
+
+</robot>

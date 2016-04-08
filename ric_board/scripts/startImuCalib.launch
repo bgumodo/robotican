@@ -1,0 +1,5 @@
+<?xml version="1.0" ?>
+<launch>
+	<node name="ric_imuCalib" output="screen" pkg="ric_board" type="startImuCalib.py"/>
+</launch>
+

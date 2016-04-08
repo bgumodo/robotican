@@ -1,0 +1,13 @@
+<launch>
+	<include file="$(find h_manipulator_moveit)/launch/arm.launch" /> <!-- run the arm atj -->
+	<rosparam command="load" file="$(find h_manipulator_moveit)/config/arm_joints.yaml"/>
+	<include file="$(find dynamixel_pro_action_server)/launch/action_server.launch" />
+	
+	<include file="$(find h_manipulator_moveit)/launch/gripper.launch" /> <!-- run the gripper atj -->
+	<rosparam command="load" file="$(find h_manipulator_moveit)/config/gripper_joints.yaml"/>
+	<include file="$(find dynamixel_gripper_two_fingers_action_server)/launch/action_server.launch" />
+	
+
+	 <include file="$(find h_manipulator_moveit)/launch/move_group.launch" /> 
+        <node name="$(anon rviz)" pkg="rviz" type="rviz" respawn="false" args="-d $(find h_manipulator_moveit)/config/move_group.rviz" output="screen" /> 
+</launch>

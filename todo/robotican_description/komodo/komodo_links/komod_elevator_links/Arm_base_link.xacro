@@ -1,0 +1,24 @@
+<robot name="Arm_base_link">
+	<link name="Arm_base_link">
+		<inertial>
+			<origin rpy="0 0 0" xyz="0.0787832367713514 1.63894955207658E-05 0.30372182598738" />
+			<mass value="5.82785061945851" />
+			<inertia ixx="0.262040399352781" ixy="-1.20613586206922E-05" ixz="0.0219696026578" iyy="0.271705564666912" iyz="3.10612186063073E-05" izz="0.0337682852586326" />
+		</inertial>
+		<visual>
+		  <origin rpy="0 0 0" xyz="0 0 0" />
+		  <geometry>
+			<mesh filename="package://robotican_description/komodo/meshes/Arm_base_elevator_link.STL" />
+		  </geometry>
+		  <material name="">
+			<color rgba="0.4 0.4 0.4 1" />
+		  </material>
+		</visual>
+		<collision>
+		  <origin rpy="0 0 0" xyz="0 0 0" />
+		  <geometry>
+			<mesh filename="package://robotican_description/komodo/meshes/Arm_base_elevator_link.STL" />
+		  </geometry>
+		</collision>
+	  </link>
+  </robot>

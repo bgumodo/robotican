@@ -1,0 +1,23 @@
+<robot name="Laser_link"><link name="Laser_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.00079194 -0.00016941 -0.032844" />
+      <mass value="0.13934" />
+      <inertia ixx="7.4677E-05" ixy="-1.0667E-07" ixz="-9.0925E-07" iyy="7.7824E-05" iyz="5.076E-07" izz="5.1196E-05" />
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotican_description/lizi/meshes/Laser_Link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.25294 0.25294 0.25294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://robotican_description/lizi/meshes/Laser_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  </robot>

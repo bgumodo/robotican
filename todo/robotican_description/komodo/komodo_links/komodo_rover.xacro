@@ -1,0 +1,150 @@
+<robot name="komodo_rover">
+	<!-- Load all the links  -->
+	<link name="base_link">
+    		<inertial>
+      			<origin rpy="0 0 0" xyz="-0.0205330571995271 4.54409684683429E-05 0.00735986203300292" />
+      			<mass value="45.0894999160313" />
+      			<inertia ixx="0.723503030508731" ixy="-46.8485359152423E-05" ixz="-0.0875564429068847" iyy="1.38127064231828" iyz="11.9695110167269E-05" izz="1.94371448739423" />
+    		</inertial>
+    		<visual>
+      			<origin rpy="0 0 0" xyz="0 0 0" />
+			<geometry>
+				<mesh filename="package://robotican_description/komodo/meshes/col_base_link.STL" />
+			</geometry>
+			<material name="">
+				<color rgba="0.52941176470588 0.52941176470588 0.52941176470588 1" /> 
+			</material>
+    		</visual>
+    		<collision>
+      			<origin rpy="0 0 0" xyz="-0.065 0 0" />
+      			<geometry>
+        			<mesh filename="package://robotican_description/komodo/meshes/col_base_link.STL" />
+      			</geometry>
+    		</collision>
+  	</link>
+
+
+	<link name="FL_Wheel_link">
+    		<inertial>
+      			<origin rpy="0 0 0" xyz="-0.00160662480262744 -2.59228543311729E-06 1.49951351856364E-05" />
+      			<mass value="3.83427523136739" />
+      			<inertia ixx="0.0296525525807749" ixy="1.51001277133356E-06" ixz="2.35766660656153E-06" iyy="0.0163749526386264" iyz="1.2254511654214E-06" izz="0.0163720506916083" />
+    		</inertial>
+    		<visual>
+      			<origin rpy="0 0 0" xyz="0 0 0" />
+      			<geometry>
+        			<mesh filename="package://robotican_description/komodo/meshes/FL_Wheel_link.STL" />
+      			</geometry>
+      			<material name="">
+        			<color rgba="0.15 0.15 0.15 1" />
+      			</material>
+    		</visual>
+    		<collision>
+      			<origin rpy="0 1.5 0" xyz="0 0 0" />
+      			<geometry>
+        			<cylinder length="0.05" radius="0.1" />
+      			</geometry>
+    		</collision>
+  	</link>	
+	
+	<link name="FR_Wheel_link">
+    		<inertial>
+      			<origin rpy="0 0 0" xyz="-0.00160662478940524 -2.59227836232889E-06 1.49952129885679E-05" />
+      			<mass value="3.8342752339456" />
+      			<inertia ixx="0.0296525526023316" ixy="1.51001308635369E-06" ixz="2.3576732629264E-06" iyy="0.0163749526634419" iyz="1.22545882852199E-06" izz="0.0163720506902763" />
+    		</inertial>
+    		<visual>
+      			<origin rpy="0 0 0" xyz="0 0 0" />
+      			<geometry>
+        			<mesh filename="package://robotican_description/komodo/meshes/FR_Wheel_link.STL" />
+      			</geometry>
+      			<material name="">
+        			<color rgba="0.15 0.15 0.15 1" />
+      			</material>
+    		</visual>
+    		<collision>
+      			<origin rpy="0 1.5 0" xyz="0 0 0" />
+      			<geometry>
+        			<cylinder length="0.05" radius="0.1" />
+      			</geometry>
+    		</collision>
+  	</link>
+
+	<link name="RL_Wheel_link">
+    		<inertial>
+      			<origin rpy="0 0 0" xyz="-0.00160662477936549 -2.59222765522371E-06 1.49952106412736E-05" />
+      			<mass value="3.83427523542708" />
+      			<inertia ixx="0.0296525526119397" ixy="1.5100179619978E-06" ixz="2.35767335983606E-06" iyy="0.0163749526769378" iyz="1.22544931791974E-06" izz="0.0163720506885898" />
+    		</inertial>
+    		<visual>
+      			<origin rpy="0 0 0" xyz="0 0 0" />
+      			<geometry>
+        			<mesh filename="package://robotican_description/komodo/meshes/RL_Wheel_link.STL" />
+      			</geometry>
+      			<material name="">
+        			<color rgba="0.15 0.15 0.15 1" />
+      			</material>
+    		</visual>
+   	 	<collision>
+      			<origin rpy="0 1.5 0" xyz="0 0 0" />
+      			<geometry>       
+        			<cylinder length="0.05" radius="0.1" />
+      			</geometry>
+    		</collision>
+  	</link>
+
+	<link name="RR_Wheel_link">
+    		<inertial>
+      			<origin rpy="0 0 0" xyz="-0.00160662476834383 -2.59238516814309E-06 1.49950507030127E-05" />
+      			<mass value="3.83427523968864" />
+      			<inertia ixx="0.0296525526652264" ixy="1.5100019082583E-06" ixz="2.35765651707649E-06" iyy="0.0163749526901628" iyz="1.22544631738128E-06" izz="0.0163720507270359" />
+    		</inertial>
+    		<visual>
+      			<origin rpy="0 0 0" xyz="0 0 0" />
+      			<geometry>
+        			<mesh filename="package://robotican_description/komodo/meshes/RR_Wheel_link.STL" />
+      			</geometry>
+      			<material name="">
+        			<color rgba="0.15 0.15 0.15 1" />
+      			</material>
+    		</visual>
+    		<collision>
+      			<origin rpy="0 1.5 0" xyz="0 0 0" />
+      			<geometry>
+        			<cylinder length="0.05" radius="0.1" />
+      			</geometry>
+    		</collision>
+  	</link>
+	<!--         END         -->
+
+
+	<!-- Load all the joints -->
+	<joint name="FR_Wheel_joint" type="continuous">
+    		<origin xyz="0.173999999999995 -0.2009 0" rpy="2.62229105359916E-15 6.9308460464278E-17 1.5707963267949" />
+    		<parent link="base_link" />
+    		<child link="FR_Wheel_link" />
+    		<axis xyz="1 0 0" />
+  	</joint>
+
+	<joint name="FL_Wheel_joint" type="continuous">
+    		<origin xyz="0.173999999999995 0.2009 0" rpy="-2.62229105359916E-15 6.93084604642783E-17 -1.5707963267949" />
+    		<parent link="base_link" />
+    		<child link="FL_Wheel_link" />
+    		<axis xyz="-1 0 0" />
+  	</joint>
+
+	<joint name="RR_Wheel_joint" type="continuous">
+    		<origin xyz="-0.156000000000005 -0.2009 0" rpy="2.62229105359916E-15 -1.59433090848306E-31 1.5707963267949" />
+    		<parent link="base_link" />
+    		<child link="RR_Wheel_link" />
+    		<axis xyz="1 0 0" />
+  	</joint>
+
+	<joint name="RL_Wheel_joint" type="continuous">
+    		<origin xyz="-0.156000000000005 0.2009 0" rpy="-2.62229105359916E-15 -5.57680208627196E-32 -1.5707963267949" />
+    		<parent link="base_link" />
+    		<child link="RL_Wheel_link" />
+    		<axis xyz="-1 0 0" />
+  	</joint>
+	<!--         END         -->
+</robot>

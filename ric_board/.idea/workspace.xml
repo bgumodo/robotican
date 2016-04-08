@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" assignedExecutableTargets="true" buildAllGenerated="true">
+    <generated>
+      <config projectName="ric_board" targetName="ric_board_genlisp" />
+      <config projectName="ric_board" targetName="roscpp_generate_messages_cpp" />
+      <config projectName="ric_board" targetName="_ric_board_generate_messages_check_deps_Status" />
+      <config projectName="ric_board" targetName="gtest" />
+      <config projectName="ric_board" targetName="ric_board_generate_messages_py" />
+      <config projectName="ric_board" targetName="_ric_board_generate_messages_check_deps_get_devs" />
+      <config projectName="ric_board" targetName="sensor_msgs_generate_messages_cpp" />
+      <config projectName="ric_board" targetName="_ric_board_generate_messages_check_deps_Encoders" />
+      <config projectName="ric_board" targetName="geometry_msgs_generate_messages_py" />
+      <config projectName="ric_board" targetName="_ric_board_generate_messages_check_deps_Rangers" />
+      <config projectName="ric_board" targetName="clean_test_results" />
+      <config projectName="ric_board" targetName="roscpp_generate_messages_lisp" />
+      <config projectName="ric_board" targetName="ric_board_generate_messages" />
+      <config projectName="ric_board" targetName="geometry_msgs_generate_messages_cpp" />
+      <config projectName="ric_board" targetName="_ric_board_generate_messages_check_deps_Odometry" />
+      <config projectName="ric_board" targetName="_ric_board_generate_messages_check_deps_Motor" />
+      <config projectName="ric_board" targetName="_ric_board_generate_messages_check_deps_VelCommand" />
+      <config projectName="ric_board" targetName="_ric_board_generate_messages_check_deps_GPS" />
+      <config projectName="ric_board" targetName="sensor_msgs_generate_messages_lisp" />
+      <config projectName="ric_board" targetName="_ric_board_generate_messages_check_deps_Relay" />
+      <config projectName="ric_board" targetName="ric_board_genpy" />
+      <config projectName="ric_board" targetName="_ric_board_generate_messages_check_deps_IMU" />
+      <config projectName="ric_board" targetName="doxygen" />
+      <config projectName="ric_board" targetName="_ric_board_generate_messages_check_deps_calibIMU" />
+      <config projectName="ric_board" targetName="_ric_board_generate_messages_check_deps_Servos" />
+      <config projectName="ric_board" targetName="check_imu" />
+      <config projectName="ric_board" targetName="ric_board_gencpp" />
+      <config projectName="ric_board" targetName="_ric_board_generate_messages_check_deps_imuCalib" />
+      <config projectName="ric_board" targetName="ric_board_generate_messages_lisp" />
+      <config projectName="ric_board" targetName="_ric_board_generate_messages_check_deps_set_odom" />
+      <config projectName="ric_board" targetName="rosgraph_msgs_generate_messages_py" />
+      <config projectName="ric_board" targetName="clean_test_results_ric_board" />
+      <config projectName="ric_board" targetName="_ric_board_generate_messages_check_deps_StatusMsg" />
+      <config projectName="ric_board" targetName="_ric_board_generate_messages_check_deps_DevStatus" />
+      <config projectName="ric_board" targetName="roscpp_generate_messages_py" />
+      <config projectName="ric_board" targetName="_ric_board_generate_messages_check_deps_MonitorDevs" />
+      <config projectName="ric_board" targetName="std_msgs_generate_messages_py" />
+      <config projectName="ric_board" targetName="download_extra_data" />
+      <config projectName="ric_board" targetName="_ric_board_generate_messages_check_deps_Named_Data" />
+      <config projectName="ric_board" targetName="_ric_board_generate_messages_check_deps_calibField" />
+      <config projectName="ric_board" targetName="sensor_msgs_generate_messages_py" />
+      <config projectName="ric_board" targetName="tests" />
+      <config projectName="ric_board" targetName="rosgraph_msgs_generate_messages_cpp" />
+      <config projectName="ric_board" targetName="rosgraph_msgs_generate_messages_lisp" />
+      <config projectName="ric_board" targetName="std_msgs_generate_messages_cpp" />
+      <config projectName="ric_board" targetName="run_tests" />
+      <config projectName="ric_board" targetName="gtest_main" />
+      <config projectName="ric_board" targetName="ric_board_generate_messages_cpp" />
+      <config projectName="ric_board" targetName="std_msgs_generate_messages_lisp" />
+      <config projectName="ric_board" targetName="_ric_board_generate_messages_check_deps_Odom" />
+      <config projectName="ric_board" targetName="geometry_msgs_generate_messages_lisp" />
+      <config projectName="ric_board" targetName="_ric_board_generate_messages_check_deps_setParam" />
+      <config projectName="ric_board" targetName="_ric_board_generate_messages_check_deps_PPM" />
+    </generated>
+  </component>
+  <component name="CMakeSettings" AUTO_RELOAD="false" GENERATION_PASS_SYSTEM_ENVIRONMENT="true">
+    <ADDITIONAL_GENERATION_ENVIRONMENT>
+      <envs />
+    </ADDITIONAL_GENERATION_ENVIRONMENT>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8c389d1c-9278-44d2-91e1-695300b8fb49" name="Default" comment="" />
+    <ignored path="ric_board.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="ric_board" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="checkImu.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/checkImu.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.6571429">
+              <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
+              <folding>
+                <element signature="e#0#20#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="transform_datatypes.h" pinned="false" current-in-tab="false">
+        <entry file="file:///opt/ros/indigo/include/tf/transform_datatypes.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="104" column="19" selection-start-line="104" selection-start-column="19" selection-end-line="104" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Matrix3x3.h" pinned="false" current-in-tab="false">
+        <entry file="file:///opt/ros/indigo/include/tf/LinearMath/Matrix3x3.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="37" column="4" selection-start-line="37" selection-start-column="4" selection-end-line="37" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="143" column="32" selection-start-line="143" selection-start-column="32" selection-end-line="143" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/src/checkImu.cpp" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsBuildToolPackageJson" detection-done="true" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="65" />
+    <option name="y" value="24" />
+    <option name="width" value="1301" />
+    <option name="height" value="744" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ric_board" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ric_board" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ric_board" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ric_board" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ric_board" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ric_board" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ric_board" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ric_board" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ric_board" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunManager" selected="Application.Build All">
+    <configuration default="true" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="_ric_board_generate_messages_check_deps_calibField" CONFIG_NAME="Debug" TEST_MODE="SUITE_TEST">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="_ric_board_generate_messages_check_deps_calibField" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run-script" />
+      <scripts />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="_ric_board_generate_messages_check_deps_calibField" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="_ric_board_generate_messages_check_deps_calibField" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="_ric_board_generate_messages_check_deps_calibIMU" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="_ric_board_generate_messages_check_deps_calibIMU" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="_ric_board_generate_messages_check_deps_DevStatus" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="_ric_board_generate_messages_check_deps_DevStatus" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="_ric_board_generate_messages_check_deps_Encoders" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="_ric_board_generate_messages_check_deps_Encoders" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="_ric_board_generate_messages_check_deps_get_devs" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="_ric_board_generate_messages_check_deps_get_devs" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="_ric_board_generate_messages_check_deps_GPS" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="_ric_board_generate_messages_check_deps_GPS" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="_ric_board_generate_messages_check_deps_IMU" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="_ric_board_generate_messages_check_deps_IMU" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="_ric_board_generate_messages_check_deps_imuCalib" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="_ric_board_generate_messages_check_deps_imuCalib" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="_ric_board_generate_messages_check_deps_MonitorDevs" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="_ric_board_generate_messages_check_deps_MonitorDevs" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="_ric_board_generate_messages_check_deps_Motor" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="_ric_board_generate_messages_check_deps_Motor" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="_ric_board_generate_messages_check_deps_Named_Data" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="_ric_board_generate_messages_check_deps_Named_Data" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="_ric_board_generate_messages_check_deps_Odom" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="_ric_board_generate_messages_check_deps_Odom" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="_ric_board_generate_messages_check_deps_Odometry" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="_ric_board_generate_messages_check_deps_Odometry" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="_ric_board_generate_messages_check_deps_PPM" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="_ric_board_generate_messages_check_deps_PPM" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="_ric_board_generate_messages_check_deps_Rangers" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="_ric_board_generate_messages_check_deps_Rangers" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="_ric_board_generate_messages_check_deps_Relay" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="_ric_board_generate_messages_check_deps_Relay" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="_ric_board_generate_messages_check_deps_Servos" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="_ric_board_generate_messages_check_deps_Servos" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="_ric_board_generate_messages_check_deps_set_odom" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="_ric_board_generate_messages_check_deps_set_odom" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="_ric_board_generate_messages_check_deps_setParam" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="_ric_board_generate_messages_check_deps_setParam" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="_ric_board_generate_messages_check_deps_Status" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="_ric_board_generate_messages_check_deps_Status" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="_ric_board_generate_messages_check_deps_StatusMsg" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="_ric_board_generate_messages_check_deps_StatusMsg" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="_ric_board_generate_messages_check_deps_VelCommand" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="_ric_board_generate_messages_check_deps_VelCommand" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="clean_test_results" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="clean_test_results" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="clean_test_results_ric_board" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="clean_test_results_ric_board" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="download_extra_data" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="download_extra_data" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="doxygen" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="doxygen" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="geometry_msgs_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="geometry_msgs_generate_messages_cpp" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="geometry_msgs_generate_messages_lisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="geometry_msgs_generate_messages_lisp" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="geometry_msgs_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="geometry_msgs_generate_messages_py" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="ric_board_gencpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="ric_board_gencpp" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="ric_board_generate_messages" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="ric_board_generate_messages" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="ric_board_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="ric_board_generate_messages_cpp" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="ric_board_generate_messages_lisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="ric_board_generate_messages_lisp" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="ric_board_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="ric_board_generate_messages_py" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="ric_board_genlisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="ric_board_genlisp" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="ric_board_genpy" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="ric_board_genpy" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="roscpp_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="roscpp_generate_messages_cpp" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="roscpp_generate_messages_lisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="roscpp_generate_messages_lisp" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="roscpp_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="roscpp_generate_messages_py" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="rosgraph_msgs_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="rosgraph_msgs_generate_messages_cpp" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="rosgraph_msgs_generate_messages_lisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="rosgraph_msgs_generate_messages_lisp" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="rosgraph_msgs_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="rosgraph_msgs_generate_messages_py" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="run_tests" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="run_tests" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="sensor_msgs_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="sensor_msgs_generate_messages_cpp" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="sensor_msgs_generate_messages_lisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="sensor_msgs_generate_messages_lisp" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="sensor_msgs_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="sensor_msgs_generate_messages_py" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="std_msgs_generate_messages_cpp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="std_msgs_generate_messages_cpp" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="std_msgs_generate_messages_lisp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="std_msgs_generate_messages_lisp" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="std_msgs_generate_messages_py" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="std_msgs_generate_messages_py" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="tests" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="tests" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="gtest" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="gtest" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="gtest_main" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="gtest_main" CONFIG_NAME="Debug">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="check_imu" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="ric_board" TARGET_NAME="check_imu" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ric_board" RUN_TARGET_NAME="check_imu">
+      <envs />
+      <method />
+    </configuration>
+    <list size="54">
+      <item index="0" class="java.lang.String" itemvalue="Application.Build All" />
+      <item index="1" class="java.lang.String" itemvalue="Application._ric_board_generate_messages_check_deps_calibField" />
+      <item index="2" class="java.lang.String" itemvalue="Application._ric_board_generate_messages_check_deps_calibIMU" />
+      <item index="3" class="java.lang.String" itemvalue="Application._ric_board_generate_messages_check_deps_DevStatus" />
+      <item index="4" class="java.lang.String" itemvalue="Application._ric_board_generate_messages_check_deps_Encoders" />
+      <item index="5" class="java.lang.String" itemvalue="Application._ric_board_generate_messages_check_deps_get_devs" />
+      <item index="6" class="java.lang.String" itemvalue="Application._ric_board_generate_messages_check_deps_GPS" />
+      <item index="7" class="java.lang.String" itemvalue="Application._ric_board_generate_messages_check_deps_IMU" />
+      <item index="8" class="java.lang.String" itemvalue="Application._ric_board_generate_messages_check_deps_imuCalib" />
+      <item index="9" class="java.lang.String" itemvalue="Application._ric_board_generate_messages_check_deps_MonitorDevs" />
+      <item index="10" class="java.lang.String" itemvalue="Application._ric_board_generate_messages_check_deps_Motor" />
+      <item index="11" class="java.lang.String" itemvalue="Application._ric_board_generate_messages_check_deps_Named_Data" />
+      <item index="12" class="java.lang.String" itemvalue="Application._ric_board_generate_messages_check_deps_Odom" />
+      <item index="13" class="java.lang.String" itemvalue="Application._ric_board_generate_messages_check_deps_Odometry" />
+      <item index="14" class="java.lang.String" itemvalue="Application._ric_board_generate_messages_check_deps_PPM" />
+      <item index="15" class="java.lang.String" itemvalue="Application._ric_board_generate_messages_check_deps_Rangers" />
+      <item index="16" class="java.lang.String" itemvalue="Application._ric_board_generate_messages_check_deps_Relay" />
+      <item index="17" class="java.lang.String" itemvalue="Application._ric_board_generate_messages_check_deps_Servos" />
+      <item index="18" class="java.lang.String" itemvalue="Application._ric_board_generate_messages_check_deps_set_odom" />
+      <item index="19" class="java.lang.String" itemvalue="Application._ric_board_generate_messages_check_deps_setParam" />
+      <item index="20" class="java.lang.String" itemvalue="Application._ric_board_generate_messages_check_deps_Status" />
+      <item index="21" class="java.lang.String" itemvalue="Application._ric_board_generate_messages_check_deps_StatusMsg" />
+      <item index="22" class="java.lang.String" itemvalue="Application._ric_board_generate_messages_check_deps_VelCommand" />
+      <item index="23" class="java.lang.String" itemvalue="Application.clean_test_results" />
+      <item index="24" class="java.lang.String" itemvalue="Application.clean_test_results_ric_board" />
+      <item index="25" class="java.lang.String" itemvalue="Application.download_extra_data" />
+      <item index="26" class="java.lang.String" itemvalue="Application.doxygen" />
+      <item index="27" class="java.lang.String" itemvalue="Application.geometry_msgs_generate_messages_cpp" />
+      <item index="28" class="java.lang.String" itemvalue="Application.geometry_msgs_generate_messages_lisp" />
+      <item index="29" class="java.lang.String" itemvalue="Application.geometry_msgs_generate_messages_py" />
+      <item index="30" class="java.lang.String" itemvalue="Application.ric_board_gencpp" />
+      <item index="31" class="java.lang.String" itemvalue="Application.ric_board_generate_messages" />
+      <item index="32" class="java.lang.String" itemvalue="Application.ric_board_generate_messages_cpp" />
+      <item index="33" class="java.lang.String" itemvalue="Application.ric_board_generate_messages_lisp" />
+      <item index="34" class="java.lang.String" itemvalue="Application.ric_board_generate_messages_py" />
+      <item index="35" class="java.lang.String" itemvalue="Application.ric_board_genlisp" />
+      <item index="36" class="java.lang.String" itemvalue="Application.ric_board_genpy" />
+      <item index="37" class="java.lang.String" itemvalue="Application.roscpp_generate_messages_cpp" />
+      <item index="38" class="java.lang.String" itemvalue="Application.roscpp_generate_messages_lisp" />
+      <item index="39" class="java.lang.String" itemvalue="Application.roscpp_generate_messages_py" />
+      <item index="40" class="java.lang.String" itemvalue="Application.rosgraph_msgs_generate_messages_cpp" />
+      <item index="41" class="java.lang.String" itemvalue="Application.rosgraph_msgs_generate_messages_lisp" />
+      <item index="42" class="java.lang.String" itemvalue="Application.rosgraph_msgs_generate_messages_py" />
+      <item index="43" class="java.lang.String" itemvalue="Application.run_tests" />
+      <item index="44" class="java.lang.String" itemvalue="Application.sensor_msgs_generate_messages_cpp" />
+      <item index="45" class="java.lang.String" itemvalue="Application.sensor_msgs_generate_messages_lisp" />
+      <item index="46" class="java.lang.String" itemvalue="Application.sensor_msgs_generate_messages_py" />
+      <item index="47" class="java.lang.String" itemvalue="Application.std_msgs_generate_messages_cpp" />
+      <item index="48" class="java.lang.String" itemvalue="Application.std_msgs_generate_messages_lisp" />
+      <item index="49" class="java.lang.String" itemvalue="Application.std_msgs_generate_messages_py" />
+      <item index="50" class="java.lang.String" itemvalue="Application.tests" />
+      <item index="51" class="java.lang.String" itemvalue="Application.gtest" />
+      <item index="52" class="java.lang.String" itemvalue="Application.gtest_main" />
+      <item index="53" class="java.lang.String" itemvalue="Application.check_imu" />
+    </list>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8c389d1c-9278-44d2-91e1-695300b8fb49" name="Default" comment="" />
+      <created>1454931042398</created>
+      <option name="number" value="Default" />
+      <updated>1454931042398</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="65" y="24" width="1301" height="744" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24980783" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3283582" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/checkImu.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///opt/ros/indigo/include/tf/LinearMath/Matrix3x3.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="37" column="4" selection-start-line="37" selection-start-column="4" selection-end-line="37" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="143" column="32" selection-start-line="143" selection-start-column="32" selection-end-line="143" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="143" column="32" selection-start-line="143" selection-start-column="32" selection-end-line="143" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///opt/ros/indigo/include/tf/LinearMath/Matrix3x3.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="37" column="4" selection-start-line="37" selection-start-column="4" selection-end-line="37" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///opt/ros/indigo/include/tf/transform_datatypes.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="104" column="19" selection-start-line="104" selection-start-column="19" selection-end-line="104" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/checkImu.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6571429">
+          <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
