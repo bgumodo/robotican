@@ -78,15 +78,6 @@
   <component name="ChangeListManager">
     <list default="true" id="5090c7e5-85e2-48e5-b18b-c7d9a39d63ef" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../robotican_armadillo/launch/armadillo.launch" afterPath="$PROJECT_DIR$/../robotican_armadillo/launch/armadillo.launch" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../robotican_controllers/config/arm_joints.yaml" afterPath="$PROJECT_DIR$/../robotican_controllers/config/arm_joints.yaml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../robotican_controllers/launch/run_controllers.launch" afterPath="$PROJECT_DIR$/../robotican_controllers/launch/run_controllers.launch" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/robotican_hardware_interface/armadillo.h" afterPath="$PROJECT_DIR$/include/robotican_hardware_interface/armadillo.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/robotican_hardware_interface/armadillo.cpp" afterPath="$PROJECT_DIR$/src/robotican_hardware_interface/armadillo.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/robotican_hardware_interface_node.cpp" afterPath="$PROJECT_DIR$/src/robotican_hardware_interface_node.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../todo/robotican_hardware/dynamixel_pro_controller/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../todo/robotican_hardware/dynamixel_pro_controller/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../todo/robotican_hardware/dynamixel_pro_controller/include/dynamixel_pro_controller/dynamixel_pro_controller.h" afterPath="$PROJECT_DIR$/../todo/robotican_hardware/dynamixel_pro_controller/include/dynamixel_pro_controller/dynamixel_pro_controller.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../todo/robotican_hardware/dynamixel_pro_controller/src/dynamixel_pro_controller.cpp" afterPath="$PROJECT_DIR$/../todo/robotican_hardware/dynamixel_pro_controller/src/dynamixel_pro_controller.cpp" />
     </list>
     <ignored path="robotican_hardware_interface.iws" />
     <ignored path=".idea/workspace.xml" />
