@@ -60,14 +60,15 @@ void operator >> (const YAML::Node& node, T& i)
 using namespace dynamixel_pro_controller;
 using namespace std;
 
-DynamixelProController::DynamixelProController(hardware_interface::JointStateInterface* jointStateInterface, hardware_interface::PositionJointInterface* positionJointInterface)
+DynamixelProController::DynamixelProController(hardware_interface::JointStateInterface *jointStateInterface,
+                                               hardware_interface::PosVelJointInterface *posVelJointInterface)
 {
     shutting_down = false;
     nh = new ros::NodeHandle("~");
     _time = ros::Time::now();
 
     _jointStateInterface = jointStateInterface;
-    _positionJointInterface = positionJointInterface;
+    _posVelJointInterface = posVelJointInterface;
     //load the file containing model info, we're not using the param server here
     string path = ros::package::getPath("dynamixel_pro_controller");
     path += "/config/motor_data.yaml";
@@ -214,12 +215,12 @@ DynamixelProController::DynamixelProController(hardware_interface::JointStateInt
         _jointsInfo.insert(std::pair<string, JointInfo_t>(jointName, JointInfo_t()));
         hardware_interface::JointStateHandle jointStateHandle(jointName, &_jointsInfo[jointName].position, &_jointsInfo[jointName].velocity,&_jointsInfo[jointName].effort);
         _jointStateInterface->registerHandle(jointStateHandle);
-        hardware_interface::JointHandle jointHandle(_jointStateInterface->getHandle(jointName), &_jointsInfo[jointName].cmd);
-        _positionJointInterface->registerHandle(jointHandle);
+        hardware_interface::PosVelJointHandle jointHandle(_jointStateInterface->getHandle(jointName), &_jointsInfo[jointName].cmd_pos, &_jointsInfo[jointName].cmd_vel);
+        _posVelJointInterface->registerHandle(jointHandle);
 
     }
     registerInterface(_jointStateInterface);
-    registerInterface(_positionJointInterface);
+    registerInterface(_posVelJointInterface);
 
 
     //advertise the sensor feedback topic
@@ -476,7 +477,8 @@ void DynamixelProController::write() {
     sensor_msgs::JointState msg;
     for(std::map<std::string, JointInfo_t>::iterator it = _jointsInfo.begin(); it != _jointsInfo.end(); ++it) {
         msg.name.push_back(it->first);
-        msg.position.push_back(it->second.cmd);
+        msg.position.push_back(it->second.cmd_pos);
+        msg.position.push_back(it->second.cmd_vel);
     }
     ROS_INFO_STREAM(msg);
     //sensor_msgs::JointState::ConstPtr send(&msg);

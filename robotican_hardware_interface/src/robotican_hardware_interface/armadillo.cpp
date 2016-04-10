@@ -8,8 +8,8 @@
 
 namespace robotican_hardware {
     ArmadilloRobot::ArmadilloRobot() : RobotBase(),
-                                       _positionJointInterface(),
-                                       _dynamixelProController(&_jointStateInterface, &_positionJointInterface) {
+                                       _positionJointInterface(),_posVelJointInterface(),
+                                       _dynamixelProController(&_jointStateInterface, &_posVelJointInterface) {
         _dynamixelProController.startBroadcastingJointStates();
         std::string elevatorPubTopic, elevatorSubTopic, elevatorJointName,
                 panPubTopic, panSubTopic, panJointName,

@@ -48,6 +48,7 @@
 #include <controller_manager/controller_manager.h>
 #include <hardware_interface/joint_state_interface.h>
 #include <hardware_interface/joint_command_interface.h>
+#include <hardware_interface/posvel_command_interface.h>
 
 
 namespace dynamixel_pro_controller
@@ -57,9 +58,10 @@ namespace dynamixel_pro_controller
         double position;
         double effort;
         double velocity;
-        double cmd;
+        double cmd_pos;
+        double cmd_vel;
         JointInfo_t() {
-            position = effort = velocity = cmd = 0;
+            position = effort = velocity = cmd_pos = cmd_vel= 0;
         }
     };
 
@@ -70,7 +72,8 @@ namespace dynamixel_pro_controller
 class DynamixelProController : public hardware_interface::RobotHW
 {
 public:
-    DynamixelProController(hardware_interface::JointStateInterface* jointStateInterface, hardware_interface::PositionJointInterface* positionJointInterface);
+    DynamixelProController(hardware_interface::JointStateInterface *jointStateInterface,
+                           hardware_interface::PosVelJointInterface *posVelJointInterface);
     ~DynamixelProController();
     ros::Time getTime();
     ros::Duration getPeriod();
@@ -165,7 +168,7 @@ private:
     ros::Time _time;
     std::map<std::string, JointInfo_t> _jointsInfo;
     hardware_interface::JointStateInterface* _jointStateInterface;
-    hardware_interface::PositionJointInterface* _positionJointInterface;
+    hardware_interface::PosVelJointInterface* _posVelJointInterface;
 
 
 };

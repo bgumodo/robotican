@@ -9,6 +9,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/robotican_hardware_interface/robot_base.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/robotican_hardware_interface/robot_sim_interface.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/robotican_hardware_interface/ros_utils.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/robotican_hardware_interface_node.cpp" isTestSource="false" />
     </content>
     <content url="file:///usr/src/gtest">
       <sourceFolder url="file:///usr/src/gtest/CMakeLists.txt" isTestSource="false" />

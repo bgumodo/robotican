@@ -160,7 +160,7 @@ add_library(robotican_hardware_interface_sim
 # add_dependencies(robotican_hardware_interface ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
-# add_executable(robotican_hardware_interface_node src/robotican_hardware_interface_node.cpp)
+ add_executable(robotican_hardware_interface_node src/robotican_hardware_interface_node.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
@@ -170,10 +170,10 @@ add_library(robotican_hardware_interface_sim
 target_link_libraries(robotican_hardware_interface ${catkin_LIBRARIES})
 target_link_libraries(robotican_hardware_interface_sim ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES})
 
-#target_link_libraries(robotican_hardware_interface_node
-#        ${catkin_LIBRARIES}
-#         robotican_hardware_interface
-#   )
+target_link_libraries(robotican_hardware_interface_node
+        ${catkin_LIBRARIES}
+         robotican_hardware_interface
+   )
 
 
 
