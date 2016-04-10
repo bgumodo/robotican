@@ -77,7 +77,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5090c7e5-85e2-48e5-b18b-c7d9a39d63ef" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../robotican_armadillo/config/arm_config.yaml" afterPath="$PROJECT_DIR$/../robotican_armadillo/config/arm_config.yaml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../robotican_armadillo/config/robot_config.yaml" afterPath="$PROJECT_DIR$/../robotican_armadillo/config/robot_config.yaml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../robotican_armadillo/launch/armadillo.launch" afterPath="$PROJECT_DIR$/../robotican_armadillo/launch/armadillo.launch" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="robotican_hardware_interface.iws" />
     <ignored path=".idea/workspace.xml" />

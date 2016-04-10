@@ -2,3 +2,6 @@ servos: [{id: 1,joint_name: rotation1_joint}, {id: 2,joint_name: shoulder1_joint
 device: "/dev/Arm"
 serial_timeout_ms: 1000000000
 baudrate: 57600
+
+
+

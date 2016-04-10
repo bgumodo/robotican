@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="armadillo_with_arm" description="Armadillo robot">
+	<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="armadillo_with_arm" description="Armadillo robot">
+	<xacro:property name="M_PI" value="3.1415926535897931" />
 	
 	<!--    BASE ROBOT     -->
 	<xacro:include filename="$(find robotican_armadillo)/description/models/armadillo_base.xacro" />
