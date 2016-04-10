@@ -11,6 +11,7 @@
 #include <dynamixel_msgs/JointState.h>
 #include <robotican_hardware_interface/robot_base.h>
 #include <hardware_interface/joint_command_interface.h>
+#include <hardware_interface/posvel_command_interface.h>
 #include <dynamixel_pro_controller/dynamixel_pro_controller.h>
 
 namespace robotican_hardware {
@@ -45,6 +46,7 @@ namespace robotican_hardware {
 
     protected:
         hardware_interface::PositionJointInterface _positionJointInterface;
+        hardware_interface::PosVelJointInterface _posVelJointInterface;
 
     public:
         ArmadilloRobot();

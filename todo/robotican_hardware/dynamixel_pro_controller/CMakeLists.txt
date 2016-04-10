@@ -78,7 +78,8 @@ include_directories(include
 
 ## Declare a cpp library
  add_library(dynamixel_pro_controller
-   src/dynamixel_pro_controller.cpp
+         include/${PROJECT_NAME}/dynamixel_pro_controller.h
+         src/dynamixel_pro_controller.cpp
  )
 
 ## Declare a cpp executable
