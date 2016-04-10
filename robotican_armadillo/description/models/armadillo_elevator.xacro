@@ -316,4 +316,57 @@
       effort="1.11"
       velocity="5.3" />
   </joint>
+  <link
+    name="kinect2_link">
+    <inertial>
+      <origin
+        xyz="-0.095478 0.0037079 -0.034825"
+        rpy="0 0 0" />
+      <mass
+        value="0.82085" />
+      <inertia
+        ixx="0.00059235"
+        ixy="-1.2194E-06"
+        ixz="2.1546E-05"
+        iyy="0.0041195"
+        iyz="2.6946E-05"
+        izz="0.0039702" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robotican_armadillo/description/meshes/Kinect2_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robotican_armadillo/description/meshes/Kinect2_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="kinect2_joint"
+    type="fixed">
+    <origin
+      xyz="0.0518 -0.095 0.072265"
+      rpy="-1.5708 0 -1.5708" />
+    <parent
+      link="head_tilt_link" />
+    <child
+      link="kinect2_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
 </robot>

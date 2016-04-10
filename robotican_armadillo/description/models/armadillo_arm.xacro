@@ -219,17 +219,17 @@
     name="rotation2_link">
  <inertial>
       <origin
-        xyz="0.018641 0.003816 0.018634"
+        xyz="5.0638E-06 0.003816 0.026357"
         rpy="0 0 0" />
       <mass
         value="0.1635" />
       <inertia
-        ixx="0.00012408"
-        ixy="2.4076E-06"
-        ixz="1.7225E-05"
+        ixx="0.00014132"
+        ixy="-3.0872E-09"
+        ixz="1.6669E-08"
         iyy="8.0775E-05"
-        iyz="2.4119E-06"
-        izz="0.00012412" />
+        iyz="3.4079E-06"
+        izz="0.00010687" />
     </inertial>
     <visual>
       <origin
@@ -260,7 +260,7 @@
     type="revolute">
     <origin
       xyz="0.13824 0.006 0.18067"
-      rpy="0 0 0" />
+      rpy="-7.2737E-16 0.7854 -5.1433E-16" />
     <parent
       link="shoulder2_link" />
     <child
@@ -275,19 +275,19 @@
   </joint>
   <link
     name="shoulder3_link">
-  <inertial>
+ <inertial>
       <origin
-        xyz="0.049277 0.012748 0.049277"
+        xyz="3.9874E-11 0.012748 0.069689"
         rpy="0 0 0" />
       <mass
         value="0.15954" />
       <inertia
-        ixx="0.00012881"
-        ixy="-3.9839E-06"
-        ixz="5.3169E-05"
+        ixx="0.00018198"
+        ixy="2.1351E-13"
+        ixz="-2.3815E-13"
         iyy="0.00015335"
-        iyz="-3.9839E-06"
-        izz="0.00012881" />
+        iyz="-5.6341E-06"
+        izz="7.5641E-05" />
     </inertial>
     <visual>
       <origin
@@ -317,8 +317,8 @@
     name="shoulder3_joint"
     type="revolute">
     <origin
-      xyz="0.022981 -0.006 0.022981"
-      rpy="0 0 0" />
+      xyz="0 -0.006 0.0325"
+      rpy="1.3906E-15 0 1.3906E-15" />
     <parent
       link="rotation2_link" />
     <child
@@ -335,17 +335,17 @@
     name="wrist_link">
     <inertial>
       <origin
-        xyz="0.024492 -8.9152E-11 0.025256"
+        xyz="-0.00053981 -8.915E-11 0.035177"
         rpy="0 0 0" />
       <mass
         value="0.098822" />
       <inertia
-        ixx="6.2194E-05"
-        ixy="2.1384E-12"
-        ixz="3.1204E-06"
+        ixx="6.6953E-05"
+        ixy="5.9175E-12"
+        ixz="1.6384E-06"
         iyy="3.364E-05"
-        iyz="-6.2302E-12"
-        izz="6.5471E-05" />
+        iyz="-2.8933E-12"
+        izz="6.0712E-05" />
     </inertial>
     <visual>
       <origin
@@ -375,8 +375,8 @@
     name="wrist_joint"
     type="revolute">
     <origin
-      xyz="0.082731 0.012 0.082731"
-      rpy="0 0 0" />
+      xyz="0 0.012 0.117"
+      rpy="-8.0064E-16 0 -8.0064E-16" />
     <parent
       link="shoulder3_link" />
     <child
@@ -393,17 +393,17 @@
     name="left_finger_link">
     <inertial>
       <origin
-        xyz="0.00970400055113302 -0.00893464825232482 0.00970400055113319"
+        xyz="-5.5511E-17 0.015773 0.034449"
         rpy="0 0 0" />
       <mass
-        value="0.0176065040929193" />
+        value="0.017607" />
       <inertia
-        ixx="1.00046883612338E-05"
-        ixy="6.24540883843321E-07"
-        ixz="4.79053968386684E-06"
-        iyy="1.80290992370235E-05"
-        iyz="6.24540883843334E-07"
-        izz="1.00046883612338E-05" />
+        ixx="1.4795E-05"
+        ixy="-1.1493E-20"
+        ixz="2.9858E-20"
+        iyy="1.8029E-05"
+        iyz="8.8323E-07"
+        izz="5.2141E-06" />
     </inertial>
     <visual>
       <origin
@@ -433,14 +433,14 @@
     name="left_finger_joint"
     type="revolute">
     <origin
-    xyz="0.048773 0.045707 0.048773"
-      rpy="0 0 0" />
+      xyz="0 0.021 0.04825"
+      rpy="8.0345E-16 -1.1657E-15 8.0345E-16" />
     <parent
       link="wrist_link" />
     <child
       link="left_finger_link" />
     <axis
-           xyz="0.70711 0 -0.70711" />
+      xyz="1 0 0" />
     <limit
       effort="3.1"
       lower="-0.4"
@@ -451,17 +451,17 @@
     name="right_finger_link">
     <inertial>
       <origin
-        xyz="0.009704 0.0089346 0.009704"
+        xyz="2.2204E-16 -0.015773 0.034449"
         rpy="0 0 0" />
       <mass
         value="0.017607" />
       <inertia
-        ixx="1.0005E-05"
-        ixy="-6.2454E-07"
-        ixz="4.7905E-06"
+        ixx="1.4795E-05"
+        ixy="-4.8655E-21"
+        ixz="6.7763E-21"
         iyy="1.8029E-05"
-        iyz="-6.2454E-07"
-        izz="1.0005E-05" />
+        iyz="-8.8323E-07"
+        izz="5.2141E-06" />
     </inertial>
     <visual>
       <origin
@@ -491,14 +491,14 @@
     name="right_finger_joint"
     type="revolute">
     <origin
-      xyz="0.048773 -0.045707 0.048773"
-      rpy="0 0 0" />
+      xyz="0 -0.021 0.04825"
+      rpy="1.0088E-15 -3.3307E-16 1.0088E-15" />
     <parent
       link="wrist_link" />
     <child
       link="right_finger_link" />
     <axis
-      xyz="0.70711 0 -0.70711" />
+      xyz="1 0 0" />
     <limit
       effort="3.1"
       lower="-1.0"
@@ -509,17 +509,17 @@
     name="f200_optical_link">
     <inertial>
       <origin
-        xyz="1.7297E-09 -0.0057087 -0.016076"
+        xyz="1.7297E-09 0.007331 -0.015404"
         rpy="0 0 0" />
       <mass
         value="0.092188" />
       <inertia
         ixx="2.6617E-05"
-        ixy="-3.0698E-11"
-        ixz="3.8544E-11"
-        iyy="0.00013594"
-        iyz="3.1747E-06"
-        izz="0.00012497" />
+        ixy="-4.8961E-11"
+        ixz="5.5477E-12"
+        iyy="0.00013363"
+        iyz="-5.4874E-06"
+        izz="0.00012728" />
     </inertial>
     <visual>
       <origin
@@ -549,8 +549,8 @@
     name="f200_optical_joint"
     type="fixed">
     <origin
-      xyz="-0.015343 0 0.07453"
-      rpy="0 0 -1.5708" />
+      xyz="-0.06355 0 0.041852"
+      rpy="9.4369E-16 7.7003E-16 -1.5708" />
     <parent
       link="wrist_link" />
     <child

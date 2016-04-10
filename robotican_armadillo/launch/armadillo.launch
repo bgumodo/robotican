@@ -9,7 +9,7 @@
   <arg name="gps" default='false'/>
   <arg name="urf" default='false'/>
   <arg name="imu" default='false'/>
-  <arg name="top_depth_camera" default='false'/>
+  <arg name="kinect2" default='false'/>
   
   <arg name="x" default="0.0"/>
   <arg name="y" default="0.0"/>
@@ -21,10 +21,12 @@
   <group if="$(arg gazebo)">
     <param name="robot_description" command="$(find xacro)/xacro.py '$(find robotican_armadillo)/description/models/armadillo_gazebo.xacro' 
 	   front_camera:=$(arg front_camera)
+	   rear_camera:=$(arg rear_camera)
 	   lidar:=$(arg lidar)
 	   urf:=$(arg urf)
 	   imu:=$(arg imu)
 	   gps:=$(arg gps)
+	   kinect2:=$(arg kinect2)
 	   " /> 
     
     <arg name="paused" default="false"/>
@@ -69,7 +71,7 @@
 	  mobile_base_controller
 	  elevator_controller
 	  pan_tilt_position_controller
-	  dynamixel_pro_action_server
+	  arm_trajectory_controller
 	  gripper_controller
 	  " />
     

@@ -2,61 +2,69 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="Armadillo" description="Armadillo robot">
   <xacro:include filename="$(find robotican_armadillo)/description/models/armadillo.xacro" />
   
-
+  
   <xacro:arg name="front_camera" default="false"/>
   <xacro:arg name="rear_camera" default="false"/>
-  <xacro:arg name="top_depth_camera" default="false"/>
+  <xacro:arg name="kinect2" default="false"/>
   <xacro:arg name="urf" default="false"/>
   <xacro:arg name="imu" default="false"/>
   <xacro:arg name="gps" default="false"/>	
   <xacro:arg name="lidar" default="false"/>
   
   
-<!--  <link name="dummy_link">
+  <!--  <link name="dummy_link">
   </link>
   <joint name="dummy_joint" type="fixed">
-    <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
-    <parent link="dummy_link" />
-    <child link="base_link" />
-    <axis xyz="0 0 0" />   
+  <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+  <parent link="dummy_link" />
+  <child link="base_link" />
+  <axis xyz="0 0 0" />   
   </joint>-->
   
-  <!-- controller manager and hardware interfaces -->
+
   
   <!-- kinect 2 -->
-    <xacro:if value="$(arg top_depth_camera)">
-  <gazebo>
-  <plugin name="top_depth_camera_controller" filename="libgazebo_ros_openni_kinect.so">
-    <baseline>0.2</baseline>
-    <alwaysOn>true</alwaysOn>
-    <updateRate>1.0</updateRate>
-    <cameraName>top_depth_camera</cameraName>
-    <imageTopicName>top_depth_camera/depth/image_raw</imageTopicName>
-    <cameraInfoTopicName>top_depth_camera/depth/camera_info</cameraInfoTopicName>
-    <depthImageTopicName>top_depth_camera/depth/image_raw</depthImageTopicName>
-    <depthImageInfoTopicName>top_depth_camera/depth/camera_info</depthImageInfoTopicName>
-    <pointCloudTopicName>top_depth_camera/depth/points</pointCloudTopicName>
-    <frameName>top_depth_camera_link</frameName>
-    <pointCloudCutoff>0.5</pointCloudCutoff>
-    <distortionK1>0.00000001</distortionK1>
-    <distortionK2>0.00000001</distortionK2>
-    <distortionK3>0.00000001</distortionK3>
-    <distortionT1>0.00000001</distortionT1>
-    <distortionT2>0.00000001</distortionT2>
-    <CxPrime>0</CxPrime>
-    <Cx>0</Cx>
-    <Cy>0</Cy>
-    <focalLength>0</focalLength>
-    <hackBaseline>0</hackBaseline>
-  </plugin>
-</gazebo>
- </xacro:if>	
 
-  <gazebo> 
-    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-		<robotSimType>gazebo_ros_control/RoboticanRobotHWSim</robotSimType>
-    </plugin> 
-  </gazebo>
+  <xacro:if value="$(arg kinect2)">
+    <gazebo reference="kinect2_link">
+      <sensor type="depth" name="kinect2">
+	<pose>0 0 0 0 0 0</pose>
+	<visualize>true</visualize>
+	<update_rate>5</update_rate>
+        <camera>
+          <horizontal_fov>${70.0*M_PI/180.0}</horizontal_fov>
+          <image>
+            <format>B8G8R8</format>
+            <width>640</width>
+            <height>480</height>
+          </image>
+          <clip>
+            <near>0.5</near>
+            <far>4.5</far>
+          </clip>
+        </camera>
+	<plugin name="kinect2_controller" filename="libgazebo_ros_openni_kinect.so">
+	  <alwaysOn>true</alwaysOn>
+	  <updateRate>20</updateRate>
+	  <cameraName>kinect2</cameraName>
+	  <imageTopicName>hd/image_color</imageTopicName>
+	  <cameraInfoTopicName>hd/camera_info</cameraInfoTopicName>
+	  <depthImageTopicName>hd/image_depth_rect</depthImageTopicName>
+	  <depthImageCameraInfoTopicName>hd/camera_info</depthImageCameraInfoTopicName>
+	  <pointCloudTopicName>hd/points</pointCloudTopicName>
+	  <frameName>kinect2_link</frameName>					
+	  <distortion_k1>0.0</distortion_k1>
+	  <distortion_k2>0.0</distortion_k2>
+	  <distortion_k3>0.0</distortion_k3>
+	  <distortion_t1>0.0</distortion_t1>
+	  <distortion_t2>0.0</distortion_t2>
+	  <pointCloudCutoff>0.4</pointCloudCutoff>
+	  <pointCloudCutoffMax>50.0</pointCloudCutoffMax> 
+	</plugin>
+      </sensor>
+    </gazebo>
+  </xacro:if>
+  
   
   <xacro:property name="M_PI" value="3.1415926535897931" />
   <xacro:property name="URF_FOV" value="${10.0*M_PI/180}" />
@@ -255,7 +263,7 @@
     <gazebo reference="front_cam_link">
       <sensor type="camera" name="front_camera">
 	<update_rate>30.0</update_rate>
-	<camera name="head">
+	<camera name="front_camera">
 	  <horizontal_fov>1.3962634</horizontal_fov>
 	  <image>
 	    <width>800</width>
@@ -290,11 +298,11 @@
     </gazebo>
   </xacro:if>
   
-    <xacro:if value="$(arg rear_camera)">
+  <xacro:if value="$(arg rear_camera)">
     <gazebo reference="rear_cam_link">
       <sensor type="camera" name="rear_camera">
 	<update_rate>30.0</update_rate>
-	<camera name="head">
+	<camera name="rear_camera">
 	  <horizontal_fov>1.3962634</horizontal_fov>
 	  <image>
 	    <width>800</width>
@@ -329,6 +337,15 @@
     </gazebo>
   </xacro:if>
   
+  
+  
+      <!-- controller manager and hardware interfaces -->
+  <gazebo> 
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotSimType>gazebo_ros_control/RoboticanRobotHWSim</robotSimType> 
+    </plugin> 
+  </gazebo>
+  
   <!-- joints -->
   <transmission name="left_wheel_joint_trans">
     <type>transmission_interface/SimpleTransmission</type>
@@ -360,10 +377,11 @@
     </actuator>
   </transmission>
   
+  <!--
   <transmission name="rotation1_joint_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="rotation1_joint">
-      <hardwareInterface>PosVelJointInterface</hardwareInterface>
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="rotation1_joint_motor">
       <mechanicalReduction>1</mechanicalReduction>
@@ -373,7 +391,7 @@
   <transmission name="shoulder1_joint_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="shoulder1_joint">
-      <hardwareInterface>PosVelJointInterface</hardwareInterface>
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="shoulder1_joint_motor">
       <mechanicalReduction>1</mechanicalReduction>
@@ -383,7 +401,7 @@
   <transmission name="shoulder2_joint_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="shoulder2_joint">
-      <hardwareInterface>PosVelJointInterface</hardwareInterface>
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="shoulder2_joint_motor">
       <mechanicalReduction>1</mechanicalReduction>
@@ -393,7 +411,7 @@
   <transmission name="rotation2_joint_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="rotation2_joint">
-      <hardwareInterface>PosVelJointInterface</hardwareInterface>
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="rotation2_joint_motor">
       <mechanicalReduction>1</mechanicalReduction>
@@ -403,7 +421,7 @@
   <transmission name="shoulder3_joint_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="shoulder3_joint">
-      <hardwareInterface>PosVelJointInterface</hardwareInterface>
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="shoulder3_joint_motor">
       <mechanicalReduction>1</mechanicalReduction>
@@ -413,13 +431,74 @@
   <transmission name="wrist_joint_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="wrist_joint">
-      <hardwareInterface>PosVelJointInterface</hardwareInterface>
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
     </joint>
     <actuator name="wrist_joint_motor">
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
   
+  -->
+  <transmission name="rotation1_joint_trans">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="rotation1_joint">
+  <hardwareInterface>PosVelJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="rotation1_joint_motor">
+  <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+  </transmission>
+  
+  <transmission name="shoulder1_joint_trans">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="shoulder1_joint">
+  <hardwareInterface>PosVelJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="shoulder1_joint_motor">
+  <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+  </transmission>
+  
+  <transmission name="shoulder2_joint_trans">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="shoulder2_joint">
+  <hardwareInterface>PosVelJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="shoulder2_joint_motor">
+  <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+  </transmission>
+  
+  <transmission name="rotation2_joint_trans">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="rotation2_joint">
+  <hardwareInterface>PosVelJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="rotation2_joint_motor">
+  <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+  </transmission>
+  
+  <transmission name="shoulder3_joint_trans">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="shoulder3_joint">
+  <hardwareInterface>PosVelJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="shoulder3_joint_motor">
+  <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+  </transmission>
+  
+  <transmission name="wrist_joint_trans">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="wrist_joint">
+  <hardwareInterface>PosVelJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="wrist_joint_motor">
+  <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+  </transmission>
+
   <transmission name="left_finger_joint_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="left_finger_joint">
