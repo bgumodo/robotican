@@ -6,7 +6,7 @@
   
   <xacro:property name="URF_FOV" value="${10.0*M_PI/180}" />
 	
-	
+ <xacro:arg name="controllers" default="true"/>	
   <xacro:arg name="front_camera" default="false"/>
   <xacro:arg name="rear_camera" default="false"/>
   <xacro:arg name="kinect2" default="false"/>
@@ -28,8 +28,6 @@
   </joint>-->
   
 
-
-    <!-- Optical center of camera -->
      <xacro:if value="$(arg f200)">
 
 		
@@ -40,9 +38,9 @@
 			<camera>
 			  <horizontal_fov>1.20772254</horizontal_fov>
 			  <image>
-				<format>L8</format>
-				<width>1280</width>
-				<height>720</height>
+				<format>R8G8B8</format>
+				<width>640</width>
+				<height>480</height>
 			  </image>
 			  <clip>
 				<near>0.2</near>
@@ -52,12 +50,12 @@
 			<plugin name="f200_camera_controller" filename="libgazebo_ros_openni_kinect.so">
 
 			  <alwaysOn>true</alwaysOn>
-			  <baseline>0.11</baseline>
+			  <!--  <baseline>0.11</baseline> -->
 			  <updateRate>$(arg f200_hz)</updateRate>
 			  <cameraName>f200</cameraName>
-			  <imageTopicName>camera/image_raw</imageTopicName>
-			  <cameraInfoTopicName>camera/camera_info</cameraInfoTopicName>
-			  <depthImageTopicName>depth/disparity</depthImageTopicName>
+			  <imageTopicName>color/image_raw</imageTopicName>
+			  <cameraInfoTopicName>color/camera_info</cameraInfoTopicName>
+			  <depthImageTopicName>depth/image_raw</depthImageTopicName>
 			  <depthImageCameraInfoTopicName>depth/camera_info</depthImageCameraInfoTopicName>
 			  <pointCloudTopicName>depth/points</pointCloudTopicName>
 			  <frameName>f200_depth_optical_frame</frameName>
@@ -197,6 +195,7 @@
 	<!-- Sonars -->
 	<xacro:if value="$(arg urf)">
 	  <gazebo reference="left_urf_link">
+	     <material>Gazebo/Black</material>
 	    <sensor type="ray" name="range">
 	      <always_on>true</always_on>
 	      <update_rate>10</update_rate>
@@ -462,9 +461,9 @@
 	  </gazebo>
 	</xacro:if>
 	
-	
-	
-	<!-- controller manager and hardware interfaces -->
+	<!-- controller manager and hardware interfaces -->	
+<xacro:if value="$(arg controllers)">
+
 	<gazebo> 
 	  <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
 	    <robotSimType>gazebo_ros_control/RoboticanRobotHWSim</robotSimType> 
@@ -668,8 +667,27 @@
 	<gazebo reference="base_elevator_link">
 	  <turnGravityOff>true</turnGravityOff>
 	</gazebo>
-	
-	
-	
+</xacro:if>
+
+
+<gazebo reference="right_urf_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="left_urf_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+    <gazebo reference="rear_urf_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+    <gazebo reference="kinect2_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+    <gazebo reference="laser_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+    <gazebo reference="f200_link">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  
       </robot>
       

@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <robot
   name="armadillo_base_urdf" description="Armadillo robot base">
+  
+  
   <link
     name="base_link">
     <inertial>
@@ -31,21 +33,12 @@
           rgba="0.79216 0.81961 0.93333 1" />
       </material>
     </visual>
-  <!--   <collision name='chassis'>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://robotican_armadillo/description/meshes/base_link.STL" />
-      </geometry>
-    </collision> -->
       <collision name='caster_collision'>
       <origin
-        xyz="-0.35 0 -0.05"
+        xyz="-0.35 0 0"
         rpy="0 0 0" />
             <geometry>
-              <sphere radius="0.05"/>
+              <sphere radius="0.1"/>
             </geometry>
             <surface>
               <friction>
@@ -58,14 +51,14 @@
               </friction>
             </surface>
           </collision>
-	  <!-- <visual name='caster_visual'>
-	           <origin
-        xyz="-0.35 0 -0.05"
+	<!--  <visual name='caster_visual'>
+	 <origin
+        xyz="-0.35 0 0"
         rpy="0 0 0" />
             <geometry>
-	    <sphere radius="0.05"/>
+	    <sphere radius="0.1"/>
             </geometry>
-	        </visual>-->
+	  </visual> -->
   </link>
   <link
     name="front_cam_link">
@@ -139,24 +132,24 @@
     <visual>
       <origin
         xyz="0 0 0"
-        rpy="0 0 0" />
+        rpy="0 ${M_PI/2} 0" />
       <geometry>
-        <mesh
-          filename="package://robotican_armadillo/description/meshes/left_urf_link.STL" />
+	<!--  <mesh filename="package://robotican_armadillo/description/meshes/left_urf_link.STL" /> -->
+	<cylinder  length="0.01" radius="0.008"/> 
       </geometry>
       <material
         name="">
         <color
-          rgba="0.75294 0.75294 0.75294 1" />
+          rgba="0 0 0 1" />
       </material>
     </visual>
     <collision>
       <origin
         xyz="0 0 0"
-        rpy="0 0 0" />
+        rpy="0 ${M_PI/2} 0" />
       <geometry>
-        <mesh
-          filename="package://robotican_armadillo/description/meshes/left_urf_link.STL" />
+       	<!--  <mesh filename="package://robotican_armadillo/description/meshes/left_urf_link.STL" /> -->
+	<cylinder  length="0.01" radius="0.008"/> 
       </geometry>
     </collision>
   </link>
@@ -192,24 +185,24 @@
     <visual>
       <origin
         xyz="0 0 0"
-        rpy="0 0 0" />
+        rpy="0 ${M_PI/2} 0" />
       <geometry>
-        <mesh
-          filename="package://robotican_armadillo/description/meshes/right_urf_link.STL" />
+  <!--      <mesh filename="package://robotican_armadillo/description/meshes/right_urf_link.STL" /> -->
+	<cylinder  length="0.005" radius="0.008"/> 
       </geometry>
       <material
         name="">
         <color
-          rgba="0.75294 0.75294 0.75294 1" />
+          rgba="0 0 0 1" />
       </material>
     </visual>
     <collision>
       <origin
         xyz="0 0 0"
-        rpy="0 0 0" />
+         rpy="0 ${M_PI/2} 0" />
       <geometry>
-        <mesh
-          filename="package://robotican_armadillo/description/meshes/right_urf_link.STL" />
+  <!--      <mesh filename="package://robotican_armadillo/description/meshes/right_urf_link.STL" /> -->
+	<cylinder  length="0.005" radius="0.008"/> 
       </geometry>
     </collision>
   </link>
@@ -245,24 +238,24 @@
     <visual>
       <origin
         xyz="0 0 0"
-        rpy="0 0 0" />
+        rpy="0 ${M_PI/2} 0" />
       <geometry>
-        <mesh
-          filename="package://robotican_armadillo/description/meshes/rear_urf_link.STL" />
+<!--         <mesh  filename="package://robotican_armadillo/description/meshes/rear_urf_link.STL" /> -->
+	<cylinder  length="0.005" radius="0.008"/> 
       </geometry>
       <material
         name="">
         <color
-          rgba="0.75294 0.75294 0.75294 1" />
+          rgba="0 0 0 1" />
       </material>
     </visual>
     <collision>
       <origin
         xyz="0 0 0"
-        rpy="0 0 0" />
+        rpy="0 ${M_PI/2} 0" />
       <geometry>
-        <mesh
-          filename="package://robotican_armadillo/description/meshes/rear_urf_link.STL" />
+<!--         <mesh filename="package://robotican_armadillo/description/meshes/rear_urf_link.STL" /> -->
+	<cylinder  length="0.01" radius="0.008"/> 
       </geometry>
     </collision>
   </link>

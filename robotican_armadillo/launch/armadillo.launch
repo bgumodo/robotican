@@ -3,6 +3,8 @@
   
   <arg name="gazebo" default='false'/>
   
+  <arg name="controllers" default='true'/>
+  
   <arg name="front_camera" default='false'/>
   <arg name="rear_camera" default='false'/>
   <arg name="lidar" default='false'/>
@@ -14,14 +16,18 @@
   
   <arg name="x" default="0.0"/>
   <arg name="y" default="0.0"/>
-  <arg name="z" default="0.09"/>
+  <arg name="z" default="0.1"/>
   <arg name="R" default="0.0" />
   <arg name="P" default="0.0" />
   <arg name="Y" default="0.0" />
   
+      <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/>
+    
+      
   <group if="$(arg gazebo)">
     
     <param name="robot_description" command="$(find xacro)/xacro.py '$(find robotican_armadillo)/description/models/armadillo_gazebo.xacro' 
+	   controllers:=$(arg controllers)
 	   front_camera:=$(arg front_camera)
 	   rear_camera:=$(arg rear_camera)
 	   lidar:=$(arg lidar)
@@ -83,10 +89,11 @@
     </group>
     
     
-    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/>
+
+  <group if="$(arg controllers)">
     
     <rosparam file="$(find robotican_armadillo)/config/armadillo_controllers.yaml" command="load"/>
-
+    
     <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="	  
       robot_state_controller
 	  mobile_base_controller
@@ -94,6 +101,6 @@
 	  pan_tilt_position_controller
 	  arm_trajectory_controller
 	  gripper_controller" />
-   
+     </group>
     </launch>
     
