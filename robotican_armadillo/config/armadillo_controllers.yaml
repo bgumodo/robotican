@@ -63,7 +63,7 @@ arm_position_controller:
 
 
 dynamixel_pro_action_server:
-  type: position_controllers/JointTrajectoryController
+  type: position_velocity_controllers/JointTrajectoryController
   joints:
      - rotation1_joint
      - shoulder1_joint 

@@ -133,6 +133,9 @@ include_directories(
    src/${PROJECT_NAME}/utils.cpp
    src/${PROJECT_NAME}/two_finger_controller.cpp
    include/${PROJECT_NAME}/gripper_action_controller_impl.h
+   include/${PROJECT_NAME}/hardware_interface_adapter.h
+   include/${PROJECT_NAME}/joint_trajectory_controller_impl.h
+   src/${PROJECT_NAME}/joint_trajectory_controller.cpp
    )
 
 ## Add cmake target dependencies of the library
@@ -141,7 +144,7 @@ include_directories(
 # add_dependencies(robotican_controllers ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
- #add_executable(robotican_controllers_node src/run_controller.cpp)
+# add_executable(robotican_controllers_node src/run_controller.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above

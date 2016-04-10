@@ -5,4 +5,10 @@
         <description>
         </description>
     </class>
+    <class name="position_velocity_controllers/JointTrajectoryController"
+           type="pos_vel_controllers::JointTrajectoryController"
+           base_class_type="controller_interface::ControllerBase">
+        <description>
+        </description>
+    </class>
 </library>
