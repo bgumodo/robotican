@@ -19,6 +19,7 @@
   <arg name="Y" default="0.0" />
   
   <group if="$(arg gazebo)">
+    
     <param name="robot_description" command="$(find xacro)/xacro.py '$(find robotican_armadillo)/description/models/armadillo_gazebo.xacro' 
 	   front_camera:=$(arg front_camera)
 	   rear_camera:=$(arg rear_camera)
@@ -28,7 +29,7 @@
 	   gps:=$(arg gps)
 	   kinect2:=$(arg kinect2)
 	   " /> 
-    
+	  
     <arg name="paused" default="false"/>
     <arg name="use_sim_time" default="true"/>
     <arg name="gui" default="true"/>
@@ -36,11 +37,8 @@
     <arg name="debug" default="false"/>
     
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
-<!--
-       <arg name="world_name" value="$(find robotican_demos)/worlds/gas_station.world"/> 
--->
+     <!--  <arg name="world_name" value="$(find robotican_demos)/worlds/gas_station.world"/> -->
      <!-- <arg name="world_name" value="$(find robotican_demos)/worlds/UPlat.sdf"/> -->
-
       <arg name="debug" value="$(arg debug)" />
       <arg name="gui" value="$(arg gui)" />
       <arg name="paused" value="$(arg paused)"/>
@@ -48,6 +46,7 @@
       <arg name="headless" value="$(arg headless)"/>
     </include>
     
+
     <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" 
 	  args="-urdf -model armadillo -param robot_description -x $(arg x) -y $(arg y) -z $(arg z) -R $(arg R) -P $(arg P) -Y $(arg Y)"/> 
     
@@ -55,8 +54,7 @@
     </group>
     
     <group unless="$(arg gazebo)">
-      
-      
+         
       <param name="robot_description" command="$(find xacro)/xacro.py '$(find robotican_armadillo)/description/models/armadillo.xacro'" /> 
       
     </group>
@@ -65,7 +63,7 @@
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/>
     
     <rosparam file="$(find robotican_armadillo)/config/armadillo_controllers.yaml" command="load"/>
-    
+
     <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="
 	  robot_state_controller
 	  mobile_base_controller
@@ -74,6 +72,6 @@
 	  arm_trajectory_controller
 	  gripper_controller
 	  " />
-    
+   
     </launch>
     

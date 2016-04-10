@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <robot
   name="armadillo_elevator_urdf" description="Armadillo robot elevator">
+    
   <link
     name="base_elevator_link">
     <inertial>
@@ -318,32 +319,32 @@
   </joint>
   <link
     name="kinect2_link">
-    <inertial>
-      <origin
-        xyz="-0.095478 0.0037079 -0.034825"
-        rpy="0 0 0" />
-      <mass
-        value="0.82085" />
-      <inertia
-        ixx="0.00059235"
-        ixy="-1.2194E-06"
-        ixz="2.1546E-05"
-        iyy="0.0041195"
-        iyz="2.6946E-05"
-        izz="0.0039702" />
+    <inertial>
+      <origin
+        xyz="-0.034825 0.00047843 -0.0036931"
+        rpy="0 0 0" />
+      <mass
+        value="0.82085" />
+      <inertia
+        ixx="0.0039702"
+        ixy="-2.1546E-05"
+        ixz="-2.6946E-05"
+        iyy="0.00059235"
+        iyz="-1.2194E-06"
+        izz="0.0041195" />
     </inertial>
     <visual>
       <origin
-        xyz="0 0 0"
+        xyz="0 0 0"
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robotican_armadillo/description/meshes/Kinect2_link.STL" />
+          filename="package://robotican_armadillo/description/meshes/kinect2_link.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.79216 0.81961 0.93333 1" />
+          rgba="0 0 0 1" />
       </material>
     </visual>
     <collision>
@@ -352,7 +353,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robotican_armadillo/description/meshes/Kinect2_link.STL" />
+          filename="package://robotican_armadillo/description/meshes/kinect2_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -360,8 +361,8 @@
     name="kinect2_joint"
     type="fixed">
     <origin
-      xyz="0.0518 -0.095 0.072265"
-      rpy="-1.5708 0 -1.5708" />
+      xyz="0.0518 0 0.07225"
+      rpy="0 0 0" />
     <parent
       link="head_tilt_link" />
     <child
@@ -369,4 +370,67 @@
     <axis
       xyz="0 0 0" />
   </joint>
+  <joint name="kinect2_rgb_joint" type="fixed">
+      <origin xyz="0 -0.0935 0" rpy="0 0 0"/>
+      <parent link="kinect2_link"/>
+      <child link="kinect2_rgb_frame" />
+    </joint>
+    
+    <link name="kinect2_rgb_frame">
+      <inertial>
+	<mass value="0.001" />
+	<origin xyz="0 0 0" />
+	<inertia ixx="0.0001" ixy="0.0" ixz="0.0"
+	  iyy="0.0001" iyz="0.0"
+	  izz="0.0001" />
+	</inertial>
+      </link>   
+      <joint name="kinect2_rgb_optical_joint" type="fixed">
+	<origin xyz="0 0 0" rpy="${-M_PI/2} 0 ${-M_PI/2}" />
+	<parent link="kinect2_rgb_frame" />
+	<child link="kinect2_rgb_optical_frame" />
+      </joint>
+      
+      <link name="kinect2_rgb_optical_frame">
+	<inertial>
+	  <mass value="0.001" />
+	  <origin xyz="0 0 0" />
+	  <inertia ixx="0.0001" ixy="0.0" ixz="0.0"
+	    iyy="0.0001" iyz="0.0"
+	    izz="0.0001" />
+	  </inertial>
+	</link>
+	
+	
+	<joint name="kinect2_depth_joint" type="fixed">
+	  <origin xyz="0 0 0" rpy="0 0 0" />
+	  <parent link="kinect2_rgb_frame" />
+	  <child link="kinect2_depth_frame" />
+	</joint>
+	
+	<link name="kinect2_depth_frame">
+	  <inertial>
+	    <mass value="0.001" />
+	    <origin xyz="0 0 0" />
+	    <inertia ixx="0.0001" ixy="0.0" ixz="0.0"
+	      iyy="0.0001" iyz="0.0"
+	      izz="0.0001" />
+	    </inertial>
+	  </link>
+	  
+	  <joint name="kinect2_depth_optical_joint" type="fixed">
+	    <origin xyz="0 0 0" rpy="${-M_PI/2} 0 ${-M_PI/2}" />
+	    <parent link="kinect2_depth_frame" />
+	    <child link="kinect2_depth_optical_frame" />
+	  </joint>
+	  <link name="kinect2_depth_optical_frame">
+	    <inertial>
+	      <mass value="0.001" />
+	      <origin xyz="0 0 0" />
+	      <inertia ixx="0.0001" ixy="0.0" ixz="0.0"
+		iyy="0.0001" iyz="0.0"
+		izz="0.0001" />
+	      </inertial>
+	    </link>  
 </robot>
+<!--       xyz="0.0518 -0.095 0.072265" -->
