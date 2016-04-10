@@ -318,6 +318,7 @@ void DynamixelProController::jointStateCallback(sensor_msgs::JointState &msg)
         }
         if (has_vel)
         {
+
             double rad_s_vel = msg.velocity[i];
             int vel = static_cast<int>(rad_s_vel / 2.0 / M_PI * 60.0 * info.gear_reduction);
             velocities.push_back(vel);
@@ -338,13 +339,18 @@ void DynamixelProController::jointStateCallback(sensor_msgs::JointState &msg)
         vector< vector<int> > data;
         for (int i = 0; i < ids.size(); i++)
         {
-            vector<int> temp;
-            temp.push_back(ids[i]);//order matters here
-            temp.push_back(positions[i]);
-            temp.push_back(abs(velocities[i])); //velocity limits should always be positive
-            data.push_back(temp);
+            if(velocities[i] > 0) {
+                vector<int> temp;
+                temp.push_back(ids[i]);//order matters here
+                temp.push_back(positions[i]);
+                temp.push_back(abs(velocities[i])); //velocity limits should always be positive
+                data.push_back(temp);
+            }
         }
-        driver->setMultiPositionVelocity(data);
+        if(data.size() > 0 ) {
+            driver->setMultiPositionVelocity(data);
+        }
+        else return;
     }
     else
     {
@@ -478,9 +484,14 @@ void DynamixelProController::write() {
     for(std::map<std::string, JointInfo_t>::iterator it = _jointsInfo.begin(); it != _jointsInfo.end(); ++it) {
         msg.name.push_back(it->first);
         msg.position.push_back(it->second.cmd_pos);
-        msg.position.push_back(it->second.cmd_vel);
+        if(it->second.cmd_vel > 0) {
+			msg.velocity.push_back(it->second.cmd_vel);
+	    }
+	    else {
+			msg.velocity.push_back(0.2);
+		}
     }
-    ROS_INFO_STREAM(msg);
+    
     //sensor_msgs::JointState::ConstPtr send(&msg);
     jointStateCallback(msg);
 }

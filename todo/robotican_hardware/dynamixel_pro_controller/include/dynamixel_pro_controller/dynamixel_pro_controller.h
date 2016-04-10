@@ -61,7 +61,8 @@ namespace dynamixel_pro_controller
         double cmd_pos;
         double cmd_vel;
         JointInfo_t() {
-            position = effort = velocity = cmd_pos = cmd_vel= 0;
+            position = effort = velocity = cmd_pos = 0;
+	    cmd_vel = 0;
         }
     };
 

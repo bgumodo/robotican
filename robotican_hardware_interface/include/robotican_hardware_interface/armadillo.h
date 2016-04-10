@@ -16,6 +16,9 @@
 
 namespace robotican_hardware {
     class ArmadilloRobot : public RobotBase {
+    protected:
+        hardware_interface::PositionJointInterface _positionJointInterface;
+        hardware_interface::PosVelJointInterface _posVelJointInterface;
 
     private:
         bool _first;
@@ -44,9 +47,6 @@ namespace robotican_hardware {
         void leftFingerCallback(const dynamixel_msgs::JointState::ConstPtr &msg);
         void rightFingerCallback(const dynamixel_msgs::JointState::ConstPtr &msg);
 
-    protected:
-        hardware_interface::PositionJointInterface _positionJointInterface;
-        hardware_interface::PosVelJointInterface _posVelJointInterface;
 
     public:
         ArmadilloRobot();
