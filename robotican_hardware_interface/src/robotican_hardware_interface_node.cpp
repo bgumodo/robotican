@@ -14,10 +14,11 @@ int main(int argc, char **argv) {
     ros::init(argc, argv, "robotican_hardware_interface_node");
 //    robotican_hardware::RobotBase base;
     robotican_hardware::ArmadilloRobot robot;
+    robot.registerInterfaces();
     controller_manager::ControllerManager controllerManager(&robot);
 
     ros_utils::rosInfo("Active");
-    ros::AsyncSpinner asyncSpinner(1);
+    ros::AsyncSpinner asyncSpinner(2);
     asyncSpinner.start();
     while(ros::ok()) {
         robot.read();

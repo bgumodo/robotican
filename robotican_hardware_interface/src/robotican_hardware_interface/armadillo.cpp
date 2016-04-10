@@ -24,7 +24,7 @@ namespace robotican_hardware {
 
         ros::param::param<std::string>("pan_topic_pub", panPubTopic, "left_motor/command");
         ros::param::param<std::string>("pan_topic_sub", panSubTopic, "left_motor/feedback");
-        ros::param::param<std::string>("pam_joint", panJointName, "elevator_joint");
+        ros::param::param<std::string>("pan_joint", panJointName, "elevator_joint");
 
         ros::param::param<std::string>("tilt_topic_pub", tiltPubTopic, "left_motor/command");
         ros::param::param<std::string>("tilt_topic_sub", tiltSubTopic, "left_motor/feedback");
@@ -43,7 +43,7 @@ namespace robotican_hardware {
                 !_nodeHandle.getParam("elevator_joint", elevatorJointName) ||
                 !_nodeHandle.getParam("pan_topic_pub", panPubTopic) ||
                 !_nodeHandle.getParam("pan_topic_sub", panSubTopic) ||
-                !_nodeHandle.getParam("pam_joint", panJointName) ||
+                !_nodeHandle.getParam("pan_joint", panJointName) ||
                 !_nodeHandle.getParam("tilt_topic_pub", tiltPubTopic) ||
                 !_nodeHandle.getParam("tilt_topic_sub", tiltSubTopic) ||
                 !_nodeHandle.getParam("tilt_joint", tiltJointName) ||
@@ -153,6 +153,7 @@ namespace robotican_hardware {
     void ArmadilloRobot::registerInterfaces() {
         RobotBase::registerInterfaces();
         registerInterface(&_positionJointInterface);
+        registerInterface(&_posVelJointInterface);
     }
 
     void ArmadilloRobot::read() {

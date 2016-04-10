@@ -54,9 +54,11 @@
     </group>
     
     <group unless="$(arg gazebo)">
-         
-      <param name="robot_description" command="$(find xacro)/xacro.py '$(find robotican_armadillo)/description/models/armadillo.xacro'" /> 
-      
+      <rosparam file="$(find robotican_armadillo)/config/robot_config.yaml" command="load"/>
+      <node name="robotican_hardware_interface" pkg="robotican_hardware_interface" type="robotican_hardware_interface_node" respawn="false" output="screen" >
+		  <rosparam file="$(find robotican_armadillo)/config/arm_config.yaml" command="load"/> 
+	  </node>
+	  <param name="robot_description" command="$(find xacro)/xacro.py '$(find robotican_armadillo)/description/models/armadillo.xacro'" /> 
     </group>
     
     

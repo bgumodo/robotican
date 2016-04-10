@@ -1,0 +1,27 @@
+
+elevator_topic_pub: 'elevator/command'
+elevator_topic_sub: 'elevator/feedback'
+elevator_joint: 'base_elevator_joint'
+
+pan_topic_pub: 'pan/command'
+pan_topic_sub: 'pan/feedback'
+pan_joint: 'head_pan_joint'
+
+tilt_topic_pub: 'tilt/command'
+tilt_topic_sub: 'tilt/feedback'
+tilt_joint: 'head_tilt_joint'
+
+left_finger_topic_pub: 'left_finger_controller/command'
+left_finger_topic_sub: 'left_finger_controller/state'
+left_finger_joint: 'left_finger_joint'
+
+right_finger_topic_pub: 'right_finger_controller/command'
+right_finger_topic_sub: 'right_finger_controller/state'
+right_finger_joint: 'right_finger_joint'
+
+left_motor_pub: 'left_motor/command'
+left_motor_sub: 'left_motor/feedback'
+right_motor_pub: 'right_motor/command'
+right_motor_sub: 'right_motor/feedback'
+left_motor_joint_name: 'left_wheel_joint'
+right_motor_joint_name: 'right_wheel_joint'
