@@ -507,24 +507,24 @@
   </joint>
   <link
     name="f200_link">
-    <inertial>
-      <origin
-        xyz="1.7297E-09 0.007331 -0.015404"
-        rpy="0 0 -1.5708" />
-      <mass
-        value="0.092188" />
-      <inertia
-        ixx="2.6617E-05"
-        ixy="-4.8961E-11"
-        ixz="5.5477E-12"
-        iyy="0.00013363"
-        iyz="-5.4874E-06"
-        izz="0.00012728" />
+    <inertial>
+      <origin
+        xyz="-0.015404 -1.7297E-09 -0.007331"
+        rpy="${M_PI} 0 0" />
+      <mass
+        value="0.092188" />
+      <inertia
+        ixx="0.00012728"
+        ixy="-5.5477E-12"
+        ixz="5.4874E-06"
+        iyy="2.6617E-05"
+        iyz="-4.8961E-11"
+        izz="0.00013363" />
     </inertial>
     <visual>
       <origin
-        xyz="0 0 0"
-        rpy="0 0 -1.5708" />
+        xyz="0 0 0"
+        rpy="${M_PI} 0 0" />
       <geometry>
         <mesh
           filename="package://robotican_armadillo/description/meshes/f200_optical_link.STL" />
@@ -537,8 +537,8 @@
     </visual>
     <collision>
       <origin
-        xyz="0 0 0"
-        rpy="0 0 -1.5708" />
+        xyz="0 0 0"
+        rpy="${M_PI} 0 0" />
       <geometry>
         <mesh
           filename="package://robotican_armadillo/description/meshes/f200_optical_link.STL" />
@@ -549,8 +549,8 @@
     name="f200_joint"
     type="fixed">
     <origin
-      xyz="-0.06355 0 0.041852"
-      rpy="9.4369E-16 7.7003E-16 0" />
+      xyz="-0.06355 0 0.041852"
+      rpy="0 -1.5708 0" />
     <parent
       link="wrist_link" />
     <child
@@ -558,4 +558,31 @@
     <axis
       xyz="0 0 0" />
   </joint>
+  		<link name="f200_rgb_frame" />
+		<joint name="f200_rgb_joint" type="fixed">
+		  <origin xyz="0 -0.0235 0" rpy="0 0 0" />
+		  <parent link="f200_link" />
+		  <child link="f200_rgb_frame" />
+		</joint>
+		
+		 <link name="f200_rgb_optical_frame" />
+		<joint name="f200_rgb_optical_joint" type="fixed">
+		  <origin xyz="0 0 0" rpy="${-M_PI/2} 0 ${-M_PI/2}" />
+		  <parent link="f200_rgb_frame" />
+		  <child link="f200_rgb_optical_frame" />
+		</joint>
+		
+		<link name="f200_depth_frame" />
+		<joint name="f200_depth_joint" type="fixed">
+		  <origin xyz="0 0.0235 0" rpy="0 0 0" />
+		  <parent link="f200_link" />
+		  <child link="f200_depth_frame" />
+		</joint>
+		
+		<link name="f200_depth_optical_frame" />
+		<joint name="f200_depth_optical_joint" type="fixed">
+		  <origin xyz="0 0 0" rpy="${-M_PI/2} 0 ${-M_PI/2}" />
+		  <parent link="f200_depth_frame" />
+		  <child link="f200_depth_optical_frame" />
+		</joint>
 </robot>
