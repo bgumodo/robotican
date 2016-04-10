@@ -3,11 +3,12 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/include/robotican_hardware_interface/robot_sim_interface.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/package.xml" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/robotican_hardware_interface/armadillo.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/robotican_hardware_interface/robot_base.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/robotican_hardware_interface/robot_sim_interface.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/robotican_hardware_interface/ros_utils.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/robotican_hardware_interface_node.cpp" isTestSource="false" />
     </content>
     <content url="file:///usr/src/gtest">
       <sourceFolder url="file:///usr/src/gtest/CMakeLists.txt" isTestSource="false" />
@@ -20,10 +21,10 @@
     <orderEntry type="module-library">
       <library name="Header Search Paths">
         <CLASSES>
-          <root url="file://$MODULE_DIR$/../../../../devel/include" />
-          <root url="file://$MODULE_DIR$/../../../drivers/dynamixel_pro_controller/include" />
-          <root url="file://$MODULE_DIR$/../../../drivers/dynamixel_pro_driver/include" />
+          <root url="file://$MODULE_DIR$/../../../devel/include" />
           <root url="file://$MODULE_DIR$/include" />
+          <root url="file://$MODULE_DIR$/../todo/robotican_hardware/dynamixel_pro_controller/include" />
+          <root url="file://$MODULE_DIR$/../todo/robotican_hardware/dynamixel_pro_driver/include" />
           <root url="file:///opt/ros/indigo/include" />
           <root url="file:///usr/include" />
           <root url="file:///usr/lib/gcc/x86_64-linux-gnu/4.8/include" />
@@ -31,16 +32,19 @@
           <root url="file:///usr/local/include" />
         </CLASSES>
         <SOURCES>
-          <root url="file://$MODULE_DIR$/../../../../devel/include" />
-          <root url="file://$MODULE_DIR$/../../../drivers/dynamixel_pro_controller/include" />
-          <root url="file://$MODULE_DIR$/../../../drivers/dynamixel_pro_driver/include" />
+          <root url="file://$MODULE_DIR$/../../../devel/include" />
           <root url="file://$MODULE_DIR$/include" />
+          <root url="file://$MODULE_DIR$/../todo/robotican_hardware/dynamixel_pro_controller/include" />
+          <root url="file://$MODULE_DIR$/../todo/robotican_hardware/dynamixel_pro_driver/include" />
           <root url="file:///opt/ros/indigo/include" />
           <root url="file:///usr/include" />
           <root url="file:///usr/lib/gcc/x86_64-linux-gnu/4.8/include" />
           <root url="file:///usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed" />
           <root url="file:///usr/local/include" />
         </SOURCES>
+        <excluded>
+          <root url="file://$MODULE_DIR$/include/robotican_hardware_interface/robot_sim_interface.h" />
+        </excluded>
       </library>
     </orderEntry>
   </component>

@@ -8,7 +8,9 @@
 #include <robotican_hardware_interface/ros_utils.h>
 #include <controller_manager/controller_manager.h>
 
+
 int main(int argc, char **argv) {
+
     ros::init(argc, argv, "robotican_hardware_interface_node");
 //    robotican_hardware::RobotBase base;
     robotican_hardware::ArmadilloRobot robot;

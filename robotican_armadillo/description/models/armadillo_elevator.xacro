@@ -253,8 +253,10 @@
     <axis
       xyz="0 0 -1" />
     <limit
-      effort="0"
-      velocity="0" />
+      upper="3.14"
+	  lower="-3.14"
+      effort="1.11"
+      velocity="5.3" /> 
   </joint>
   <link
     name="head_tilt_link">
@@ -309,7 +311,9 @@
     <axis
       xyz="0 -1 0" />
     <limit
-      effort="0"
-      velocity="0" />
+	  upper="3.14"
+	  lower="-3.14"
+      effort="1.11"
+      velocity="5.3" />
   </joint>
 </robot>

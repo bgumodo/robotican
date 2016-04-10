@@ -6,17 +6,31 @@ project(robotican_hardware_interface)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   roscpp
+  control_toolbox
+  hardware_interface
+  transmission_interface
+  pluginlib
+  joint_limits_interface
+  urdf
+  angles
   roslib
   std_msgs
   dynamixel_pro_driver
   dynamixel_pro_controller
   controller_manager
+  cmake_modules
+  realtime_tools
+  xacro
+  control_msgs
+  gazebo_ros_control
 )
+
 
 
 ## System dependencies are found with CMake's conventions
 find_package(PkgConfig REQUIRED)
 find_package(Boost REQUIRED COMPONENTS system)
+find_package(gazebo REQUIRED)
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -106,10 +120,12 @@ find_package(Boost REQUIRED COMPONENTS system)
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
   INCLUDE_DIRS include
-  LIBRARIES robotican_hardware_interface
-  CATKIN_DEPENDS controller_manager roscpp std_msgs dynamixel_pro_controller roslib
-  DEPENDS system_lib
+  LIBRARIES ${PROJECT_NAME} robotican_hardware_interface_sim
+  CATKIN_DEPENDS cmake_modules realtime_tools control_msgs roscpp controller_manager pluginlib transmission_interface urdf
+  DEPENDS gazebo system_lib gazebo_ros_control
 )
+
+
 
 ###########
 ## Build ##
@@ -118,8 +134,12 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 #include_directories(include)
+link_directories(${GAZEBO_LIBRARY_DIRS})
+
 include_directories(include
-  ${catkin_INCLUDE_DIRS}
+        ${Boost_INCLUDE_DIR}
+        ${catkin_INCLUDE_DIRS}
+        ${GAZEBO_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
@@ -129,26 +149,34 @@ include_directories(include
    src/${PROJECT_NAME}/armadillo.cpp
  )
 
+add_library(robotican_hardware_interface_sim
+        include/${PROJECT_NAME}/robot_sim_interface.h
+        src/${PROJECT_NAME}/robot_sim_interface.cpp
+        )
+
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
 # add_dependencies(robotican_hardware_interface ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
- add_executable(robotican_hardware_interface_node src/robotican_hardware_interface_node.cpp)
+# add_executable(robotican_hardware_interface_node src/robotican_hardware_interface_node.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 # add_dependencies(robotican_hardware_interface_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-
 target_link_libraries(robotican_hardware_interface ${catkin_LIBRARIES})
+target_link_libraries(robotican_hardware_interface_sim ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES})
 
-target_link_libraries(robotican_hardware_interface_node
-         ${catkin_LIBRARIES}
-   robotican_hardware_interface
-   )
+#target_link_libraries(robotican_hardware_interface_node
+#        ${catkin_LIBRARIES}
+#         robotican_hardware_interface
+#   )
+
+
+
 
 #############
 ## Install ##
@@ -184,6 +212,22 @@ target_link_libraries(robotican_hardware_interface_node
 #   # myfile2
 #   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 # )
+
+
+install(TARGETS ${PROJECT_NAME} robotican_hardware_interface_sim
+        ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+        LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+        RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+        )
+
+install(DIRECTORY include/${PROJECT_NAME}/
+        DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+        )
+
+
+install(FILES robot_hw_sim_plugins.xml
+        DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+        )
 
 #############
 ## Testing ##

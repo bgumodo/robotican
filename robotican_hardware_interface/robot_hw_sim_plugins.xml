@@ -1,0 +1,11 @@
+
+<library path="lib/librobotican_hardware_interface_sim">
+
+    <class
+            name="gazebo_ros_control/RoboticanRobotHWSim"
+            type="gazebo_ros_control::RoboticanRobotHWSim"
+            base_class_type="gazebo_ros_control::RobotHWSim">
+        <description>
+        </description>
+    </class>
+</library>
