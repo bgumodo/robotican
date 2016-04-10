@@ -506,11 +506,11 @@
       velocity="7.016223585" />
   </joint>
   <link
-    name="f200_optical_link">
+    name="f200_link">
     <inertial>
       <origin
         xyz="1.7297E-09 0.007331 -0.015404"
-        rpy="0 0 0" />
+        rpy="0 0 -1.5708" />
       <mass
         value="0.092188" />
       <inertia
@@ -524,7 +524,7 @@
     <visual>
       <origin
         xyz="0 0 0"
-        rpy="0 0 0" />
+        rpy="0 0 -1.5708" />
       <geometry>
         <mesh
           filename="package://robotican_armadillo/description/meshes/f200_optical_link.STL" />
@@ -538,7 +538,7 @@
     <collision>
       <origin
         xyz="0 0 0"
-        rpy="0 0 0" />
+        rpy="0 0 -1.5708" />
       <geometry>
         <mesh
           filename="package://robotican_armadillo/description/meshes/f200_optical_link.STL" />
@@ -546,15 +546,15 @@
     </collision>
   </link>
   <joint
-    name="f200_optical_joint"
+    name="f200_joint"
     type="fixed">
     <origin
       xyz="-0.06355 0 0.041852"
-      rpy="9.4369E-16 7.7003E-16 -1.5708" />
+      rpy="9.4369E-16 7.7003E-16 0" />
     <parent
       link="wrist_link" />
     <child
-      link="f200_optical_link" />
+      link="f200_link" />
     <axis
       xyz="0 0 0" />
   </joint>

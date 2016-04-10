@@ -14,9 +14,10 @@
   <xacro:arg name="imu" default="false"/>
   <xacro:arg name="gps" default="false"/>	
   <xacro:arg name="lidar" default="false"/>
-  
+    <xacro:arg name="f200" default="false"/>
+    
     <xacro:arg name="kinect2_hz" default="10.0"/>
-  
+      <xacro:arg name="f200_hz" default="10.0"/>
   <!--  <link name="dummy_link">
   </link>
   <joint name="dummy_joint" type="fixed">
@@ -26,6 +27,58 @@
   <axis xyz="0 0 0" />   
   </joint>-->
   
+
+
+    <!-- Optical center of camera -->
+    <link name="f200_optical_center_link" />
+    <joint name="f200_optical_center_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="${-M_PI/2} 0 ${-M_PI/2}" />
+      <parent link="f200_link" />
+      <child link="f200_optical_center_link" />
+    </joint>
+    
+    <gazebo reference="f200_link">
+      <sensor type="depth" name="f200_link">
+        <always_on>true</always_on>
+        <update_rate>$(arg f200_hz)</update_rate>
+        <camera>
+          <horizontal_fov>1.20772254</horizontal_fov>
+          <image>
+            <format>L8</format>
+            <width>640</width>
+            <height>480</height>
+          </image>
+          <clip>
+            <near>0.2</near>
+            <far>1.2</far>
+          </clip>
+        </camera>
+        <plugin name="f200_camera_controller" filename="libgazebo_ros_openni_kinect.so">
+
+          <alwaysOn>true</alwaysOn>
+          <baseline>0.11</baseline>
+          <updateRate>$(arg f200_hz)</updateRate>
+          <cameraName>f200</cameraName>
+          <imageTopicName>camera/image_raw</imageTopicName>
+          <cameraInfoTopicName>camera/camera_info</cameraInfoTopicName>
+          <depthImageTopicName>depth/disparity</depthImageTopicName>
+          <depthImageCameraInfoTopicName>depth/camera_info</depthImageCameraInfoTopicName>
+          <pointCloudTopicName>depth/points</pointCloudTopicName>
+          <frameName>f200_optical_center_link</frameName>
+          <pointCloudCutoff>0.2</pointCloudCutoff>
+          <pointCloudCutoffMax>1.2</pointCloudCutoffMax>
+          <distortionK1>0.0</distortionK1>
+          <distortionK2>0.0</distortionK2>
+          <distortionK3>0.0</distortionK3>
+          <distortionT1>0.0</distortionT1>
+          <distortionT2>0.0</distortionT2>
+    	  <Cx>320</Cx>
+          <Cy>240</Cy>
+          <focalLength>463.888592</focalLength>
+        </plugin>
+      </sensor>
+    </gazebo>
+    
   
   
   <!-- kinect 2 -->
