@@ -56,28 +56,30 @@
     </group>
     
     <group unless="$(arg gazebo)">
+	  <param name="robot_description" command="$(find xacro)/xacro.py '$(find robotican_armadillo)/description/models/armadillo.xacro'" />
       <rosparam file="$(find robotican_armadillo)/config/robot_config.yaml" command="load"/>
-      <node name="robotican_hardware_interface" pkg="robotican_hardware_interface" type="robotican_hardware_interface_node" respawn="false" output="screen" >
-		  <rosparam file="$(find robotican_armadillo)/config/arm_config.yaml" command="load"/> 
-	  </node>
-	  
-	    <node name="dynamixel_manager" pkg="dynamixel_controllers" type="controller_manager.py" required="true" output="screen">
+          <node name="dynamixel_manager" pkg="dynamixel_controllers" type="controller_manager.py" required="true" output="screen">
         <rosparam>
             namespace: dxl_manager
             serial_ports:
                 arm_port:
                     port_name: "/dev/Gripper"
-                    baud_rate: 2000000
+                    baud_rate: 57142
                     min_motor_id: 1
                     max_motor_id: 2
                     update_rate: 20
         </rosparam>
-        
-		<node name="arm_controller_spawner" pkg="dynamixel_controllers" type="controller_spawner.py" args="--manager=dxl_manager --port=arm_port left_finger_controller right_finger_controller" 
-		output="screen"/>
-		</node>
-	  
-	  <param name="robot_description" command="$(find xacro)/xacro.py '$(find robotican_armadillo)/description/models/armadillo.xacro'" /> 
+    </node>
+      <node name="arm_controller_spawner" pkg="dynamixel_controllers" type="controller_spawner.py"
+          args="--manager=dxl_manager
+                --port=arm_port
+		left_finger_controller
+		right_finger_controller"
+				output="screen"/>
+				
+      <node name="robotican_hardware_interface" pkg="robotican_hardware_interface" type="robotican_hardware_interface_node" respawn="false" output="screen" >
+		  <rosparam file="$(find robotican_armadillo)/config/arm_config.yaml" command="load"/> 
+	  </node> 
     </group>
     
     
@@ -85,14 +87,13 @@
     
     <rosparam file="$(find robotican_armadillo)/config/armadillo_controllers.yaml" command="load"/>
 
-    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="
-	  robot_state_controller
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="	  
+      robot_state_controller
 	  mobile_base_controller
 	  elevator_controller
 	  pan_tilt_position_controller
 	  arm_trajectory_controller
-	  gripper_controller
-	  " />
+	  gripper_controller" />
    
     </launch>
     

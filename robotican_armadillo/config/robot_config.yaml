@@ -27,7 +27,7 @@ left_motor_joint_name: 'left_wheel_joint'
 right_motor_joint_name: 'right_wheel_joint'
 
 
-right_finger_controller:
+left_finger_controller:
     controller:
         package: dynamixel_controllers
         module: joint_position_controller
@@ -41,7 +41,7 @@ right_finger_controller:
         min: 1480
         max: 2622
 
-left_finger_controller:
+right_finger_controller:
     controller:
         package: dynamixel_controllers
         module: joint_position_controller

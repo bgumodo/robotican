@@ -3,51 +3,51 @@
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" assignedExecutableTargets="true" buildAllGenerated="true">
     <generated>
       <config projectName="robotican_controllers" targetName="robotican_controllers_jta" />
+      <config projectName="robotican_controllers" targetName="robotican_controllers_node" />
       <config projectName="robotican_controllers" targetName="control_toolbox_generate_messages_cpp" />
-      <config projectName="robotican_controllers" targetName="dynamic_reconfigure_generate_messages_py" />
-      <config projectName="robotican_controllers" targetName="dynamic_reconfigure_gencfg" />
+      <config projectName="robotican_controllers" targetName="roscpp_generate_messages_cpp" />
       <config projectName="robotican_controllers" targetName="trajectory_msgs_generate_messages_cpp" />
       <config projectName="robotican_controllers" targetName="control_toolbox_generate_messages_lisp" />
       <config projectName="robotican_controllers" targetName="gtest" />
       <config projectName="robotican_controllers" targetName="dynamic_reconfigure_generate_messages_lisp" />
-      <config projectName="robotican_controllers" targetName="control_toolbox_generate_messages_py" />
+      <config projectName="robotican_controllers" targetName="controller_manager_msgs_generate_messages_lisp" />
       <config projectName="robotican_controllers" targetName="geometry_msgs_generate_messages_lisp" />
-      <config projectName="robotican_controllers" targetName="geometry_msgs_generate_messages_py" />
-      <config projectName="robotican_controllers" targetName="clean_test_results_robotican_controllers" />
-      <config projectName="robotican_controllers" targetName="std_msgs_generate_messages_lisp" />
-      <config projectName="robotican_controllers" targetName="robotican_controllers_node" />
+      <config projectName="robotican_controllers" targetName="control_toolbox_gencfg" />
+      <config projectName="robotican_controllers" targetName="actionlib_generate_messages_cpp" />
+      <config projectName="robotican_controllers" targetName="tests" />
       <config projectName="robotican_controllers" targetName="control_msgs_generate_messages_cpp" />
-      <config projectName="robotican_controllers" targetName="run_tests" />
+      <config projectName="robotican_controllers" targetName="dynamic_reconfigure_gencfg" />
       <config projectName="robotican_controllers" targetName="dynamic_reconfigure_generate_messages_cpp" />
       <config projectName="robotican_controllers" targetName="std_msgs_generate_messages_cpp" />
       <config projectName="robotican_controllers" targetName="geometry_msgs_generate_messages_cpp" />
       <config projectName="robotican_controllers" targetName="clean_test_results" />
-      <config projectName="robotican_controllers" targetName="roscpp_generate_messages_lisp" />
+      <config projectName="robotican_controllers" targetName="actionlib_generate_messages_py" />
       <config projectName="robotican_controllers" targetName="controller_manager_msgs_generate_messages_py" />
       <config projectName="robotican_controllers" targetName="robotican_controllers" />
       <config projectName="robotican_controllers" targetName="doxygen" />
-      <config projectName="robotican_controllers" targetName="trajectory_msgs_generate_messages_py" />
+      <config projectName="robotican_controllers" targetName="control_toolbox_generate_messages_py" />
       <config projectName="robotican_controllers" targetName="actionlib_msgs_generate_messages_py" />
+      <config projectName="robotican_controllers" targetName="trajectory_msgs_generate_messages_py" />
       <config projectName="robotican_controllers" targetName="std_msgs_generate_messages_py" />
-      <config projectName="robotican_controllers" targetName="actionlib_generate_messages_cpp" />
+      <config projectName="robotican_controllers" targetName="actionlib_msgs_generate_messages_lisp" />
       <config projectName="robotican_controllers" targetName="controller_manager_msgs_generate_messages_cpp" />
       <config projectName="robotican_controllers" targetName="trajectory_msgs_generate_messages_lisp" />
       <config projectName="robotican_controllers" targetName="rosgraph_msgs_generate_messages_lisp" />
       <config projectName="robotican_controllers" targetName="roscpp_generate_messages_py" />
       <config projectName="robotican_controllers" targetName="actionlib_msgs_generate_messages_cpp" />
+      <config projectName="robotican_controllers" targetName="std_msgs_generate_messages_lisp" />
       <config projectName="robotican_controllers" targetName="rosgraph_msgs_generate_messages_py" />
-      <config projectName="robotican_controllers" targetName="tests" />
-      <config projectName="robotican_controllers" targetName="control_msgs_generate_messages_lisp" />
+      <config projectName="robotican_controllers" targetName="roscpp_generate_messages_lisp" />
+      <config projectName="robotican_controllers" targetName="dynamic_reconfigure_generate_messages_py" />
       <config projectName="robotican_controllers" targetName="control_msgs_generate_messages_py" />
-      <config projectName="robotican_controllers" targetName="controller_manager_msgs_generate_messages_lisp" />
-      <config projectName="robotican_controllers" targetName="roscpp_generate_messages_cpp" />
-      <config projectName="robotican_controllers" targetName="control_toolbox_gencfg" />
-      <config projectName="robotican_controllers" targetName="actionlib_generate_messages_lisp" />
-      <config projectName="robotican_controllers" targetName="actionlib_generate_messages_py" />
       <config projectName="robotican_controllers" targetName="download_extra_data" />
-      <config projectName="robotican_controllers" targetName="actionlib_msgs_generate_messages_lisp" />
-      <config projectName="robotican_controllers" targetName="gtest_main" />
+      <config projectName="robotican_controllers" targetName="control_msgs_generate_messages_lisp" />
+      <config projectName="robotican_controllers" targetName="actionlib_generate_messages_lisp" />
+      <config projectName="robotican_controllers" targetName="clean_test_results_robotican_controllers" />
       <config projectName="robotican_controllers" targetName="rosgraph_msgs_generate_messages_cpp" />
+      <config projectName="robotican_controllers" targetName="gtest_main" />
+      <config projectName="robotican_controllers" targetName="run_tests" />
+      <config projectName="robotican_controllers" targetName="geometry_msgs_generate_messages_py" />
     </generated>
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="false" GENERATION_PASS_SYSTEM_ENVIRONMENT="true">
@@ -56,7 +56,13 @@
     </ADDITIONAL_GENERATION_ENVIRONMENT>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aa292360-ec6f-4dad-9f1d-dd6fdca041d3" name="Default" comment="" />
+    <list default="true" id="aa292360-ec6f-4dad-9f1d-dd6fdca041d3" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../robotican_armadillo/config/robot_config.yaml" afterPath="$PROJECT_DIR$/../robotican_armadillo/config/robot_config.yaml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../robotican_armadillo/launch/armadillo.launch" afterPath="$PROJECT_DIR$/../robotican_armadillo/launch/armadillo.launch" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../robotican_hardware_interface/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../robotican_hardware_interface/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../robotican_hardware_interface/src/robotican_hardware_interface_node.cpp" afterPath="$PROJECT_DIR$/../robotican_hardware_interface/src/robotican_hardware_interface_node.cpp" />
+    </list>
     <ignored path="robotican_controllers.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -102,14 +108,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="joint_trajectory_controller.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="joint_trajectory_controller.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/robotican_controllers/joint_trajectory_controller.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4276458">
+            <state vertical-scroll-proportion="0.0">
               <caret line="11" column="42" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="42" />
               <folding>
                 <element signature="e#37#77#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gripper_action_controller_impl.h" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/include/robotican_controllers/gripper_action_controller_impl.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.5231432">
+              <caret line="225" column="66" selection-start-line="225" selection-start-column="66" selection-end-line="225" selection-end-column="66" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -182,7 +198,7 @@
       <file leaf-file-name="joint_trajectory_controller_impl.h" pinned="false" current-in-tab="false">
         <entry file="file:///opt/ros/indigo/include/joint_trajectory_controller/joint_trajectory_controller_impl.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-121.935486">
+            <state vertical-scroll-proportion="0.0">
               <caret line="243" column="64" selection-start-line="243" selection-start-column="64" selection-end-line="243" selection-end-column="64" />
               <folding />
             </state>
@@ -206,7 +222,6 @@
         <option value="$PROJECT_DIR$/src/robotican_controllers/two_finger_controller.cpp" />
         <option value="$PROJECT_DIR$/package.xml" />
         <option value="$PROJECT_DIR$/include/robotican_controllers/two_finger_controller.h" />
-        <option value="$PROJECT_DIR$/include/robotican_controllers/gripper_action_controller_impl.h" />
         <option value="$PROJECT_DIR$/src/run_controller.cpp" />
         <option value="$PROJECT_DIR$/include/robotican_controllers/hardware_interface_adapter.h" />
         <option value="$PROJECT_DIR$/ros_control_plugins.xml" />
@@ -214,6 +229,7 @@
         <option value="$PROJECT_DIR$/include/robotican_controllers/joint_trajectory_controller.h" />
         <option value="$PROJECT_DIR$/include/robotican_controllers/joint_trajectory_controller_impl.h" />
         <option value="$PROJECT_DIR$/src/robotican_controllers/joint_trajectory_controller.cpp" />
+        <option value="$PROJECT_DIR$/include/robotican_controllers/gripper_action_controller_impl.h" />
       </list>
     </option>
   </component>
@@ -641,24 +657,24 @@
     <frame x="1431" y="24" width="1855" height="1056" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18831877" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18831877" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.48592284" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295099" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295099" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295099" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39937434" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.48592284" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295099" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295099" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39937434" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -969,7 +985,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.6177106">
           <caret line="42" column="28" selection-start-line="42" selection-start-column="28" selection-end-line="42" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -977,17 +992,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding>
-            <element signature="e#38#58#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/robotican_controllers/gripper_action_controller_impl.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.0712743">
-          <caret line="198" column="0" selection-start-line="198" selection-start-column="0" selection-end-line="199" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1001,7 +1005,7 @@
     </entry>
     <entry file="file:///opt/ros/indigo/include/joint_trajectory_controller/joint_trajectory_controller_impl.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-121.935486">
+        <state vertical-scroll-proportion="0.0">
           <caret line="243" column="64" selection-start-line="243" selection-start-column="64" selection-end-line="243" selection-end-column="64" />
           <folding />
         </state>
@@ -1096,11 +1100,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/robotican_controllers/joint_trajectory_controller.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4276458">
+        <state vertical-scroll-proportion="0.0">
           <caret line="11" column="42" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="42" />
           <folding>
             <element signature="e#37#77#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/robotican_controllers/gripper_action_controller_impl.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5231432">
+          <caret line="225" column="66" selection-start-line="225" selection-start-column="66" selection-end-line="225" selection-end-column="66" />
+          <folding />
         </state>
       </provider>
     </entry>

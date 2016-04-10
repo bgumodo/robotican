@@ -18,12 +18,13 @@ int main(int argc, char **argv) {
     controller_manager::ControllerManager controllerManager(&robot);
 
     ros_utils::rosInfo("Active");
-    ros::AsyncSpinner asyncSpinner(2);
+    ros::AsyncSpinner asyncSpinner(1);
     asyncSpinner.start();
     while(ros::ok()) {
         robot.read();
         controllerManager.update(robot.getTime(), robot.getPeriod());
         robot.write();
+        
     }
     return 0;
 }
