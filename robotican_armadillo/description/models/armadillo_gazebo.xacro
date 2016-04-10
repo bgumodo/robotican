@@ -30,8 +30,7 @@
   
   <!-- kinect 2 -->
   <xacro:if value="$(arg kinect2)">
-    
-    
+     
 	    
  <gazebo reference="kinect2_rgb_frame">        
       <sensor type="depth" name="kinect2">
@@ -66,7 +65,7 @@
           <distortion_t1>0.0</distortion_t1>
           <distortion_t2>0.0</distortion_t2>
        	  <pointCloudCutoff>0.4</pointCloudCutoff>
-	  <pointCloudCutoffMax>50.0</pointCloudCutoffMax> 
+	  <pointCloudCutoffMax>8.0</pointCloudCutoffMax> 
         </plugin>
       </sensor>
     </gazebo>
