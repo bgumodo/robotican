@@ -1,6 +1,0 @@
-<package>
-  <description brief="armadillo_arm_urdf">armadillo_arm_urdf</description>
-  <depend package="gazebo" />
-  <author>me</author>
-  <license>BSD</license>
-</package>
