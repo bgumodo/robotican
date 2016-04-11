@@ -113,7 +113,7 @@ namespace gripper_action_controller
 
             if (gap  >= 0 && gap <= 0.15){
                 double computeGap = ((gap / 2.0f) - 0.02f) / 0.09f;
-                const double gap2Pos = asin(computeGap) - 0.3f;
+                const double gap2Pos = asin(computeGap) - 0.18f;
                 return gap2Pos;
             }
             return 0.0;

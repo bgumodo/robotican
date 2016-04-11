@@ -4,7 +4,11 @@
   <arg name="gazebo" default='false'/>
   
   <arg name="controllers" default='true'/>
-  
+
+  <arg name="moveit" default='false'/>
+  <arg name="navigation" default='false'/>
+  <arg name="rviz" default='false'/>
+
   <arg name="front_camera" default='false'/>
   <arg name="rear_camera" default='false'/>
   <arg name="lidar" default='false'/>
@@ -46,7 +50,7 @@
     
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
      <!--  <arg name="world_name" value="$(find robotican_demos)/worlds/gas_station.world"/> -->
-     <arg name="world_name" value="$(find robotican_demos)/worlds/UPlat.sdf"/> 
+    <arg name="world_name" value="$(find robotican_demos)/worlds/UPlat.sdf"/> 
       <arg name="debug" value="$(arg debug)" />
       <arg name="gui" value="$(arg gui)" />
       <arg name="paused" value="$(arg paused)"/>
@@ -117,23 +121,34 @@
 				  <arg name="use_nodelet"       value="true"/>
 		    </include>
 		</group>
-		<group if="$(arg f200)">
 
+		<group if="$(arg f200)">
+<include file="$(find realsense)/realsense_f200_launch.launch">
+	<arg name="cHeight" value="480" />
+	<arg name="cWidth" value="640" />
+	<arg name="dHeight" value="480" />
+	<arg name="dWidth" value="640" />
+	<arg name="pcScale" value="1000" />
+	<arg name="enableDepth" value="1" />
+	<arg name="enableColor" value="1" />
+ </include>
+
+ 
 		</group>
 
 		<param name="robot_description" command="$(find xacro)/xacro.py '$(find robotican_armadillo)/description/models/armadillo.xacro'" />
 		<rosparam file="$(find robotican_armadillo)/config/robot_config.yaml" command="load"/>
 		<node name="dynamixel_manager" pkg="dynamixel_controllers" type="controller_manager.py" required="true" output="screen">
-			<rosparam>
-				namespace: dxl_manager
-				serial_ports:
-					arm_port:
-						port_name: "/dev/Gripper"
-						baud_rate: 57142
-						min_motor_id: 1
-						max_motor_id: 2
-						update_rate: 20
-			</rosparam>
+                <rosparam>
+                namespace: dxl_manager
+                serial_ports:
+                 arm_port:
+                  port_name: "/dev/ttyS0"
+                  baud_rate: 57142
+                  min_motor_id: 1
+                  max_motor_id: 2
+                  update_rate: 20
+                </rosparam>
 		</node>
 		<node name="arm_controller_spawner" pkg="dynamixel_controllers" type="controller_spawner.py"
 		  args="--manager=dxl_manager
@@ -159,7 +174,22 @@
 	  elevator_controller
 	  pan_tilt_position_controller
 	  arm_trajectory_controller
-	  gripper_controller" />
+	  gripper_controller
+	  " />
      </group>
+
+
+		<group if="$(arg moveit)">
+<include file="$(find robotican_armadillo)/moveit/launch/move_group.launch"/>
+		</group>
+
+		<group if="$(arg navigation)">
+<include file="$(find robotican_armadillo)/navigation/launch/move_base_sim.launch"/>
+		</group>
+
+<group if="$(arg rviz)">
+<node pkg="rviz" type="rviz" name="rviz" output="screen" respawn="true" />
+</group>
+  <!--  args="-d $(find polar_scan_matcher)/demo/demo.vcg"/> -->
     </launch>
-    
+

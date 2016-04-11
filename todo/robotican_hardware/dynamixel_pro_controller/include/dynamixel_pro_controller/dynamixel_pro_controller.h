@@ -147,6 +147,8 @@ private:
         bool torque_enabled;
     };
 
+    bool _first;
+
     int32_t posToTicks(double rads, const dynamixel_info& info) const;
     double posToRads(int32_t ticks, const dynamixel_info& info) const;
 

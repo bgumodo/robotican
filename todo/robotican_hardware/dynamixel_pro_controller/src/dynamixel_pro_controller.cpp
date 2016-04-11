@@ -66,6 +66,8 @@ DynamixelProController::DynamixelProController(hardware_interface::JointStateInt
     shutting_down = false;
     nh = new ros::NodeHandle("~");
     _time = ros::Time::now();
+    
+    _first=false;
 
     _jointStateInterface = jointStateInterface;
     _posVelJointInterface = posVelJointInterface;
@@ -246,7 +248,7 @@ DynamixelProController::~DynamixelProController()
     //something a tad more deterministic than this
     for (map<string, dynamixel_info>::iterator iter = joint2dynamixel.begin(); iter != joint2dynamixel.end(); iter++)
     {
-        driver->setTorqueEnabled(iter->second.id, 0);
+       // driver->setTorqueEnabled(iter->second.id, 0);
     }
     delete driver;
 }
@@ -294,7 +296,7 @@ void DynamixelProController::jointStateCallback(sensor_msgs::JointState &msg)
         //change to new mode if needed
         if(status.mode != new_mode && new_mode != UNKOWN)
         {
-            if (status.torque_enabled)//you can't seem to change modes while the the servo is enabled
+         //   if (status.torque_enabled)//you can't seem to change modes while the the servo is enabled
                 driver->setTorqueEnabled(info.id, 0);
             status.torque_enabled = false;
 
@@ -303,7 +305,7 @@ void DynamixelProController::jointStateCallback(sensor_msgs::JointState &msg)
         }
 
         //enable torque if needed
-        if (!status.torque_enabled)
+       // if (!status.torque_enabled)
             driver->setTorqueEnabled(info.id, 1);
         status.torque_enabled = true;
 
@@ -465,6 +467,8 @@ void DynamixelProController::read() {
         {
             double rad_pos = posToRads(position, info);
             _jointsInfo[joint_name].position = rad_pos;
+		if (!_first) _jointsInfo[joint_name].cmd_pos=rad_pos;
+
             //msg.name.push_back(joint_name);
             //msg.position.push_back(rad_pos);
             if (publish_velocities && driver->getVelocity(info.id, velocity))
@@ -476,6 +480,7 @@ void DynamixelProController::read() {
             }
         }
     }
+    _first=true;
     //jointStatePublisher.publish(msg);
 }
 

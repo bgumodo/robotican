@@ -24,12 +24,10 @@
 cd ~/catkin_ws/src
 if [ $? == 0 ]; then
 
-	git clone https://github.com/robotican/robotican.git
-
-	cd ~/catkin_ws/src/robotican/robotican_installation/third_pkg_setup
+	cd ~/catkin_ws/src/robotican/robotican/installations/third_pkg_setup
 	sudo ./setup.sh
 	
-	cd ~/catkin_ws/src/robotican/robotican_installation/usb_rules_setup
+	cd ~/catkin_ws/src/robotican/robotican/installations/usb_rules_setup
 	sudo ./setup.sh
 	chown -R $(logname):$(logname) ~/catkin_ws
 
