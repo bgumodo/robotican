@@ -23,13 +23,31 @@
 
 cd ~/catkin_ws/src
 if [ $? == 0 ]; then
-
+	
+	#Third party apt-get pkgs
 	cd ~/catkin_ws/src/robotican/robotican/installations/third_pkg_setup
 	sudo ./setup.sh
 	
+	#USB rules setup
 	cd ~/catkin_ws/src/robotican/robotican/installations/usb_rules_setup
 	sudo ./setup.sh
+	
+	#Changing to user.
 	chown -R $(logname):$(logname) ~/catkin_ws
+	
+	echo "Do you want to install f200/r200 camera package [yes/no]: "
+	read as
+	
+	if [ $as == "yes" ]; then
+		cd ~/catkin_ws/src/robotican/robotican/installations/third_pkg_setup
+		./f200.sh
+	fi
+	
+	cd ~/catkin_ws/src/robotican/robotican/installations/third_pkg_setup
+	./f200.sh
+	
+	
+	
 
 else
 	echo -e "\e[31m[Error]: ROS catkin_ws not found"
