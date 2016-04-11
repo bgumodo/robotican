@@ -62,30 +62,63 @@
     </group>
     
     <group unless="$(arg gazebo)">
-	  <param name="robot_description" command="$(find xacro)/xacro.py '$(find robotican_armadillo)/description/models/armadillo.xacro'" />
-      <rosparam file="$(find robotican_armadillo)/config/robot_config.yaml" command="load"/>
-          <node name="dynamixel_manager" pkg="dynamixel_controllers" type="controller_manager.py" required="true" output="screen">
-        <rosparam>
-            namespace: dxl_manager
-            serial_ports:
-                arm_port:
-                    port_name: "/dev/Gripper"
-                    baud_rate: 57142
-                    min_motor_id: 1
-                    max_motor_id: 2
-                    update_rate: 20
-        </rosparam>
-    </node>
-      <node name="arm_controller_spawner" pkg="dynamixel_controllers" type="controller_spawner.py"
-          args="--manager=dxl_manager
-                --port=arm_port
+		<group if="$(arg front_camera)">
+			<include file="$(find robotican_hardware_interface)/launch/usb_cam.launch">
+				<arg name="input_dev" value="/dev/video0" />
+				<arg name="camera_frame_id" value="front_cam_link" />
+				<arg name="pixel_format" value="mjpeg" /> <!-- mjpeg, yuyv, uyvy  -->
+				<arg name="image_width" value="800" />
+				<arg name="image_height" value="800" />
+				<arg name="node_name" value="front_cam" />
+			</include>
+		</group>
+		<group if="$(arg rear_camera)">
+			<include file="$(find robotican_hardware_interface)/launch/usb_cam.launch">
+				<arg name="input_dev" value="/dev/video1" />
+				<arg name="camera_frame_id" value="rear_cam_link" />
+				<arg name="pixel_format" value="mjpeg" /> <!-- mjpeg, yuyv, uyvy  -->
+				<arg name="image_width" value="800" />
+				<arg name="image_height" value="800" />
+				<arg name="node_name" value="rear_cam" />
+			</include>
+		</group>
+		<group if="$(arg lidar)">
+			<include file="$(find robotican_hardware_interface)/launch/hokuyo_laser.launch">
+				<arg name="input_dev" value="/dev/Hokuyo" />
+				<arg name="frame_id" value="laser_link" />
+			</include>
+		</group>
+		<group if="$(arg kinect2)">
+		
+		</group>
+		<group if="$(arg f200)">
+
+		</group>
+
+		<param name="robot_description" command="$(find xacro)/xacro.py '$(find robotican_armadillo)/description/models/armadillo.xacro'" />
+		<rosparam file="$(find robotican_armadillo)/config/robot_config.yaml" command="load"/>
+		<node name="dynamixel_manager" pkg="dynamixel_controllers" type="controller_manager.py" required="true" output="screen">
+			<rosparam>
+				namespace: dxl_manager
+				serial_ports:
+					arm_port:
+						port_name: "/dev/Gripper"
+						baud_rate: 57142
+						min_motor_id: 1
+						max_motor_id: 2
+						update_rate: 20
+			</rosparam>
+		</node>
+		<node name="arm_controller_spawner" pkg="dynamixel_controllers" type="controller_spawner.py"
+		  args="--manager=dxl_manager
+				--port=arm_port
 		left_finger_controller
 		right_finger_controller"
 				output="screen"/>
 				
-      <node name="robotican_hardware_interface" pkg="robotican_hardware_interface" type="robotican_hardware_interface_node" respawn="false" output="screen" >
-		  <rosparam file="$(find robotican_armadillo)/config/arm_config.yaml" command="load"/> 
-	  </node> 
+		<node name="robotican_hardware_interface" pkg="robotican_hardware_interface" type="robotican_hardware_interface_node" respawn="false" output="screen" >
+		<rosparam file="$(find robotican_armadillo)/config/arm_config.yaml" command="load"/> 
+		</node> 
     </group>
     
     
