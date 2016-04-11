@@ -46,7 +46,7 @@
     
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
      <!--  <arg name="world_name" value="$(find robotican_demos)/worlds/gas_station.world"/> -->
-     <!-- <arg name="world_name" value="$(find robotican_demos)/worlds/UPlat.sdf"/> -->
+     <arg name="world_name" value="$(find robotican_demos)/worlds/UPlat.sdf"/> 
       <arg name="debug" value="$(arg debug)" />
       <arg name="gui" value="$(arg gui)" />
       <arg name="paused" value="$(arg paused)"/>
