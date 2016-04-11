@@ -36,18 +36,25 @@ if [ $? == 0 ]; then
 	chown -R $(logname):$(logname) ~/catkin_ws
 	
 	echo "Do you want to install f200/r200 camera package [yes/no]: "
-	read as
+	read asf
 	
-	if [ $as == "yes" ]; then
+	if [ $asf == "yes" ]; then
 		cd ~/catkin_ws/src/robotican/robotican/installations/third_pkg_setup
 		./f200.sh
 	fi
 	
-	cd ~/catkin_ws/src/robotican/robotican/installations/third_pkg_setup
-	./f200.sh
+	chown -R $(logname):$(logname) ~/catkin_ws
 	
-	
-	
+	#Do this in the end of the installation.
+	if [ $asf == "yes" ]; then
+		echo -e "\e[31mWarning: To complete f200/r200 installation the PC need to reboot."
+		echo -en "\e[39mReboot the PC [yes/no]:"
+		read as
+
+		if [ $as == "yes" ]; then
+			sudo reboot
+		fi
+	fi
 
 else
 	echo -e "\e[31m[Error]: ROS catkin_ws not found"
