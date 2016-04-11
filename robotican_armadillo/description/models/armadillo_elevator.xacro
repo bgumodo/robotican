@@ -319,23 +319,37 @@
   </joint>
   <link
     name="kinect2_link">
-    <inertial>
-      <origin
-        xyz="-0.034825 0.00047843 -0.0036931"
-        rpy="0 0 0" />
-      <mass
-        value="0.82085" />
-      <inertia
-        ixx="0.0039702"
-        ixy="-2.1546E-05"
-        ixz="-2.6946E-05"
-        iyy="0.00059235"
-        iyz="-1.2194E-06"
-        izz="0.0041195" />
+    <inertial>
+
+      <origin
+
+        xyz="-0.034825 0.00047843 -0.0036931"
+
+        rpy="0 0 0" />
+
+      <mass
+
+        value="0.82085" />
+
+      <inertia
+
+        ixx="0.0039702"
+
+        ixy="-2.1546E-05"
+
+        ixz="-2.6946E-05"
+
+        iyy="0.00059235"
+
+        iyz="-1.2194E-06"
+
+        izz="0.0041195" />
+
     </inertial>
     <visual>
       <origin
-        xyz="0 0 0"
+        xyz="0 0 0"
+
         rpy="0 0 0" />
       <geometry>
         <mesh
@@ -344,7 +358,7 @@
       <material
         name="">
         <color
-          rgba="0 0 0 1" />
+          rgba="0.15 0.15 0.15 1" />
       </material>
     </visual>
     <collision>
