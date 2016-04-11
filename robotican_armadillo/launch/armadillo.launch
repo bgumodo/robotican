@@ -137,7 +137,7 @@
 		</group>
 
 		<param name="robot_description" command="$(find xacro)/xacro.py '$(find robotican_armadillo)/description/models/armadillo.xacro'" />
-		<rosparam file="$(find robotican_armadillo)/config/robot_config.yaml" command="load"/>
+		<rosparam file="$(find robotican_armadillo)/config/hardware_interface_config.yaml" command="load"/>
 		<node name="dynamixel_manager" pkg="dynamixel_controllers" type="controller_manager.py" required="true" output="screen">
                 <rosparam>
                 namespace: dxl_manager
@@ -166,7 +166,7 @@
 
   <group if="$(arg controllers)">
     
-    <rosparam file="$(find robotican_armadillo)/config/armadillo_controllers.yaml" command="load"/>
+    <rosparam file="$(find robotican_armadillo)/config/controllers.yaml" command="load"/>
     
     <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="	  
       robot_state_controller
@@ -179,17 +179,22 @@
      </group>
 
 
-		<group if="$(arg moveit)">
-<include file="$(find robotican_armadillo)/moveit/launch/move_group.launch"/>
-		</group>
+	<group if="$(arg moveit)">
+		<include file="$(find robotican_armadillo)/moveit/launch/move_group.launch"/>
+	</group>
 
-		<group if="$(arg navigation)">
-<include file="$(find robotican_armadillo)/navigation/launch/move_base_sim.launch"/>
-		</group>
+	<group if="$(arg navigation)">
+		<rosparam file="$(find robotican_armadillo)/navigation/config/move_base_params.yaml" command="load"/>
+		<rosparam file="$(find robotican_armadillo)/navigation/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+		<rosparam file="$(find robotican_armadillo)navigation/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+		<rosparam file="$(find robotican_armadillo)/navigation/config/local_costmap_params.yaml" command="load" ns="local_costmap" />
+		<rosparam file="$(find robotican_armadillo)/navigation/config/global_costmap_params.yaml" command="load" ns="global_costmap"/>
+		<include file="$(find robotican_demos)/launch/move_base.launch"/>
+	</group>
 
-<group if="$(arg rviz)">
-<node pkg="rviz" type="rviz" name="rviz" output="screen" respawn="true" />
-</group>
+	<group if="$(arg rviz)">
+		<node pkg="rviz" type="rviz" name="rviz" output="screen" respawn="true" />
+	</group>
   <!--  args="-d $(find polar_scan_matcher)/demo/demo.vcg"/> -->
-    </launch>
+</launch>
 
