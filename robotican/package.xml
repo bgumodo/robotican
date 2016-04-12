@@ -16,13 +16,9 @@
 <run_depend>robotican_armadillo</run_depend>
 <run_depend>robotican_komodo</run_depend>
 <run_depend>robotican_lizi</run_depend>
-<run_depend>robotican_gui</run_depend>
+<run_depend>robotican_common</run_depend>
 <run_depend>robotican_demos</run_depend>
 <run_depend>ric_board</run_depend>
-
-
-
-
 
 
   <export>
