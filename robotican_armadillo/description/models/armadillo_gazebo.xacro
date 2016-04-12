@@ -48,7 +48,7 @@
 			  </clip>
 			</camera>
 			<plugin name="f200_camera_controller" filename="libgazebo_ros_openni_kinect.so">
-
+                           
 			  <alwaysOn>true</alwaysOn>
 			  <!--  <baseline>0.11</baseline> -->
 			  <updateRate>$(arg f200_hz)</updateRate>

@@ -8,7 +8,7 @@
   <arg name="robot_localization" default='true'/>
   <arg name="moveit" default='false'/>
   <arg name="navigation" default='false'/>
-  <arg name="rviz" default='false'/>
+  <arg name="rqt" default='false'/>
 
   <arg name="front_camera" default='false'/>
   <arg name="rear_camera" default='false'/>
@@ -51,7 +51,7 @@
     
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
      <!--  <arg name="world_name" value="$(find robotican_demos)/worlds/gas_station.world"/> -->
-      <!-- <arg name="world_name" value="$(find robotican_demos)/worlds/UPlat.sdf"/> -->
+     <arg name="world_name" value="$(find robotican_common)/worlds/UPlat.sdf"/> 
       <arg name="debug" value="$(arg debug)" />
       <arg name="gui" value="$(arg gui)" />
       <arg name="paused" value="$(arg paused)"/>
@@ -192,16 +192,16 @@
 	</group>
 
 	<group if="$(arg navigation)">
-		<rosparam file="$(find robotican_armadillo)/navigation/config/move_base_params.yaml" command="load"/>
-		<rosparam file="$(find robotican_armadillo)/navigation/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
-		<rosparam file="$(find robotican_armadillo)navigation/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
-		<rosparam file="$(find robotican_armadillo)/navigation/config/local_costmap_params.yaml" command="load" ns="local_costmap" />
-		<rosparam file="$(find robotican_armadillo)/navigation/config/global_costmap_params.yaml" command="load" ns="global_costmap"/>
+		<rosparam file="$(find robotican_armadillo)/navigation/config/move_base_params.yaml" command="load" ns="move_base"/>
+		<rosparam file="$(find robotican_armadillo)/navigation/config/costmap_common_params.yaml" command="load" ns="move_base/global_costmap" />
+		<rosparam file="$(find robotican_armadillo)navigation/config/costmap_common_params.yaml" command="load" ns="move_base/local_costmap" />
+		<rosparam file="$(find robotican_armadillo)/navigation/config/local_costmap_params.yaml" command="load" ns="move_base/local_costmap" />
+		<rosparam file="$(find robotican_armadillo)/navigation/config/global_costmap_params.yaml" command="load" ns="move_base/global_costmap"/>
 		<include file="$(find robotican_common)/launch/move_base.launch"/>
 	</group>
 
-	<group if="$(arg rviz)">
-		<node pkg="rviz" type="rviz" name="rviz" output="screen" respawn="true" />
+	<group if="$(arg rqt)">
+		<node pkg="rqt_gui" type="rqt_gui" name="rqt_gui" output="screen" respawn="true" />
 	</group>
   <!--  args="-d $(find polar_scan_matcher)/demo/demo.vcg"/> -->
 </launch>
