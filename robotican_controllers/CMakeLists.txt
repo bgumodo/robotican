@@ -17,6 +17,7 @@ find_package(catkin REQUIRED COMPONENTS
         control_msgs
         trajectory_msgs
         controller_manager
+        gripper_action_controller
         xacro
 )
 
@@ -112,7 +113,7 @@ find_package(Boost REQUIRED COMPONENTS system)
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES robotican_controllers
-  CATKIN_DEPENDS actionlib cmake_modules control_msgs controller_interface hardware_interface realtime_tools
+  CATKIN_DEPENDS actionlib cmake_modules gripper_action_controller control_msgs controller_interface hardware_interface realtime_tools
   DEPENDS system_lib
 )
 

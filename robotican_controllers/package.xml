@@ -61,6 +61,9 @@
   <build_depend>trajectory_msgs</build_depend>
   <build_depend>urdf</build_depend>
   <build_depend>xacro</build_depend>
+  
+  <build_depend>gripper_action_controller</build_depend>
+  
   <run_depend>actionlib</run_depend>
   <run_depend>angles</run_depend>
   <run_depend>cmake_modules</run_depend>
@@ -74,6 +77,8 @@
   <run_depend>trajectory_msgs</run_depend>
   <run_depend>urdf</run_depend>
   <run_depend>xacro</run_depend>
+  
+  <run_depend>gripper_action_controller</run_depend>
 
 
   <!-- The export tag contains other, unspecified, tags -->
