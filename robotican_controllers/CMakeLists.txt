@@ -113,7 +113,7 @@ find_package(Boost REQUIRED COMPONENTS system)
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES robotican_controllers
-  CATKIN_DEPENDS actionlib cmake_modules gripper_action_controller control_msgs controller_interface hardware_interface realtime_tools
+  CATKIN_DEPENDS actionlib cmake_modules gripper_action_controller trajectory_interface control_msgs controller_interface hardware_interface realtime_tools
   DEPENDS system_lib
 )
 
