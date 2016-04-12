@@ -171,7 +171,7 @@
     
     
     	<group if="$(arg robot_localization)">
-		<include file="$(find robotican_demos)/launch/robot_localization.launch"/>
+		<include file="$(find robotican_common)/launch/robot_localization.launch"/>
 		<param name="/mobile_base_controller/enable_odom_tf" value="false" />
 	</group>
     
@@ -197,7 +197,7 @@
 		<rosparam file="$(find robotican_armadillo)navigation/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
 		<rosparam file="$(find robotican_armadillo)/navigation/config/local_costmap_params.yaml" command="load" ns="local_costmap" />
 		<rosparam file="$(find robotican_armadillo)/navigation/config/global_costmap_params.yaml" command="load" ns="global_costmap"/>
-		<include file="$(find robotican_demos)/launch/move_base.launch"/>
+		<include file="$(find robotican_common)/launch/move_base.launch"/>
 	</group>
 
 	<group if="$(arg rviz)">

@@ -12,7 +12,7 @@
   <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
 
   <!--- Run AMCL -->
-  <include file="$(find robotican_demos)/launch/amcl_diff.launch" />
+  <include file="$(find robotican_common)/launch/amcl_diff.launch" />
 
   <!--- Run Move Base -->
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen" >
