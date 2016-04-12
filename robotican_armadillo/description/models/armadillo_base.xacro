@@ -135,7 +135,7 @@
         rpy="0 ${M_PI/2} 0" />
       <geometry>
 	<!--  <mesh filename="package://robotican_armadillo/description/meshes/left_urf_link.STL" /> -->
-	<cylinder  length="0.01" radius="0.008"/> 
+	<cylinder  length="0.005" radius="0.008"/> 
       </geometry>
       <material
         name="">

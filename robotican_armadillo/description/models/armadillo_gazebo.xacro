@@ -361,8 +361,8 @@
 	      <bodyName>base_link</bodyName>
 	      <frameId>base_link</frameId>
 	      <topicName>IMU/data</topicName>
-	      <gaussianNoise>2.89e-08</gaussianNoise>
-	      <xyzOffsets>0 0 0</xyzOffsets>
+	      <gaussianNoise>0.1</gaussianNoise>
+	      <xyzOffsets>0 0 ${M_PI}</xyzOffsets>
 	      <rpyOffsets>0 0 0</rpyOffsets>
 	      <material>Gazebo/Red</material>
 	    </plugin>

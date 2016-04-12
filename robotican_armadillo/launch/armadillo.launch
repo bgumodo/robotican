@@ -5,6 +5,7 @@
   
   <arg name="controllers" default='true'/>
 
+  <arg name="robot_localization" default='true'/>
   <arg name="moveit" default='false'/>
   <arg name="navigation" default='false'/>
   <arg name="rviz" default='false'/>
@@ -50,7 +51,7 @@
     
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
      <!--  <arg name="world_name" value="$(find robotican_demos)/worlds/gas_station.world"/> -->
-    <arg name="world_name" value="$(find robotican_demos)/worlds/UPlat.sdf"/> 
+      <!-- <arg name="world_name" value="$(find robotican_demos)/worlds/UPlat.sdf"/> -->
       <arg name="debug" value="$(arg debug)" />
       <arg name="gui" value="$(arg gui)" />
       <arg name="paused" value="$(arg paused)"/>
@@ -168,6 +169,12 @@
     
     <rosparam file="$(find robotican_armadillo)/config/controllers.yaml" command="load"/>
     
+    
+    	<group if="$(arg robot_localization)">
+		<include file="$(find robotican_demos)/launch/robot_localization.launch"/>
+		<param name="/mobile_base_controller/enable_odom_tf" value="false" />
+	</group>
+    
     <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="	  
       robot_state_controller
 	  mobile_base_controller
@@ -179,6 +186,7 @@
      </group>
 
 
+	
 	<group if="$(arg moveit)">
 		<include file="$(find robotican_armadillo)/moveit/launch/move_group.launch"/>
 	</group>
