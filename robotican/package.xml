@@ -18,7 +18,7 @@
 <run_depend>robotican_lizi</run_depend>
 <run_depend>robotican_common</run_depend>
 <run_depend>robotican_demos</run_depend>
-<run_depend>ric_board</run_depend>
+
 
 
   <export>
