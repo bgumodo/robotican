@@ -40,9 +40,9 @@
 
 #include <ros/ros.h>
 #include <sensor_msgs/JointState.h>
-#include <dynamixel_pro_controller/ChainEnable.h>
-#include <dynamixel_pro_controller/ChainLimits.h>
-#include <dynamixel_pro_driver/dynamixel_pro_driver.h>
+#include <robotican_hardware_interface/ChainEnable.h>
+#include <robotican_hardware_interface/ChainLimits.h>
+#include <robotican_hardware_interface/dynamixel_pro_driver.h>
 
 #include <hardware_interface/robot_hw.h>
 #include <controller_manager/controller_manager.h>
@@ -91,8 +91,8 @@ private:
      * callback for recieving a command
      */
     void jointStateCallback(sensor_msgs::JointState &msg);
-    void chainEnableCallback(const dynamixel_pro_controller::ChainEnable::ConstPtr& msg);
-    void chainLimitCallback(const dynamixel_pro_controller::ChainLimits::ConstPtr& msg);
+    void chainEnableCallback(const robotican_hardware_interface::ChainEnable::ConstPtr &msg);
+    void chainLimitCallback(const robotican_hardware_interface::ChainLimits::ConstPtr& msg);
 
     /**
      * TimeEvent callback for publishing a joint state.

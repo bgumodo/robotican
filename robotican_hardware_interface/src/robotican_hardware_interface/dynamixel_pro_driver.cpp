@@ -41,8 +41,8 @@
 
 #include <ros/ros.h>
 
-#include <dynamixel_pro_driver/dynamixel_const.h>
-#include <dynamixel_pro_driver/dynamixel_pro_driver.h>
+#include <robotican_hardware_interface/dynamixel_const.h>
+#include <robotican_hardware_interface/dynamixel_pro_driver.h>
 
 
 #define LOBYTE(w) ((uint8_t)(w))

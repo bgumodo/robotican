@@ -53,8 +53,8 @@ void operator >> (const YAML::Node& node, T& i)
 #include <ros/package.h>
 #include <XmlRpcValue.h>
 
-#include <dynamixel_pro_controller/dynamixel_pro_controller.h>
-#include <dynamixel_pro_driver/dynamixel_pro_driver.h>
+#include <robotican_hardware_interface/dynamixel_pro_controller.h>
+#include <robotican_hardware_interface/dynamixel_pro_driver.h>
 
 
 using namespace dynamixel_pro_controller;
@@ -233,9 +233,9 @@ DynamixelProController::DynamixelProController(hardware_interface::JointStateInt
     //many joints at once.
 //    jointStateSubscriber = nh->subscribe<sensor_msgs::JointState>("/joint_commands",
 //        1000, &DynamixelProController::jointStateCallback, this);
-    chainEnableSubscriber = nh->subscribe<ChainEnable>("joint_enable",
+    chainEnableSubscriber = nh->subscribe<robotican_hardware_interface::ChainEnable>("joint_enable",
         1000, &DynamixelProController::chainEnableCallback, this);
-    chainLimitsSubscriber = nh->subscribe<ChainLimits>("joint_limits",
+    chainLimitsSubscriber = nh->subscribe<robotican_hardware_interface::ChainLimits>("joint_limits",
         1000, &DynamixelProController::chainLimitCallback, this);
 }
 
@@ -391,11 +391,11 @@ void DynamixelProController::jointStateCallback(sensor_msgs::JointState &msg)
     }
 }
 
-void DynamixelProController::chainEnableCallback(const ChainEnable::ConstPtr& msg)
+void DynamixelProController::chainEnableCallback(const robotican_hardware_interface::ChainEnable::ConstPtr &msg)
 {
     std::vector<std::vector<int> > enables;
     enables.reserve(msg->list.size());
-    for(std::vector<JointEnable>::const_iterator ii = msg->list.begin(); ii != msg->list.end(); ++ii)
+    for(std::vector<robotican_hardware_interface::JointEnable>::const_iterator ii = msg->list.begin(); ii != msg->list.end(); ++ii)
     {
         const std::string& name = ii->name;
         const dynamixel_info &info = joint2dynamixel[name];
@@ -409,7 +409,7 @@ void DynamixelProController::chainEnableCallback(const ChainEnable::ConstPtr& ms
 
     if(driver->setMultiTorqueEnabled(enables))
     {
-        for(std::vector<JointEnable>::const_iterator ii = msg->list.begin(); ii != msg->list.end(); ++ii)
+        for(std::vector<robotican_hardware_interface::JointEnable>::const_iterator ii = msg->list.begin(); ii != msg->list.end(); ++ii)
         {
             const std::string& name = ii->name;
             const dynamixel_info &info = joint2dynamixel[name];
@@ -419,9 +419,9 @@ void DynamixelProController::chainEnableCallback(const ChainEnable::ConstPtr& ms
     }
 }
 
-void DynamixelProController::chainLimitCallback(const ChainLimits::ConstPtr& msg)
+void DynamixelProController::chainLimitCallback(const robotican_hardware_interface::ChainLimits::ConstPtr& msg)
 {
-    for(std::vector<JointLimits>::const_iterator ii = msg->list.begin(); ii != msg->list.end(); ++ii)
+    for(std::vector<robotican_hardware_interface::JointLimits>::const_iterator ii = msg->list.begin(); ii != msg->list.end(); ++ii)
     {
         const std::string& name = ii->name;
         const dynamixel_info &info = joint2dynamixel[name];

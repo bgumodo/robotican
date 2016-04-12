@@ -12,7 +12,7 @@
 #include <robotican_hardware_interface/robot_base.h>
 #include <hardware_interface/joint_command_interface.h>
 #include <hardware_interface/posvel_command_interface.h>
-#include <dynamixel_pro_controller/dynamixel_pro_controller.h>
+#include <robotican_hardware_interface/dynamixel_pro_controller.h>
 
 namespace robotican_hardware {
     class ArmadilloRobot : public RobotBase {

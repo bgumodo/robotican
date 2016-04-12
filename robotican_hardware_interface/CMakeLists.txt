@@ -15,14 +15,15 @@ find_package(catkin REQUIRED COMPONENTS
   angles
   roslib
   std_msgs
-  dynamixel_pro_driver
-  dynamixel_pro_controller
   controller_manager
   cmake_modules
   realtime_tools
   xacro
   control_msgs
   gazebo_ros_control
+  sensor_msgs
+  message_generation
+  serial
 )
 
 
@@ -31,6 +32,14 @@ find_package(catkin REQUIRED COMPONENTS
 find_package(PkgConfig REQUIRED)
 find_package(Boost REQUIRED COMPONENTS system)
 find_package(gazebo REQUIRED)
+
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(yaml-cpp REQUIRED yaml-cpp)
+
+if(NOT ${yaml-cpp_VERSION} VERSION_LESS "0.5")
+add_definitions(-DHAVE_NEW_YAMLCPP)
+endif(NOT ${yaml-cpp_VERSION} VERSION_LESS "0.5")
+
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -63,11 +72,13 @@ find_package(gazebo REQUIRED)
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   Message1.msg
-#   Message2.msg
-# )
+ add_message_files(
+   FILES
+  JointEnable.msg
+  ChainEnable.msg
+  JointLimits.msg
+  ChainLimits.msg
+ )
 
 ## Generate services in the 'srv' folder
 # add_service_files(
@@ -84,11 +95,12 @@ find_package(gazebo REQUIRED)
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs
-# )
-
+generate_messages(
+  DEPENDENCIES
+  sensor_msgs
+  std_msgs
+  geometry_msgs
+)
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
 ################################################
@@ -122,7 +134,7 @@ catkin_package(
   INCLUDE_DIRS include
   LIBRARIES ${PROJECT_NAME} robotican_hardware_interface_sim
   CATKIN_DEPENDS cmake_modules realtime_tools control_msgs roscpp controller_manager pluginlib transmission_interface urdf
-  DEPENDS gazebo system_lib gazebo_ros_control
+  DEPENDS gazebo system_lib gazebo_ros_control serial
 )
 
 
@@ -140,13 +152,18 @@ include_directories(include
         ${Boost_INCLUDE_DIR}
         ${catkin_INCLUDE_DIRS}
         ${GAZEBO_INCLUDE_DIRS}
+        ${yaml-cpp_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
  add_library(robotican_hardware_interface
-   src/${PROJECT_NAME}/robot_base.cpp
-   src/${PROJECT_NAME}/ros_utils.cpp
-   src/${PROJECT_NAME}/armadillo.cpp
+         include/${PROJECT_NAME}/dynamixel_pro_driver.h
+         include/${PROJECT_NAME}/dynamixel_pro_controller.h
+         src/${PROJECT_NAME}/dynamixel_pro_driver.cpp
+         src/${PROJECT_NAME}/dynamixel_pro_controller.cpp
+         src/${PROJECT_NAME}/robot_base.cpp
+         src/${PROJECT_NAME}/ros_utils.cpp
+         src/${PROJECT_NAME}/armadillo.cpp
  )
 
 add_library(robotican_hardware_interface_sim
@@ -167,7 +184,7 @@ add_library(robotican_hardware_interface_sim
 # add_dependencies(robotican_hardware_interface_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(robotican_hardware_interface ${catkin_LIBRARIES})
+target_link_libraries(robotican_hardware_interface ${catkin_LIBRARIES} ${yaml-cpp_LIBRARIES})
 target_link_libraries(robotican_hardware_interface_sim ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES})
 
 target_link_libraries(robotican_hardware_interface_node
