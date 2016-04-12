@@ -91,6 +91,7 @@
   <run_depend>sensor_msgs</run_depend>
   <run_depend>message_generation</run_depend>
   <run_depend>serial</run_depend>
+  <run_depend>message_runtime</run_depend>
   
   <run_depend>dynamixel_motor</run_depend>
 
