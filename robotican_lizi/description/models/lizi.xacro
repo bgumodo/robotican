@@ -1,10 +1,11 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="lizi">
-	<!-- Load all the links  -->
-
+	
+	<xacro:property name="M_PI" value="3.1415926535897931" />
 	<xacro:arg name="have_pan_tilt" default="false"/>
-
 	<xacro:property name="lizi_color" value="0 0.517 0.26 1" />
+	
+	<!-- Load all the links  -->
 	<link name="base_link">
 			<inertial>
 				<origin rpy="0 0 0" xyz="-0.036889 0.00027038 0.069426" />
