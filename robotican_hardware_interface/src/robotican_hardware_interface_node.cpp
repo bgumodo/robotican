@@ -19,6 +19,7 @@ int main(int argc, char **argv) {
     ros::param::param("armadilo", isArmadilo, false);
     ros::param::param("lizi", isLizi, false);
     ros::Duration(1.0).sleep();
+
     if(isLizi && isArmadilo || isLizi && isKomodo || isArmadilo && isKomodo) {
         ros_utils::rosError("Two robots can't be running at the same time");
         exit(EXIT_FAILURE);
@@ -44,7 +45,7 @@ int main(int argc, char **argv) {
         controller_manager::ControllerManager controllerManager(&robot);
         ros::AsyncSpinner asyncSpinner(1);
         asyncSpinner.start();
-        ros::Rate rate(50);
+        ros::Rate rate(20);
         while(ros::ok()) {
             robot.read();
             controllerManager.update(robot.getTime(), robot.getPeriod());
