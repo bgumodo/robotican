@@ -63,12 +63,12 @@ namespace robotican_hardware {
 
     void RobotBase::leftMotorStateCallback(const ric_board::Motor::ConstPtr &msg) {
         _leftMotorJointInfo.second.position = msg->position;
-        _leftMotorJointInfo.second.velocity = msg->position;
+        _leftMotorJointInfo.second.velocity = msg->velocity;
     }
 
     void RobotBase::rightMotorStateCallback(const ric_board::Motor::ConstPtr &msg) {
         _rightMotorJointInfo.second.position = msg->position;
-        _rightMotorJointInfo.second.velocity = msg->position;
+        _rightMotorJointInfo.second.velocity = msg->velocity;
     }
 
     void RobotBase::registerInterfaces() {

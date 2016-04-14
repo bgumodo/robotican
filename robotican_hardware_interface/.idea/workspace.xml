@@ -88,8 +88,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5090c7e5-85e2-48e5-b18b-c7d9a39d63ef" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/robotican_hardware_interface_node.cpp" afterPath="$PROJECT_DIR$/src/robotican_hardware_interface_node.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/robotican_hardware_interface/robot_base.cpp" afterPath="$PROJECT_DIR$/src/robotican_hardware_interface/robot_base.cpp" />
     </list>
     <ignored path="robotican_hardware_interface.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -132,21 +131,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LiziRobot.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LiziRobot.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/robotican_hardware_interface/LiziRobot.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.3517587">
-              <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="51" column="67" selection-start-line="51" selection-start-column="67" selection-end-line="51" selection-end-column="67" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="robot_base.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="robot_base.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/robotican_hardware_interface/robot_base.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="98" selection-end-column="41" />
+            <state vertical-scroll-proportion="0.2763819">
+              <caret line="65" column="59" selection-start-line="65" selection-start-column="59" selection-end-line="65" selection-end-column="59" />
               <folding>
                 <element signature="e#356#934#0" expanded="true" />
               </folding>
@@ -178,10 +177,10 @@
         <option value="$PROJECT_DIR$/include/robotican_hardware_interface/dynamixel_pro_controller.h" />
         <option value="$PROJECT_DIR$/src/robotican_hardware_interface/dynamixel_pro_controller.cpp" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/src/robotican_hardware_interface/robot_base.cpp" />
         <option value="$PROJECT_DIR$/include/robotican_hardware_interface/LiziRobot.h" />
         <option value="$PROJECT_DIR$/src/robotican_hardware_interface/LiziRobot.cpp" />
         <option value="$PROJECT_DIR$/src/robotican_hardware_interface_node.cpp" />
+        <option value="$PROJECT_DIR$/src/robotican_hardware_interface/robot_base.cpp" />
       </list>
     </option>
   </component>
@@ -1113,6 +1112,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.029315962">
           <caret line="44" column="38" selection-start-line="44" selection-start-column="38" selection-end-line="44" selection-end-column="38" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1144,16 +1144,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/robotican_hardware_interface/robot_base.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="98" selection-end-column="41" />
-          <folding>
-            <element signature="e#356#934#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/robotican_hardware_interface_node.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1174,9 +1164,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/robotican_hardware_interface/LiziRobot.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.3517587">
-          <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="51" column="67" selection-start-line="51" selection-start-column="67" selection-end-line="51" selection-end-column="67" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robotican_hardware_interface/robot_base.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2763819">
+          <caret line="65" column="59" selection-start-line="65" selection-start-column="59" selection-end-line="65" selection-end-column="59" />
+          <folding>
+            <element signature="e#356#934#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
