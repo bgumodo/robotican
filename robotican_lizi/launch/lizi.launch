@@ -82,7 +82,9 @@
 
 		<param name="robot_description" command="$(find xacro)/xacro.py '$(find robotican_lizi)/description/models/lizi.xacro'" />
 		<rosparam file="$(find robotican_lizi)/config/hardware_interface_config.yaml" command="load"/>
+<!--
 		<include file="$(find robotican_hardware_interface)/launch/ric_board.launch" />
+-->
 		<node name="robotican_hardware_interface" pkg="robotican_hardware_interface" type="robotican_hardware_interface_node" respawn="false" output="screen" >
 		</node> 
     </group>
