@@ -80,8 +80,8 @@
 		</group>
 		
 
-		<param name="robot_description" command="$(find xacro)/xacro.py '$(find robotican_armadillo)/description/models/armadillo.xacro'" />
-		<rosparam file="$(find robotican_armadillo)/config/hardware_interface_config.yaml" command="load"/>	
+		<param name="robot_description" command="$(find xacro)/xacro.py '$(find robotican_lizi)/description/models/armadillo.xacro'" />
+		<rosparam file="$(find robotican_lizi)/config/hardware_interface_config.yaml" command="load"/>	
 		<node name="robotican_hardware_interface" pkg="robotican_hardware_interface" type="robotican_hardware_interface_node" respawn="false" output="screen" >
 		</node> 
     </group>
@@ -90,7 +90,7 @@
 
   <group if="$(arg controllers)">
     
-    <rosparam file="$(find robotican_armadillo)/config/controllers.yaml" command="load"/>
+    <rosparam file="$(find robotican_lizi)/config/controllers.yaml" command="load"/>
     
     
     	<group if="$(arg robot_localization)">
@@ -105,11 +105,11 @@
      </group>
 
 	<group if="$(arg navigation)">
-		<rosparam file="$(find robotican_armadillo)/navigation/config/move_base_params.yaml" command="load" ns="move_base"/>
-		<rosparam file="$(find robotican_armadillo)/navigation/config/costmap_common_params.yaml" command="load" ns="move_base/global_costmap" />
-		<rosparam file="$(find robotican_armadillo)navigation/config/costmap_common_params.yaml" command="load" ns="move_base/local_costmap" />
-		<rosparam file="$(find robotican_armadillo)/navigation/config/local_costmap_params.yaml" command="load" ns="move_base/local_costmap" />
-		<rosparam file="$(find robotican_armadillo)/navigation/config/global_costmap_params.yaml" command="load" ns="move_base/global_costmap"/>
+		<rosparam file="$(find robotican_lizi)/navigation/config/move_base_params.yaml" command="load" ns="move_base"/>
+		<rosparam file="$(find robotican_lizi)/navigation/config/costmap_common_params.yaml" command="load" ns="move_base/global_costmap" />
+		<rosparam file="$(find robotican_lizi)navigation/config/costmap_common_params.yaml" command="load" ns="move_base/local_costmap" />
+		<rosparam file="$(find robotican_lizi)/navigation/config/local_costmap_params.yaml" command="load" ns="move_base/local_costmap" />
+		<rosparam file="$(find robotican_lizi)/navigation/config/global_costmap_params.yaml" command="load" ns="move_base/global_costmap"/>
 		<include file="$(find robotican_common)/launch/move_base.launch"/>
 	</group>
 
