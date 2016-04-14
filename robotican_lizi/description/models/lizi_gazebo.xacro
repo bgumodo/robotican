@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="lizi" description="lizi robot">
+	<xacro:include filename="$(find robotican_lizi)/description/models/lizi.xacro" />
+	
 	<xacro:arg name="urf" default="false"/>
 	<xacro:arg name="imu" default="false"/>
 	<xacro:arg name="gps" default="false"/>
@@ -112,5 +114,175 @@
 	    </sensor>
 	  </gazebo>
 	</xacro:if>	
+	
+	<xacro:if value="$(arg lidar)">
+	  <gazebo reference="laser_link">
+	    <sensor type="ray" name="head_hokuyo_sensor">
+	      <pose>0 0 0 0 0 0</pose>
+	      <visualize>false</visualize>
+	      <update_rate>10</update_rate>
+	      <ray>
+		<scan>
+		  <horizontal>
+		    <samples>667</samples>
+		    <resolution>1</resolution>
+		    <min_angle>-1.81</min_angle>
+		    <max_angle>1.81</max_angle>
+		  </horizontal>
+		</scan>
+		<range>
+		  <min>0.02</min>
+		  <max>5.6</max>
+		  <resolution>0.01</resolution>
+		</range>
+		<noise>
+		  <type>gaussian</type>
+		  <mean>0.0</mean>
+		  <stddev>0.01</stddev>
+		</noise>
+	      </ray>
+	      <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+		<topicName>scan</topicName>
+		<frameName>laser_link</frameName>
+	      </plugin>
+	    </sensor>
+	  </gazebo>
+	</xacro:if>
+	
+	<!-- GPS   -->
+	<xacro:if value="$(arg gps)">
+	  <gazebo>
+	    <plugin name="GazeboRosGps" filename="libhector_gazebo_ros_gps.so">
+	      <updateRate>50.0</updateRate>
+	      <bodyName>base_link</bodyName>
+	      <frameId>base_link</frameId>
+	      <topicName>GPS/fix</topicName>
+	      <serviceName>SERVICE_GPS</serviceName>
+	      <velocityTopicName>GPS/fix_velocity</velocityTopicName>
+	      <gaussianNoise>2.89e-08 2.89e-08 2.89e-08</gaussianNoise>
+	      <velocityGaussianNoise>2.89e-08 2.89e-08 2.89e-08</velocityGaussianNoise>
+	    </plugin>
+	  </gazebo>
+	</xacro:if>
+	
+	<!-- IMU   -->
+	<xacro:if value="$(arg imu)">
+	  <gazebo>
+	    <plugin name="GazeboRosImu" filename="libhector_gazebo_ros_imu.so">
+	      <alwaysOn>true</alwaysOn>
+	      <updateRate>50.0</updateRate> 
+	      <bodyName>base_link</bodyName>
+	      <frameId>base_link</frameId>
+	      <topicName>IMU/data</topicName>
+	      <gaussianNoise>0.1</gaussianNoise>
+	      <xyzOffsets>0 0 ${M_PI}</xyzOffsets>
+	      <rpyOffsets>0 0 0</rpyOffsets>
+	      <material>Gazebo/Red</material>
+	    </plugin>
+	  </gazebo>
+	  
+	  <!-- Magnetic   -->
+	  <gazebo>
+	    <plugin name="GazeboRosMagnetic" filename="libhector_gazebo_ros_magnetic.so">
+	      <updateRate>50.0</updateRate>
+	      <bodyName>base_link</bodyName>
+	      <frameId>base_link</frameId>
+	      <topicName>IMU/magnetic</topicName>
+	      <offset>0 0 0</offset>
+	      <drift>0.0 0.0 0.0</drift>
+	      <gaussianNoise>1.3e-2 1.3e-2 1.3e-2</gaussianNoise>
+	    </plugin>
+	  </gazebo>
+	</xacro:if>
+	
+	<!-- cameras  -->
+	<xacro:if value="$(arg front_camera)">
+	  <gazebo reference="camera_link">
+	    <sensor type="camera" name="front_camera">
+	      <update_rate>30.0</update_rate>
+	      <camera name="front_camera">
+		<horizontal_fov>1.3962634</horizontal_fov>
+		<image>
+		  <width>640</width>
+		  <height>480</height>
+		  <format>R8G8B8</format>
+		</image>
+		<clip>
+		  <near>0.02</near>
+		  <far>300</far>
+		</clip>
+		<noise>
+		  <type>gaussian</type>
+		  <mean>0.0</mean>
+		  <stddev>0.007</stddev>
+		</noise>
+	      </camera>
+	      <plugin name="front_camera_controller" filename="libgazebo_ros_camera.so">
+		<alwaysOn>true</alwaysOn>
+		<updateRate>0.0</updateRate>
+		<cameraName>front_camera</cameraName>
+		<imageTopicName>image_raw</imageTopicName>
+		<cameraInfoTopicName>camera_info</cameraInfoTopicName>
+		<frameName>camera_link</frameName>
+		<hackBaseline>0.07</hackBaseline>
+		<distortionK1>0.0</distortionK1>
+		<distortionK2>0.0</distortionK2>
+		<distortionK3>0.0</distortionK3>
+		<distortionT1>0.0</distortionT1>
+		<distortionT2>0.0</distortionT2>
+	      </plugin>
+	    </sensor>
+	  </gazebo>
+	</xacro:if>
+	
+	<xacro:if value="$(arg controllers)">
+		<gazebo> 
+		  <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+			<robotSimType>gazebo_ros_control/RoboticanRobotHWSim</robotSimType> 
+		  </plugin> 
+		</gazebo>
+		
+		<transmission name="fl_wheel_joint_trans">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="fl_wheel_joint">
+				<hardwareInterface>VelocityJointInterface</hardwareInterface>
+			</joint>
+			<actuator name="fl_wheel_joint_motor">
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+	
+		<transmission name="rl_wheel_joint_trans">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="rl_wheel_joint">
+				<hardwareInterface>VelocityJointInterface</hardwareInterface>
+			</joint>
+			<actuator name="rl_wheel_joint_motor">
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+		
+		<transmission name="rr_wheel_joint_trans">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="rr_wheel_joint">
+				<hardwareInterface>VelocityJointInterface</hardwareInterface>
+			</joint>
+			<actuator name="rr_wheel_joint_motor">
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+
+		<transmission name="fr_wheel_joint_trans">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="fr_wheel_joint">
+				<hardwareInterface>VelocityJointInterface</hardwareInterface>
+			</joint>
+			<actuator name="fr_wheel_joint_motor">
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+		
+	</xacro:if>
+	
 	
 </robot>
