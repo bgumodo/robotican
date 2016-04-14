@@ -1,5 +1,0 @@
-<launch>
-	<arg name="robot_name" default="komodo" />
-	<node name="RiCTraffic" output="screen" pkg="ric_board" type="Start.py"/>
-	<rosparam command="load" file="$(find robotican_robots)/$(arg robot_name)/config/robot_config.yaml"/> 
-</launch>

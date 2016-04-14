@@ -3,10 +3,12 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/include/robotican_hardware_interface/LiziRobot.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/include/robotican_hardware_interface/dynamixel_pro_controller.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/include/robotican_hardware_interface/dynamixel_pro_driver.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/include/robotican_hardware_interface/robot_sim_interface.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/package.xml" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/robotican_hardware_interface/LiziRobot.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/robotican_hardware_interface/armadillo.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/robotican_hardware_interface/dynamixel_pro_controller.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/robotican_hardware_interface/dynamixel_pro_driver.cpp" isTestSource="false" />
@@ -54,9 +56,10 @@
           <root url="file:///usr/local/include" />
         </SOURCES>
         <excluded>
-          <root url="file://$MODULE_DIR$/include/robotican_hardware_interface/dynamixel_pro_driver.h" />
+          <root url="file://$MODULE_DIR$/include/robotican_hardware_interface/LiziRobot.h" />
           <root url="file://$MODULE_DIR$/include/robotican_hardware_interface/robot_sim_interface.h" />
           <root url="file://$MODULE_DIR$/include/robotican_hardware_interface/dynamixel_pro_controller.h" />
+          <root url="file://$MODULE_DIR$/include/robotican_hardware_interface/dynamixel_pro_driver.h" />
         </excluded>
       </library>
     </orderEntry>

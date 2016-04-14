@@ -164,6 +164,9 @@ include_directories(include
          src/${PROJECT_NAME}/robot_base.cpp
          src/${PROJECT_NAME}/ros_utils.cpp
          src/${PROJECT_NAME}/armadillo.cpp
+         src/${PROJECT_NAME}/armadillo.cpp
+         include/${PROJECT_NAME}/LiziRobot.h
+         src/${PROJECT_NAME}/LiziRobot.cpp
  )
 
 add_library(robotican_hardware_interface_sim
