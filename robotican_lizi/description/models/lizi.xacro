@@ -156,7 +156,7 @@
 			<inertia ixx="9.8652E-08" ixy="-1.0309E-12" ixz="1.1443E-10" iyy="7.8496E-08" iyz="1.6171E-09" izz="8.4324E-08" />
 		</inertial>
 		<visual>
-			<origin rpy="0 0 3.14" xyz="0 0 0" />
+			<origin rpy="0 0 ${M_PI}" xyz="0 0 0" />
 			<geometry>
 				<mesh filename="package://robotican_lizi/description/meshes/rear_urf_link.STL" />
 			</geometry>
@@ -165,7 +165,7 @@
 			</material>
 		</visual>
 		<collision>
-			<origin rpy="0 0 0" xyz="0 0 0" />
+			<origin rpy="0 0 ${M_PI}" xyz="0 0 0" />
 			<geometry>
 				<mesh filename="package://robotican_lizi/description/meshes/rear_urf_link.STL" />
 			</geometry>
