@@ -65,9 +65,9 @@
 			<include file="$(find robotican_hardware_interface)/launch/usb_cam.launch">
 				<arg name="input_dev" value="/dev/video0" />
 				<arg name="camera_frame_id" value="front_cam_link" />
-				<arg name="pixel_format" value="mjpeg" /> <!-- mjpeg, yuyv, uyvy  -->
-				<arg name="image_width" value="800" />
-				<arg name="image_height" value="800" />
+				<arg name="pixel_format" value="yuyv" /> <!-- mjpeg, yuyv, uyvy  -->
+				<arg name="image_width" value="640" />
+				<arg name="image_height" value="480" />
 				<arg name="node_name" value="front_cam" />
 			</include>
 		</group>
