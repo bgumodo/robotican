@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<launch>
+  
+    <include file="$(find robotican_lizi)/launch/lizi.launch">
+     <arg name="x" value="2.5"/>
+     <arg name="y" value="2.5"/>
+     <arg name="lidar" value="true"/>
+     <arg name="hector_slam" value="true"/> 
+     <arg name="rqt" value="true"/> 
+     <arg name="move_base" value="true"/> 
+    </include>
+    
+  
+</launch>
+

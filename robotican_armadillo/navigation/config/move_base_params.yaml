@@ -1,5 +1,5 @@
 controller_frequency: 5.0
-recovery_behaviour_enabled: false # true
+recovery_behaviour_enabled: true # true
 
 NavfnROS:
   allow_unknown: true 

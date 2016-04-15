@@ -365,21 +365,21 @@
 	  	</joint>
 	</xacro:if>
 	<joint name="right_urf_joint" type="fixed">
-    		<origin xyz="-0.0074577 -0.1055 0.07895" rpy="0 2.6072E-16 -1.57" />
+    		<origin xyz="-0.0074577 -0.11 0.07895" rpy="0 0 ${-M_PI/2}" />
     		<parent link="base_link" />
     		<child link="right_urf_link" />
     		<axis xyz="0 0 0" />
   	</joint>
 
 	<joint name="left_urf_joint" type="fixed">
-    		<origin xyz="-0.0074577 0.1055 0.07895" rpy="0 0 1.57" />
+    		<origin xyz="-0.0074577 0.11 0.07895" rpy="0 0 ${M_PI/2}" />
     		<parent link="base_link" />
     		<child link="left_urf_link" />
     		<axis xyz="0 0 0" />
   	</joint>	
 
 	<joint name="rear_urf_joint" type="fixed">
-    		<origin xyz="-0.182 0.085 0.093934" rpy="0 0 3.14" />
+    		<origin xyz="-0.187 0.085 0.093934" rpy="0 0 ${M_PI}" />
     		<parent link="base_link" />
     		<child link="rear_urf_link" />
     		<axis xyz="0 0 0" />
@@ -393,7 +393,7 @@
   	</joint>
 
 	<joint name="camera_joint" type="fixed">
-    		<origin xyz="0.178 0.05775 0.054305" rpy="1.6519E-18 -0.0061583 -2.6824E-16" />
+    		<origin xyz="0.18 0.05775 0.054305" rpy="1.6519E-18 -0.0061583 -2.6824E-16" />
     		<parent link="base_link" />
     		<child link="camera_link" />
     		<axis xyz="0 0 0" />

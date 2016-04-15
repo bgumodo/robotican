@@ -79,6 +79,7 @@
 	      </plugin>
 	    </sensor>
 	  </gazebo>
+	  
 	  <gazebo reference="rear_urf_link">
 	    <sensor type="ray" name="range">
 	      <always_on>true</always_on>
@@ -310,6 +311,9 @@
     <material>Gazebo/Black</material>
   </gazebo>
     <gazebo reference="rr_wheel_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+    <gazebo reference="camera_link">
     <material>Gazebo/Black</material>
   </gazebo>
   

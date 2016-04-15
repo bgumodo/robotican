@@ -3,7 +3,7 @@
 <launch>
 
   <arg name="base_frame" default="base_link"/>
-  <arg name="odom_frame" default="odom_link"/>
+  <arg name="odom_frame" default="odom"/>
   <arg name="map_frame" default="map"/>
   <arg name="scan_topic" default="scan"/>
   <arg name="map_size" default="2048"/>
