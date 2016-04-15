@@ -23,8 +23,8 @@ namespace robotican_hardware {
            !_nodeHandle.getParam("rear_right_motor_pub", rearRightMotorPub) ||
            !_nodeHandle.getParam("rear_left_motor_joint_name", rearLeftJointName) ||
            !_nodeHandle.getParam("rear_right_motor_joint_name", rearRightJointName) ||
-           !_nodeHandle.getParam("rear_left_motor_sub", rearRightMotorSub) ||
-           !_nodeHandle.getParam("rear_right_motor_sub", rearLeftMotorSub)) {
+           !_nodeHandle.getParam("rear_right_motor_sub", rearRightMotorSub) ||
+           !_nodeHandle.getParam("rear_left_motor_sub", rearLeftMotorSub)) {
 
             ros_utils::rosError("The robot operator need to provide parameters : 'left_motor_topic', 'right_motor_topic'"
                                         ", 'left_motor_joint_name', 'right_motor_joint_name' to run the robot");
