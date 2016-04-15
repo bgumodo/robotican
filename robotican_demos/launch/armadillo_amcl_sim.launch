@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<launch>
+  
+    <include file="$(find robotican_armadillo)/launch/armadillo.launch">
+     <arg name="gazebo" value="true"/>
+     <arg name="have_map_file" value="true"/>
+     <arg name="map_file" value="$(find robotican_common)/maps/UPlat.yaml"/>
+     <arg name="world_name" value="$(find robotican_common)/worlds/UPlat.sdf"/> 
+     <arg name="x" value="2.5"/>
+     <arg name="y" value="2.5"/>
+     <arg name="lidar" value="true"/>
+     <arg name="amcl" value="true"/> 
+     <arg name="rqt" value="true"/> 
+     <arg name="move_base" value="true"/> 
+    </include>
+    
+  
+</launch>
+
