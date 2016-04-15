@@ -1,23 +1,7 @@
 <?xml version="1.0"?>
 <launch>
   
-
-  <arg name="gazebo" default='false'/>
-  <arg name="world_name" default="worlds/empty.world"/> <!-- Note: the world_name is with respect to GAZEBO_RESOURCE_PATH environmental variable -->
-  <arg name="controllers" default='true'/>
-
-     <arg name="moveit" default='false'/>
-     
-  <arg name="robot_localization" default='true'/>
-  <arg name="move_base" default='false'/>
-  <arg name="hector_slam" default='false'/>
-    <arg name="gmapping_slam" default='false'/>
-    <arg name="amcl" default='false'/>
-     <arg name="have_map_file" default='false'/>
-     <arg name="map_file" default="$(find robotican_common)/maps/UPlat.yaml"/>
-     
-  <arg name="rqt" default='false'/>
-  <arg name="front_camera" default='false'/>
+    <arg name="front_camera" default='false'/>
   <arg name="rear_camera" default='false'/>
   <arg name="lidar" default='false'/>
   <arg name="gps" default='false'/>
@@ -26,12 +10,29 @@
   <arg name="kinect2" default='false'/>
   <arg name="f200" default='false'/>
   
-  <arg name="x" default="0.0"/>
+
+  <arg name="gazebo" default='false'/>
+  <arg name="world_name" default="worlds/empty.world"/> <!-- Note: the world_name is with respect to GAZEBO_RESOURCE_PATH environmental variable -->
+   <arg name="x" default="0.0"/>
   <arg name="y" default="0.0"/>
   <arg name="z" default="0.1"/>
   <arg name="R" default="0.0" />
   <arg name="P" default="0.0" />
   <arg name="Y" default="0.0" />
+  
+  <arg name="controllers" default='true'/>
+     <arg name="moveit" default='false'/>
+  <arg name="robot_localization" default='false'/>
+  <arg name="move_base" default='false'/>
+  <arg name="hector_slam" default='false'/>
+    <arg name="gmapping_slam" default='false'/>
+    <arg name="amcl" default='false'/>
+     <arg name="have_map_file" default='false'/>
+     <arg name="map_file" default="$(find robotican_common)/maps/UPlat.yaml"/>
+  <arg name="rqt" default='false'/>
+  
+
+
   
       <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/>
     

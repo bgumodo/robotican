@@ -131,10 +131,7 @@
 	  mobile_base_controller
 	  " />
      </group>
-
-     
-
-
+    
   
 	<group if="$(arg move_base)">
 		<rosparam file="$(find robotican_lizi)/navigation/config/move_base_params.yaml" command="load" ns="move_base"/>
