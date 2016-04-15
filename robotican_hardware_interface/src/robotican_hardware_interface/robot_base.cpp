@@ -37,7 +37,7 @@ namespace robotican_hardware {
         _leftMotorCmd = _nodeHandle.advertise<std_msgs::Float32>(leftMotorPub, 10);
         _rightMotorCmd = _nodeHandle.advertise<std_msgs::Float32>(rightMotorPub, 10);
         _leftMotorState = _nodeHandle.subscribe<ric_board::Motor>(leftMotorSub, 10 ,&RobotBase::leftMotorStateCallback, this);
-        _rightMotorState = _nodeHandle.subscribe<ric_board::Motor>(leftMotorSub, 10 ,&RobotBase::rightMotorStateCallback, this);
+        _rightMotorState = _nodeHandle.subscribe<ric_board::Motor>(rightMotorSub, 10 ,&RobotBase::rightMotorStateCallback, this);
 
         hardware_interface::JointStateHandle leftJointStateHandle(_leftMotorJointInfo.first,
                                                                   &_leftMotorJointInfo.second.position,
