@@ -305,7 +305,7 @@
     <collision>
       <origin
         xyz="0 0 0"
-        rpy="1.57079632679 0 0" />
+        rpy="${M_PI/2} 0 0" />
       <geometry>
     <!--  <mesh filename="package://robotican_armadillo/description/meshes/left_wheel_link.STL" /> -->
                  <cylinder  length="0.05" radius="0.1"/> 
@@ -344,7 +344,7 @@
     <visual>
       <origin
         xyz="0 0 0"
-         rpy="1.57079632679 0 0" />
+         rpy="${M_PI/2} 0 0" />
       <geometry>
     <!--  <mesh filename="package://robotican_armadillo/description/meshes/right_wheel_link.STL" /> -->
       <cylinder  length="0.05" radius="0.1"/>
@@ -358,7 +358,7 @@
     <collision>
       <origin
         xyz="0 0 0"
-        rpy="1.57079632679 0 0" />
+        rpy="${M_PI/2} 0 0" />
       <geometry>
      <!--  <mesh filename="package://robotican_armadillo/description/meshes/right_wheel_link.STL" /> -->
       <cylinder  length="0.05" radius="0.1"/> 

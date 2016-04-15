@@ -2,6 +2,7 @@
 <launch>
   
   <arg name="gazebo" default='false'/>
+  <arg name="world_name" default="worlds/empty.world"/> <!-- Note: the world_name is with respect to GAZEBO_RESOURCE_PATH environmental variable -->
   
   <arg name="controllers" default='true'/>
 
@@ -50,8 +51,8 @@
     <arg name="debug" default="false"/>
     
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
-     <!--  <arg name="world_name" value="$(find robotican_demos)/worlds/gas_station.world"/> -->
-     <arg name="world_name" value="$(find robotican_common)/worlds/UPlat.sdf"/> 
+     <arg name="world_name" value="$(arg world_name)"/>
+     <!-- <arg name="world_name" value="$(find robotican_common)/worlds/UPlat.sdf"/> -->
       <arg name="debug" value="$(arg debug)" />
       <arg name="gui" value="$(arg gui)" />
       <arg name="paused" value="$(arg paused)"/>

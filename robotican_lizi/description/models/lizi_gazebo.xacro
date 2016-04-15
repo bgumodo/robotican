@@ -124,10 +124,10 @@
 	      <ray>
 		<scan>
 		  <horizontal>
-		    <samples>667</samples>
+		    <samples>512</samples>
 		    <resolution>1</resolution>
-		    <min_angle>-1.81</min_angle>
-		    <max_angle>1.81</max_angle>
+		    <min_angle>-1.57</min_angle>
+		    <max_angle>1.57</max_angle>
 		  </horizontal>
 		</scan>
 		<range>
@@ -285,4 +285,65 @@
 	</xacro:if>
 	
 	
+<gazebo reference="right_urf_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="left_urf_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+    <gazebo reference="rear_urf_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+    <gazebo reference="base_link">
+    <material>Gazebo/Green</material>
+  </gazebo>
+    <gazebo reference="laser_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo reference="fl_wheel_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+   <gazebo reference="fr_wheel_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+    <gazebo reference="rl_wheel_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+    <gazebo reference="rr_wheel_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+  
+  <gazebo reference="fr_wheel_link">
+  <mu1>1.0</mu1>
+  <mu2>1.0</mu2>
+  <kp>1000000.0</kp> 
+  <kd>100.0</kd>
+  <minDepth>0.001</minDepth>
+  <maxVel>1.0</maxVel>
+</gazebo>
+  <gazebo reference="fl_wheel_link">
+  <mu1>1.0</mu1>
+  <mu2>1.0</mu2>
+  <kp>1000000.0</kp> 
+  <kd>100.0</kd>
+  <minDepth>0.001</minDepth>
+  <maxVel>1.0</maxVel>
+</gazebo>
+  <gazebo reference="rr_wheel_link">
+  <mu1>1.0</mu1>
+  <mu2>1.0</mu2>
+  <kp>1000000.0</kp> 
+  <kd>100.0</kd>
+  <minDepth>0.001</minDepth>
+  <maxVel>1.0</maxVel>
+</gazebo>
+  <gazebo reference="rl_wheel_link">
+  <mu1>1.0</mu1>
+  <mu2>1.0</mu2>
+  <kp>1000000.0</kp> 
+  <kd>100.0</kd>
+  <minDepth>0.001</minDepth>
+  <maxVel>1.0</maxVel>
+</gazebo>
+
 </robot>

@@ -39,15 +39,17 @@
 				<origin rpy="0 0 0" xyz="0 0 0" />
 				<geometry>
 					<mesh filename="package://robotican_lizi/description/meshes/fl_wheel_link.STL" />
+				   
 				</geometry>
 				<material name="">
 					<color rgba="0.2 0.2 0.2 1" />
 				</material>
 			</visual>
 			<collision>
-				<origin rpy="0 0 0" xyz="0 0 0" />
+				<origin rpy="${M_PI/2} 0 0" xyz="0 0 0" />
 				<geometry>
-					<mesh filename="package://robotican_lizi/description/meshes/fl_wheel_link.STL" />
+<!-- 					<mesh filename="package://robotican_lizi/description/meshes/fl_wheel_link.STL" /> -->
+				  <cylinder  length="0.02" radius="0.065"/> 
 				</geometry>
 			</collision>
 	</link>
@@ -68,9 +70,10 @@
 				</material>
 			</visual>
 			<collision>
-				<origin rpy="0 0 0" xyz="0 0 0" />
+				<origin rpy="${M_PI/2} 0 0" xyz="0 0 0" />
 				<geometry>
-					<mesh filename="package://robotican_lizi/description/meshes/fr_wheel_link.STL" />
+<!-- 					<mesh filename="package://robotican_lizi/description/meshes/fr_wheel_link.STL" /> -->
+				  <cylinder  length="0.02" radius="0.065"/>
 				</geometry>
 			</collision>
 	</link>
@@ -91,9 +94,10 @@
 				</material>
 			</visual>
 			<collision>
-				<origin rpy="0 0 0" xyz="0 0 0" />
+				<origin rpy="${M_PI/2} 0 0" xyz="0 0 0" />
 				<geometry>
-					<mesh filename="package://robotican_lizi/description/meshes/rl_wheel_link.STL" />
+<!-- 					<mesh filename="package://robotican_lizi/description/meshes/rl_wheel_link.STL" /> -->
+				  <cylinder  length="0.02" radius="0.065"/>
 				</geometry>
 			</collision>
 	</link>
@@ -114,9 +118,10 @@
 			</material>
 		</visual>
 		<collision>
-			<origin rpy="0 0 0" xyz="0 0 0" />
+			<origin rpy="${M_PI/2} 0 0" xyz="0 0 0" />
 			<geometry>
-				<mesh filename="package://robotican_lizi/description/meshes/rr_wheel_link.STL" />
+<!-- 				<mesh filename="package://robotican_lizi/description/meshes/rr_wheel_link.STL" /> -->
+			  <cylinder  length="0.02" radius="0.065"/>
 			</geometry>
 		</collision>
   	</link>
@@ -197,7 +202,7 @@
 			<inertia ixx="7.4677E-05" ixy="-1.0667E-07" ixz="-9.0925E-07" iyy="7.7824E-05" iyz="5.076E-07" izz="5.1196E-05" />
 		</inertial>
 		<visual>
-			<origin rpy="0 0 0" xyz="0 0 0" />
+			<origin rpy="0 0 ${M_PI}" xyz="0 0 0" />
 			<geometry>
 				<mesh filename="package://robotican_lizi/description/meshes/laser_link.STL" />
 			</geometry>
@@ -327,7 +332,7 @@
     		<parent link="base_link" />
     		<child link="rl_wheel_link" />
     		<axis xyz="0 1 0" />
-    		<limit effort="0" velocity="0" />
+<!--     		<limit effort="0" velocity="0" /> -->
   	</joint>
 	<joint name="rr_wheel_joint" type="continuous">
     		<origin xyz="-0.118 -0.1338 0.026" rpy="-1.2938E-16 -1.2938E-15 -6.6853E-16" />
