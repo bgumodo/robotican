@@ -11,7 +11,7 @@
     <arg name="gmapping_slam" default='false'/>
     <arg name="amcl" default='false'/>
      <arg name="have_map_file" default='false'/>
-     <arg name="map_file" default="$(find robotican_common)/maps/map.yaml"/>
+     <arg name="map_file" default="$(find robotican_common)/maps/UPlat.yaml"/>
      
   <arg name="rqt" default='false'/>
 
@@ -94,6 +94,19 @@
 		<node name="robotican_hardware_interface" pkg="robotican_hardware_interface" type="robotican_hardware_interface_node" respawn="false" output="screen" >
 		</node> 
     </group>
+     <group if="$(arg have_map_file)">
+
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+</group>
+
+  
+      <group if="$(arg amcl)">
+  <include file="$(find robotican_common)/launch/amcl_diff.launch">
+      <arg name="x" value="$(arg x)"/>
+  <arg name="y" value="$(arg y)"/>
+  <arg name="Y" value="$(arg Y)" />
+</include>
+  </group>
   
     <group if="$(arg gmapping_slam)">
       <include file="$(find robotican_common)/launch/gmapping_slam.launch"/>
@@ -121,10 +134,6 @@
 
      
 
- <group if="$(arg have_map_file)">
-
-  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
-</group>
 
   
 	<group if="$(arg move_base)">
@@ -137,14 +146,12 @@
 		 </include>
 	</group>
 
-  <group if="$(arg amcl)">
-  <include file="$(find robotican_common)/launch/amcl_diff.launch" />
-  </group>
+
   
 
 	<group if="$(arg rqt)">
 		<node pkg="rqt_gui" type="rqt_gui" name="rqt_gui" output="screen" respawn="true" />
 	</group>
-  <!--  args="-d $(find polar_scan_matcher)/demo/demo.vcg"/> -->
+
 </launch>
 

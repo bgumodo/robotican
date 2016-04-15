@@ -14,7 +14,7 @@
     <arg name="gmapping_slam" default='false'/>
     <arg name="amcl" default='false'/>
      <arg name="have_map_file" default='false'/>
-     <arg name="map_file" default="$(find robotican_common)/maps/map.yaml"/>
+     <arg name="map_file" default="$(find robotican_common)/maps/UPlat.yaml"/>
      
   <arg name="rqt" default='false'/>
   <arg name="front_camera" default='false'/>
@@ -210,20 +210,24 @@
   <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
 </group>
 
-  
+        <group if="$(arg amcl)">
+  <include file="$(find robotican_common)/launch/amcl_diff.launch">
+      <arg name="x" value="$(arg x)"/>
+  <arg name="y" value="$(arg y)"/>
+  <arg name="Y" value="$(arg Y)" />
+</include>
+  </group>
 	<group if="$(arg move_base)">
-		<rosparam file="$(find robotican_lizi)/navigation/config/move_base_params.yaml" command="load" ns="move_base"/>
-		<rosparam file="$(find robotican_lizi)/navigation/config/costmap_common_params.yaml" command="load" ns="move_base/global_costmap" />
-		<rosparam file="$(find robotican_lizi)navigation/config/costmap_common_params.yaml" command="load" ns="move_base/local_costmap" />
-		<rosparam file="$(find robotican_lizi)/navigation/config/local_costmap_params.yaml" command="load" ns="move_base/local_costmap" />
-		<rosparam file="$(find robotican_lizi)/navigation/config/global_costmap_params.yaml" command="load" ns="move_base/global_costmap"/>
+		<rosparam file="$(find robotican_armadillo)/navigation/config/move_base_params.yaml" command="load" ns="move_base"/>
+		<rosparam file="$(find robotican_armadillo)/navigation/config/costmap_common_params.yaml" command="load" ns="move_base/global_costmap" />
+		<rosparam file="$(find robotican_armadillo)navigation/config/costmap_common_params.yaml" command="load" ns="move_base/local_costmap" />
+		<rosparam file="$(find robotican_armadillo)/navigation/config/local_costmap_params.yaml" command="load" ns="move_base/local_costmap" />
+		<rosparam file="$(find robotican_armadillo)/navigation/config/global_costmap_params.yaml" command="load" ns="move_base/global_costmap"/>
 		<include file="$(find robotican_common)/launch/move_base.launch">
 		 </include>
 	</group>
 
-  <group if="$(arg amcl)">
-  <include file="$(find robotican_common)/launch/amcl_diff.launch" />
-  </group>
+
   
 	<group if="$(arg rqt)">
 		<node pkg="rqt_gui" type="rqt_gui" name="rqt_gui" output="screen" respawn="true" />
