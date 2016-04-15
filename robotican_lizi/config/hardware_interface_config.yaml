@@ -123,7 +123,7 @@ PPM_INIT: 0
 BAT_INIT: 1
 DIFF_INIT: 0
 DIFF_INIT_OP: 0
-DIFF_CLOSE_FOUR: 1
+DIFF_CLOSE_FOUR: 0
 closeLoopNum: 4
 switchNum: 0
 servoNum: 0
