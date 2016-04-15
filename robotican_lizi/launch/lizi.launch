@@ -15,6 +15,7 @@
   <arg name="gps" default='false'/>
   <arg name="urf" default='false'/>
   <arg name="imu" default='false'/>
+  <arg name="slam" default='false'/>
   
   <arg name="x" default="0.0"/>
   <arg name="y" default="0.0"/>
@@ -88,8 +89,19 @@
 		<node name="robotican_hardware_interface" pkg="robotican_hardware_interface" type="robotican_hardware_interface_node" respawn="false" output="screen" >
 		</node> 
     </group>
-    
-    
+  
+    <group if="$(arg slam)">
+		<include file="$(find robotican_hardware_interface)/launch/hector_slam.launch">
+			<arg name="tf_map_scanmatch_transform_frame_name" value="scanmatcher_frame"/>
+			<arg name="base_frame" value="base_link"/>
+			<arg name="odom_frame" value="odom"/>
+			<arg name="map_frame" value="map"/>
+			<arg default="true" name="pub_map_odom_transform"/>
+			<arg default="5" name="scan_subscriber_queue_size"/>
+			<arg name="scan_topic" value="/scan"/>
+			<arg default="2048" name="map_size"/>
+		</include>
+    </group>
 
   <group if="$(arg controllers)">
     
