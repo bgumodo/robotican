@@ -5,7 +5,7 @@
   
   <arg name="controllers" default='true'/>
 
-  <arg name="robot_localization" default='true'/>
+  <arg name="robot_localization" default='false'/>
   <arg name="navigation" default='false'/>
   
   <arg name="rqt" default='false'/>
