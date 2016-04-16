@@ -252,7 +252,7 @@
     <child
       link="head_pan_link" />
     <axis
-      xyz="0 0 -1" />
+      xyz="0 0 1" />
     <limit
       upper="3.14"
 	  lower="-3.14"
@@ -310,7 +310,7 @@
     <child
       link="head_tilt_link" />
     <axis
-      xyz="0 -1 0" />
+      xyz="0 1 0" />
     <limit
 	  upper="3.14"
 	  lower="-3.14"
