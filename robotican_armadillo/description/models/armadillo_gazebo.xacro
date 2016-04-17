@@ -695,6 +695,9 @@
   <maxVel>1.0</maxVel>
 </gazebo>
 
+<gazebo reference="base_link">
+    <material>Gazebo/Grey</material>
+  </gazebo>
 <gazebo reference="right_urf_link">
     <material>Gazebo/Black</material>
   </gazebo>
