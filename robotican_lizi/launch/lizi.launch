@@ -96,48 +96,44 @@
 		<node name="robotican_hardware_interface" pkg="robotican_hardware_interface" type="robotican_hardware_interface_node" respawn="false" output="screen" >
 		</node> 
     </group>
-     <group if="$(arg have_map_file)">
-
-  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
-</group>
+	<group if="$(arg have_map_file)">
+		<node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+	</group>
 
   
-      <group if="$(arg amcl)">
-  <include file="$(find robotican_common)/launch/amcl_diff.launch">
-      <arg name="x" value="$(arg x)"/>
-  <arg name="y" value="$(arg y)"/>
-  <arg name="Y" value="$(arg Y)" />
-</include>
-  </group>
-  
-    <group if="$(arg gmapping_slam)">
-      <include file="$(find robotican_common)/launch/gmapping_slam.launch"/>
-      </group>
+	<group if="$(arg amcl)">
+		<include file="$(find robotican_common)/launch/amcl_diff.launch">
+			<arg name="x" value="$(arg x)"/>
+			<arg name="y" value="$(arg y)"/>
+			<arg name="Y" value="$(arg Y)" />
+		</include>
+	</group>
+	<group if="$(arg gmapping_slam)">
+		<include file="$(find robotican_common)/launch/gmapping_slam.launch"/>
+	</group>
       
-    <group if="$(arg hector_slam)">
-	<include file="$(find robotican_common)/launch/hector_slam.launch"/>
+	<group if="$(arg hector_slam)">
+		<include file="$(find robotican_common)/launch/hector_slam.launch"/>
     </group>
 
-  <group if="$(arg controllers)">
+	<group if="$(arg controllers)">
     
-    <rosparam file="$(find robotican_lizi)/config/controllers.yaml" command="load"/>
-    
-    
+		<rosparam file="$(find robotican_lizi)/config/controllers.yaml" command="load"/>
     	<group if="$(arg robot_localization)">
-		<include file="$(find robotican_common)/launch/robot_localization.launch"/>
-		<param name="/mobile_base_controller/enable_odom_tf" value="false" />
-	</group>
+			<include file="$(find robotican_common)/launch/robot_localization.launch"/>
+			<param name="/mobile_base_controller/enable_odom_tf" value="false" />
+		</group>
     
-    <node name="controller_spawner_common" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="	  
-      robot_state_controller
-	  mobile_base_controller
+		<node name="controller_spawner_common" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="	  
+		robot_state_controller
+		mobile_base_controller
 	  " />
 		<group if="$(arg pan_tilt)">
 			<node name="controller_spawner_pan_tilt" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="
 			pan_tilt_controller
 			" />
 		</group>
-     </group>
+	</group>
     
   
 	<group if="$(arg move_base)">
@@ -147,7 +143,7 @@
 		<rosparam file="$(find robotican_lizi)/navigation/config/local_costmap_params.yaml" command="load" ns="move_base/local_costmap" />
 		<rosparam file="$(find robotican_lizi)/navigation/config/global_costmap_params.yaml" command="load" ns="move_base/global_costmap"/>
 		<include file="$(find robotican_common)/launch/move_base.launch">
-		 </include>
+		</include>
 	</group>
 
 
