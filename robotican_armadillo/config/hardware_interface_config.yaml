@@ -1,4 +1,4 @@
-armadilo: 'true'
+armadilo: true
 
 elevator_topic_pub: 'elevator/command'
 elevator_topic_sub: 'elevator/feedback'

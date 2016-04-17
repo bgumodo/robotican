@@ -8,10 +8,10 @@
   <arg name="robot_localization" default='true'/>
   <arg name="move_base" default='false'/>
   <arg name="hector_slam" default='false'/>
-    <arg name="gmapping_slam" default='false'/>
-    <arg name="amcl" default='false'/>
-     <arg name="have_map_file" default='false'/>
-     <arg name="map_file" default="$(find robotican_common)/maps/UPlat.yaml"/>
+  <arg name="gmapping_slam" default='false'/>
+  <arg name="amcl" default='false'/>
+  <arg name="have_map_file" default='false'/>
+  <arg name="map_file" default="$(find robotican_common)/maps/UPlat.yaml"/>
      
   <arg name="rqt" default='false'/>
 
@@ -20,7 +20,8 @@
   <arg name="gps" default='false'/>
   <arg name="urf" default='false'/>
   <arg name="imu" default='false'/>
-
+  <arg name="pan_tilt" default='false'/>
+  
   
   <arg name="x" default="0.0"/>
   <arg name="y" default="0.0"/>
@@ -41,6 +42,7 @@
 	   urf:=$(arg urf)
 	   imu:=$(arg imu)
 	   gps:=$(arg gps)
+	   pan_tilt:=$(arg pan_tilt)
 	   " /> 
 	  
     <arg name="paused" default="false"/>
@@ -126,11 +128,15 @@
 		<param name="/mobile_base_controller/enable_odom_tf" value="false" />
 	</group>
     
-    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="	  
+    <node name="controller_spawner_common" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="	  
       robot_state_controller
 	  mobile_base_controller
-	  pan_tilt_controller
 	  " />
+		<group if="$(arg pan_tilt)">
+			<node name="controller_spawner_pan_tilt" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="
+			pan_tilt_controller
+			" />
+		</group>
      </group>
     
   

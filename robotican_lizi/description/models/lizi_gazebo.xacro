@@ -282,27 +282,27 @@
 				<mechanicalReduction>1</mechanicalReduction>
 			</actuator>
 		</transmission>
-		
-		<transmission name="pan_joint_trans">
-	  <type>transmission_interface/SimpleTransmission</type>
-	  <joint name="pan_joint">
-	    <hardwareInterface>PositionJointInterface</hardwareInterface>
-	  </joint>
-	  <actuator name="pan_joint_motor">
-	    <mechanicalReduction>1</mechanicalReduction>
-	  </actuator>
-	</transmission>
-
-	<transmission name="tilt_joint_trans">
-	  <type>transmission_interface/SimpleTransmission</type>
-	  <joint name="tilt_joint">
-	    <hardwareInterface>PositionJointInterface</hardwareInterface>
-	  </joint>
-	  <actuator name="tilt_joint_motor">
-	    <mechanicalReduction>1</mechanicalReduction>
-	  </actuator>
-	</transmission>
-	
+		<xacro:if value="$(arg pan_tilt)">
+			<transmission name="pan_joint_trans">
+				<type>transmission_interface/SimpleTransmission</type>
+				<joint name="pan_joint">
+					<hardwareInterface>PositionJointInterface</hardwareInterface>
+				</joint>
+				<actuator name="pan_joint_motor">
+					<mechanicalReduction>1</mechanicalReduction>
+				</actuator>
+			</transmission>
+			
+			<transmission name="tilt_joint_trans">
+				<type>transmission_interface/SimpleTransmission</type>
+				<joint name="tilt_joint">
+					<hardwareInterface>PositionJointInterface</hardwareInterface>
+				</joint>
+				<actuator name="tilt_joint_motor">
+					<mechanicalReduction>1</mechanicalReduction>
+				</actuator>
+			</transmission>
+		</xacro:if>
 	</xacro:if>
 	
 
@@ -334,15 +334,19 @@
     <gazebo reference="rr_wheel_link">
     <material>Gazebo/FlatBlack</material>
   </gazebo>
-    <gazebo reference="camera_link">
+  <gazebo reference="camera_link">
     <material>Gazebo/FlatBlack</material>
-  </gazebo>
-   <gazebo reference="rgbd_camera_link">
-    <material>Gazebo/FlatBlack</material>
-  </gazebo>
-     <gazebo reference="pan_link">
-    <material>Gazebo/Grey</material>
-  </gazebo>
+   </gazebo>
+   
+   <xacro:if value="$(arg pan_tilt)">
+	   <gazebo reference="rgbd_camera_link">
+		<material>Gazebo/FlatBlack</material>
+	   </gazebo>
+	   <gazebo reference="pan_link">
+		<material>Gazebo/Grey</material>
+	   </gazebo>
+   </xacro:if>
+   
   <gazebo reference="fr_wheel_link">
   <mu1>1.0</mu1>
   <mu2>1.0</mu2>

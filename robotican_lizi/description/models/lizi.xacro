@@ -3,6 +3,7 @@
 	
 	<xacro:property name="M_PI" value="3.1415926535897931" />
 	<xacro:property name="lizi_color" value="0 0.517 0.26 1" />
+	<xacro:arg name="pan_tilt" default="false"/>
 	
 	<!-- Load all the links  -->
 	<link name="base_link">
@@ -218,32 +219,30 @@
 	</link>
 	
 	<link name="camera_link">
-		<inertial>
-			<origin rpy="0 0 0" xyz="-0.010925 -4.5428E-06 0.00024772" />
-			<mass value="0.033156" />
-			<inertia ixx="9.3903E-06" ixy="-1.4061E-09" ixz="5.0587E-08" iyy="5.845E-06" iyz="-2.4174E-09" izz="5.8692E-06" />
-		</inertial>
-		<visual>
-			<origin rpy="0 0 0" xyz="0 0 0" />
-			<geometry>
-				<mesh filename="package://robotican_lizi/description/meshes/camera_link.STL" />
-			</geometry>
-			<material name="">
-				<color rgba="0.2 0.2 0.2 1" />
-			</material>
-		</visual>
-		<collision>
-			<origin rpy="0 0 0" xyz="0 0 0" />
-			<geometry>
-				<mesh filename="package://robotican_lizi/description/meshes/camera_link.STL" />
-			</geometry>
-		</collision>
-	</link>
+			<inertial>
+				<origin rpy="0 0 0" xyz="-0.010925 -4.5428E-06 0.00024772" />
+				<mass value="0.033156" />
+				<inertia ixx="9.3903E-06" ixy="-1.4061E-09" ixz="5.0587E-08" iyy="5.845E-06" iyz="-2.4174E-09" izz="5.8692E-06" />
+			</inertial>
+			<visual>
+				<origin rpy="0 0 0" xyz="0 0 0" />
+				<geometry>
+					<mesh filename="package://robotican_lizi/description/meshes/camera_link.STL" />
+				</geometry>
+				<material name="">
+					<color rgba="0.2 0.2 0.2 1" />
+				</material>
+			</visual>
+			<collision>
+				<origin rpy="0 0 0" xyz="0 0 0" />
+				<geometry>
+					<mesh filename="package://robotican_lizi/description/meshes/camera_link.STL" />
+				</geometry>
+			</collision>
+		</link>
 	
-
-	
-
-		
+	<xacro:if value="$(arg pan_tilt)">
+			
 		<link name="pan_link">
 			<inertial>
 				<origin rpy="0 0 0" xyz="-0.015533 -0.010751 0.019512" />
@@ -289,32 +288,8 @@
 				</geometry>
 			</collision>
 		</link>
+	</xacro:if>
 		
-		<joint name="pan_joint" type="revolute">
-	    		<origin xyz="0.081249 0 0.092091" rpy="2.1253E-16 8.5011E-16 0" />
-	    		<parent link="base_link" />
-	    		<child link="pan_link" />
-	    		<axis xyz="0 0 1" />
-	    		    <limit
-      upper="0.610865"
-	  lower="-0.610865"
-      effort="1.11"
-      velocity="5.3" /> 
-	  	</joint>
-	
-		<joint name="tilt_joint" type="revolute">
-	    		<origin xyz="-0.0004889 -0.00041349 0.08" rpy="0 0 0" />
-	    		<parent link="pan_link" />
-	    		<child link="rgbd_camera_link" />
-	    		<axis xyz="0 1 0" />
-	    		    <limit
-      upper="0.523599"
-	  lower="-0.523599"
-      effort="1.11"
-      velocity="5.3" /> 
-	  	</joint>
-
-	
 
 	<!--         END         -->
 	<!-- Load all the joints -->
@@ -345,9 +320,24 @@
     		<axis xyz="0 1 0" />
   	</joint>
 	
-
-
-
+	<xacro:if value="$(arg pan_tilt)">
+		<joint name="pan_joint" type="revolute">
+				<origin xyz="0.081249 0 0.092091" rpy="2.1253E-16 8.5011E-16 0" />
+				<parent link="base_link" />
+				<child link="pan_link" />
+				<axis xyz="0 0 1" />
+				<limit upper="0.610865" lower="-0.610865" effort="1.11" velocity="5.3" /> 
+		</joint>
+		
+		<joint name="tilt_joint" type="revolute">
+				<origin xyz="-0.0004889 -0.00041349 0.08" rpy="0 0 0" />
+				<parent link="pan_link" />
+				<child link="rgbd_camera_link" />
+				<axis xyz="0 1 0" />
+				<limit upper="0.523599" lower="-0.523599" effort="1.11" velocity="5.3" /> 
+		</joint>
+	</xacro:if>
+	
 	<joint name="right_urf_joint" type="fixed">
     		<origin xyz="-0.0074577 -0.11 0.07895" rpy="0 0 ${-M_PI/2}" />
     		<parent link="base_link" />
