@@ -17,10 +17,10 @@ int main(int argc, char **argv) {
     ros::NodeHandle nodeHandle;
     bool isLizi = false, isArmadilo = false, isKomodo = false;
     std::string robotType;                                      /* determent the robot type, e.g default. */
-    ros::param::param("komodo", isKomodo, false);
-    ros::param::param("armadilo", isArmadilo, false);
-    ros::param::param("lizi", isLizi, false);
-    ros::param::param("robot_type", robotType, "default");
+    ros::param::param<bool>("komodo", isKomodo, false);
+    ros::param::param<bool>("armadilo", isArmadilo, false);
+    ros::param::param<bool>("lizi", isLizi, false);
+    ros::param::param<std::string>("robot_type", robotType, "default");
     ros::Duration(1.0).sleep();
 
     if(isLizi && isArmadilo || isLizi && isKomodo || isArmadilo && isKomodo) {

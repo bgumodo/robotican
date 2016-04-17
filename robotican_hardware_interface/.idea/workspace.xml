@@ -124,8 +124,8 @@
       <file leaf-file-name="robotican_hardware_interface_node.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/robotican_hardware_interface_node.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.8701298">
-              <caret line="76" column="9" selection-start-line="76" selection-start-column="9" selection-end-line="76" selection-end-column="9" />
+            <state vertical-scroll-proportion="0.5551948">
+              <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
               <folding>
                 <element signature="e#38#58#0" expanded="true" />
               </folding>
@@ -1186,8 +1186,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/robotican_hardware_interface_node.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.8701298">
-          <caret line="76" column="9" selection-start-line="76" selection-start-column="9" selection-end-line="76" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.5551948">
+          <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
           <folding>
             <element signature="e#38#58#0" expanded="true" />
           </folding>
