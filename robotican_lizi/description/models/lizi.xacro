@@ -2,7 +2,6 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="lizi">
 	
 	<xacro:property name="M_PI" value="3.1415926535897931" />
-	<xacro:arg name="have_pan_tilt" default="false"/>
 	<xacro:property name="lizi_color" value="0 0.517 0.26 1" />
 	
 	<!-- Load all the links  -->
@@ -244,10 +243,8 @@
 
 	
 
-	
-	<xacro:if value="$(arg have_pan_tilt)">
 		
-		<link name="asus_pan_link">
+		<link name="pan_link">
 			<inertial>
 				<origin rpy="0 0 0" xyz="-0.015533 -0.010751 0.019512" />
 				<mass value="0.016162" />
@@ -256,7 +253,7 @@
 			<visual>
 				<origin rpy="0 0 0" xyz="0 0 0" />
 				<geometry>
-					<mesh filename="package://robotican_lizi/description/meshes/asus_pan_link.STL" />
+					<mesh filename="package://robotican_lizi/description/meshes/pan_link.STL" />
 				</geometry>
 				<material name="">
 					<color rgba="0.2 0.2 0.2 1" />
@@ -265,21 +262,21 @@
 			<collision>
 				<origin rpy="0 0 0" xyz="0 0 0" />
 				<geometry>
-					<mesh filename="package://robotican_lizi/description/meshes/asus_pan_link.STL" />
+					<mesh filename="package://robotican_lizi/description/meshes/pan_link.STL" />
 				</geometry>
 			</collision>
 		</link>
 		
-		<link name="asus_camera_link">
+		<link name="rgbd_camera_link">
 			<inertial>
 				<origin rpy="0 0 0" xyz="-0.00010275 -0.00025849 0.00032822" />
 				<mass value="0.14689" />
 				<inertia ixx="0.00037709" ixy="-2.2879E-08" ixz="1.0241E-05" iyy="0.00038351" iyz="1.2981E-08" izz="2.2432E-05" />
 			</inertial>
 			<visual>
-				<origin rpy="1.57 0 0" xyz="0 0 0" />
+				<origin rpy="${M_PI/2} 0 0" xyz="0 0 0" />
 				<geometry>
-					<mesh filename="package://robotican_lizi/description/meshes/asus_camera_link.STL" />
+					<mesh filename="package://robotican_lizi/description/meshes/rgbd_camera_link.STL" />
 				</geometry>
 				<material name="">
 					<color rgba="0.2 0.2 0.2 1" />
@@ -288,34 +285,35 @@
 			<collision>
 				<origin rpy="0 0 0" xyz="0 0 0" />
 				<geometry>
-					<mesh filename="package://robotican_lizi/description/meshes/asus_camera_link.STL" />
+					<mesh filename="package://robotican_lizi/description/meshes/rgbd_camera_link.STL" />
 				</geometry>
 			</collision>
 		</link>
 		
-		<link name="asus_pan_link">
-			<inertial>
-				<origin rpy="0 0 0" xyz="-0.015533 -0.010751 0.019512" />
-				<mass value="0.016162" />
-				<inertia ixx="5.2781E-06" ixy="1.178E-06" ixz="1.1286E-06" iyy="6.0052E-06" iyz="7.9421E-07" izz="4.7257E-06" />
-			</inertial>
-			<visual>
-				<origin rpy="0 0 0" xyz="0 0 0" />
-				<geometry>
-					<mesh filename="package://robotican_lizi/description/meshes/asus_pan_link.STL" />
-				</geometry>
-				<material name="">
-					<color rgba="0.2 0.2 0.2 1" />
-				</material>
-			</visual>
-			<collision>
-				<origin rpy="0 0 0" xyz="0 0 0" />
-				<geometry>
-					<mesh filename="package://robotican_lizi/description/meshes/asus_pan_link.STL" />
-				</geometry>
-			</collision>
-		</link>
-	</xacro:if>
+		<joint name="pan_joint" type="revolute">
+	    		<origin xyz="0.081249 0 0.092091" rpy="2.1253E-16 8.5011E-16 0" />
+	    		<parent link="base_link" />
+	    		<child link="pan_link" />
+	    		<axis xyz="0 0 1" />
+	    		    <limit
+      upper="0.610865"
+	  lower="-0.610865"
+      effort="1.11"
+      velocity="5.3" /> 
+	  	</joint>
+	
+		<joint name="tilt_joint" type="revolute">
+	    		<origin xyz="-0.0004889 -0.00041349 0.08" rpy="0 0 0" />
+	    		<parent link="pan_link" />
+	    		<child link="rgbd_camera_link" />
+	    		<axis xyz="0 1 0" />
+	    		    <limit
+      upper="0.523599"
+	  lower="-0.523599"
+      effort="1.11"
+      velocity="5.3" /> 
+	  	</joint>
+
 	
 
 	<!--         END         -->
@@ -332,7 +330,7 @@
     		<parent link="base_link" />
     		<child link="rl_wheel_link" />
     		<axis xyz="0 1 0" />
-<!--     		<limit effort="0" velocity="0" /> -->
+
   	</joint>
 	<joint name="rr_wheel_joint" type="continuous">
     		<origin xyz="-0.118 -0.1338 0.026" rpy="-1.2938E-16 -1.2938E-15 -6.6853E-16" />
@@ -347,23 +345,9 @@
     		<axis xyz="0 1 0" />
   	</joint>
 	
-	<xacro:if value="$(arg have_pan_tilt)">
-		<joint name="asus_pan_joint" type="fixed">
-	    		<origin xyz="0.081249 0 0.092091" rpy="2.1253E-16 8.5011E-16 0" />
-	    		<parent link="base_link" />
-	    		<child link="asus_pan_link" />
-	    		<axis xyz="0 0 -1" />
-	    		<limit effort="0" velocity="0" />
-	  	</joint>
-	
-		<joint name="asus_tilt_joint" type="fixed">
-	    		<origin xyz="-0.0004889 -0.00041349 0.08" rpy="0 0 0" />
-	    		<parent link="asus_pan_link" />
-	    		<child link="asus_camera_link" />
-	    		<axis xyz="0 1 0" />
-	    		<limit effort="0" velocity="0" />
-	  	</joint>
-	</xacro:if>
+
+
+
 	<joint name="right_urf_joint" type="fixed">
     		<origin xyz="-0.0074577 -0.11 0.07895" rpy="0 0 ${-M_PI/2}" />
     		<parent link="base_link" />

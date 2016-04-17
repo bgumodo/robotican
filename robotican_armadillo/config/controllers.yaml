@@ -51,7 +51,7 @@ elevator_controller:
   type: position_controllers/JointPositionController
   joint: base_elevator_joint
   
-pan_tilt_position_controller:
+pan_tilt_controller:
     type: position_controllers/JointGroupPositionController
     joints: ['head_pan_joint', 'head_tilt_joint']
     publish_rate: 20
