@@ -52,7 +52,7 @@ namespace robotican_hardware {
                 !_nodeHandle.getParam("left_finger_joint", leftFingerJointName) ||
                 !_nodeHandle.getParam("right_finger_topic_pub", rightFingerPubTopic) ||
                 !_nodeHandle.getParam("right_finger_topic_sub", rightFingerSubTopic) ||
-                !_nodeHandle.getParam("right_finger_joint", rightFingerJointName)) {
+                !_nodeHandle.getParam("right_finger_joint", rightFingerJointName)) {                        /* parameters that must be instalize for the robot to work*/
             ros::shutdown();
         }
 #endif
@@ -64,8 +64,8 @@ namespace robotican_hardware {
         _rightFingerCmd = _nodeHandle.advertise<std_msgs::Float64>(rightFingerPubTopic, 10);
 
         _elevetorState = _nodeHandle.subscribe<std_msgs::Float32>(elevatorSubTopic, 10, &ArmadilloRobot::elevatorCallback, this);
-        _panState = _nodeHandle.subscribe<std_msgs::Float32>(elevatorSubTopic, 10, &ArmadilloRobot::panCallback, this);
-        _tiltState = _nodeHandle.subscribe<std_msgs::Float32>(elevatorSubTopic, 10, &ArmadilloRobot::tiltCallback, this);
+        _panState = _nodeHandle.subscribe<std_msgs::Float32>(panSubTopic, 10, &ArmadilloRobot::panCallback, this);
+        _tiltState = _nodeHandle.subscribe<std_msgs::Float32>(tiltSubTopic, 10, &ArmadilloRobot::tiltCallback, this);
 
         _leftFingerState = _nodeHandle.subscribe<dynamixel_msgs::JointState>(leftFingerSubTopic, 10, &ArmadilloRobot::leftFingerCallback, this);
         _rightFingerState = _nodeHandle.subscribe<dynamixel_msgs::JointState>(rightFingerSubTopic, 10, &ArmadilloRobot::rightFingerCallback, this);

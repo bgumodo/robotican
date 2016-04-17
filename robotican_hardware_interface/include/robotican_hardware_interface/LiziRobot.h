@@ -14,14 +14,26 @@ namespace robotican_hardware {
     private:
         std::pair<std::string, JointInfo_t> _rearLeftMotorJointInfo;
         std::pair<std::string, JointInfo_t> _rearRightMotorJointInfo;
-        ros::Publisher _rearLeftMotorCmd;
+        std::pair<std::string, JointInfo_t> _panInfo;
+        std::pair<std::string, JointInfo_t> _tiltInfo;
 
+        ros::Publisher _rearLeftMotorCmd;
         ros::Publisher _rearRightMotorCmd;
+        ros::Publisher _panCmd;
+        ros::Publisher _tiltCmd;
+
         ros::Subscriber _rearLeftMotorState;
         ros::Subscriber _rearRightMotorState;
+        ros::Subscriber _panState;
+        ros::Subscriber _tiltState;
+
         void rearRightMotorStateCallback(const ric_board::Motor::ConstPtr &msg);
 
         void rearLeftMotorStateCallback(const ric_board::Motor::ConstPtr &msg);
+
+        void panCallback(const std_msgs::Float32::ConstPtr &msg);
+
+        void tiltCallback(const std_msgs::Float32::ConstPtr &msg);
 
     protected:
         hardware_interface::PositionJointInterface _positionJointInterface;
