@@ -6,6 +6,7 @@
 #include <robotican_hardware_interface/robot_base.h>
 #include <robotican_hardware_interface/armadillo.h>
 #include <robotican_hardware_interface/LiziRobot.h>
+#include <robotican_hardware_interface/komodo.h>
 #include <robotican_hardware_interface/ros_utils.h>
 #include <controller_manager/controller_manager.h>
 
@@ -55,17 +56,17 @@ int main(int argc, char **argv) {
         }
     }
     else if(isKomodo) {
-//        robotican_hardware::ArmadilloRobot robot;
-//        robot.registerInterfaces();
-//        controller_manager::ControllerManager controllerManager(&robot);
-//        ros::AsyncSpinner asyncSpinner(1);
-//        asyncSpinner.start();
-//        while(ros::ok()) {
-//            robot.read();
-//            controllerManager.update(robot.getTime(), robot.getPeriod());
-//            robot.write();
-//
-//        }
+        robotican_hardware::KomodoRobot robot;
+        robot.registerInterfaces();
+        controller_manager::ControllerManager controllerManager(&robot);
+        ros::AsyncSpinner asyncSpinner(1);
+        asyncSpinner.start();
+        while(ros::ok()) {
+            robot.read();
+            controllerManager.update(robot.getTime(), robot.getPeriod());
+            robot.write();
+
+        }
     }
     return 0;
 }

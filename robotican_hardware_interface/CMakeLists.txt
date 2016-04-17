@@ -167,6 +167,8 @@ include_directories(include
          src/${PROJECT_NAME}/armadillo.cpp
          include/${PROJECT_NAME}/LiziRobot.h
          src/${PROJECT_NAME}/LiziRobot.cpp
+         include/${PROJECT_NAME}/komodo.h
+         src/${PROJECT_NAME}/komodo.cpp
  )
 
 add_library(robotican_hardware_interface_sim
