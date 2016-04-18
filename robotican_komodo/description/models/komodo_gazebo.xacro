@@ -10,6 +10,55 @@
 	<xacro:arg name="lidar" default="false"/>
 	<xacro:arg name="gps" default="false"/>	
 	<xacro:arg name="front_camera" default="false"/>
+	<xacro:arg name="asus" default="false"/>
+	  <xacro:arg name="asus_hz" default="20.0"/>
+	
+	  <!-- asus xiton pto live -->
+  <xacro:if value="$(arg asus)">
+     
+	    
+ <gazebo reference="asus_rgb_frame">        
+      <sensor type="depth" name="asus">
+        <always_on>true</always_on>
+        <update_rate>$(arg asus_hz)</update_rate>
+      <camera>
+        <horizontal_fov>${179.0 * M_PI/180.0}</horizontal_fov>
+        <image>
+          <format>R8G8B8</format>
+          <height>640</height>
+          <width>480</width>
+        </image>
+        <clip>
+          <near>0.5</near>
+          <far>9</far>
+        </clip>
+      </camera>
+        <plugin name="asus_camera_controller" filename="libgazebo_ros_openni_kinect.so">
+          <cameraName>asus_camera</cameraName>
+          <alwaysOn>true</alwaysOn>
+          <updateRate>$(arg asus_hz)</updateRate>
+            <imageTopicName>rgb/image_raw</imageTopicName>
+            <cameraInfoTopicName>rgb/camera_info</cameraInfoTopicName>
+            <depthImageTopicName>depth/image_raw</depthImageTopicName>
+            <depthImageCameraInfoTopicName>depth/camera_info</depthImageCameraInfoTopicName>
+            <pointCloudTopicName>depth/points</pointCloudTopicName>  
+          <frameName>asus_depth_optical_frame</frameName>
+          <baseline>0.1</baseline>
+    <distortion_k1>-0.02</distortion_k1>
+            <distortion_k2>0.04</distortion_k2>
+            <distortion_k3>-0.06</distortion_k3>
+            <distortion_t1>0.0</distortion_t1>
+            <distortion_t2>0.0</distortion_t2>
+       	  <pointCloudCutoff>0.4</pointCloudCutoff>
+	  <pointCloudCutoffMax>8.0</pointCloudCutoffMax> 
+        </plugin>
+      </sensor>
+    </gazebo>
+    
+	
+	</xacro:if>
+	
+	
 	
 	<!-- Sonars -->
 	<xacro:if value="$(arg urf)">
@@ -123,7 +172,7 @@
 	  <gazebo reference="laser_link">
 	    <sensor type="ray" name="head_hokuyo_sensor">
 	      <pose>0 0 0 0 0 0</pose>
-	      <visualize>true</visualize>
+	      <visualize>false</visualize>
 	      <update_rate>40</update_rate>
 	      <ray>
 		<scan>

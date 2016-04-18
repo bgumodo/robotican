@@ -6,7 +6,7 @@
 	<arg name="gps" default='false'/>
 	<arg name="urf" default='false'/>
 	<arg name="imu" default='false'/>
-	<arg name="dept" default='false'/>
+	<arg name="asus" default='false'/>
   
 
 	<arg name="gazebo" default='false'/>
@@ -43,6 +43,7 @@
 		   urf:=$(arg urf)
 		   imu:=$(arg imu)
 		   gps:=$(arg gps)
+	           asus:=$(arg asus)
 		   " /> 
 		  
 		<arg name="paused" default="false"/>
@@ -87,7 +88,7 @@
 			</include>
 		</group>
 		
-		<group if="$(arg dept)">
+		<group if="$(arg asus)">
 			<include file="$(find robotican_hardware_interface)/launch/openni_cam.launch">
 				<arg name="camera_name" value="asus_camera" />
 			</include>
