@@ -8,6 +8,8 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+   move_base_msgs
+   actionlib
 )
 
 ## System dependencies are found with CMake's conventions
@@ -116,7 +118,8 @@ catkin_package(
 include_directories(
   ${catkin_INCLUDE_DIRS}
 )
-
+add_executable(simple_navigation_goals src/simple_navigation_goals.cpp)
+target_link_libraries(simple_navigation_goals ${catkin_LIBRARIES})
 ## Declare a C++ library
 # add_library(robotican_demos
 #   src/${PROJECT_NAME}/robotican_demos.cpp
