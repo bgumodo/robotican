@@ -297,16 +297,27 @@
 	<gazebo reference="rear_urf_link">
 		<material>Gazebo/Black</material>
 	</gazebo>
-<!--
+
 	<gazebo reference="base_link">
-		<material>Gazebo/White</material>
+		<material>Gazebo/Grey</material>
 	</gazebo>
--->
-<!--
+	<gazebo reference="sensors_unit_link">
+		<material>Gazebo/Grey</material>
+	</gazebo>
+
 	<gazebo reference="laser_link">
-		<material>Gazebo/FlatBlack</material>
+		<material>Gazebo/Black</material>
 	</gazebo>
--->
+	
+	<gazebo reference="asus_camera_link">
+		<material>Gazebo/Black</material>
+	</gazebo>
+	
+	<gazebo reference="front_camera_link">
+		<material>Gazebo/Black</material>
+	</gazebo>
+	
+
 	<gazebo reference="fl_wheel_link">
 		<material>Gazebo/FlatBlack</material>
 	</gazebo>

@@ -9,7 +9,7 @@
 			<inertia ixx="0.00039928218741962" ixy="-5.34870767194659E-07" ixz="-1.37242873517293E-08" iyy="2.36182089627434E-05" iyz="-8.67618422000016E-09" izz="0.000406064964123578" />
 		</inertial>
 		<visual>
-			<origin rpy="0 0 0" xyz="0 0 0" />
+			<origin rpy="0 0 0" xyz="0.005 0 0" />
 			<geometry>
 				<mesh filename="package://robotican_komodo/description/meshes/asus_camera_link.STL" />
 			</geometry>
@@ -32,7 +32,7 @@
 			<inertia ixx="6.28790547336199E-06" ixy="-2.06834494924545E-09" ixz="1.17994816105049E-09" iyy="6.08020816375924E-06" iyz="3.61787794067701E-08" izz="9.95214453956241E-06" />
 		</inertial>
 		<visual>
-			<origin rpy="-1.57079632649567 1.57079632649567 -1.57079632649567" xyz="0 0 0" />
+			<origin rpy="-1.57079632649567 1.57079632649567 -1.57079632649567" xyz="0.005 0 0" />
 			<geometry>
 				<mesh filename="package://robotican_komodo/description/meshes/front_camera_link.STL" />
 			</geometry>
@@ -57,7 +57,7 @@
 		<visual>
 			<origin rpy="0 0 0" xyz="0 0 0" />
 			<geometry>
-				<mesh filename="package://robotican_komodo/description/meshes/col_base_link.STL" />
+				<mesh filename="package://robotican_komodo/description/meshes/base_link.STL" />
 			</geometry>
 			<material name="">
 				<color rgba="0.52941176470588 0.52941176470588 0.52941176470588 1" /> 
@@ -66,7 +66,7 @@
 		<collision>
 			<origin rpy="0 0 0" xyz="-0.065 0 0" />
 			<geometry>
-				<mesh filename="package://robotican_komodo/description/meshes/col_base_link.STL" />
+				<mesh filename="package://robotican_komodo/description/meshes/base_link.STL" />
 			</geometry>
 		</collision>
   	</link>
@@ -87,9 +87,9 @@
 			</material>
 		</visual>
 		<collision>
-			<origin rpy="0 1.5 0" xyz="0 0 0" />
+			<origin rpy="0 ${M_PI/2} 0" xyz="0 0 0" />
 			<geometry>
-				<cylinder length="0.05" radius="0.1" />
+				<cylinder length="0.03" radius="0.1311" />
 			</geometry>
 		</collision>
   	</link>
@@ -110,9 +110,9 @@
 			</material>
 		</visual>
 		<collision>
-			<origin rpy="0 1.5 0" xyz="0 0 0" />
+			<origin rpy="0 ${M_PI/2} 0" xyz="0 0 0" />
 			<geometry>
-				<cylinder length="0.05" radius="0.1" />
+				<cylinder length="0.03" radius="0.1311" />
 			</geometry>
 		</collision>
   	</link>
@@ -132,10 +132,10 @@
 				<color rgba="0.15 0.15 0.15 1" />
 			</material>
 		</visual>
-   	 	<collision>
-			<origin rpy="0 1.5 0" xyz="0 0 0" />
-			<geometry>       
-				<cylinder length="0.05" radius="0.1" />
+		<collision>
+			<origin rpy="0 ${M_PI/2} 0" xyz="0 0 0" />
+			<geometry>
+				<cylinder length="0.03" radius="0.1311" />
 			</geometry>
 		</collision>
   	</link>
@@ -156,9 +156,9 @@
 			</material>
 		</visual>
 		<collision>
-			<origin rpy="0 1.5 0" xyz="0 0 0" />
+			<origin rpy="0 ${M_PI/2} 0" xyz="0 0 0" />
 			<geometry>
-				<cylinder length="0.05" radius="0.1" />
+				<cylinder length="0.03" radius="0.1311" />
 			</geometry>
 		</collision>
   	</link>
@@ -170,7 +170,7 @@
 			<inertia ixx="7.01753800311366E-05" ixy="-5.24162580339348E-08" ixz="1.6420597550453E-07" iyy="7.0476938858621E-05" iyz="1.92324838956078E-07" izz="4.61464878783427E-05" />
 		</inertial>
 		<visual>
-			<origin rpy="0 0 0" xyz="0 0 0" />
+			<origin rpy="0 0 ${M_PI}" xyz="0.003 0 0" />
 			<geometry>
 				<mesh filename="package://robotican_komodo/description/meshes/laser_link.STL" />
 			</geometry>
