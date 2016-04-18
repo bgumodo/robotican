@@ -9,7 +9,7 @@
 			<inertia ixx="0.00039928218741962" ixy="-5.34870767194659E-07" ixz="-1.37242873517293E-08" iyy="2.36182089627434E-05" iyz="-8.67618422000016E-09" izz="0.000406064964123578" />
 		</inertial>
 		<visual>
-			<origin rpy="0 0 0" xyz="0.005 0 0" />
+			<origin rpy="0 0 0" xyz="0.00 0 0" />
 			<geometry>
 				<mesh filename="package://robotican_komodo/description/meshes/asus_camera_link.STL" />
 			</geometry>
@@ -30,10 +30,10 @@
 	  <joint name="asus_rgb_joint" type="fixed">
       <origin xyz="0 0.022 0" rpy="0 0 0"/>
       <parent link="asus_camera_link"/>
-      <child link="asus_rgb_frame" />
+      <child link="asus_camera_rgb_frame" />
     </joint>
     
-    <link name="asus_rgb_frame">
+    <link name="asus_camera_rgb_frame">
       <inertial>
 	<mass value="0.001" />
 	<origin xyz="0 0 0" />
@@ -42,13 +42,13 @@
 	  izz="0.0001" />
 	</inertial>
       </link>   
-      <joint name="asus_rgb_optical_joint" type="fixed">
+      <joint name="asus_camera_rgb_optical_joint" type="fixed">
 	<origin xyz="0 0 0" rpy="${-M_PI/2} 0 ${-M_PI/2}" />
-	<parent link="asus_rgb_frame" />
-	<child link="asus_rgb_optical_frame" />
+	<parent link="asus_camera_rgb_frame" />
+	<child link="asus_camera_rgb_optical_frame" />
       </joint>
       
-      <link name="asus_rgb_optical_frame">
+      <link name="asus_camera_rgb_optical_frame">
 	<inertial>
 	  <mass value="0.001" />
 	  <origin xyz="0 0 0" />
@@ -59,13 +59,13 @@
 	</link>
 	
 	
-	<joint name="asus_depth_joint" type="fixed">
+	<joint name="asus_camera_depth_joint" type="fixed">
 	  <origin xyz="0 0.049 0" rpy="0 0 0" />
-	  <parent link="asus_rgb_frame" />
-	  <child link="asus_depth_frame" />
+	  <parent link="asus_camera_link" />
+	  <child link="asus_camera_depth_frame" />
 	</joint>
 	
-	<link name="asus_depth_frame">
+	<link name="asus_camera_depth_frame">
 	  <inertial>
 	    <mass value="0.001" />
 	    <origin xyz="0 0 0" />
@@ -75,12 +75,12 @@
 	    </inertial>
 	  </link>
 	  
-	  <joint name="asus_depth_optical_joint" type="fixed">
+	  <joint name="asus_camera_depth_optical_joint" type="fixed">
 	    <origin xyz="0 0 0" rpy="${-M_PI/2} 0 ${-M_PI/2}" />
-	    <parent link="asus_depth_frame" />
-	    <child link="asus_depth_optical_frame" />
+	    <parent link="asus_camera_depth_frame" />
+	    <child link="asus_camera_depth_optical_frame" />
 	  </joint>
-	  <link name="asus_depth_optical_frame">
+	  <link name="asus_camera_depth_optical_frame">
 	    <inertial>
 	      <mass value="0.001" />
 	      <origin xyz="0 0 0" />
