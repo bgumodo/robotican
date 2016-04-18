@@ -17,6 +17,7 @@ URF2/name: right_urf
 URF2/frameId: Right_URF_link
 URF2/type: 10
 URF2/port: 3
+
 closeLoop0/publishHz: 20
 closeLoop0/name: left_motor
 closeLoop0/LPFAlpha: 0.7
@@ -26,7 +27,7 @@ closeLoop0/channel: 0
 closeLoop0/port: 2
 closeLoop0/PIDHz: 1000
 closeLoop0/kP: 15.0
-closeLoop0/kI: 20.0
+closeLoop0/kI: 50.0
 closeLoop0/kD: 0
 closeLoop0/limit: 1.0
 closeLoop0/maxSpeed: 16.0
@@ -36,6 +37,7 @@ closeLoop0/motorType: 1
 closeLoop0/encoderType: 1
 closeLoop0/direction: 1
 closeLoop0/directionE: -1
+
 closeLoop1/publishHz: 20
 closeLoop1/name: right_motor
 closeLoop1/LPFAlpha: 0.7
@@ -44,8 +46,8 @@ closeLoop1/driverAddress: 999
 closeLoop1/channel: 1
 closeLoop1/port: 1
 closeLoop1/PIDHz: 1000
-closeLoop1/kP: 15.0
-closeLoop1/kI: 20.0
+closeLoop1/kP: 10.0
+closeLoop1/kI: 30.0
 closeLoop1/kD: 0
 closeLoop1/limit: 1.0
 closeLoop1/maxSpeed: 16.0
@@ -55,6 +57,7 @@ closeLoop1/motorType: 1
 closeLoop1/encoderType: 1
 closeLoop1/direction: -1
 closeLoop1/directionE: 1
+
 IMU/publishHz: 20
 IMU/name: imu
 IMU/frameId: RiC_Frame
@@ -69,9 +72,9 @@ GPS/baudrate: 9600
 Battery/name: battery_monitor
 Battery/pubHz: 10
 Battery/voltageDividerRatio: 6
-emergency_switch4/pin: 27
-emergency_switch4/state: 2
-emergency_switch4/name: emergency_switch
+emergency_switch0/pin: 27
+emergency_switch0/state: 2
+emergency_switch0/name: emergency_switch
 IMU_INIT: 1
 GPS_INIT: 1
 PPM_INIT: 0
@@ -85,7 +88,7 @@ servoNum: 0
 relayNum: 0
 URFNum: 3
 openLoopNum: 0
-emergencySwitchNum: 5
+emergencySwitchNum: 1
 
 left_motor_pub: 'left_motor/command'
 left_motor_sub: 'left_motor/feedback'
