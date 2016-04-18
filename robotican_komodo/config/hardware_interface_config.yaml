@@ -1,4 +1,5 @@
 komodo: true
+
 CON_PORT: RiCBoard
 FILE_NAME: komodo_test
 URF0/publishHz: 20
@@ -85,3 +86,13 @@ relayNum: 0
 URFNum: 3
 openLoopNum: 0
 emergencySwitchNum: 5
+
+left_motor_pub: 'left_motor/command'
+left_motor_sub: 'left_motor/feedback'
+right_motor_pub: 'right_motor/command'
+right_motor_sub: 'right_motor/feedback'
+left_motor_joint_name: 'fl_wheel_joint'
+right_motor_joint_name: 'fr_wheel_joint'
+
+rear_left_motor_joint_name: 'rl_wheel_joint'
+rear_right_motor_joint_name: 'rr_wheel_joint'
