@@ -1,17 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="komodo">
-
-	<!-- Load all the links  -->
-<!--
-	<xacro:include filename="$(find robotican_description)/komodo/komodo_links/komodo_rover.xacro" />
-	<xacro:include filename="$(find robotican_description)/komodo/komodo_links/Front_Camera_link.xacro" />
-	<xacro:include filename="$(find robotican_description)/komodo/komodo_links/Asus_Camera_link.xacro" />
-	<xacro:include filename="$(find robotican_description)/komodo/komodo_links/Laser_link.xacro" />
-	<xacro:include filename="$(find robotican_description)/komodo/komodo_links/Left_URF_link.xacro" />
-	<xacro:include filename="$(find robotican_description)/komodo/komodo_links/Rear_URF_link.xacro" />
-	<xacro:include filename="$(find robotican_description)/komodo/komodo_links/Right_URF_link.xacro" />
-	<xacro:include filename="$(find robotican_description)/komodo/komodo_links/sensors_unit_link.xacro" />
--->
+	<xacro:property name="M_PI" value="3.1415926535897931" />
 	
 	<link name="asus_camera_link">
 		<inertial>

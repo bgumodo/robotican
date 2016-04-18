@@ -39,13 +39,10 @@
 		<param name="robot_description" command="$(find xacro)/xacro.py '$(find robotican_komodo)/description/models/komodo_gazebo.xacro' 
 		   controllers:=$(arg controllers)
 		   front_camera:=$(arg front_camera)
-		   rear_camera:=$(arg rear_camera)
 		   lidar:=$(arg lidar)
 		   urf:=$(arg urf)
 		   imu:=$(arg imu)
 		   gps:=$(arg gps)
-		   kinect2:=$(arg kinect2)
-		   f200:=$(arg f200)
 		   " /> 
 		  
 		<arg name="paused" default="false"/>
