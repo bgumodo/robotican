@@ -38,7 +38,7 @@
     
       
   <group if="$(arg gazebo)">
-    
+    <env name="GAZEBO_MODEL_PATH" value="$(find robotican_common)/models:$(optenv GAZEBO_MODEL_PATH)"/>
     <param name="robot_description" command="$(find xacro)/xacro.py '$(find robotican_armadillo)/description/models/armadillo_gazebo.xacro' 
 	   controllers:=$(arg controllers)
 	   front_camera:=$(arg front_camera)
@@ -197,6 +197,16 @@
 	  " />
      </group>
 
+	<group if="$(arg move_base)">
+		<rosparam file="$(find robotican_armadillo)/navigation/config/move_base_params.yaml" command="load" ns="move_base"/>
+		<rosparam file="$(find robotican_armadillo)/navigation/config/costmap_common_params.yaml" command="load" ns="move_base/global_costmap" />
+		<rosparam file="$(find robotican_armadillo)navigation/config/costmap_common_params.yaml" command="load" ns="move_base/local_costmap" />
+		<rosparam file="$(find robotican_armadillo)/navigation/config/local_costmap_params.yaml" command="load" ns="move_base/local_costmap" />
+		<rosparam file="$(find robotican_armadillo)/navigation/config/global_costmap_params.yaml" command="load" ns="move_base/global_costmap"/>
+		<include file="$(find robotican_common)/launch/move_base.launch">
+		 </include>
+	</group>
+
     <group if="$(arg gmapping_slam)">
       <include file="$(find robotican_common)/launch/gmapping_slam.launch"/>
       </group>
@@ -222,15 +232,7 @@
   <arg name="Y" value="$(arg Y)" />
 </include>
   </group>
-	<group if="$(arg move_base)">
-		<rosparam file="$(find robotican_armadillo)/navigation/config/move_base_params.yaml" command="load" ns="move_base"/>
-		<rosparam file="$(find robotican_armadillo)/navigation/config/costmap_common_params.yaml" command="load" ns="move_base/global_costmap" />
-		<rosparam file="$(find robotican_armadillo)navigation/config/costmap_common_params.yaml" command="load" ns="move_base/local_costmap" />
-		<rosparam file="$(find robotican_armadillo)/navigation/config/local_costmap_params.yaml" command="load" ns="move_base/local_costmap" />
-		<rosparam file="$(find robotican_armadillo)/navigation/config/global_costmap_params.yaml" command="load" ns="move_base/global_costmap"/>
-		<include file="$(find robotican_common)/launch/move_base.launch">
-		 </include>
-	</group>
+
 
 
   
