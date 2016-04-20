@@ -35,10 +35,10 @@ if [ $? == 0 ]; then
 	#Changing to user.
 	chown -R $(logname):$(logname) ~/catkin_ws
 	
-	echo "Do you want to install f200/r200 camera package [yes/no]: "
+	echo "Do you want to install f200/r200 camera package [y/n]: "
 	read asf
 	
-	if [ $asf == "yes" ]; then
+	if [ $asf == "y" ]; then
 		cd ~/catkin_ws/src/robotican/robotican/installations/third_pkg_setup
 		./f200.sh
 	fi
@@ -46,12 +46,12 @@ if [ $? == 0 ]; then
 	chown -R $(logname):$(logname) ~/catkin_ws
 	
 	#Do this in the end of the installation.
-	if [ $asf == "yes" ]; then
+	if [ $asf == "y" ]; then
 		echo -e "\e[31mWarning: To complete f200/r200 installation the PC need to reboot."
-		echo -en "\e[39mReboot the PC [yes/no]:"
+		echo -en "\e[39mReboot the PC [y/n]:"
 		read as
 
-		if [ $as == "yes" ]; then
+		if [ $as == "y" ]; then
 			sudo reboot
 		fi
 	fi
