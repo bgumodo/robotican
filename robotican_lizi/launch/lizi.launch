@@ -34,7 +34,7 @@
     
       
   <group if="$(arg gazebo)">
-    
+    <env name="GAZEBO_MODEL_PATH" value="$(find robotican_common)/models:$(optenv GAZEBO_MODEL_PATH)"/>
     <param name="robot_description" command="$(find xacro)/xacro.py '$(find robotican_lizi)/description/models/lizi_gazebo.xacro' 
 	   controllers:=$(arg controllers)
 	   front_camera:=$(arg front_camera)

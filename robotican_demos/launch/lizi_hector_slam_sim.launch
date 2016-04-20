@@ -3,9 +3,9 @@
   
     <include file="$(find robotican_lizi)/launch/lizi.launch">
      <arg name="gazebo" value="true"/>
-     <arg name="world_name" value="$(find robotican_common)/worlds/UPlat.sdf"/> 
-     <arg name="x" value="2.5"/>
-     <arg name="y" value="2.5"/>
+     <arg name="world_name" value="$(find robotican_common)/worlds/small_office.world"/> 
+     <arg name="x" value="0.0"/>
+     <arg name="y" value="0.0"/>
      <arg name="lidar" value="true"/>
      <arg name="hector_slam" value="true"/> 
      <arg name="rqt" value="true"/> 
