@@ -1,0 +1,5 @@
+#~ target_posision: [x, y, z] 
+target_posision: [0.485298, 0.0198514, 0.668352] 
+
+#~ target_orientation: [x, y, z, w]
+target_orientation: [-0.00371295, 0.577184, -0.00925086, 0.816553]

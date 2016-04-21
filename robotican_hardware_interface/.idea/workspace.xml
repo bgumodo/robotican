@@ -6,7 +6,6 @@
       <config projectName="robotican_hardware_interface" targetName="dynamic_reconfigure_generate_messages_py" />
       <config projectName="robotican_hardware_interface" targetName="robotican_hardware_interface_generate_messages" />
       <config projectName="robotican_hardware_interface" targetName="dynamic_reconfigure_generate_messages_cpp" />
-      <config projectName="robotican_hardware_interface" targetName="control_toolbox_generate_messages_cpp" />
       <config projectName="robotican_hardware_interface" targetName="sensor_msgs_generate_messages_lisp" />
       <config projectName="robotican_hardware_interface" targetName="gtest_main" />
       <config projectName="robotican_hardware_interface" targetName="run_tests" />
@@ -23,15 +22,15 @@
       <config projectName="robotican_hardware_interface" targetName="controller_manager_msgs_generate_messages_lisp" />
       <config projectName="robotican_hardware_interface" targetName="trajectory_msgs_generate_messages_py" />
       <config projectName="robotican_hardware_interface" targetName="controller_manager_msgs_generate_messages_cpp" />
-      <config projectName="robotican_hardware_interface" targetName="robotican_hardware_interface_generate_messages_cpp" />
-      <config projectName="robotican_hardware_interface" targetName="actionlib_msgs_generate_messages_lisp" />
+      <config projectName="robotican_hardware_interface" targetName="controller_manager" />
       <config projectName="robotican_hardware_interface" targetName="gazebo_msgs_generate_messages_py" />
       <config projectName="robotican_hardware_interface" targetName="dynamixel_pro_controller_generate_messages_lisp" />
       <config projectName="robotican_hardware_interface" targetName="control_msgs_generate_messages_lisp" />
-      <config projectName="robotican_hardware_interface" targetName="robotican_hardware_interface_gencpp" />
+      <config projectName="robotican_hardware_interface" targetName="control_toolbox_generate_messages_cpp" />
       <config projectName="robotican_hardware_interface" targetName="gazebo_ros_gencfg" />
       <config projectName="robotican_hardware_interface" targetName="dynamixel_pro_controller_generate_messages_py" />
       <config projectName="robotican_hardware_interface" targetName="dynamic_reconfigure_gencfg" />
+      <config projectName="robotican_hardware_interface" targetName="actionlib_msgs_generate_messages_lisp" />
       <config projectName="robotican_hardware_interface" targetName="sensor_msgs_generate_messages_py" />
       <config projectName="robotican_hardware_interface" targetName="geometry_msgs_generate_messages_cpp" />
       <config projectName="robotican_hardware_interface" targetName="clean_test_results_robotican_hardware_interface" />
@@ -48,7 +47,7 @@
       <config projectName="robotican_hardware_interface" targetName="robotican_hardware_interface_sim" />
       <config projectName="robotican_hardware_interface" targetName="control_msgs_generate_messages_cpp" />
       <config projectName="robotican_hardware_interface" targetName="actionlib_generate_messages_cpp" />
-      <config projectName="robotican_hardware_interface" targetName="tf_generate_messages_cpp" />
+      <config projectName="robotican_hardware_interface" targetName="tf2_msgs_generate_messages_py" />
       <config projectName="robotican_hardware_interface" targetName="download_extra_data" />
       <config projectName="robotican_hardware_interface" targetName="sensor_msgs_generate_messages_cpp" />
       <config projectName="robotican_hardware_interface" targetName="control_msgs_generate_messages_py" />
@@ -60,25 +59,26 @@
       <config projectName="robotican_hardware_interface" targetName="std_msgs_generate_messages_py" />
       <config projectName="robotican_hardware_interface" targetName="geometry_msgs_generate_messages_lisp" />
       <config projectName="robotican_hardware_interface" targetName="roscpp_generate_messages_cpp" />
-      <config projectName="robotican_hardware_interface" targetName="tests" />
+      <config projectName="robotican_hardware_interface" targetName="tf2_msgs_generate_messages_lisp" />
       <config projectName="robotican_hardware_interface" targetName="dynamic_reconfigure_generate_messages_lisp" />
       <config projectName="robotican_hardware_interface" targetName="robotican_hardware_interface_generate_messages_lisp" />
       <config projectName="robotican_hardware_interface" targetName="tf2_msgs_generate_messages_cpp" />
       <config projectName="robotican_hardware_interface" targetName="control_toolbox_generate_messages_py" />
-      <config projectName="robotican_hardware_interface" targetName="tf2_msgs_generate_messages_lisp" />
+      <config projectName="robotican_hardware_interface" targetName="tf_generate_messages_cpp" />
       <config projectName="robotican_hardware_interface" targetName="actionlib_msgs_generate_messages_cpp" />
       <config projectName="robotican_hardware_interface" targetName="roscpp_generate_messages_lisp" />
+      <config projectName="robotican_hardware_interface" targetName="robotican_hardware_interface_gencpp" />
       <config projectName="robotican_hardware_interface" targetName="gazebo_msgs_generate_messages_lisp" />
       <config projectName="robotican_hardware_interface" targetName="std_srvs_generate_messages_lisp" />
+      <config projectName="robotican_hardware_interface" targetName="tests" />
       <config projectName="robotican_hardware_interface" targetName="controller_manager_msgs_generate_messages_py" />
       <config projectName="robotican_hardware_interface" targetName="std_msgs_generate_messages_cpp" />
-      <config projectName="robotican_hardware_interface" targetName="controller_manager" />
       <config projectName="robotican_hardware_interface" targetName="std_srvs_generate_messages_cpp" />
       <config projectName="robotican_hardware_interface" targetName="std_msgs_generate_messages_lisp" />
       <config projectName="robotican_hardware_interface" targetName="doxygen" />
       <config projectName="robotican_hardware_interface" targetName="tf_generate_messages_lisp" />
       <config projectName="robotican_hardware_interface" targetName="gazebo_msgs_generate_messages_cpp" />
-      <config projectName="robotican_hardware_interface" targetName="tf2_msgs_generate_messages_py" />
+      <config projectName="robotican_hardware_interface" targetName="robotican_hardware_interface_generate_messages_cpp" />
     </generated>
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="false" GENERATION_PASS_SYSTEM_ENVIRONMENT="true">
@@ -125,7 +125,7 @@
         <entry file="file://$PROJECT_DIR$/src/robotican_hardware_interface_node.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
+              <caret line="21" column="27" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
               <folding>
                 <element signature="e#38#58#0" expanded="true" />
               </folding>
@@ -295,7 +295,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$USER_HOME$/caja/caja_main" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../robotican_demos" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
@@ -1132,7 +1132,7 @@
     <entry file="file://$PROJECT_DIR$/src/robotican_hardware_interface_node.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
+          <caret line="21" column="27" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
           <folding>
             <element signature="e#38#58#0" expanded="true" />
           </folding>

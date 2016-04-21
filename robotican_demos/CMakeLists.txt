@@ -8,12 +8,15 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
-   move_base_msgs
-   actionlib
+  move_base_msgs
+  actionlib
+  moveit_core
+  moveit_ros_planning
+  moveit_ros_planning_interface
 )
 
 ## System dependencies are found with CMake's conventions
-# find_package(Boost REQUIRED COMPONENTS system)
+ find_package(Boost REQUIRED COMPONENTS system)
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -104,7 +107,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES robotican_demos
-#  CATKIN_DEPENDS roscpp rospy std_msgs
+  CATKIN_DEPENDS roscpp rospy std_msgs moveit_core moveit_ros_planning moveit_ros_planning_interface
 #  DEPENDS system_lib
 )
 
@@ -119,7 +122,9 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 add_executable(simple_navigation_goals src/simple_navigation_goals.cpp)
+add_executable(simple_move_group_goals src/simple_move_group_goal.cpp)
 target_link_libraries(simple_navigation_goals ${catkin_LIBRARIES})
+target_link_libraries(simple_move_group_goals ${catkin_LIBRARIES})
 ## Declare a C++ library
 # add_library(robotican_demos
 #   src/${PROJECT_NAME}/robotican_demos.cpp
