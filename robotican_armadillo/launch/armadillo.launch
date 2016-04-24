@@ -9,6 +9,8 @@
   <arg name="imu" default='false'/>
   <arg name="kinect2" default='false'/>
   <arg name="f200" default='false'/>
+  <arg name="joystick" default='false'/>
+  <arg name="keyboard" default='false'/>
   
 
   <arg name="gazebo" default='false'/>
@@ -34,9 +36,17 @@
 
 
   
-      <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/>
     
-      
+  <group if="$(arg joystick)" >
+	<rosparam file="$(find robotican_armadillo)/config/joystick_config.yaml" command="load"/>
+	<include file="$(find robotican_common)/launch/joystick_teleop.launch" />
+  </group>
+  
+  <group if="$(arg keyboard)" >
+	<include file="$(find robotican_common)/launch/keyboard_teleop.launch" />
+  </group>
+  
   <group if="$(arg gazebo)">
     <env name="GAZEBO_MODEL_PATH" value="$(find robotican_common)/models:$(optenv GAZEBO_MODEL_PATH)"/>
     <param name="robot_description" command="$(find xacro)/xacro.py '$(find robotican_armadillo)/description/models/armadillo_gazebo.xacro' 

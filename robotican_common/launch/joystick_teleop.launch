@@ -1,0 +1,8 @@
+<launch>
+	<node pkg="joy" type="joy_node" name="joy_listener">
+		<param name="dev" value="/dev/input/js0" />
+		<param name="autorepeat_rate" value="20" />
+	</node>
+	<node pkg="joy_teleop" type="joy_teleop.py" name="joy_teleop">
+	</node>
+</launch>
