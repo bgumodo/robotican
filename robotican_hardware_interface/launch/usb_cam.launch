@@ -4,7 +4,7 @@
 	<arg name="pixel_format" default="yuyv" />
 	<arg name="image_width" default="640" />
 	<arg name="image_height" default="480" />
-	<arg name="node_name" default="usb_cam" />
+	<arg name="node_name" default="camera" />
 	
 	<node name="$(arg node_name)" output="screen" pkg="usb_cam" respawn="true" type="usb_cam_node">
 		<param name="video_device" value="$(arg input_dev)"/>
