@@ -10,6 +10,7 @@
   <arg name="kinect2" default='false'/>
   <arg name="f200" default='false'/>
   <arg name="joystick" default='false'/>
+    <arg name="joystick_dev" default='/dev/input/js0'/>
   <arg name="keyboard" default='false'/>
   
 
@@ -40,7 +41,10 @@
     
   <group if="$(arg joystick)" >
 	<rosparam file="$(find robotican_armadillo)/config/joystick_config.yaml" command="load"/>
-	<include file="$(find robotican_common)/launch/joystick_teleop.launch" />
+	<include file="$(find robotican_common)/launch/joystick_teleop.launch">
+	  <arg name="joystick_dev" value="$(arg joystick_dev)"/>
+	 </include>
+	 
   </group>
   
   <group if="$(arg keyboard)" >
