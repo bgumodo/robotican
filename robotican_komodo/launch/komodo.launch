@@ -7,6 +7,9 @@
 	<arg name="urf" default='false'/>
 	<arg name="imu" default='false'/>
 	<arg name="asus" default='false'/>
+	<arg name="joystick" default='false'/>
+    <arg name="joystick_dev" default='/dev/input/js0'/>
+    <arg name="keyboard" default='false'/>
   
 
 	<arg name="gazebo" default='false'/>
@@ -33,8 +36,19 @@
 
   
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/>
-    
-      
+  
+  <group if="$(arg keyboard)" >
+	<include file="$(find robotican_common)/launch/keyboard_teleop.launch" />
+  </group>
+  
+  <group if="$(arg joystick)" >
+	<rosparam file="$(find robotican_komodo)/config/joystick_config.yaml" command="load"/>
+	<include file="$(find robotican_common)/launch/joystick_teleop.launch">
+	  <arg name="joystick_dev" value="$(arg joystick_dev)"/>
+	 </include>
+	 
+  </group>
+  
   <group if="$(arg gazebo)">
 		<param name="robot_description" command="$(find xacro)/xacro.py '$(find robotican_komodo)/description/models/komodo_gazebo.xacro' 
 		   controllers:=$(arg controllers)

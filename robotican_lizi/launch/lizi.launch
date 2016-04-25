@@ -21,6 +21,9 @@
   <arg name="urf" default='false'/>
   <arg name="imu" default='false'/>
   <arg name="pan_tilt" default='false'/>
+  <arg name="joystick" default='false'/>
+  <arg name="joystick_dev" default='/dev/input/js0'/>
+  <arg name="keyboard" default='false'/>
   
   
   <arg name="x" default="0.0"/>
@@ -31,8 +34,19 @@
   <arg name="Y" default="0.0" />
   
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/>
-    
-      
+  
+  <group if="$(arg keyboard)" >
+	<include file="$(find robotican_common)/launch/keyboard_teleop.launch" />
+  </group>
+  
+  <group if="$(arg joystick)" >
+	<rosparam file="$(find robotican_lizi)/config/joystick_config.yaml" command="load"/>
+	<include file="$(find robotican_common)/launch/joystick_teleop.launch">
+	  <arg name="joystick_dev" value="$(arg joystick_dev)"/>
+	 </include>
+	 
+  </group>
+  
   <group if="$(arg gazebo)">
     <env name="GAZEBO_MODEL_PATH" value="$(find robotican_common)/models:$(optenv GAZEBO_MODEL_PATH)"/>
     <param name="robot_description" command="$(find xacro)/xacro.py '$(find robotican_lizi)/description/models/lizi_gazebo.xacro' 
