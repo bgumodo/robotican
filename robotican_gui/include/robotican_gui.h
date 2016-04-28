@@ -54,7 +54,6 @@ public:
     QProgressBar *battery_pbar;
     QFrame *line_5;
     QFrame *line_6;
-    QLabel *label_8;
     QLabel *pan_tilt_led;
     QLabel *label_15;
     QLabel *label_10;
@@ -80,6 +79,9 @@ public:
     QFrame *line_9;
     QFrame *line_15;
     QLabel *label_20;
+    QFrame *line_4;
+    QLabel *label_25;
+    QLabel *label_26;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -130,7 +132,7 @@ public:
         label_2->setFont(font);
         label_7 = new QLabel(centralwidget);
         label_7->setObjectName(QString("label_7"));
-        label_7->setGeometry(QRect(200, 120, 41, 31));
+        label_7->setGeometry(QRect(160, 120, 41, 31));
         label_7->setPixmap(QPixmap(QString::fromUtf8(":/images/eng.png")));
         label_7->setScaledContents(true);
         gripper_led = new QLabel(centralwidget);
@@ -201,7 +203,7 @@ public:
         font1.setWeight(75);
         launch_btn->setFont(font1);
         QIcon icon1;
-        icon1.addFile(QString(":/images/turnOn.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon1.addFile(QString(":/images/Shutdown.png"), QSize(), QIcon::Normal, QIcon::Off);
         launch_btn->setIcon(icon1);
         launch_btn->setIconSize(QSize(65, 65));
         launch_btn->setFlat(false);
@@ -239,13 +241,9 @@ public:
         line_6->setGeometry(QRect(10, 210, 421, 20));
         line_6->setFrameShape(QFrame::HLine);
         line_6->setFrameShadow(QFrame::Sunken);
-        label_8 = new QLabel(centralwidget);
-        label_8->setObjectName(QString("label_8"));
-        label_8->setGeometry(QRect(250, 200, 61, 21));
-        label_8->setFont(font);
         pan_tilt_led = new QLabel(centralwidget);
         pan_tilt_led->setObjectName(QString("pan_tilt_led"));
-        pan_tilt_led->setGeometry(QRect(260, 160, 31, 31));
+        pan_tilt_led->setGeometry(QRect(270, 160, 31, 31));
         pan_tilt_led->setPixmap(QPixmap(QString::fromUtf8(":/images/ledOff.png")));
         pan_tilt_led->setScaledContents(true);
         label_15 = new QLabel(centralwidget);
@@ -324,7 +322,7 @@ public:
         label_11->setFont(font);
         label_13 = new QLabel(centralwidget);
         label_13->setObjectName(QString("label_13"));
-        label_13->setGeometry(QRect(170, 100, 111, 21));
+        label_13->setGeometry(QRect(130, 100, 111, 21));
         label_13->setFont(font);
         label_19 = new QLabel(centralwidget);
         label_19->setObjectName(QString("label_19"));
@@ -360,6 +358,20 @@ public:
         label_20->setGeometry(QRect(90, 10, 261, 41));
         label_20->setPixmap(QPixmap(QString::fromUtf8(":/images/robotican.png")));
         label_20->setScaledContents(true);
+        line_4 = new QFrame(centralwidget);
+        line_4->setObjectName(QString("line_4"));
+        line_4->setGeometry(QRect(240, 90, 20, 131));
+        line_4->setFrameShape(QFrame::VLine);
+        line_4->setFrameShadow(QFrame::Sunken);
+        label_25 = new QLabel(centralwidget);
+        label_25->setObjectName(QString("label_25"));
+        label_25->setGeometry(QRect(260, 120, 51, 31));
+        label_25->setPixmap(QPixmap(QString::fromUtf8(":/images/panTilt.png")));
+        label_25->setScaledContents(true);
+        label_26 = new QLabel(centralwidget);
+        label_26->setObjectName(QString("label_26"));
+        label_26->setGeometry(QRect(260, 100, 51, 21));
+        label_26->setFont(font);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString("menubar"));
@@ -402,7 +414,6 @@ public:
 #endif // QT_NO_TOOLTIP
         exit_btn->setText(QString());
         batteryLbl->setText(QString());
-        label_8->setText(QApplication::translate("MainWindow", "PAN TILT", 0));
         pan_tilt_led->setText(QString());
         label_15->setText(QString());
         label_10->setText(QApplication::translate("MainWindow", "LIDAR", 0));
@@ -422,6 +433,8 @@ public:
         label_13->setText(QApplication::translate("MainWindow", "ARM MOVEMENT", 0));
         label_19->setText(QApplication::translate("MainWindow", "CAMMERA", 0));
         label_20->setText(QString());
+        label_25->setText(QString());
+        label_26->setText(QApplication::translate("MainWindow", "PAN-TILT", 0));
     } // retranslateUi
 
 };

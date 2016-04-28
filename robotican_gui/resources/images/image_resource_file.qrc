@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="images">
+    <file>panTilt.png</file>
     <file>turnOn.png</file>
     <file>Shutdown.png</file>
     <file>laser.png</file>
