@@ -16,7 +16,7 @@ void Imu::_chatterCallback(const sensor_msgs::Imu::ConstPtr& msg)
 
 void Imu::subscribe()
 {
-    _nHandle.param<std::string>("ImuTopic",_topicName, "ImuTopic");
+    _nHandle.param<std::string>("imu_topic",_topicName, "IMU/data");
     _sub = _nHandle.subscribe(_topicName, 1000, &Imu::_chatterCallback, this);
 }
 

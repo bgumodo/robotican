@@ -12,7 +12,7 @@ void RearCam::_chatterCallback(const sensor_msgs::Image::ConstPtr& msg)
 
 void RearCam::subscribe()
 {
-    _nHandle.param<std::string>("RearCamTopic",_topicName, "rear_camera/image_raw");
+    _nHandle.param<std::string>("rear_cam_topic",_topicName, "rear_camera/image_raw");
     _sub = _nHandle.subscribe(_topicName, 1000, &RearCam::_chatterCallback, this);
 }
 

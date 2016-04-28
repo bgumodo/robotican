@@ -16,7 +16,7 @@ void Gps::_chatterCallback(const sensor_msgs::NavSatFix::ConstPtr& msg)
 
 void Gps::subscribe()
 {
-    _nHandle.param<std::string>("GpsTopic",_topicName, "GPS/fix");
+    _nHandle.param<std::string>("gps_topic",_topicName, "GPS/fix");
     _sub = _nHandle.subscribe(_topicName, 1000, &Gps::_chatterCallback, this);
 }
 

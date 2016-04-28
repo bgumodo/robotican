@@ -12,7 +12,7 @@ void UrfLeft::_chatterCallback(const sensor_msgs::Range::ConstPtr& msg)
 
 void UrfLeft::subscribe()
 {
-    _nHandle.param<std::string>("UrfLeftTopic",_topicName, "URF/left");
+    _nHandle.param<std::string>("urf_left_topic",_topicName, "URF/left");
     _sub = _nHandle.subscribe(_topicName, 1000, &UrfLeft::_chatterCallback, this);
 }
 

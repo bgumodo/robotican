@@ -1,0 +1,34 @@
+This package includes user interface which allows to monitor robotican robots sensors
+easily. The interface include leds which will be turned on once the sensor associated 
+with it is publishing a message on the topic that was defined.
+
+Instructions:
+Robotican_GUI pulling topics names from ros-master parameters system.
+Therefore the user must make sure that ros-master is up with the sutable configuration.
+If GUI will not recognise the topic parameters in ros master it will listen to default topics.
+
+the following list describes default topic and ros-param name (ment to be customised by user) for each sensor:
+sensor name	|	ros-param	|	default topic
+Gripper			gripper_topic		gripper_controller/gripper_cmd/feedback
+Arm			arm_topic		arm_trajectory_controller/follow_joint_trajectory/feedback			
+PanTilt			pan_tilt_topic		pan_tilt_controller/command
+GPS			gps_topic		GPS/fix
+IMU			imu_topic		IMU/data
+Rear cam		rear_cam_topic		rear_camera/image_raw
+Front cam		front_cam_topic		front_camera/image_raw
+Left URF		urf_left_topic		URF/left
+Right URF		urf_right_topic		URF/right
+Rear URF		urf_rear_topic		URF/rear
+LIDAR			lidar_topic		scan
+Odometry		odom_topic		mobile_base_controller/odom
+Battery			battery_topic		*NOT IMPLEMENTED YET*
+
+Also, user is expected to set the launcher file and package name. Values are:
+
+ros-param	|	default value
+launcher_file_path	armadillo.launch
+launcher_file_pkg	robotican_armadillo
+
+	
+
+ 

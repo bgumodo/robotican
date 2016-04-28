@@ -47,16 +47,20 @@ void EventSlot::closeApp()
  * Goal:procedure will launch the launch file which is associated with it
  * *********************************************************************/
 void EventSlot::execLaunch() {
-    std::string openCmd;
-    std::string closeCmd;
-    _nHandle.param<std::string>("openLauncher", openCmd, OPEN_LAUNCHER_CMD);
-    _nHandle.param<std::string>("closeLauncher", closeCmd, CLOSE_LAUNCHER_CMD);
+    std::string openLauncherCmdA("xterm -e sh -c 'echo \"opening launch file...\"; echo; roslaunch ");
+    std::string openLauncherCmdB("; exec bash;'");
+    std::string launcherFilePath, launcherPkg;
+
+
+    _nHandle.param<std::string>("launcher_file_path", launcherFilePath, "armadillo.launch");
+    _nHandle.param<std::string>("launcher_file_pkg", launcherPkg, "robotican_armadillo");
+    std::string launchCmd = openLauncherCmdA + launcherPkg + " " + launcherFilePath + openLauncherCmdB;
 
     QIcon icon;
     if (!_launcherOpened)
     {
         _launcherOpened = true;
-        QFuture<std::string> execProc = QtConcurrent::run(this, &EventSlot::execShellCmd, openCmd.c_str());
+        QFuture<std::string> execProc = QtConcurrent::run(this, &EventSlot::execShellCmd, launchCmd.c_str());
         icon.addFile(QString(":/images/Shutdown.png"), QSize(), QIcon::Normal, QIcon::Off);
 
     }
@@ -102,7 +106,7 @@ double EventSlot::calcTimeOut(long int startTime, long int endTime)
     double timeOut = -1;
     if (endTime > startTime)
     {
-        timeOut = (endTime - 0/*startTime*/) / (double) CLOCKS_PER_SEC;
+        timeOut = (endTime - startTime) / (double) CLOCKS_PER_SEC;
     }
     return timeOut;
 }
