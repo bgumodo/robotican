@@ -6,9 +6,11 @@
 
 GUImanager::GUImanager(QMainWindow &widget, Ui::MainWindow &win, QApplication &app)
 {
+    //register types for QT
     qRegisterMetaType<long int>("long int");
     qRegisterMetaType<Led*>("Led*");
 
+    //hold gui handles
     _widget = &widget;
     _win = &win;
     _app = &app;
@@ -44,6 +46,9 @@ void GUImanager::_connectEvents()
                      &_eventSlot, SLOT(execLaunch()));
 }
 
+/*this procedure is a called as ros::Timer callback,
+ * therefore it will run in loop
+ */
 void GUImanager::_loopEvents(const ros::TimerEvent &timerEvent) {
 
     _eventSignal.signalBatVal(_batListener.getBatteryPwr());

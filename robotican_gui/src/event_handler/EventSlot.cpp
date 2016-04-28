@@ -43,6 +43,9 @@ void EventSlot::closeApp()
     _app->quit();
 }
 
+/************************************************************************
+ * Goal:procedure will launch the launch file which is associated with it
+ * *********************************************************************/
 void EventSlot::execLaunch() {
     std::string openCmd;
     std::string closeCmd;
@@ -67,12 +70,12 @@ void EventSlot::execLaunch() {
     }
 
     _guiHandle->launch_btn->setIcon(icon);
-    //_guiHandle->launch_btn->setIconSize(QSize(70, 70));
-
-
-
 }
 
+/******************************************************
+ * Goal: procedure send command to shell and execute it
+ * Params: @cmd is the command you wish to execute
+ *****************************************************/
 std::string EventSlot::execShellCmd(const char *cmd)
 {
     std::string result = "";
@@ -88,6 +91,12 @@ std::string EventSlot::execShellCmd(const char *cmd)
     return result;
 }
 
+/************************************************
+ * Goal: calculate time interval between times
+ * Params: @startTime, @endTime
+ * Pre-cond: @endTime > @startTime
+ * Post-cond: returns time interval between times
+ ***********************************************/
 double EventSlot::calcTimeOut(long int startTime, long int endTime)
 {
     double timeOut = -1;
