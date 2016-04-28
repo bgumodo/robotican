@@ -9,8 +9,8 @@
 
 #define ON true;
 #define OFF false;
-#define OFF_PIC "/home/sub/catkin_ws/src/robotican_gui/resources/images/ledOff.png"
-#define ON_PIC "/home/sub/catkin_ws/src/robotican_gui/resources/images/ledOn.png"
+#define OFF_PIC ":/images/ledOff.png"
+#define ON_PIC ":/images/ledOn.png"
 
 class Led {
 public:
