@@ -72,7 +72,7 @@ DynamixelProController::DynamixelProController(hardware_interface::JointStateInt
     _jointStateInterface = jointStateInterface;
     _posVelJointInterface = posVelJointInterface;
     //load the file containing model info, we're not using the param server here
-    string path = ros::package::getPath("dynamixel_pro_controller");
+    string path = ros::package::getPath("robotican_hardware_interface");
     path += "/config/motor_data.yaml";
 
     YAML::Node doc;
