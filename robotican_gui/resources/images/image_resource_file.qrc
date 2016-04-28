@@ -1,0 +1,20 @@
+<RCC>
+  <qresource prefix="images">
+    <file>turnOn.png</file>
+    <file>Shutdown.png</file>
+    <file>laser.png</file>
+    <file>battery.png</file>
+    <file>camera.svg</file>
+    <file>eng.png</file>
+    <file>exit.png</file>
+    <file>gps.png</file>
+    <file>imu.png</file>
+    <file>laser.png</file>
+    <file>ledOff.png</file>
+    <file>ledOn.png</file>
+    <file>odo.png</file>
+    <file>robotican_gui_logo.ico</file>
+    <file>robotican.png</file>
+    <file>urf.png</file>
+  </qresource>
+</RCC>
