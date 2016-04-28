@@ -16,7 +16,7 @@ void Gripper::_chatterCallback(const control_msgs::GripperCommandFeedback::Const
 
 void Gripper::subscribe()
 {
-    _nHandle.param<std::string>("GripperTopic",_topicName, "gripper_controller/gripper_cmd");
+    _nHandle.param<std::string>("gripper_topic",_topicName, "gripper_controller/gripper_cmd/feedback");
     _sub = _nHandle.subscribe(_topicName, 1000, &Gripper::_chatterCallback, this);
 }
 

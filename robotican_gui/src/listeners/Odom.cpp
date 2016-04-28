@@ -16,7 +16,7 @@ void Odom::_chatterCallback(const nav_msgs::Odometry::ConstPtr& msg)
 
 void Odom::subscribe()
 {
-    _nHandle.param<std::string>("OdomTopic",_topicName, "mobile_base_controller/odom");
+    _nHandle.param<std::string>("odom_topic",_topicName, "mobile_base_controller/odom");
     _sub = _nHandle.subscribe(_topicName, 1000, &Odom::_chatterCallback, this);
 }
 

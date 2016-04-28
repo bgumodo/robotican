@@ -16,7 +16,7 @@ void Arm::_chatterCallback(const control_msgs::FollowJointTrajectoryFeedback::Co
 
 void Arm::subscribe()
 {
-    _nHandle.param<std::string>("armTopic",_topicName, "armTopic");
+    _nHandle.param<std::string>("arm_topic",_topicName, "arm_trajectory_controller/follow_joint_trajectory/feedback");
     _sub = _nHandle.subscribe(_topicName, 1000, &Arm::_chatterCallback, this);
 }
 

@@ -18,8 +18,6 @@
 #include <QtConcurrentRun>
 #include "../gui_components/Led.h"
 
-#define OPEN_LAUNCHER_CMD "xterm -e sh -c ',~/tom.bag; exec bash;'"
-#define CLOSE_LAUNCHER_CMD "echo 'close launcher cmd'"
 #define TIMEOUT 0.1
 
 class EventSlot : public QThread {

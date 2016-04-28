@@ -16,7 +16,7 @@ void Lidar::_chatterCallback(const sensor_msgs::LaserScan::ConstPtr& msg)
 
 void Lidar::subscribe()
 {
-    _nHandle.param<std::string>("LidarTopic",_topicName, "scan");
+    _nHandle.param<std::string>("lidar_topic",_topicName, "scan");
     _sub = _nHandle.subscribe(_topicName, 1000, &Lidar::_chatterCallback, this);
 }
 

@@ -12,7 +12,7 @@ void FrontCam::_chatterCallback(const sensor_msgs::Image::ConstPtr& msg)
 
 void FrontCam::subscribe()
 {
-    _nHandle.param<std::string>("FrontCamTopic",_topicName, "front_camera/image_raw");
+    _nHandle.param<std::string>("front_cam_topic",_topicName, "front_camera/image_raw");
     _sub = _nHandle.subscribe(_topicName, 1000, &FrontCam::_chatterCallback, this);
 }
 
