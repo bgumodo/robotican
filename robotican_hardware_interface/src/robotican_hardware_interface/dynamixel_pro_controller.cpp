@@ -110,9 +110,12 @@ DynamixelProController::DynamixelProController(hardware_interface::JointStateInt
     nh->param<int>("serial_timeout_ms", timeout_ms, 1);
     stringstream ss;
     ss << baudrate;
-
-    driver = new dynamixel_pro_driver::DynamixelProDriver(device, ss.str(), timeout_ms);
-
+    try {
+        driver = new dynamixel_pro_driver::DynamixelProDriver(device, ss.str(), timeout_ms);
+    }
+    catch (serial::IOException ex) {
+        ROS_ERROR("[%s]: port not found...", ros::this_node::getName().c_str());
+    }
     int num_motors = 0;
 
     // read in the information regarding the servos that we're supposed to

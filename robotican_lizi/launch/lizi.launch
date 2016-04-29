@@ -98,6 +98,8 @@
 			<include file="$(find robotican_hardware_interface)/launch/hokuyo_laser.launch">
 				<arg name="input_dev" value="/dev/Hokuyo" />
 				<arg name="frame_id" value="laser_link" />
+				<arg name="min_ang" value="-1.57" />
+				<arg name="max_ang" value="1.57" />
 			</include>
 		</group>
 		
@@ -164,7 +166,7 @@
   
 
 	<group if="$(arg rqt)">
-		<node pkg="rqt_gui" type="rqt_gui" name="rqt_gui" output="screen" respawn="true" />
+		<node pkg="rqt_gui" type="rqt_gui" name="rqt_gui" output="screen" respawn="false" />
 	</group>
 
 </launch>
