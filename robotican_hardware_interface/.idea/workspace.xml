@@ -87,16 +87,7 @@
     </ADDITIONAL_GENERATION_ENVIRONMENT>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5090c7e5-85e2-48e5-b18b-c7d9a39d63ef" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../robotican/installations/third_pkg_setup/setup.sh" afterPath="$PROJECT_DIR$/../robotican/installations/third_pkg_setup/setup.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../robotican_armadillo/launch/armadillo.launch" afterPath="$PROJECT_DIR$/../robotican_armadillo/launch/armadillo.launch" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../robotican_gui/.idea/robotican_gui.iml" afterPath="$PROJECT_DIR$/../robotican_gui/.idea/robotican_gui.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../robotican_gui/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../robotican_gui/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/robotican_hardware_interface/dynamixel_pro_controller.cpp" afterPath="$PROJECT_DIR$/src/robotican_hardware_interface/dynamixel_pro_controller.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../robotican_komodo/launch/komodo.launch" afterPath="$PROJECT_DIR$/../robotican_komodo/launch/komodo.launch" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../robotican_lizi/launch/lizi.launch" afterPath="$PROJECT_DIR$/../robotican_lizi/launch/lizi.launch" />
-    </list>
+    <list default="true" id="5090c7e5-85e2-48e5-b18b-c7d9a39d63ef" name="Default" comment="" />
     <ignored path="robotican_hardware_interface.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -790,7 +781,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1301" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12050078" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />

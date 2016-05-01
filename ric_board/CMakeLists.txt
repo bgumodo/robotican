@@ -66,6 +66,7 @@ MonitorDevs.msg
 PPM.msg
 calibField.msg
 imuCalib.msg
+Battery.msg
 #IMUClib.msg
 #   Message1.msg
 #   Message2.msg

@@ -9,19 +9,34 @@ from BAL.Header.Response.ParamBuildResponse import Battery
 __author__ = 'tom1231'
 import re
 from rospy import Publisher
-from std_msgs.msg import Float32
+from ric_board.msg import Battery
 from BAL.Interfaces.Device import Device
 from BAL.Handlers.keepAliveHandler import KeepAliveHandler
+from BAL.RiCParam.RiCParam import RiCParam
 class RiCBattery(Device):
     def __init__(self, param, output):
+        """
+
+        :param param:
+        :type param: RiCParam
+        :param output:
+        :return:
+        """
         Device.__init__(self, param.getBatteryName(), output)
-        self._pub = Publisher('%s' % self._name, Float32, queue_size=param.getBatteryPubHz())
+        self._pub = Publisher('%s' % self._name, Battery, queue_size=param.getBatteryPubHz())
         self._haveRightToPublish = False
+
+        self._min = param.getBatteryMin()
+        self._max = param.getBatteryMax()
+
         #KeepAliveHandler(self._name, Float32)
 
     def publish(self, data):
-        msg = Float32()
+        msg = Battery()
         msg.data = data
+        msg.min = self._min
+        msg.max = self._max
+        
         self._pub.publish(msg)
 
     def getType(self): return Battery

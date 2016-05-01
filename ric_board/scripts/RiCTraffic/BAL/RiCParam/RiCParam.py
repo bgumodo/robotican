@@ -300,3 +300,9 @@ class RiCParam:
 
     def EmergencyCount(self):
         return int(rospy.get_param('emergencySwitchNum', 0))
+
+    def getBatteryMin(self):
+        return float(rospy.get_param('Battery/min', '0.0'))
+
+    def getBatteryMax(self):
+        return float(rospy.get_param('Battery/max', '0.0'))
