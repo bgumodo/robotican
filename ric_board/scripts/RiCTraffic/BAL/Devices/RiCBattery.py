@@ -36,7 +36,7 @@ class RiCBattery(Device):
         msg.data = data
         msg.min = self._min
         msg.max = self._max
-        
+
         self._pub.publish(msg)
 
     def getType(self): return Battery
