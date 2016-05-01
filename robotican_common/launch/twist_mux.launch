@@ -1,0 +1,6 @@
+<launch>
+	<node pkg="twist_mux" type="twist_mux" name="twist_mux" output="screen">
+		<rosparam file="$(find robotican_common)/config/twist_mux.yaml" command="load"/>
+		<remap from="cmd_vel_out" to="/mobile_base_controller/cmd_vel"/>
+	</node>
+</launch>
