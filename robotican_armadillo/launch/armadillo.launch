@@ -50,7 +50,8 @@
 	<include file="$(find robotican_common)/launch/joystick_teleop.launch">
 	  <arg name="joystick_dev" value="$(arg joystick_dev)"/>
 	 </include>
-	 
+	 <node name="pan_tilt_joy_node" pkg="robotican_armadillo" type="pan_tilt_joy_node" output="screen" />
+	 <node name="joy_increment_node" pkg="robotican_armadillo" type="joy_increment_node" output="screen" />
   </group>
   
   <group if="$(arg keyboard)" >
@@ -212,7 +213,7 @@
     <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="	  
       robot_state_controller
 	  mobile_base_controller
-	  elevator_controller
+	  elevator_trajectory_controller
 	  pan_tilt_controller
 	  arm_trajectory_controller
 	  gripper_controller

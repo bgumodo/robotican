@@ -3,18 +3,28 @@ teleop:
     type: topic
     message_type: geometry_msgs/Twist
     topic_name: joy_vel
-    deadman_buttons: [6]
+    deadman_buttons: [7]
     axis_mappings:
       -
-        axis: 1
+        axis: 3
         target: linear.x
         scale: 1.0
       -
-        axis: 0
+        axis: 2
         target: angular.z
         scale: 1.0
   
 
+pan_tilt_topic: 'pan_tilt_controller/command'
+joy_sub_topic: 'joy'
+joy_pan_axis: 6
+joy_tilt_axis: 7
+increament_pan: 0.1
+increament_tilt: 0.1
+zero_button: 3
+joy_deadman_button: 7
 
-
+elevetor_increment: 0.1
+elevetor_up_button: 4
+elevetor_down_button: 0 
 

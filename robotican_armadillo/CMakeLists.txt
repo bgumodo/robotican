@@ -8,10 +8,12 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  actionlib
+  control_msgs
 )
 
 ## System dependencies are found with CMake's conventions
-# find_package(Boost REQUIRED COMPONENTS system)
+ find_package(Boost REQUIRED COMPONENTS system)
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -102,7 +104,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES robotican_armadillo
-#  CATKIN_DEPENDS roscpp rospy std_msgs
+  CATKIN_DEPENDS roscpp rospy std_msgs actionlib control_msgs
 #  DEPENDS system_lib
 )
 
@@ -128,16 +130,20 @@ include_directories(
 # add_dependencies(robotican_armadillo ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
-# add_executable(robotican_armadillo_node src/robotican_armadillo_node.cpp)
+add_executable(pan_tilt_joy_node src/pan_tilt_joy_node.cpp)
+add_executable(joy_increment_node src/joy_increment_node.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 # add_dependencies(robotican_armadillo_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(robotican_armadillo_node
-#   ${catkin_LIBRARIES}
-# )
+ target_link_libraries(pan_tilt_joy_node
+   ${catkin_LIBRARIES}
+ )
+ target_link_libraries(joy_increment_node
+   ${catkin_LIBRARIES}
+ )
 
 #############
 ## Install ##
