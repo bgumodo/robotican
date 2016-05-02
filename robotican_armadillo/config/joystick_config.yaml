@@ -24,7 +24,7 @@ increament_tilt: 0.1
 zero_button: 3
 joy_deadman_button: 7
 
-elevetor_increment: 0.1
-elevetor_up_button: 4
-elevetor_down_button: 0 
+elevator_increment: 0.1
+elevator_up_button: 4
+elevator_down_button: 0 
 

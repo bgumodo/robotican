@@ -9,21 +9,24 @@
 #include <control_msgs/FollowJointTrajectoryAction.h>
 
 typedef  actionlib::SimpleActionClient<control_msgs::FollowJointTrajectoryAction> ActionClient;
-//#define DEBUG_ELEVETOR_INC
+//#define DEBUG_ELEVATOR_INC
 class JoyIncrement {
 private:
     ros::NodeHandle _nodeHandle;
-    ActionClient _actionClient;
-    ros::Subscriber _joySub;
-    ros::Subscriber _jointStates;
+    ActionClient _actionClient;     //Action client which send the goal to the elevator
+    ros::Subscriber _joySub;        // Joystick Listener.
+    ros::Subscriber _jointStates;   // Joint status Listener, for the position if the elevator.
 
-    bool _isStop;
-    float _incElev;
-    double _elevPos;
+    bool _isStop;                   //True if the dead man button is release or if none of the elevator button is press.
+    float _incElev;                 //Increment
+    double _elevPos;                //The elevator curront position.
     int _upButtonIndex;
     int _downButtonIndex;
     int _deadManButtomIndex;
 
+    /*
+     * This method handle the joystick reading.
+     */
     void joyCallback(const sensor_msgs::Joy::ConstPtr &msg) {
         bool isUpActive = (bool)msg->buttons[_upButtonIndex],
              isDownActive = (bool)msg->buttons[_downButtonIndex],
@@ -50,7 +53,9 @@ private:
         }
 
     }
-
+    /*
+     * This method get the elevator current position.
+     */
     void jointStateCallback(const sensor_msgs::JointState::ConstPtr &msg){
         size_t size = msg->name.size();
         bool found = false;
@@ -65,11 +70,18 @@ private:
         }
     }
 
+    /*
+     * This method will get call after the action server s finish.
+     */
     void doneCallback(const actionlib::SimpleClientGoalState &state, const control_msgs::FollowJointTrajectoryResult::ConstPtr &result) {
-#ifdef DEBUG_ELEVETOR_INC
+#ifdef DEBUG_ELEVATOR_INC
         ROS_INFO("Finished in state [%s]", state.toString().c_str());
 #endif
     }
+
+    /*
+     * This method construct the goal and send it to the action server.
+     */
     void sendGoal(double elevPos) {
 //        ROS_INFO("[%s]: %f", ros::this_node::getName().c_str(), elevPos);
         control_msgs::FollowJointTrajectoryGoal goal;
@@ -89,11 +101,11 @@ public:
     JoyIncrement() : _actionClient("elevator_trajectory_controller/follow_joint_trajectory", true) {
         _isStop = true;
         if(_actionClient.waitForServer(ros::Duration(20.0))) {
-            if(!_nodeHandle.getParam("elevetor_increment", _incElev)
-               ||!_nodeHandle.getParam("elevetor_up_button", _upButtonIndex)
-               ||!_nodeHandle.getParam("elevetor_down_button", _downButtonIndex)
+            if(!_nodeHandle.getParam("elevator_increment", _incElev)
+               ||!_nodeHandle.getParam("elevator_up_button", _upButtonIndex)
+               ||!_nodeHandle.getParam("elevator_down_button", _downButtonIndex)
                ||!_nodeHandle.getParam("joy_deadman_button", _deadManButtomIndex)) {
-                ROS_ERROR("[%s]: Missing parameters, the requird parameters are: elevetor_increment,  elevetor_up_button, elevetor_down_button, joy_deadman_button", ros::this_node::getName().c_str());
+                ROS_ERROR("[%s]: Missing parameters, the requird parameters are: elevetor_increment,  elevator_up_button, elevator_down_button, joy_deadman_button", ros::this_node::getName().c_str());
                 ros::shutdown();
             }
             else {
