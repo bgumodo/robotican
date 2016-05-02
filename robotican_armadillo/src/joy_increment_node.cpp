@@ -19,7 +19,7 @@ private:
 
     bool _isStop;                   //True if the dead man button is release or if none of the elevator button is press.
     float _incElev;                 //Increment
-    double _elevPos;                //The elevator curront position.
+    double _elevPos;                //The elevator current position.
     int _upButtonIndex;
     int _downButtonIndex;
     int _deadManButtomIndex;
