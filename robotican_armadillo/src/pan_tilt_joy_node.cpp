@@ -15,18 +15,21 @@ private:
     float _deadManButtonIndex;
     float _zeroButtonIndex;
 
-    float _incTilt;
-    float _incPan;
+    float _incTilt;                 //The increment value for tilt.
+    float _incPan;                  //The increment value for pan.
 
-    float _tiltPos;
-    float _panPos;
-    bool _deadManButtonActive;
-    bool _zeroButtonActive;
+    float _tiltPos;                 //The tilt current position.
+    float _panPos;                  //The pan current position.
+    bool _deadManButtonActive;      //True if the dead man button is press.
+    bool _zeroButtonActive;         //True if the zero button is press.
 
     ros::NodeHandle _nodeHandle;
-    ros::Publisher _panTiltCommand;
-    ros::Subscriber _joySub;
+    ros::Publisher _panTiltCommand; //This object is for sending command to the pan and tilt.
+    ros::Subscriber _joySub;        //Listener to the joystick state.
 
+    /*
+     * This method is for the joystick state.
+     */
     void joyCallback(const sensor_msgs::Joy::ConstPtr & msg) {
         _deadManButtonActive = msg->buttons[_deadManButtonIndex] == 1;
         _zeroButtonActive = msg->buttons[_zeroButtonIndex] == 1;
