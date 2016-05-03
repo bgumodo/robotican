@@ -7,6 +7,8 @@ project(robotican_common)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
+  sensor_msgs
+  geometry_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -101,7 +103,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES robotican_common
-#  CATKIN_DEPENDS roscpp std_msgs
+  CATKIN_DEPENDS roscpp std_msgs sensor_msgs geometry_msgs
 #  DEPENDS system_lib
 )
 
@@ -127,16 +129,16 @@ include_directories(
 # add_dependencies(robotican_common ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
-# add_executable(robotican_common_node src/robotican_common_node.cpp)
+ add_executable(joy_teleop_node src/joy_teleop_node.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 # add_dependencies(robotican_common_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(robotican_common_node
-#   ${catkin_LIBRARIES}
-# )
+ target_link_libraries(joy_teleop_node
+   ${catkin_LIBRARIES}
+ )
 
 #############
 ## Install ##

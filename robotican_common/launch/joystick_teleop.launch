@@ -1,11 +1,13 @@
 <?xml version="1.0"?>
 <launch>
   <arg name="joystick_dev" default="/dev/input/js0"/>
+  <arg name="deadband" default="0.1"/>
 
 	<node pkg="joy" type="joy_node" name="joy_listener">
 		<param name="dev" value="$(arg joystick_dev)" />
+		<param name="deadzone" value="$(arg deadband)" />
 		<param name="autorepeat_rate" value="20" />
 	</node>
-	<node pkg="joy_teleop" type="joy_teleop.py" name="joy_teleop">
+	<node pkg="robotican_common" type="joy_teleop_node" name="joy_teleop_node">
 	</node>
 </launch>
