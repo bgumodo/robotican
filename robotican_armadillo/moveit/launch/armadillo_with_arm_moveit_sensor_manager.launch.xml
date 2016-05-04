@@ -1,3 +1,3 @@
 <launch>
-   <rosparam command="load" file="$(find robotican_armadillo)/moveit/config/dept_sensor.yaml" />
+   <rosparam command="load" file="$(find robotican_armadillo)/moveit/config/depth_sensor.yaml" />
 </launch>
