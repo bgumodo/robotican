@@ -26,6 +26,7 @@
   
   <arg name="controllers" default='true'/>
   <arg name="moveit" default='false'/>
+  <arg name="use_depth" default='false'/>
   <arg name="robot_localization" default='false'/>
   <arg name="move_base" default='false'/>
   <arg name="hector_slam" default='false'/>
@@ -239,7 +240,9 @@
     </group>
 	
 	<group if="$(arg moveit)">
-		<include file="$(find robotican_armadillo)/moveit/launch/move_group.launch"/>
+		<include file="$(find robotican_armadillo)/moveit/launch/move_group.launch" >
+			<arg name="moveit_depth" value="$(arg use_depth)"/>
+		</include>
 	</group>
 
 	
@@ -262,6 +265,11 @@
 	<group if="$(arg rqt)">
 		<node pkg="rqt_gui" type="rqt_gui" name="rqt_gui" output="screen" respawn="false">
       </node>
+	</group>
+	<group unless="$(arg amcl)">
+		<group unless="$(arg hector_slam)">
+			<node pkg="tf" type="static_transform_publisher" name="map_odom_broadcaster" args="0 0 0 0 0 0 /map /odom 20" />
+		</group>
 	</group>
 </launch>
 
