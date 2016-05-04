@@ -14,6 +14,7 @@ public:
     Battery();
     int getBatteryPwr();
     void subscribe();
+    long int getLastSignal();
 
 private:
 
@@ -21,6 +22,7 @@ private:
     ros::Subscriber _sub;
     std::string _topicName;
     int _batPower;
+    long int _signalTime;
     void _chatterCallback(const std_msgs::UInt32::ConstPtr& msg);
 
 };
