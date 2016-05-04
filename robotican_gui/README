@@ -8,26 +8,49 @@ Therefore the user must make sure that ros-master is up with the sutable configu
 If GUI will not recognise the topic parameters in ros master it will listen to default topics.
 
 the following list describes default topic and ros-param name (ment to be customised by user) for each sensor:
-sensor name	|	ros-param	|	default topic
-Gripper			gripper_topic		gripper_controller/gripper_cmd/feedback
-Arm			arm_topic		arm_trajectory_controller/follow_joint_trajectory/feedback			
-PanTilt			pan_tilt_topic		pan_tilt_controller/command
-GPS			gps_topic		GPS/fix
-IMU			imu_topic		IMU/data
-Rear cam		rear_cam_topic		rear_camera/image_raw
-Front cam		front_cam_topic		front_camera/image_raw
-Left URF		urf_left_topic		URF/left
-Right URF		urf_right_topic		URF/right
-Rear URF		urf_rear_topic		URF/rear
-LIDAR			lidar_topic		scan
-Odometry		odom_topic		mobile_base_controller/odom
-Battery			battery_topic		*NOT IMPLEMENTED YET*
+*********************************************
+sensor name |   ros-param	    |	default topic
+*********************************************
+Gripper		    gripper_topic	    gripper_controller/gripper_cmd/feedback
+Arm			    arm_topic		    arm_trajectory_controller/follow_joint_trajectory/feedback
+PanTilt		    pan_tilt_topic	    pan_tilt_controller/command
+GPS			    gps_topic		    GPS/fix
+IMU			    imu_topic		    IMU/data
+Rear cam	    rear_cam_topic	    rear_camera/image_raw
+Front cam	    front_cam_topic	    front_camera/image_raw
+Left URF	    urf_left_topic	    URF/left
+Right URF	    urf_right_topic	    URF/right
+Rear URF	    urf_rear_topic	    URF/rear
+LIDAR		    lidar_topic		    scan
+Odometry	    odom_topic		    mobile_base_controller/odom
+Battery		    battery_topic	    *NOT IMPLEMENTED YET*
+
+User can also determine led's label names, by setting the following ros params on master server:
+*************************************
+label param name    |   default value
+*************************************
+battery_lbl_name        BATTERY
+gps_lbl_name            GPS
+imu_lbl_name            IMU
+lidar_lbl_name          LIDAR
+odom_lbl_name           ODOM
+arm_lbl_name            ARM
+gripper_lbl_name        GRIPPER
+left_urf_lbl_name       LEFT
+right_urf_lbl_name      RIGHT
+rear_urf_lbl_name       REAR
+kinect2_lbl_name        KINECT2
+f200_lbl_name           F200
+rear_cam_lbl_name       REAR
+front_cam_name          FRONT
+pan_tilt_name           PAN-TILT
 
 Also, user is expected to set the launcher file and package name. Values are:
-
-ros-param	|	default value
-launcher_file_path	armadillo.launch
-launcher_file_pkg	robotican_armadillo
+*****************************
+ros-param           |   default value
+*****************************
+launcher_file_path	    armadillo.launch
+launcher_file_pkg	    robotican_armadillo
 
 	
 

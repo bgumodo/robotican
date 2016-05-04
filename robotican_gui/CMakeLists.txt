@@ -91,6 +91,10 @@ set(PROJ_FILES
         src/listeners/UrfRear.h
         src/listeners/UrfRight.cpp
         src/listeners/UrfRight.h
+        src/listeners/Kinect2.cpp
+        src/listeners/Kinect2.h
+        src/listeners/F200.cpp
+        src/listeners/F200.h
         )
 
 add_executable(robotican_gui ${QT_SOURCES} ${QT_RESOURCES_CPP} ${QT_FORMS_HPP} ${QT_MOC_HPP} ${PROJ_FILES} ${RIC_GUI_RESOURCES_RCC})

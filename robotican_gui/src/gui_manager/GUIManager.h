@@ -24,8 +24,10 @@
 #include "listeners/UrfLeft.h"
 #include "listeners/UrfRear.h"
 #include "listeners/UrfRight.h"
+#include "listeners/Kinect2.h"
+#include "listeners/F200.h"
 
-#define LOOP_RATE 0.1
+#define LOOP_RATE 0.001
 
 class GUImanager {
 private:
@@ -51,6 +53,8 @@ private:
     UrfLeft _urfLeftListener;
     UrfRear _urfRearListener;
     UrfRight _urfRightListener;
+    Kinect2 _kinect2Listener;
+    F200 _f200Listener;
 
     Led _armLed;
     Led _panTiltLed;
@@ -64,6 +68,9 @@ private:
     Led _urfLeftLed;
     Led _urfRearLed;
     Led _urfRightLed;
+    Led _kinect2Led;
+    Led _f200Led;
+    Led _batteryLed;
 
     int _tempPublisherCounter; //delete after testing publishers
 
@@ -71,6 +78,7 @@ private:
     void _connectEvents();
     void _subscribeListeners();
     void _initiateLeds();
+    void _initiateLbls();
 
 
 
