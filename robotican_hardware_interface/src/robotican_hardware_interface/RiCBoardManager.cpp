@@ -84,6 +84,7 @@ namespace robotican_hardware {
             }
 
         }
+
     }
 
     void RiCBoardManager::resetBuff() {

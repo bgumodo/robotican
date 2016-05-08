@@ -23,7 +23,7 @@ int main(int argc, char **argv) {
 #ifdef RIC_BOARD_TEST
     robotican_hardware::RiCBoardManager manager;
     manager.connect();
-    //ros::Duration(2.0).sleep();
+    ros::Duration(2.0).sleep();
     manager.disconnect();
     ros::spin();
 

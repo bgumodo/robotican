@@ -35,8 +35,7 @@ namespace robotican_hardware {
         void disconnect();
 
         void handleMessage();
-
-
+        
         void connectionHandle(ConnectState *connectState);
     };
 }

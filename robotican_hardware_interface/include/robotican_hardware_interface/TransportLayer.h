@@ -28,6 +28,7 @@ private:
 
 public:
     TransportLayer(std::string port, unsigned int baudrate);
+    ~TransportLayer();
 
     bool tryToRead(byte *buff, byte buffLength);
 

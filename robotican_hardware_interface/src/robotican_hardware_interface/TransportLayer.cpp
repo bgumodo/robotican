@@ -104,3 +104,8 @@ crc TransportLayer::calcChecksum(uint8_t const message[], int nBytes) {
      */
     return (remainder);
 }
+
+TransportLayer::~TransportLayer() {
+    _serial.close();
+
+}
