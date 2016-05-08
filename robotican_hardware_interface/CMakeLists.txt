@@ -35,7 +35,7 @@ find_package(gazebo REQUIRED)
 
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(yaml-cpp REQUIRED yaml-cpp)
-
+add_definitions(-DPC_SIDE)
 if(NOT ${yaml-cpp_VERSION} VERSION_LESS "0.5")
 add_definitions(-DHAVE_NEW_YAMLCPP)
 endif(NOT ${yaml-cpp_VERSION} VERSION_LESS "0.5")
@@ -169,6 +169,9 @@ include_directories(include
          src/${PROJECT_NAME}/LiziRobot.cpp
          include/${PROJECT_NAME}/komodo.h
          src/${PROJECT_NAME}/komodo.cpp
+         include/${PROJECT_NAME}/Protocol.h
+         include/${PROJECT_NAME}/TransportLayer.h
+         src/${PROJECT_NAME}/TransportLayer.cpp
  )
 
 add_library(robotican_hardware_interface_sim

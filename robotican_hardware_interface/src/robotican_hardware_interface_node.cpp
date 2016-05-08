@@ -2,6 +2,8 @@
 // Created by tom on 06/04/16.
 //
 
+
+
 #include <ros/ros.h>
 #include <robotican_hardware_interface/robot_base.h>
 #include <robotican_hardware_interface/armadillo.h>
@@ -9,14 +11,31 @@
 #include <robotican_hardware_interface/komodo.h>
 #include <robotican_hardware_interface/ros_utils.h>
 #include <controller_manager/controller_manager.h>
+#include <robotican_hardware_interface/TransportLayer.h>
 
+#define PC_VERSION 100
+//#define RIC_BOARD_TEST
 
 int main(int argc, char **argv) {
 
     ros::init(argc, argv, "robotican_hardware_interface_node");
     ros::NodeHandle nodeHandle;
+#ifdef RIC_BOARD_TEST
+    TransportLayer transportLayer("/dev/RiCBoard", 9600);
+    ConnectState connectState;
+    connectState.length = sizeof(connectState);
+    connectState.state = ConnectEnum::Connected;
+    connectState.version = PC_VERSION;
+    uint8_t *bytes = (uint8_t*)&connectState;
+    connectState.checkSum = 0;
+    connectState.checkSum = transportLayer.calcChecksum(bytes, connectState.length);
+    transportLayer.write(bytes, connectState.length);
+    ros::spin();
+#endif
+
+#ifndef RIC_BOARD_TEST
     bool isLizi = false, isArmadilo = false, isKomodo = false;
-    std::string robotType;                                      /* determent the robot type, e.g default. */
+    std::string robotType;                                       //determent the robot type, e.g default.
     ros::param::param<bool>("komodo", isKomodo, false);
     ros::param::param<bool>("armadilo", isArmadilo, false);
     ros::param::param<bool>("lizi", isLizi, false);
@@ -77,5 +96,6 @@ int main(int argc, char **argv) {
             }
         }
     }
+#endif
     return 0;
 }
