@@ -172,6 +172,8 @@ include_directories(include
          include/${PROJECT_NAME}/Protocol.h
          include/${PROJECT_NAME}/TransportLayer.h
          src/${PROJECT_NAME}/TransportLayer.cpp
+         include/${PROJECT_NAME}/RiCBoardManager.h
+         src/${PROJECT_NAME}/RiCBoardManager.cpp
  )
 
 add_library(robotican_hardware_interface_sim
