@@ -11,7 +11,6 @@
   <arg name="f200" default='false'/>
   <arg name="joystick" default='false'/>
   <arg name="joystick_dev" default='/dev/input/js0'/>
-  <arg name="keyboard" default='false'/>
   <arg name="twist_mux" default='true'/>
   
 
@@ -53,10 +52,6 @@
 	 </include>
 	 <node name="pan_tilt_joy_node" pkg="robotican_armadillo" type="pan_tilt_joy_node" output="screen" />
 	 <node name="joy_increment_node" pkg="robotican_armadillo" type="joy_increment_node" output="screen" />
-  </group>
-  
-  <group if="$(arg keyboard)" >
-	<include file="$(find robotican_common)/launch/keyboard_teleop.launch" />
   </group>
   
   <group if="$(arg gazebo)">

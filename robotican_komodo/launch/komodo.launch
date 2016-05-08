@@ -9,7 +9,6 @@
 	<arg name="asus" default='false'/>
 	<arg name="joystick" default='false'/>
     <arg name="joystick_dev" default='/dev/input/js0'/>
-    <arg name="keyboard" default='false'/>
     <arg name="twist_mux" default='true'/>
   
 
@@ -42,12 +41,7 @@
 		<include file="$(find robotican_common)/launch/twist_mux.launch">
 		</include>
   </group>
-  
-  <group if="$(arg keyboard)" >
-	<include file="$(find robotican_common)/launch/keyboard_teleop.launch" />
-  </group>
-  
-  
+   
   
   <group if="$(arg joystick)" >
 	<rosparam file="$(find robotican_komodo)/config/joystick_config.yaml" command="load"/>
