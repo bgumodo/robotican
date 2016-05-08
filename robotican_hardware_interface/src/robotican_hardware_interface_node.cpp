@@ -11,21 +11,21 @@
 #include <robotican_hardware_interface/komodo.h>
 #include <robotican_hardware_interface/ros_utils.h>
 #include <controller_manager/controller_manager.h>
-
 #include <robotican_hardware_interface/RiCBoardManager.h>
 
 
-//#define RIC_BOARD_TEST
+#define RIC_BOARD_TEST
 
 int main(int argc, char **argv) {
 
     ros::init(argc, argv, "robotican_hardware_interface_node");
     ros::NodeHandle nodeHandle;
 #ifdef RIC_BOARD_TEST
-    RiCBoardManager manager;
+    robotican_hardware::RiCBoardManager manager;
     manager.connect();
-    ros::Duration(2.0).sleep();
+    //ros::Duration(2.0).sleep();
     manager.disconnect();
+    ros::spin();
 
 #endif
 
