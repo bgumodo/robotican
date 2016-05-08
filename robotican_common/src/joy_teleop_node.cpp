@@ -12,7 +12,8 @@ private:
     ros::Subscriber _joyListener;
     ros::Publisher  _cmd;
 
-    float _scale;
+    float _linearScale;
+    float _angularScale;
     int _deadManIndex;
     int _linearAxisIndex;
     int _angularAxisIndex;
@@ -21,8 +22,8 @@ private:
         bool isDeadManActive = msg->buttons[_deadManIndex] == 1;
         if(isDeadManActive) {
             geometry_msgs::Twist twist;
-            twist.linear.x = msg->axes[_linearAxisIndex] * _scale;
-            twist.angular.z = msg->axes[_angularAxisIndex] * _scale;
+            twist.linear.x = msg->axes[_linearAxisIndex] * _linearScale;
+            twist.angular.z = msg->axes[_angularAxisIndex] * _angularScale;
             _cmd.publish(twist);
         }
     }
@@ -32,10 +33,12 @@ public:
         if(!_nodeHandle.getParam("drive_joy_teleop_linear_axis", _linearAxisIndex)
            || !_nodeHandle.getParam("drive_joy_teleop_angular_axis", _angularAxisIndex)
            || !_nodeHandle.getParam("drive_joy_teleop_deadman_button", _deadManIndex)
-           || !_nodeHandle.getParam("scale", _scale)) {
+           || !_nodeHandle.getParam("drive_joy_teleop_linear_max_vel", _linearScale)
+           || !_nodeHandle.getParam("drive_joy_teleop_angular_max_vel", _angularScale)) {
             ROS_ERROR("[%s]: Missing parameter, the requird parameters are: "
                               "drive_joy_teleop_linear_axis, drive_joy_teleop_angular_axis"
-                              ", drive_joy_teleop_deadman_button , scale", ros::this_node::getName().c_str());
+                              ", drive_joy_teleop_deadman_button , drive_joy_teleop_linear_max_vel"
+                              ", drive_joy_teleop_angular_max_vel", ros::this_node::getName().c_str());
             ros::shutdown();
         }
         else {

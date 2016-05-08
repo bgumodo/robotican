@@ -46,7 +46,7 @@
   </group>
   
   <group if="$(arg joystick)" >
-	<rosparam file="$(find robotican_armadillo)/config/joystick_config.yaml" command="load"/>
+	<rosparam file="$(find robotican_armadillo)/config/joystick_teleop.yaml" command="load"/>
 	<include file="$(find robotican_common)/launch/joystick_teleop.launch">
 	  <arg name="joystick_dev" value="$(arg joystick_dev)"/>
 	 </include>
