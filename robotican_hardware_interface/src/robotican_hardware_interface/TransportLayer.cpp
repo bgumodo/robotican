@@ -15,11 +15,18 @@ TransportLayer::TransportLayer(std::string port, unsigned int baudrate) : _ioSer
 }
 
 bool TransportLayer::read(byte *buff, byte buffLength) {
-    boost::asio::read(_serial, boost::asio::buffer(buff, 1));
-    byte size = buff[0];
-    if(size < buffLength) {
-        boost::asio::read(_serial, boost::asio::buffer(buff, size));
-        return boost::asio::read(_serial, boost::asio::buffer(buff, size)) == size;
+    byte size[1] = {0};
+    byte message[128] = {0};
+
+    boost::asio::read(_serial, boost::asio::buffer(size, 1));
+
+    if(size[0] < buffLength) {
+        boost::asio::read(_serial, boost::asio::buffer(message, size[0] - 1));
+        buff[0] = size[0];
+        for(int i = 1; i <= size[0] - 1; ++i) {
+            buff[i] = message[i-1];
+        }
+        return true;
     }
     return false;
 }
@@ -65,7 +72,7 @@ void TransportLayer::crcInit() {
 
 bool TransportLayer::tryToRead(byte *buff, byte buffLength) {
     byte headerSignal[1] = {0};
-    boost::asio::read(_serial, boost::asio::buffer(buff, 1));
+    boost::asio::read(_serial, boost::asio::buffer(headerSignal, 1));
     if(headerSignal[0] == HEADER_SIGNAL) {
         return read(buff, buffLength);
     }
