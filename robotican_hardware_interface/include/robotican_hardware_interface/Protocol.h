@@ -39,9 +39,28 @@
 #ifdef PC_SIDE
     #include <stdint.h>
     typedef uint8_t byte;
+
+    namespace DeviceMessageType {
+        enum DeviceMessageType {
+            BuildDevice = 0,
+            Ack = 1,
+            MotorSetPointMsg = 2,
+            MotorFeedback = 3,
+            MotorSetPid = 4,
+            ServoFeedback = 5,
+            ServoSetPoint = 6,
+            SwitchFeedBack = 7,
+            UltrasonicFeedback = 8,
+            RelySetState = 9,
+            GpsFeedback = 10,
+            ImuFeedback = 11,
+            BatteryFeedback = 12,
+        };
+    }
+
     namespace DataType {
         enum DataType {
-            Message = 0,
+            DeviceMessage = 0,
             Debug = 1,
             ConnectionState = 2,
             KeepAlive = 3,
@@ -107,5 +126,14 @@ struct KeepAliveMsg : Header {
 
     byte state;
 }__attribute__((__packed__));
+
+struct DeviceMessage : Header {
+    DeviceMessage() {
+        dataType = DataType::DeviceMessage;
+    }
+
+    byte id;
+    byte deviceMessageType;
+};
 
 #endif //RIC_BOARD_PROTOCOL_H

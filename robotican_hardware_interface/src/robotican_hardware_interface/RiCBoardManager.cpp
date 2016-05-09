@@ -73,7 +73,7 @@ namespace robotican_hardware {
                         case DataType::KeepAlive:
                             keepAliveHandle((KeepAliveMsg*)header);
                             break;
-                        case DataType::Message:
+                        case DataType::DeviceMessage:
                             break;
                         default:
                             break;

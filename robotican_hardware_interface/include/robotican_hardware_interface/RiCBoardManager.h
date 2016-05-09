@@ -26,10 +26,15 @@ namespace robotican_hardware {
         ros::AsyncSpinner _spinner;
 
         unsigned int getBaudrate();
+
         std::string getPort();
+
         void resetBuff();
+
         ConnectEnum::ConnectEnum getConnectState();
+
         void setConnectState(ConnectEnum::ConnectEnum connectState);
+
         void debugMsgHandler(DebugMsg *debugMsg);
 
     public:
