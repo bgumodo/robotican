@@ -20,6 +20,10 @@ namespace robotican_hardware {
         byte _rcvBuff[MAX_BUFF_SIZE];
         TransportLayer _transportLayer;
         ConnectEnum::ConnectEnum  _connectState;
+        ros::NodeHandle _nodeHandle;
+        ros::Timer _sendKeepAliveTimer;
+        ros::Timer _timeoutKeepAliveTimer;
+        ros::AsyncSpinner _spinner;
 
         unsigned int getBaudrate();
         std::string getPort();
@@ -39,6 +43,12 @@ namespace robotican_hardware {
         void handleMessage();
 
         void connectionHandle(ConnectState *connectState);
+
+        void sendKeepAliveEvent(const ros::TimerEvent &timerEvent);
+
+        void timeoutKeepAliveEvent(const ros::TimerEvent &timerEvent);
+
+        void keepAliveHandle(KeepAliveMsg *keepAliveMsg);
     };
 }
 

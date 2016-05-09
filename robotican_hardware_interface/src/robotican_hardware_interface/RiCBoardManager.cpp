@@ -5,10 +5,16 @@
 #include <robotican_hardware_interface/RiCBoardManager.h>
 
 namespace robotican_hardware {
-    RiCBoardManager::RiCBoardManager() : _transportLayer(getPort(), getBaudrate()) {
+    RiCBoardManager::RiCBoardManager() : _nodeHandle(), _spinner(1) ,_transportLayer(getPort(), getBaudrate()) {
         resetBuff();
         setConnectState(ConnectEnum::Disconnected);
         boost::thread thread(&RiCBoardManager::handleMessage, this);
+        _timeoutKeepAliveTimer = _nodeHandle.createTimer(ros::Duration(1.0), &RiCBoardManager::timeoutKeepAliveEvent, this);
+        _sendKeepAliveTimer = _nodeHandle.createTimer(ros::Duration(1.0), &RiCBoardManager::sendKeepAliveEvent, this);
+        _timeoutKeepAliveTimer.stop();
+        _sendKeepAliveTimer.stop();
+        _spinner.start();
+
     }
 
     void RiCBoardManager::connect() {
@@ -65,6 +71,7 @@ namespace robotican_hardware {
                             debugMsgHandler((DebugMsg*) header);
                             break;
                         case DataType::KeepAlive:
+                            keepAliveHandle((KeepAliveMsg*)header);
                             break;
                         case DataType::Message:
                             break;
@@ -85,7 +92,8 @@ namespace robotican_hardware {
             }
 
         }
-
+        _timeoutKeepAliveTimer.stop();
+        _sendKeepAliveTimer.stop();
     }
 
     void RiCBoardManager::resetBuff() {
@@ -107,6 +115,9 @@ namespace robotican_hardware {
             case ConnectEnum::Connected:
                 if(getConnectState() == ConnectEnum::Disconnected) {
                     setConnectState(ConnectEnum::Connected);
+                    _sendKeepAliveTimer.start();
+                    _timeoutKeepAliveTimer.setPeriod(ros::Duration(3.0), true);
+                    _timeoutKeepAliveTimer.start();
                     ros_utils::rosInfo("Handshake complete: RiCBoard is connected");
                 }
                 break;
@@ -143,6 +154,36 @@ namespace robotican_hardware {
                 break;
             default:break;
         }
+    }
+
+    void RiCBoardManager::sendKeepAliveEvent(const ros::TimerEvent &timerEvent) {
+        KeepAliveMsg keepAliveMsg;
+        keepAliveMsg.length = sizeof(keepAliveMsg);
+        keepAliveMsg.checkSum = 0;
+        keepAliveMsg.state = KeepAliveState::Ok;
+        uint8_t* rawData = (uint8_t*) &keepAliveMsg;
+        keepAliveMsg.checkSum = _transportLayer.calcChecksum(rawData, keepAliveMsg.length);
+        _transportLayer.write(rawData, keepAliveMsg.length);
+    }
+
+    void RiCBoardManager::timeoutKeepAliveEvent(const ros::TimerEvent &timerEvent) {
+        ros_utils::rosError("RiCBoard not responding. Shuting down the program");
+        ros::shutdown();
+    }
+
+    void RiCBoardManager::keepAliveHandle(KeepAliveMsg *keepAliveMsg) {
+        switch(keepAliveMsg->state) {
+            case KeepAliveState::Ok:
+                _timeoutKeepAliveTimer.setPeriod(ros::Duration(3.0), true);
+                break;
+            case KeepAliveState::NeedToRestart:
+                break;
+            case KeepAliveState::FatalError:
+                break;
+            default:
+                break;
+        }
+
     }
 }
 

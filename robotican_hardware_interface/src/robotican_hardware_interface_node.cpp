@@ -14,7 +14,7 @@
 #include <robotican_hardware_interface/RiCBoardManager.h>
 
 
-//#define RIC_BOARD_TEST
+#define RIC_BOARD_TEST
 
 int main(int argc, char **argv) {
 
@@ -23,7 +23,7 @@ int main(int argc, char **argv) {
 #ifdef RIC_BOARD_TEST
     robotican_hardware::RiCBoardManager manager;
     manager.connect();
-    ros::Duration(1.0).sleep();
+    ros::Duration(30.0).sleep();
     manager.disconnect();
     ros::spin();
 
