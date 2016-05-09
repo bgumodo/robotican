@@ -20,14 +20,16 @@ namespace robotican_hardware {
         byte _rcvBuff[MAX_BUFF_SIZE];
         TransportLayer _transportLayer;
         ConnectEnum::ConnectEnum  _connectState;
+
         unsigned int getBaudrate();
         std::string getPort();
         void resetBuff();
         ConnectEnum::ConnectEnum getConnectState();
         void setConnectState(ConnectEnum::ConnectEnum connectState);
-
+        void debugMsgHandler(DebugMsg *debugMsg);
 
     public:
+
         RiCBoardManager();
 
         void connect();
@@ -35,7 +37,7 @@ namespace robotican_hardware {
         void disconnect();
 
         void handleMessage();
-        
+
         void connectionHandle(ConnectState *connectState);
     };
 }

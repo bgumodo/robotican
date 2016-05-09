@@ -62,6 +62,7 @@ namespace robotican_hardware {
                             connectionHandle((ConnectState*)header);
                             break;
                         case DataType::Debug:
+                            debugMsgHandler((DebugMsg*) header);
                             break;
                         case DataType::KeepAlive:
                             break;
@@ -121,6 +122,24 @@ namespace robotican_hardware {
                 }
                 break;
             case ConnectEnum::AlreadyDisconnected:
+                break;
+            default:break;
+        }
+    }
+
+    void RiCBoardManager::debugMsgHandler(DebugMsg *debugMsg) {
+        switch (debugMsg->level) {
+            case DebugLevel::Info:
+                ros_utils::rosInfo(debugMsg->message);
+                break;
+            case DebugLevel::Warn:
+                ros_utils::rosWarn(debugMsg->message);
+                break;
+            case DebugLevel::Error:
+                ros_utils::rosError(debugMsg->message);
+                break;
+            case DebugLevel::Fatal:
+                ros_utils::rosError(debugMsg->message);
                 break;
             default:break;
         }

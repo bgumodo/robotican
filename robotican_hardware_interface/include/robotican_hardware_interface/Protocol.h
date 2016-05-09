@@ -69,12 +69,12 @@ struct Header {
     uint16_t checkSum;
 }__attribute__((__packed__));
 
-struct Debug : Header {
-    Debug() {
+struct DebugMsg : Header {
+    DebugMsg() {
         dataType = DataType::Debug;
     }
-    char message[128];
     byte level;
+    char message[128];
 }__attribute__((__packed__));
 
 struct ConnectState : Header{
