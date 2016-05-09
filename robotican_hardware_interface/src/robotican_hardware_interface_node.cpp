@@ -14,7 +14,7 @@
 #include <robotican_hardware_interface/RiCBoardManager.h>
 
 
-#define RIC_BOARD_TEST
+//#define RIC_BOARD_TEST
 
 int main(int argc, char **argv) {
 
