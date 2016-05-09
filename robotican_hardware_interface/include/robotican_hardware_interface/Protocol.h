@@ -100,8 +100,8 @@ struct ConnectState : Header{
     byte version;
 }__attribute__((__packed__));
 
-struct KeepAlive : Header {
-    KeepAlive() {
+struct KeepAliveMsg : Header {
+    KeepAliveMsg() {
         dataType = DataType::KeepAlive;
     }
 
