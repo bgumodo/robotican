@@ -27,6 +27,13 @@
         Disconnected = 4,
         AlreadyDisconnected = 5,
     };
+
+    enum KeepAliveState {
+        Ok = 0,
+        FatalError = 1,
+        NeedToRestart = 2,
+    };
+
 #endif
 
 #ifdef PC_SIDE
@@ -58,6 +65,14 @@
             AlreadyDisconnected = 5,
         };
     }
+
+    namespace KeepAliveState {
+        enum KeepAliveState {
+            Ok = 0,
+            FatalError = 1,
+            NeedToRestart = 2,
+        };
+    }
 #endif
 
 #define HEADER_SIGNAL 0xFF
@@ -83,6 +98,14 @@ struct ConnectState : Header{
     }
     byte state;
     byte version;
+}__attribute__((__packed__));
+
+struct KeepAlive : Header {
+    KeepAlive() {
+        dataType = DataType::KeepAlive;
+    }
+
+    byte state;
 }__attribute__((__packed__));
 
 #endif //RIC_BOARD_PROTOCOL_H
