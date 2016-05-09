@@ -26,7 +26,6 @@ int main(int argc, char **argv) {
     ros::Duration(30.0).sleep();
     manager.disconnect();
     ros::spin();
-
 #endif
 
 #ifndef RIC_BOARD_TEST

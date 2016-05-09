@@ -16,6 +16,7 @@ typedef uint16_t crc;
 #define TOPBIT (1 << (WIDTH - 1))
 #define MAX_TABLE 256
 
+#include <robotican_hardware_interface/ros_utils.h>
 
 class TransportLayer {
 private:

@@ -92,6 +92,7 @@ namespace robotican_hardware {
             }
 
         }
+
         _timeoutKeepAliveTimer.stop();
         _sendKeepAliveTimer.stop();
     }

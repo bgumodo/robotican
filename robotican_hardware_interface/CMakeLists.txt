@@ -174,6 +174,8 @@ include_directories(include
          src/${PROJECT_NAME}/TransportLayer.cpp
          include/${PROJECT_NAME}/RiCBoardManager.h
          src/${PROJECT_NAME}/RiCBoardManager.cpp
+         include/${PROJECT_NAME}/Device.h
+         src/${PROJECT_NAME}/Device.cpp
  )
 
 add_library(robotican_hardware_interface_sim

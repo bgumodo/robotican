@@ -9,6 +9,7 @@
 #include <boost/thread/thread.hpp>
 #include <robotican_hardware_interface/ros_utils.h>
 #include <robotican_hardware_interface/TransportLayer.h>
+#include "Device.h"
 
 #define MAX_BUFF_SIZE 255
 #define PC_VERSION 100

@@ -71,19 +71,35 @@ void TransportLayer::crcInit() {
 }
 
 bool TransportLayer::tryToRead(byte *buff, byte buffLength) {
-    byte headerSignal[1] = {0};
-    boost::asio::read(_serial, boost::asio::buffer(headerSignal, 1));
-    if(headerSignal[0] == HEADER_SIGNAL) {
-        return read(buff, buffLength);
+    try {
+        byte headerSignal[1] = {0};
+        boost::asio::read(_serial, boost::asio::buffer(headerSignal, 1));
+        if (headerSignal[0] == HEADER_SIGNAL) {
+            return read(buff, buffLength);
+        }
+    }
+    catch (boost::system::system_error const &e) {
+        char errorBuff[128] = {'\0'};
+        sprintf(errorBuff, "RiCBoard disconnected, Exception is: { %s }", e.what());
+        ros_utils::rosError(errorBuff);
+        ros::shutdown();
     }
     return false;
 }
 
 void TransportLayer::write(byte *buff, byte buffLength) {
-    byte headerSignal[1];
-    headerSignal[0] = HEADER_SIGNAL;
-    boost::asio::write(_serial, boost::asio::buffer(headerSignal, 1));
-    boost::asio::write(_serial, boost::asio::buffer(buff, buffLength));
+    try {
+        byte headerSignal[1];
+        headerSignal[0] = HEADER_SIGNAL;
+        boost::asio::write(_serial, boost::asio::buffer(headerSignal, 1));
+        boost::asio::write(_serial, boost::asio::buffer(buff, buffLength));
+    }
+    catch(boost::system::system_error const &e) {
+        char errorBuff[128] = {'\0'};
+        sprintf(errorBuff, "RiCBoard disconnected, Exception is: { %s }", e.what());
+        ros_utils::rosError(errorBuff);
+        ros::shutdown();
+    }
 }
 
 crc TransportLayer::calcChecksum(uint8_t const message[], int nBytes) {
