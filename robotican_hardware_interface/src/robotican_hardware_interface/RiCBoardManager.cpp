@@ -121,7 +121,7 @@ namespace robotican_hardware {
                     _timeoutKeepAliveTimer.setPeriod(ros::Duration(3.0), true);
                     _timeoutKeepAliveTimer.start();
                     ros_utils::rosInfo("Handshake complete: RiCBoard is connected");
-                    buildDevices();
+
                 }
                 break;
             case ConnectEnum::NotReady:
@@ -273,6 +273,16 @@ namespace robotican_hardware {
             for(int i = 0; i < size; ++i) _devices[i];
             _devices.clear();
         }
+
+    }
+
+    void RiCBoardManager::buildDevices(hardware_interface::JointStateInterface anInterface,
+                                       hardware_interface::VelocityJointInterface jointInterface) {
+
+    }
+
+    void RiCBoardManager::buildDevices(hardware_interface::JointStateInterface anInterface,
+                                       hardware_interface::PositionJointInterface jointInterface) {
 
     }
 }

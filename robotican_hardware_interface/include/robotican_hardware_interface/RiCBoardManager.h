@@ -11,6 +11,7 @@
 #include <robotican_hardware_interface/Device.h>
 #include <robotican_hardware_interface/Battery.h>
 #include <robotican_hardware_interface/ros_utils.h>
+#include <hardware_interface/joint_command_interface.h>
 #include <robotican_hardware_interface/TransportLayer.h>
 
 #define MAX_BUFF_SIZE 255
@@ -41,12 +42,16 @@ namespace robotican_hardware {
 
         void debugMsgHandler(DebugMsg *debugMsg);
 
+        void clear();
+
+    public:
+        RiCBoardManager();
+
         void buildDevices();
 
-        void clear();
-    public:
+        void buildDevices(hardware_interface::JointStateInterface, hardware_interface::VelocityJointInterface);
 
-        RiCBoardManager();
+        void buildDevices(hardware_interface::JointStateInterface, hardware_interface::PositionJointInterface);
 
         void connect();
 
