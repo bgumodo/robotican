@@ -39,6 +39,7 @@ namespace robotican_hardware {
         connectState.checkSum = 0;
         connectState.checkSum = _transportLayer.calcChecksum(bytes, connectState.length);
         _transportLayer.write(bytes, connectState.length);
+        clear();
 
     }
 
@@ -74,6 +75,7 @@ namespace robotican_hardware {
                             keepAliveHandle((KeepAliveMsg*)header);
                             break;
                         case DataType::DeviceMessage:
+                            deviceMessageHandler((DeviceMessage *)header);
                             break;
                         default:
                             break;
@@ -87,7 +89,6 @@ namespace robotican_hardware {
                     ros_utils::rosError(errorBuff);
 #endif
                 }
-
                 resetBuff();
             }
 
@@ -120,6 +121,7 @@ namespace robotican_hardware {
                     _timeoutKeepAliveTimer.setPeriod(ros::Duration(3.0), true);
                     _timeoutKeepAliveTimer.start();
                     ros_utils::rosInfo("Handshake complete: RiCBoard is connected");
+                    buildDevices();
                 }
                 break;
             case ConnectEnum::NotReady:
@@ -170,6 +172,7 @@ namespace robotican_hardware {
     void RiCBoardManager::timeoutKeepAliveEvent(const ros::TimerEvent &timerEvent) {
         ros_utils::rosError("RiCBoard not responding. Shuting down the program");
         ros::shutdown();
+        clear();
     }
 
     void RiCBoardManager::keepAliveHandle(KeepAliveMsg *keepAliveMsg) {
@@ -183,6 +186,92 @@ namespace robotican_hardware {
                 break;
             default:
                 break;
+        }
+
+    }
+
+    void RiCBoardManager::buildDevices() {
+
+        byte idGen = 0;
+
+#ifndef RIC_BOARD_DEBUG
+        if(_nodeHandle.hasParam("battery_pin")) {
+            int pin;
+            float voltageDividerRatio, max, min;
+            if(_nodeHandle.getParam("battery_pin", pin)
+               && _nodeHandle.getParam("battery_voltage_divider_ratio", voltageDividerRatio)
+               && _nodeHandle.getParam("battery_max", max)
+               && _nodeHandle.getParam("battery_min", min)) {
+                Device *battery = new Battery(idGen++, voltageDividerRatio, max, min, (byte) pin, &_transportLayer);
+                _devices.push_back(battery);
+            }
+            else {
+                ros_utils::rosError("Can't build battery some of the parameters are missing");
+            }
+        }
+#endif
+#ifdef  RIC_BOARD_DEBUG
+                int pin;
+                float voltageDividerRatio, max, min;
+                _nodeHandle.param<int>("battery_pin", pin, 17);
+                _nodeHandle.param<float>("battery_voltage_divider_ratio", voltageDividerRatio, 6.0);
+                _nodeHandle.param<float>("battery_max", max, 11.3);
+                _nodeHandle.param<float>("battery_min", min, 10.0);
+                Device *battery = new Battery(idGen++, voltageDividerRatio, max, min, (byte) pin, &_transportLayer);
+                _devices.push_back(battery);
+
+#endif
+
+    }
+
+    void RiCBoardManager::deviceMessageHandler(DeviceMessage *deviceMsg) {
+        size_t devicesSize = _devices.size();
+        if(devicesSize > deviceMsg->id) {
+            switch ((DeviceMessageType::DeviceMessageType) deviceMsg->deviceMessageType) {
+                case DeviceMessageType::BuildDevice:
+                    break;
+                case DeviceMessageType::Ack:
+                    _devices[deviceMsg->id]->deviceAck((DeviceAck*) deviceMsg);
+                    break;
+                case DeviceMessageType::MotorSetPointMsg:
+                    break;
+                case DeviceMessageType::MotorFeedback:
+                    _devices[deviceMsg->id]->update(deviceMsg);
+                    break;
+                case DeviceMessageType::MotorSetPid:
+                    break;
+                case DeviceMessageType::ServoFeedback:
+                    _devices[deviceMsg->id]->update(deviceMsg);
+                    break;
+                case DeviceMessageType::ServoSetPoint:
+                    break;
+                case DeviceMessageType::SwitchFeedBack:
+                    _devices[deviceMsg->id]->update(deviceMsg);
+                    break;
+                case DeviceMessageType::UltrasonicFeedback:
+                    _devices[deviceMsg->id]->update(deviceMsg);
+                    break;
+                case DeviceMessageType::RelySetState:
+                    break;
+                case DeviceMessageType::GpsFeedback:
+                    _devices[deviceMsg->id]->update(deviceMsg);
+                    break;
+                case DeviceMessageType::ImuFeedback:
+                    _devices[deviceMsg->id]->update(deviceMsg);
+                    break;
+                case DeviceMessageType::BatteryFeedback:
+                    _devices[deviceMsg->id]->update(deviceMsg);
+                    break;
+            }
+        }
+
+    }
+
+    void RiCBoardManager::clear() {
+        size_t size = _devices.size();
+        if(size > 0) {
+            for(int i = 0; i < size; ++i) _devices[i];
+            _devices.clear();
         }
 
     }

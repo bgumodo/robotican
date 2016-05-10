@@ -5,11 +5,13 @@
 #ifndef ROBOTICAN_HARDWARE_INTERFACE_RICBOARDMANAGER_H
 #define ROBOTICAN_HARDWARE_INTERFACE_RICBOARDMANAGER_H
 
+#include <vector>
 #include <ros/ros.h>
 #include <boost/thread/thread.hpp>
+#include <robotican_hardware_interface/Device.h>
+#include <robotican_hardware_interface/Battery.h>
 #include <robotican_hardware_interface/ros_utils.h>
 #include <robotican_hardware_interface/TransportLayer.h>
-#include "Device.h"
 
 #define MAX_BUFF_SIZE 255
 #define PC_VERSION 100
@@ -25,6 +27,7 @@ namespace robotican_hardware {
         ros::Timer _sendKeepAliveTimer;
         ros::Timer _timeoutKeepAliveTimer;
         ros::AsyncSpinner _spinner;
+        std::vector<Device*> _devices;
 
         unsigned int getBaudrate();
 
@@ -38,6 +41,9 @@ namespace robotican_hardware {
 
         void debugMsgHandler(DebugMsg *debugMsg);
 
+        void buildDevices();
+
+        void clear();
     public:
 
         RiCBoardManager();
@@ -55,6 +61,8 @@ namespace robotican_hardware {
         void timeoutKeepAliveEvent(const ros::TimerEvent &timerEvent);
 
         void keepAliveHandle(KeepAliveMsg *keepAliveMsg);
+
+        void deviceMessageHandler(DeviceMessage *deviceMsg);
     };
 }
 

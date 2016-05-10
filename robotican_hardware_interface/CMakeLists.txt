@@ -176,6 +176,8 @@ include_directories(include
          src/${PROJECT_NAME}/RiCBoardManager.cpp
          include/${PROJECT_NAME}/Device.h
          src/${PROJECT_NAME}/Device.cpp
+         include/${PROJECT_NAME}/Battery.h
+         src/${PROJECT_NAME}/Battery.cpp
  )
 
 add_library(robotican_hardware_interface_sim

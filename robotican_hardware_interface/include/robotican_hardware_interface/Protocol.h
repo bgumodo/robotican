@@ -7,6 +7,34 @@
 
 #ifndef PC_SIDE
     #include <Arduino.h>
+
+    enum DeviceMessageType {
+        BuildDevice = 0,
+        Ack = 1,
+        MotorSetPointMsg = 2,
+        MotorFeedback = 3,
+        MotorSetPid = 4,
+        ServoFeedback = 5,
+        ServoSetPoint = 6,
+        SwitchFeedBack = 7,
+        UltrasonicFeedback = 8,
+        RelySetState = 9,
+        GpsFeedback = 10,
+        ImuFeedback = 11,
+        BatteryFeedback = 12,
+    };
+
+    enum DeviceType {
+        Battery = 0,
+        MotorCloseLoop = 1,
+        MotorOpenLoop = 2,
+        Imu = 3,
+        Gps = 4,
+        Servo = 5,
+        Ultrasonic = 6,
+
+    };
+
     enum DataType {
             Message = 0,
             Debug = 1,
@@ -55,6 +83,19 @@
             GpsFeedback = 10,
             ImuFeedback = 11,
             BatteryFeedback = 12,
+        };
+    }
+
+    namespace DeviceType {
+        enum DevieType {
+            Battery = 0,
+            MotorCloseLoop = 1,
+            MotorOpenLoop = 2,
+            Imu = 3,
+            Gps = 4,
+            Servo = 5,
+            Ultrasonic = 6,
+
         };
     }
 
@@ -134,6 +175,36 @@ struct DeviceMessage : Header {
 
     byte id;
     byte deviceMessageType;
-};
+}__attribute__((__packed__));
+
+
+struct DeviceAck : DeviceMessage {
+    DeviceAck() : DeviceMessage() {
+        deviceMessageType = DeviceMessageType::Ack;
+    }
+
+    byte ackId;
+}__attribute__((__packed__));
+
+struct BuildDevice : DeviceMessage {
+    BuildDevice() : DeviceMessage() {
+        deviceMessageType = DeviceMessageType::BuildDevice;
+    }
+    byte deviceType;
+}__attribute__((__packed__));
+
+struct BuildBattery : BuildDevice {
+    BuildBattery() {
+        deviceType = DeviceType::Battery;
+    }
+    byte pin;
+}__attribute__((__packed__));
+
+struct BatteryFeedback : DeviceMessage {
+    BatteryFeedback() {
+        deviceMessageType = DeviceMessageType::BatteryFeedback;
+    }
+    uint16_t currentRead;
+}__attribute__((__packed__));
 
 #endif //RIC_BOARD_PROTOCOL_H
