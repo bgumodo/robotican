@@ -15,7 +15,7 @@ namespace robotican_hardware {
     }
 
     void Device::setId(byte id) {
-        id = 0;
+        _id = id;
     }
 
     void Device::setReady(bool ready) {
