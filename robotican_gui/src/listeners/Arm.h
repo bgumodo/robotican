@@ -5,7 +5,7 @@
 #ifndef ROBOTICAN_GUI_Arm_H
 #define ROBOTICAN_GUI_Arm_H
 #include "listeners/Listener.h"
-#include <control_msgs/FollowJointTrajectoryFeedback.h>
+#include <control_msgs/JointTrajectoryControllerState.h>
 
 class Arm : public Listener
 {
@@ -21,7 +21,7 @@ private:
     std::string _topicName;
     long int _signalTime;
 
-    void _chatterCallback(const control_msgs::FollowJointTrajectoryFeedback::ConstPtr& msg);
+    void _chatterCallback(const control_msgs::JointTrajectoryControllerState::ConstPtr& msg);
 };
 
 

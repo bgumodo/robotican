@@ -5,7 +5,7 @@
 #ifndef ROBOTICAN_GUI_Gripper_H
 #define ROBOTICAN_GUI_Gripper_H
 #include "listeners/Listener.h"
-#include <control_msgs/GripperCommandFeedback.h>
+#include <actionlib_msgs/GoalStatusArray.h>
 
 class Gripper : public Listener
 {
@@ -21,7 +21,7 @@ private:
     std::string _topicName;
     long int _signalTime;
 
-    void _chatterCallback(const control_msgs::GripperCommandFeedback::ConstPtr& msg);
+    void _chatterCallback(const actionlib_msgs::GoalStatusArray& msg);
 };
 
 

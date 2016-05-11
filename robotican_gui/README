@@ -11,8 +11,8 @@ the following list describes default topic and ros-param name (ment to be custom
 *********************************************
 sensor name |   ros-param	    |	default topic
 *********************************************
-Gripper		    gripper_topic	    gripper_controller/gripper_cmd/feedback
-Arm			    arm_topic		    arm_trajectory_controller/follow_joint_trajectory/feedback
+Gripper		    gripper_topic	    gripper_controller/gripper_cmd/status
+Arm			    arm_topic		    arm_trajectory_controller/state
 PanTilt		    pan_tilt_topic	    pan_tilt_controller/command
 GPS			    gps_topic		    GPS/fix
 IMU			    imu_topic		    IMU/data

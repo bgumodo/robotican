@@ -22,3 +22,5 @@ void EventSignal::signalLed(long int newVal, Led* led)
 {
     Q_EMIT ledChanged(newVal, led);
 }
+
+

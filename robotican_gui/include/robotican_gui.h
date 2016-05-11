@@ -95,14 +95,13 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString("MainWindow"));
-        MainWindow->resize(337, 590);
         QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(MainWindow->sizePolicy().hasHeightForWidth());
         MainWindow->setSizePolicy(sizePolicy);
-        MainWindow->setMinimumSize(QSize(337, 590));
-        MainWindow->setMaximumSize(QSize(337, 590));
+        MainWindow->setMinimumSize(QSize(333, 507));
+        MainWindow->setMaximumSize(QSize(333, 507));
         QIcon icon;
         icon.addFile(QString(":/images/robotican_gui_logo.ico"), QSize(), QIcon::Normal, QIcon::Off);
         MainWindow->setWindowIcon(icon);
@@ -213,13 +212,13 @@ public:
         font2.setWeight(75);
         launch_btn->setFont(font2);
         QIcon icon1;
-        icon1.addFile(QString(":/images/turnOn.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon1.addFile(QString(":/images/Shutdown.png"), QSize(), QIcon::Normal, QIcon::Off);
         launch_btn->setIcon(icon1);
         launch_btn->setIconSize(QSize(65, 65));
         launch_btn->setFlat(false);
         exit_btn = new QPushButton(centralwidget);
         exit_btn->setObjectName(QString("exit_btn"));
-        exit_btn->setGeometry(QRect(260, 10, 71, 71));
+        exit_btn->setGeometry(QRect(250, 10, 71, 71));
         QFont font3;
         font3.setPointSize(16);
         font3.setBold(true);
@@ -365,7 +364,7 @@ public:
         line_15->setFrameShadow(QFrame::Sunken);
         label_20 = new QLabel(centralwidget);
         label_20->setObjectName(QString("label_20"));
-        label_20->setGeometry(QRect(0, 490, 331, 51));
+        label_20->setGeometry(QRect(90, 30, 151, 21));
         label_20->setPixmap(QPixmap(QString::fromUtf8(":/images/robotican.png")));
         label_20->setScaledContents(true);
         line_4 = new QFrame(centralwidget);
@@ -413,7 +412,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString("menubar"));
-        menubar->setGeometry(QRect(0, 0, 337, 25));
+        menubar->setGeometry(QRect(0, 0, 333, 25));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString("statusbar"));
