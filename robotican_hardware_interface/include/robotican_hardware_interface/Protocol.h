@@ -212,6 +212,28 @@ struct BuildBattery : BuildDevice {
     byte pin;
 }__attribute__((__packed__));
 
+struct BuildUltrasonic : BuildDevice {
+    BuildUltrasonic() {
+        deviceType = DeviceType::Ultrasonic;
+    }
+    byte pin;
+}__attribute__((__packed__));
+
+struct BuildGps : BuildDevice {
+    BuildGps() {
+        deviceType = DeviceType::Gps;
+    }
+    unsigned int baudrate;
+}__attribute__((__packed__));
+
+struct BuildImu : BuildDevice {
+    BuildImu() {
+        deviceType = DeviceType::Imu;
+    }
+    uint16_t fusionHz;
+    bool enableGyro;
+}__attribute__((__packed__));
+
 struct BuildServo : BuildDevice {
     BuildServo() {
         deviceType = DeviceType::Servo;
@@ -221,18 +243,62 @@ struct BuildServo : BuildDevice {
     float b;
     float max;
     float min;
-};
+}__attribute__((__packed__));
 
 struct ServoFeedback : DeviceMessage {
     ServoFeedback() {
         deviceMessageType = DeviceMessageType::ServoFeedback;
     }
     float pos;
-};
+}__attribute__((__packed__));
+
+struct GpsFeedback : DeviceMessage {
+    GpsFeedback() {
+        deviceMessageType = DeviceMessageType::GpsFeedback;
+    }
+    float lat;
+    float lng;
+    float meters;
+    int16_t HDOP;
+    int16_t satellites;
+    int8_t fix;
+}__attribute__((__packed__));
 
 struct BatteryFeedback : DeviceMessage {
     BatteryFeedback() {
         deviceMessageType = DeviceMessageType::BatteryFeedback;
+    }
+    uint16_t currentRead;
+}__attribute__((__packed__));
+
+struct ImuFeedback : DeviceMessage {
+    ImuFeedback() {
+        deviceMessageType = DeviceMessageType::ImuFeedback;
+    }
+    float velocityX;
+    float velocityY;
+    float velocityZ;
+
+    float accelerationX;
+    float accelerationY;
+    float accelerationZ;
+
+    float magnetometerX;
+    float magnetometerY;
+    float magnetometerZ;
+
+    float orientationX;
+    float orientationY;
+    float orientationZ;
+    float orientationW;
+
+}__attribute__((__packed__));
+
+
+
+struct UltrasonicFeedback : DeviceMessage {
+    UltrasonicFeedback() {
+        deviceMessageType = DeviceMessageType::UltrasonicFeedback;
     }
     uint16_t currentRead;
 }__attribute__((__packed__));
@@ -242,7 +308,7 @@ struct ServoSetPoint : DeviceMessage {
         deviceMessageType = DeviceMessageType::ServoSetPoint;
     }
     float pos;
-};
+}__attribute__((__packed__));
 
 
 #endif //RIC_BOARD_PROTOCOL_H

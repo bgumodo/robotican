@@ -8,6 +8,7 @@
 #include <ros/ros.h>
 #include <robotican_hardware_interface/Protocol.h>
 #include <robotican_hardware_interface/TransportLayer.h>
+#include <robotican_hardware_interface/robot_base.h>
 
 namespace robotican_hardware {
 

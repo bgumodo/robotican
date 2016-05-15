@@ -10,13 +10,17 @@
 #include <boost/thread/thread.hpp>
 #include <robotican_hardware_interface/Device.h>
 #include <robotican_hardware_interface/Battery.h>
+#include <robotican_hardware_interface/Servo.h>
 #include <robotican_hardware_interface/ros_utils.h>
 #include <hardware_interface/joint_command_interface.h>
 #include <robotican_hardware_interface/TransportLayer.h>
+#include <robotican_hardware_interface/Ultrasonic.h>
+#include <robotican_hardware_interface/Gps.h>
+#include <robotican_hardware_interface/Imu.h>
 
 #define MAX_BUFF_SIZE 255
 #define PC_VERSION 100
-#define RIC_BOARD_DEBUG
+//#define RIC_BOARD_DEBUG
 
 namespace robotican_hardware {
     class RiCBoardManager {
@@ -29,14 +33,13 @@ namespace robotican_hardware {
         ros::Timer _timeoutKeepAliveTimer;
         ros::AsyncSpinner _spinner;
         std::vector<Device*> _devices;
+        byte _idGen;
 
         unsigned int getBaudrate();
 
         std::string getPort();
 
         void resetBuff();
-
-        ConnectEnum::ConnectEnum getConnectState();
 
         void setConnectState(ConnectEnum::ConnectEnum connectState);
 
@@ -49,9 +52,9 @@ namespace robotican_hardware {
 
         void buildDevices();
 
-        void buildDevices(hardware_interface::JointStateInterface, hardware_interface::VelocityJointInterface);
+        void buildDevices(hardware_interface::JointStateInterface*, hardware_interface::VelocityJointInterface*);
 
-        void buildDevices(hardware_interface::JointStateInterface, hardware_interface::PositionJointInterface);
+        void buildDevices(hardware_interface::JointStateInterface*, hardware_interface::PositionJointInterface*);
 
         void connect();
 
@@ -68,6 +71,10 @@ namespace robotican_hardware {
         void keepAliveHandle(KeepAliveMsg *keepAliveMsg);
 
         void deviceMessageHandler(DeviceMessage *deviceMsg);
+
+        void write();
+
+        ConnectEnum::ConnectEnum getConnectState();
     };
 }
 

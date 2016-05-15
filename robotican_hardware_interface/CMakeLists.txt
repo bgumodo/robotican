@@ -180,7 +180,13 @@ include_directories(include
          src/${PROJECT_NAME}/Battery.cpp
          include/${PROJECT_NAME}/Servo.h
          src/${PROJECT_NAME}/Servo.cpp
- )
+         include/${PROJECT_NAME}/Ultrasonic.h
+         src/${PROJECT_NAME}/Ultrasonic.cpp
+         include/${PROJECT_NAME}/Gps.h
+         src/${PROJECT_NAME}/Gps.cpp
+         include/${PROJECT_NAME}/Imu.h
+         src/${PROJECT_NAME}/Imu.cpp
+         )
 
 add_library(robotican_hardware_interface_sim
         include/${PROJECT_NAME}/robot_sim_interface.h

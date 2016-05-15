@@ -6,6 +6,7 @@
 
 namespace robotican_hardware {
     RiCBoardManager::RiCBoardManager() : _nodeHandle(), _spinner(1) ,_transportLayer(getPort(), getBaudrate()) {
+        _idGen = 0;
         resetBuff();
         setConnectState(ConnectEnum::Disconnected);
         boost::thread thread(&RiCBoardManager::handleMessage, this);
@@ -192,8 +193,6 @@ namespace robotican_hardware {
 
     void RiCBoardManager::buildDevices() {
 
-        byte idGen = 0;
-
 #ifndef RIC_BOARD_DEBUG
         if(_nodeHandle.hasParam("battery_pin")) {
             int pin;
@@ -202,13 +201,53 @@ namespace robotican_hardware {
                && _nodeHandle.getParam("battery_voltage_divider_ratio", voltageDividerRatio)
                && _nodeHandle.getParam("battery_max", max)
                && _nodeHandle.getParam("battery_min", min)) {
-                Device *battery = new Battery(idGen++, voltageDividerRatio, max, min, (byte) pin, &_transportLayer);
+                Device *battery = new Battery(_idGen++, voltageDividerRatio, max, min, (byte) pin, &_transportLayer);
                 _devices.push_back(battery);
             }
             else {
                 ros_utils::rosError("Can't build battery some of the parameters are missing");
             }
         }
+
+        int ultrasonicSize = 0;
+        ros::param::param("ultrasonic_size", ultrasonicSize, 0);
+        for(int i = 0; i < ultrasonicSize; ++i) {
+            std::string ultrasonicIdentifier = "ultrasoic" + i, frameId, topicName;
+            int pin;
+            if(_nodeHandle.getParam(ultrasonicIdentifier + "_pin", pin)
+               && _nodeHandle.getParam(ultrasonicIdentifier + "_frame_id", frameId)
+               && _nodeHandle.getParam(ultrasonicIdentifier + "_topic_name", topicName)) {
+                Device *ultrasonic = new Ultrasonic(_idGen++, &_transportLayer, pin,  topicName, frameId);
+                _devices.push_back(ultrasonic);
+            }
+        }
+
+        if(_nodeHandle.hasParam("imu_fusion_hz")) {
+            int fusionHz;
+            bool enableGyro;
+            std::string frameId;
+
+            if(_nodeHandle.getParam("imu_fusion_hz", fusionHz)
+               && _nodeHandle.getParam("imu_enable_gyro", enableGyro)
+               && _nodeHandle.getParam("imu_frame_id", frameId)) {
+                Device *imu = new Imu(_idGen++, &_transportLayer, (uint16_t) fusionHz, frameId, enableGyro);
+                _devices.push_back(imu);
+            }
+        }
+
+        if(_nodeHandle.hasParam("gps_baudrate")) {
+            int baudrate;
+            std::string frameId, topicName;
+
+            if(_nodeHandle.getParam("gps_baudrate", baudrate)
+               && _nodeHandle.getParam("gps_topic_name", topicName)
+               && _nodeHandle.getParam("gps_frame_id", frameId)) {
+                Device *gps = new Gps(_idGen++, &_transportLayer, (uint16_t) baudrate, topicName, frameId);
+                _devices.push_back(gps);
+            }
+        }
+
+
 #endif
 #ifdef  RIC_BOARD_DEBUG
                 int pin;
@@ -217,7 +256,7 @@ namespace robotican_hardware {
                 _nodeHandle.param<float>("battery_voltage_divider_ratio", voltageDividerRatio, 6.0);
                 _nodeHandle.param<float>("battery_max", max, 11.3);
                 _nodeHandle.param<float>("battery_min", min, 10.0);
-                Device *battery = new Battery(idGen++, voltageDividerRatio, max, min, (byte) pin, &_transportLayer);
+                Device *battery = new Battery(_idGen++, voltageDividerRatio, max, min, (byte) pin, &_transportLayer);
                 _devices.push_back(battery);
 
 #endif
@@ -276,13 +315,53 @@ namespace robotican_hardware {
 
     }
 
-    void RiCBoardManager::buildDevices(hardware_interface::JointStateInterface anInterface,
-                                       hardware_interface::VelocityJointInterface jointInterface) {
+
+    void RiCBoardManager::buildDevices(hardware_interface::JointStateInterface* jointStateInterface,
+                                       hardware_interface::PositionJointInterface* jointPositionInterface) {
+        int servoSize = 0;
+        ros::param::param<int>("servo_size", servoSize, 0);
+        for(int i = 0; i < servoSize; ++i) {
+            std::string servoIdentifier = "servo" + i, servoJointName = "";
+            float a , b,  max,  min,  initPos;
+            int pin;
+
+            if(_nodeHandle.getParam(servoIdentifier + "_a", a)
+               &&_nodeHandle.getParam(servoIdentifier + "_b", b)
+               &&_nodeHandle.getParam(servoIdentifier + "_max", max)
+               &&_nodeHandle.getParam(servoIdentifier + "_min", min)
+               &&_nodeHandle.getParam(servoIdentifier + "_init_pos", initPos)
+               &&_nodeHandle.getParam(servoIdentifier + "_pin", pin)
+               &&_nodeHandle.getParam(servoIdentifier + "_joint_name", servoJointName)) {
+                Servo* servo = new Servo(_idGen++, &_transportLayer, (byte) pin, a, b, max, min, initPos);
+                JointInfo_t* servoJointInfo = servo->getJointInfo();
+                hardware_interface::JointStateHandle jointStateHandle(servoJointName,
+                                                                      &servoJointInfo->position,
+                                                                      &servoJointInfo->velocity,
+                                                                      &servoJointInfo->effort);
+
+
+                jointStateInterface->registerHandle(jointStateHandle);
+                hardware_interface::JointHandle JointHandle(jointStateInterface->getHandle(servoJointName),
+                                                                &servoJointInfo->cmd);
+                jointPositionInterface->registerHandle(JointHandle);
+                _devices.push_back(servo);
+            }
+        }
+
 
     }
 
-    void RiCBoardManager::buildDevices(hardware_interface::JointStateInterface anInterface,
-                                       hardware_interface::PositionJointInterface jointInterface) {
+    void RiCBoardManager::buildDevices(hardware_interface::JointStateInterface *jointStateInterface,
+                                       hardware_interface::VelocityJointInterface *jointVelocityInterface) {
+
+    }
+
+    void RiCBoardManager::write() {
+        if(ros::ok()) {
+            size_t deviceSize = _devices.size();
+            for(int i = 0; i < deviceSize; ++i)
+                _devices[i]->write();
+        }
 
     }
 }

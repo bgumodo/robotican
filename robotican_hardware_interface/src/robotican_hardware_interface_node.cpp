@@ -23,6 +23,9 @@ int main(int argc, char **argv) {
 #ifdef RIC_BOARD_TEST
     robotican_hardware::RiCBoardManager manager;
     manager.connect();
+    ros::Rate loopRate(50);
+    while (manager.getConnectState() != ConnectEnum::Connected) { loopRate.sleep(); }
+    manager.buildDevices();
     ros::Duration(120.0).sleep();
     manager.disconnect();
     ros::spin();

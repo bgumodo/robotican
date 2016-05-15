@@ -6,14 +6,15 @@
 
 namespace robotican_hardware {
 
-    Servo::Servo(byte id, TransportLayer *transportLayer, byte pin, float a, float b, float max, float min, float *initPos) : Device(id , transportLayer) {
+    Servo::Servo(byte id, TransportLayer *transportLayer, byte pin, float a, float b, float max, float min,
+                 float initPos) : Device(id , transportLayer) {
         _pin = pin;
         _a = a;
         _b = b;
         _max = max;
         _min = min;
-        _pos = initPos;
-        _command = initPos;
+        _jointInfo.position = initPos;
+        _jointInfo.cmd = initPos;
         buildDevice();
 
     }
@@ -21,7 +22,7 @@ namespace robotican_hardware {
 
     void Servo::update(const DeviceMessage *deviceMessage) {
         ServoFeedback* feedback = (ServoFeedback*) deviceMessage;
-        *_pos = feedback->pos;
+        _jointInfo.position = feedback->pos;
     }
 
     void Servo::write() {
@@ -29,11 +30,15 @@ namespace robotican_hardware {
         point.length = sizeof(point);
         point.checkSum = 0;
         point.id = getId();
-        point.pos = *_command;
+        point.pos = _jointInfo.cmd;
 
         uint8_t *rawData = (uint8_t*)&point;
         point.checkSum = _transportLayer->calcChecksum(rawData, point.length);
         _transportLayer->write(rawData, point.length);
+    }
+
+    JointInfo_t* Servo::getJointInfo() {
+        return &_jointInfo;
     }
 
     void Servo::buildDevice() {

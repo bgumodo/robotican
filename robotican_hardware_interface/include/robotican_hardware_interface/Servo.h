@@ -19,13 +19,13 @@ namespace robotican_hardware {
         float _b;
         float _max;
         float _min;
-        float* _pos;
-        float* _command;
+        JointInfo_t _jointInfo;
     public:
-        Servo(byte id, TransportLayer *transportLayer, byte pin, float a, float b, float max, float min, float *initPos);
+        Servo(byte id, TransportLayer *transportLayer, byte pin, float a, float b, float max, float min, float initPos);
         virtual void update(const DeviceMessage *deviceMessage);
         virtual void write();
         virtual void deviceAck(const DeviceAck *ack);
+        JointInfo_t* getJointInfo();
     protected:
         virtual void buildDevice();
 

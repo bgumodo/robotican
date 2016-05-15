@@ -11,14 +11,17 @@
 #include <hardware_interface/robot_hw.h>
 #include <robotican_hardware_interface/ros_utils.h>
 #include <hardware_interface/joint_command_interface.h>
+#include <robotican_hardware_interface/Device.h>
 
 namespace robotican_hardware {
+    class Device;
 
     struct JointInfo_t {
         double position;
         double effort;
         double velocity;
         double cmd;
+
         JointInfo_t() {
             position = effort = velocity = cmd = 0;
         }
