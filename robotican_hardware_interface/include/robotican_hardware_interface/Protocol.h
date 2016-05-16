@@ -35,9 +35,10 @@
             Gps = 4,
             Servo = 5,
             Ultrasonic = 6,
+            Switch = 7,
+            Realy = 8,
 
         };
-    }
 
     namespace DataType {
         enum DataType {
@@ -89,7 +90,7 @@
             MotorSetPid = 4,
             ServoFeedback = 5,
             ServoSetPoint = 6,
-            SwitchFeedBack = 7,
+            SwitchFeedback = 7,
             UltrasonicFeedback = 8,
             RelySetState = 9,
             GpsFeedback = 10,
@@ -99,7 +100,7 @@
     }
 
     namespace DeviceType {
-        enum DevieType {
+        enum DeviceType {
             Battery = 0,
             MotorCloseLoop = 1,
             MotorOpenLoop = 2,
@@ -107,6 +108,8 @@
             Gps = 4,
             Servo = 5,
             Ultrasonic = 6,
+            Switch = 7,
+            Relay = 8,
 
         };
     }
@@ -234,6 +237,13 @@ struct BuildImu : BuildDevice {
     bool enableGyro;
 }__attribute__((__packed__));
 
+struct BuildSwitch : BuildDevice {
+    BuildSwitch() {
+        deviceType = DeviceType::Switch;
+    }
+    byte pin;
+};
+
 
 struct BuildMotorCloseLoop : BuildDevice {
     BuildMotorCloseLoop() {
@@ -285,6 +295,13 @@ struct ServoFeedback : DeviceMessage {
         deviceMessageType = DeviceMessageType::ServoFeedback;
     }
     float pos;
+}__attribute__((__packed__));
+
+struct SwitchFeedback : DeviceMessage {
+    SwitchFeedback() {
+        deviceMessageType = DeviceMessageType::SwitchFeedback;
+    }
+    bool state;
 }__attribute__((__packed__));
 
 struct GpsFeedback : DeviceMessage {

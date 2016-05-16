@@ -18,10 +18,11 @@
 #include <robotican_hardware_interface/Gps.h>
 #include <robotican_hardware_interface/Imu.h>
 #include <robotican_hardware_interface/RiCMotor.h>
+#include <robotican_hardware_interface/Switch.h>
 
 #define MAX_BUFF_SIZE 255
 #define PC_VERSION 100
-#define RIC_BOARD_DEBUG
+//#define RIC_BOARD_DEBUG
 
 namespace robotican_hardware {
     class RiCBoardManager {

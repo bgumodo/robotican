@@ -246,6 +246,18 @@ namespace robotican_hardware {
                 _devices.push_back(gps);
             }
         }
+        int switchSize = 0;
+        ros::param::param<int>("switch_size", switchSize, 0);
+
+        for(int i = 0; i < switchSize; ++i) {
+            std::string switchIdentifier = "switch" + i, topicName;
+            int pin;
+            if(_nodeHandle.getParam(switchIdentifier + "_topic_name", topicName)
+               && _nodeHandle.getParam(switchIdentifier + "_pin", pin)) {
+                Device *gps = new Switch(_idGen++, &_transportLayer, (byte) pin, topicName);
+                _devices.push_back(gps);
+            }
+        }
 
 
 #endif
@@ -284,7 +296,7 @@ namespace robotican_hardware {
                     break;
                 case DeviceMessageType::ServoSetPoint:
                     break;
-                case DeviceMessageType::SwitchFeedBack:
+                case DeviceMessageType::SwitchFeedback:
                     _devices[deviceMsg->id]->update(deviceMsg);
                     break;
                 case DeviceMessageType::UltrasonicFeedback:

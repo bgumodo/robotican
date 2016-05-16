@@ -12,6 +12,7 @@
       <sourceFolder url="file://$MODULE_DIR$/include/robotican_hardware_interface/RiCBoardManager.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/include/robotican_hardware_interface/RiCMotor.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/include/robotican_hardware_interface/Servo.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/include/robotican_hardware_interface/Switch.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/include/robotican_hardware_interface/TransportLayer.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/include/robotican_hardware_interface/Ultrasonic.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/include/robotican_hardware_interface/dynamixel_pro_controller.h" isTestSource="false" />
@@ -27,6 +28,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/robotican_hardware_interface/RiCBoardManager.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/robotican_hardware_interface/RiCMotor.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/robotican_hardware_interface/Servo.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/robotican_hardware_interface/Switch.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/robotican_hardware_interface/TransportLayer.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/robotican_hardware_interface/Ultrasonic.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/robotican_hardware_interface/armadillo.cpp" isTestSource="false" />
@@ -78,6 +80,7 @@
         </SOURCES>
         <excluded>
           <root url="file://$MODULE_DIR$/include/robotican_hardware_interface/dynamixel_pro_controller.h" />
+          <root url="file://$MODULE_DIR$/include/robotican_hardware_interface/Switch.h" />
           <root url="file://$MODULE_DIR$/include/robotican_hardware_interface/RiCMotor.h" />
           <root url="file://$MODULE_DIR$/include/robotican_hardware_interface/Servo.h" />
           <root url="file://$MODULE_DIR$/include/robotican_hardware_interface/Battery.h" />
