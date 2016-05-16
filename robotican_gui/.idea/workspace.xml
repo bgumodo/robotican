@@ -30,22 +30,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9189c781-230f-45d9-99b5-9793f5f474a1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/listeners/F200.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/listeners/F200.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/listeners/Kinect2.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/listeners/Kinect2.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/images/battery.png" afterPath="$PROJECT_DIR$/resources/images/battery.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/images/eng.png" afterPath="$PROJECT_DIR$/resources/images/eng.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/images/odo.png" afterPath="$PROJECT_DIR$/resources/images/odo.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/ui/robotican_gui.ui" afterPath="$PROJECT_DIR$/resources/ui/robotican_gui.ui" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/robotican_gui.iml" afterPath="$PROJECT_DIR$/.idea/robotican_gui.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README" afterPath="$PROJECT_DIR$/README" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/robotican_gui.h" afterPath="$PROJECT_DIR$/include/robotican_gui.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/event_handler/EventSignal.cpp" afterPath="$PROJECT_DIR$/src/event_handler/EventSignal.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/event_handler/EventSlot.h" afterPath="$PROJECT_DIR$/src/event_handler/EventSlot.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gui_manager/GUIManager.cpp" afterPath="$PROJECT_DIR$/src/gui_manager/GUIManager.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gui_manager/GUIManager.h" afterPath="$PROJECT_DIR$/src/gui_manager/GUIManager.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/listeners/Battery.cpp" afterPath="$PROJECT_DIR$/src/listeners/Battery.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/listeners/Battery.h" afterPath="$PROJECT_DIR$/src/listeners/Battery.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/listeners/Arm.cpp" afterPath="$PROJECT_DIR$/src/listeners/Arm.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/listeners/Arm.h" afterPath="$PROJECT_DIR$/src/listeners/Arm.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/listeners/Gripper.cpp" afterPath="$PROJECT_DIR$/src/listeners/Gripper.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/listeners/Gripper.h" afterPath="$PROJECT_DIR$/src/listeners/Gripper.h" />
     </list>
     <ignored path="robotican_gui.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -65,7 +62,114 @@
     <favorites_list name="robotican_gui" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="GUIManager.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gui_manager/GUIManager.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="27" column="1" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Arm.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/listeners/Arm.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Gripper.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/listeners/Gripper.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="18" column="98" selection-start-line="18" selection-start-column="61" selection-end-line="18" selection-end-column="98" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="19" column="58" selection-start-line="19" selection-start-column="58" selection-end-line="19" selection-end-column="58" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Gripper.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/listeners/Gripper.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="23" column="68" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="68" />
+              <folding>
+                <element signature="e#102#133#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Arm.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/listeners/Arm.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="23" column="87" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="87" />
+              <folding>
+                <element signature="e#94#125#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GUIManager.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gui_manager/GUIManager.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="595">
+              <caret line="35" column="24" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EventSlot.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/event_handler/EventSlot.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1139">
+              <caret line="67" column="5" selection-start-line="67" selection-start-column="5" selection-end-line="67" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EventSlot.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/event_handler/EventSlot.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="527">
+              <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="robotican_gui.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/include/robotican_gui.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="8041">
+              <caret line="473" column="22" selection-start-line="473" selection-start-column="22" selection-end-line="473" selection-end-column="22" />
+              <folding>
+                <element signature="e#415#441#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -73,24 +177,19 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/listeners/BatteryListener.h" />
         <option value="$PROJECT_DIR$/src/listeners/GripperListener.h" />
         <option value="$PROJECT_DIR$/src/listeners/ArmListener.h" />
         <option value="$PROJECT_DIR$/src/listeners/ArmListener.cpp" />
         <option value="$PROJECT_DIR$/src/listeners/GripperListener.cpp" />
         <option value="$PROJECT_DIR$/src/listeners/BatteryListener.cpp" />
-        <option value="$PROJECT_DIR$/src/event_handler/EventSignal.h" />
-        <option value="$PROJECT_DIR$/src/event_handler/EventSignal.cpp" />
         <option value="$PROJECT_DIR$/src/listeners/PanTiltListener.h" />
         <option value="$PROJECT_DIR$/src/listeners/PanTiltListener.cpp" />
         <option value="$PROJECT_DIR$/src/listeners/LedListener.cpp" />
         <option value="$PROJECT_DIR$/src/listeners/LedListener.h" />
-        <option value="$PROJECT_DIR$/src/listeners/Arm.h" />
         <option value="$PROJECT_DIR$/src/listeners/PanTilt.h" />
         <option value="$PROJECT_DIR$/src/listeners/Odom.h" />
         <option value="$PROJECT_DIR$/src/listeners/Imu.h" />
         <option value="$PROJECT_DIR$/src/listeners/Listener.h" />
-        <option value="$PROJECT_DIR$/src/listeners/Gripper.h" />
         <option value="$PROJECT_DIR$/src/listeners/Lidar.h" />
         <option value="$PROJECT_DIR$/src/listeners/Gps.h" />
         <option value="$PROJECT_DIR$/src/listeners/RearCam.h" />
@@ -99,19 +198,16 @@
         <option value="$PROJECT_DIR$/src/listeners/UrfRear.h" />
         <option value="$PROJECT_DIR$/src/listeners/UrfLeft.h" />
         <option value="$PROJECT_DIR$/src/gui_components/Led.h" />
-        <option value="$PROJECT_DIR$/src/event_handler/EventSlot.h" />
         <option value="$PROJECT_DIR$/src/listeners/UrfRight.cpp" />
         <option value="$PROJECT_DIR$/src/listeners/UrfRear.cpp" />
         <option value="$PROJECT_DIR$/src/listeners/UrfLeft.cpp" />
         <option value="$PROJECT_DIR$/src/listeners/RearCam.cpp" />
         <option value="$PROJECT_DIR$/src/listeners/Gps.cpp" />
         <option value="$PROJECT_DIR$/src/listeners/PanTilt.cpp" />
-        <option value="$PROJECT_DIR$/src/listeners/Gripper.cpp" />
         <option value="$PROJECT_DIR$/src/listeners/Imu.cpp" />
         <option value="$PROJECT_DIR$/src/listeners/Lidar.cpp" />
         <option value="$PROJECT_DIR$/src/listeners/Odom.cpp" />
         <option value="$PROJECT_DIR$/src/listeners/FrontCam.cpp" />
-        <option value="$PROJECT_DIR$/src/listeners/Arm.cpp" />
         <option value="$PROJECT_DIR$/src/event_handler/EventSlot.cpp" />
         <option value="$PROJECT_DIR$/src/listeners/Kinect2.h" />
         <option value="$PROJECT_DIR$/src/listeners/Kinect2.cpp" />
@@ -120,8 +216,16 @@
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/src/listeners/Battery.h" />
         <option value="$PROJECT_DIR$/src/listeners/Battery.cpp" />
+        <option value="$PROJECT_DIR$/src/event_handler/EventSignal.cpp" />
+        <option value="$PROJECT_DIR$/src/gui_components/Led.cpp" />
+        <option value="$PROJECT_DIR$/src/event_handler/EventSignal.h" />
         <option value="$PROJECT_DIR$/src/gui_manager/GUIManager.h" />
+        <option value="$PROJECT_DIR$/src/event_handler/EventSlot.h" />
         <option value="$PROJECT_DIR$/include/robotican_gui.h" />
+        <option value="$PROJECT_DIR$/src/listeners/Arm.h" />
+        <option value="$PROJECT_DIR$/src/listeners/Arm.cpp" />
+        <option value="$PROJECT_DIR$/src/listeners/Gripper.h" />
+        <option value="$PROJECT_DIR$/src/listeners/Gripper.cpp" />
         <option value="$PROJECT_DIR$/src/gui_manager/GUIManager.cpp" />
         <option value="$PROJECT_DIR$/README" />
       </list>
@@ -358,7 +462,7 @@
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///home/sub/catkin_ws/robotican_gui/src/gripper_listener/GripperListener.cpp" />
   </component>
@@ -660,24 +764,24 @@
     <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.180593" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13908356" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22075279" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3219076" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3092574" sideWeight="0.5018868" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1698881" sideWeight="0.49811321" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39877924" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2726348" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39940387" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1698881" sideWeight="0.49811321" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935917" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39877924" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -703,7 +807,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="21" />
+      <option name="time" value="22" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -715,31 +819,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/event_handler/EventSignal.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="21" column="41" selection-start-line="21" selection-start-column="41" selection-end-line="21" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/listeners/Arm.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/listeners/Listener.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="13" column="17" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/listeners/Gripper.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -834,25 +917,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui_components/Led.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="34" column="14" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="23" column="11" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/event_handler/EventSignal.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -898,13 +967,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/listeners/Gripper.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="18" column="46" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/listeners/Imu.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -926,20 +988,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/listeners/Arm.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="18" column="42" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/event_handler/EventSlot.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/include/qt4/QtCore/qtconcurrentrun.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -958,14 +1006,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="401" column="2" selection-start-line="401" selection-start-column="2" selection-end-line="401" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/event_handler/EventSlot.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="668">
-          <caret line="81" column="14" selection-start-line="81" selection-start-column="14" selection-end-line="81" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1008,7 +1048,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="615">
           <caret line="96" column="28" selection-start-line="96" selection-start-column="28" selection-end-line="96" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1016,7 +1055,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
           <caret line="19" column="1" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1024,7 +1062,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
           <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1032,7 +1069,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1040,41 +1076,113 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
           <caret line="14" column="86" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="86" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui_manager/GUIManager.cpp">
+    <entry file="file://$PROJECT_DIR$/src/event_handler/EventSignal.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="672">
-          <caret line="159" column="93" selection-start-line="116" selection-start-column="4" selection-end-line="159" selection-end-column="93" />
-          <folding />
+        <state relative-caret-position="315">
+          <caret line="25" column="2" selection-start-line="25" selection-start-column="2" selection-end-line="25" selection-end-column="2" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README">
+    <entry file="file://$PROJECT_DIR$/src/event_handler/EventSignal.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
-          <folding />
+        <state relative-caret-position="390">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui_components/Led.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/include/robotican_gui.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7848">
-          <caret line="456" column="17" selection-start-line="456" selection-start-column="17" selection-end-line="456" selection-end-column="17" />
+        <state relative-caret-position="8041">
+          <caret line="473" column="22" selection-start-line="473" selection-start-column="22" selection-end-line="473" selection-end-column="22" />
+          <folding>
+            <element signature="e#415#441#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/event_handler/EventSlot.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/event_handler/EventSlot.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1139">
+          <caret line="67" column="5" selection-start-line="67" selection-start-column="5" selection-end-line="67" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gui_manager/GUIManager.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="39" column="20" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
+        <state relative-caret-position="595">
+          <caret line="35" column="24" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/listeners/Arm.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="87" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="87" />
           <folding>
-            <element signature="e#103#121#0" expanded="true" />
+            <element signature="e#94#125#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/listeners/Arm.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/listeners/Gripper.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="68" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="68" />
+          <folding>
+            <element signature="e#102#133#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui_manager/GUIManager.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="1" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/listeners/Gripper.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="98" selection-start-line="18" selection-start-column="61" selection-end-line="18" selection-end-column="98" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="58" selection-start-line="19" selection-start-column="58" selection-end-line="19" selection-end-column="58" />
+          <folding />
         </state>
       </provider>
     </entry>

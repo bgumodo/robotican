@@ -18,7 +18,7 @@
 #include <QtConcurrentRun>
 #include "../gui_components/Led.h"
 
-#define TIMEOUT 0.1
+#define TIMEOUT 1.0
 
 class EventSlot : public QThread {
     Q_OBJECT

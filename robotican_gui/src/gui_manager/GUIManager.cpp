@@ -48,11 +48,13 @@ void GUImanager::_connectEvents()
                      &_eventSlot, SLOT(execLaunch()));
 }
 
-/*this procedure is a called as ros::Timer callback,
- * therefore it will run in loop
- */
-void GUImanager::_loopEvents(const ros::TimerEvent &timerEvent) {
+//**************************************************
+//this procedure is a called as ros::Timer callback,
+//therefore it will run in loop
+//**************************************************
 
+void GUImanager::_loopEvents(const ros::TimerEvent &timerEvent)
+{
     _eventSignal.signalBatVal(_batListener.getBatteryPwr());
     _eventSignal.signalLed(_batListener.getLastSignal(), &_batteryLed);
     _eventSignal.signalLed(_armListener.getLastSignal(), &_armLed);
