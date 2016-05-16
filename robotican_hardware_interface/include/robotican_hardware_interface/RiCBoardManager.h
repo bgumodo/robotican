@@ -19,6 +19,7 @@
 #include <robotican_hardware_interface/Imu.h>
 #include <robotican_hardware_interface/RiCMotor.h>
 #include <robotican_hardware_interface/Switch.h>
+#include <robotican_hardware_interface/Relay.h>
 
 #define MAX_BUFF_SIZE 255
 #define PC_VERSION 100

@@ -190,6 +190,8 @@ include_directories(include
          src/${PROJECT_NAME}/RiCMotor.cpp
          include/${PROJECT_NAME}/Switch.h
          src/${PROJECT_NAME}/Switch.cpp
+         include/${PROJECT_NAME}/Relay.h
+         src/${PROJECT_NAME}/Relay.cpp
          )
 
 add_library(robotican_hardware_interface_sim

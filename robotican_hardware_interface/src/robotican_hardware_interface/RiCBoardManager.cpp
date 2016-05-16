@@ -254,8 +254,20 @@ namespace robotican_hardware {
             int pin;
             if(_nodeHandle.getParam(switchIdentifier + "_topic_name", topicName)
                && _nodeHandle.getParam(switchIdentifier + "_pin", pin)) {
-                Device *gps = new Switch(_idGen++, &_transportLayer, (byte) pin, topicName);
-                _devices.push_back(gps);
+                Device *switchDev = new Switch(_idGen++, &_transportLayer, (byte) pin, topicName);
+                _devices.push_back(switchDev);
+            }
+        }
+
+        int relaySize = 0;
+        ros::param::param<int>("relay_size", relaySize, 0);
+        for(int i = 0; i < relaySize; ++i) {
+            std::string relayIdentifier = "switch" + i, serviceName;
+            int pin;
+            if(_nodeHandle.getParam(relayIdentifier + "_service_name", serviceName)
+               && _nodeHandle.getParam(relayIdentifier + "_pin", pin)) {
+                Device *switchDev = new Relay(_idGen++, &_transportLayer, (byte) pin, serviceName);
+                _devices.push_back(switchDev);
             }
         }
 

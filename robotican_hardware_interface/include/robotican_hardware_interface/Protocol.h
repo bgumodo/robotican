@@ -244,6 +244,13 @@ struct BuildSwitch : BuildDevice {
     byte pin;
 };
 
+struct BuildRelay : BuildDevice {
+    BuildRelay() {
+        deviceType = DeviceType::Relay;
+    }
+    byte pin;
+};
+
 
 struct BuildMotorCloseLoop : BuildDevice {
     BuildMotorCloseLoop() {
@@ -376,6 +383,13 @@ struct MotorSetPoint : DeviceMessage {
         deviceMessageType = DeviceMessageType::MotorSetPointMsg;
     }
     float point;
+}__attribute__((__packed__));
+
+struct RelaySetState : DeviceMessage {
+    RelaySetState() {
+        deviceMessageType = DeviceMessageType::RelySetState;
+    }
+    bool state;
 }__attribute__((__packed__));
 
 

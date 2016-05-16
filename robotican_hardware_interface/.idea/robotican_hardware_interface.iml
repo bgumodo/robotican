@@ -9,6 +9,7 @@
       <sourceFolder url="file://$MODULE_DIR$/include/robotican_hardware_interface/Imu.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/include/robotican_hardware_interface/LiziRobot.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/include/robotican_hardware_interface/Protocol.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/include/robotican_hardware_interface/Relay.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/include/robotican_hardware_interface/RiCBoardManager.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/include/robotican_hardware_interface/RiCMotor.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/include/robotican_hardware_interface/Servo.h" isTestSource="false" />
@@ -25,6 +26,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/robotican_hardware_interface/Gps.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/robotican_hardware_interface/Imu.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/robotican_hardware_interface/LiziRobot.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/robotican_hardware_interface/Relay.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/robotican_hardware_interface/RiCBoardManager.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/robotican_hardware_interface/RiCMotor.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/robotican_hardware_interface/Servo.cpp" isTestSource="false" />
@@ -85,6 +87,7 @@
           <root url="file://$MODULE_DIR$/include/robotican_hardware_interface/Servo.h" />
           <root url="file://$MODULE_DIR$/include/robotican_hardware_interface/Battery.h" />
           <root url="file://$MODULE_DIR$/include/robotican_hardware_interface/LiziRobot.h" />
+          <root url="file://$MODULE_DIR$/include/robotican_hardware_interface/Relay.h" />
           <root url="file://$MODULE_DIR$/include/robotican_hardware_interface/Gps.h" />
           <root url="file://$MODULE_DIR$/include/robotican_hardware_interface/Protocol.h" />
           <root url="file://$MODULE_DIR$/include/robotican_hardware_interface/komodo.h" />
