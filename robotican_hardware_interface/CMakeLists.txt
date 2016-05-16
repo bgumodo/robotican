@@ -186,6 +186,8 @@ include_directories(include
          src/${PROJECT_NAME}/Gps.cpp
          include/${PROJECT_NAME}/Imu.h
          src/${PROJECT_NAME}/Imu.cpp
+         include/${PROJECT_NAME}/RiCMotor.h
+         src/${PROJECT_NAME}/RiCMotor.cpp
          )
 
 add_library(robotican_hardware_interface_sim

@@ -353,6 +353,97 @@ namespace robotican_hardware {
 
     void RiCBoardManager::buildDevices(hardware_interface::JointStateInterface *jointStateInterface,
                                        hardware_interface::VelocityJointInterface *jointVelocityInterface) {
+        int closeMotorSize = 0;
+        ros::param::param<int>("close_motor_size", closeMotorSize, 0);
+        for(int i = 0; i < closeMotorSize; ++i) {
+            std::string closeMotorIdentifier = "motor" + i, jointName;
+            CloseMotorParams motorParams;
+
+            int encoderPinA, encoderPinB, LPFHz, PIDHz, CPR, timeout, motorDirection, encoderDirection, motorAddress, eSwitchPin, eSwitchType;
+            float LPFAlpha, KP, KI, KD, maxSpeed, limit;
+
+            if(_nodeHandle.getParam(closeMotorIdentifier + "_encoder_pin_A", encoderPinA)
+               && _nodeHandle.getParam(closeMotorIdentifier + "_encoder_pin_B", encoderPinB)
+               && _nodeHandle.getParam(closeMotorIdentifier + "_lpf_hz", LPFHz)
+               && _nodeHandle.getParam(closeMotorIdentifier + "_pid_hz", PIDHz)
+               && _nodeHandle.getParam(closeMotorIdentifier + "_cpr", CPR)
+               && _nodeHandle.getParam(closeMotorIdentifier + "_timeout", timeout)
+               && _nodeHandle.getParam(closeMotorIdentifier + "_motor_direction", motorDirection)
+               && _nodeHandle.getParam(closeMotorIdentifier + "_encoder_direction", encoderDirection)
+               && _nodeHandle.getParam(closeMotorIdentifier + "_lpf_alpha", LPFAlpha)
+               && _nodeHandle.getParam(closeMotorIdentifier + "_kp", KP)
+               && _nodeHandle.getParam(closeMotorIdentifier + "_ki", KI)
+               && _nodeHandle.getParam(closeMotorIdentifier + "_kd", KD)
+               && _nodeHandle.getParam(closeMotorIdentifier + "_max_speed", maxSpeed)
+               && _nodeHandle.getParam(closeMotorIdentifier + "_limit", limit)
+               && _nodeHandle.getParam(closeMotorIdentifier + "_motor_address", motorAddress)
+               && _nodeHandle.getParam(closeMotorIdentifier + "_motor_emergency_pin", eSwitchPin)
+               && _nodeHandle.getParam(closeMotorIdentifier + "_motor_emergency_pin_type", eSwitchType)
+               && _nodeHandle.getParam(closeMotorIdentifier + "_joint", jointName)) {
+
+                motorParams.encoderPinA = (byte) encoderPinA;
+                motorParams.encoderPinB = (byte) encoderPinB;
+                motorParams.LPFHz = (uint16_t) LPFHz;
+                motorParams.PIDHz = (uint16_t) PIDHz;
+                motorParams.CPR = (uint16_t) CPR;
+                motorParams.timeout = (uint16_t) timeout;
+                motorParams.motorDirection = motorDirection;
+                motorParams.encoderDirection = encoderDirection;
+                motorParams.LPFAlpha = LPFAlpha;
+                motorParams.KP = KP;
+                motorParams.KI = KI;
+                motorParams.KD = KD;
+                motorParams.maxSpeed = maxSpeed;
+                motorParams.limit = limit;
+
+                CloseLoopMotor* closeLoopMotor = new CloseLoopMotor(_idGen++, &_transportLayer, (byte) motorAddress, eSwitchPin,
+                                                                    eSwitchType, motorParams);
+                JointInfo_t* jointInfo = closeLoopMotor->getJointInfo();
+
+                hardware_interface::JointStateHandle jointStateHandle(jointName,
+                                                                      &jointInfo->position,
+                                                                      &jointInfo->velocity,
+                                                                      &jointInfo->effort);
+
+                jointStateInterface->registerHandle(jointStateHandle);
+
+                hardware_interface::JointHandle JointHandle(jointStateInterface->getHandle(jointName),
+                                                            &jointInfo->cmd);
+                jointVelocityInterface->registerHandle(JointHandle);
+
+                _devices.push_back(closeLoopMotor);
+            }
+            
+        }
+
+        int openLoopSize = 0;
+        ros::param::param<int>("open_motor_size", openLoopSize, 0);
+        for(int i = 0; i < openLoopSize; ++i) {
+            std::string openMotorIdentifier = "motor" + i, jointName;
+            int motorAddress, eSwitchPin, eSwitchType;
+            if(_nodeHandle.getParam(openMotorIdentifier + "_motor_address", motorAddress)
+               && _nodeHandle.getParam(openMotorIdentifier + "_motor_emergency_pin", eSwitchPin)
+               && _nodeHandle.getParam(openMotorIdentifier + "_motor_emergency_pin_type", eSwitchType)
+               && _nodeHandle.getParam(openMotorIdentifier + "_joint", jointName)) {
+                OpenLoopMotor* openLoopMotor = new OpenLoopMotor(_idGen++, &_transportLayer, (byte) motorAddress,
+                                                                 (byte) eSwitchPin, (byte) eSwitchType);
+                JointInfo_t* jointInfo = openLoopMotor->getJointInfo();
+
+                hardware_interface::JointStateHandle jointStateHandle(jointName,
+                                                                      &jointInfo->position,
+                                                                      &jointInfo->velocity,
+                                                                      &jointInfo->effort);
+
+                jointStateInterface->registerHandle(jointStateHandle);
+
+                hardware_interface::JointHandle JointHandle(jointStateInterface->getHandle(jointName),
+                                                            &jointInfo->cmd);
+                jointVelocityInterface->registerHandle(JointHandle);
+
+                _devices.push_back(openLoopMotor);
+
+            }
+        }
 
     }
 

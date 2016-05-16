@@ -234,6 +234,41 @@ struct BuildImu : BuildDevice {
     bool enableGyro;
 }__attribute__((__packed__));
 
+
+struct BuildMotorCloseLoop : BuildDevice {
+    BuildMotorCloseLoop() {
+        deviceType = DeviceType::MotorCloseLoop;
+    }
+    byte motorAddress;
+    byte eSwitchPin;
+    byte eSwitchType;
+    byte channel;
+    byte encoderPinA;
+    byte encoderPinB;
+    uint16_t LPFHz;
+    uint16_t PIDHz;
+    uint16_t CPR;
+    uint16_t timeout;
+    int8_t motorDirection;
+    int8_t encoderDirection;
+    float LPFAlpha;
+    float KP;
+    float KI;
+    float KD;
+    float maxSpeed;
+    float limit;
+}__attribute__((__packed__));
+
+struct BuildMotorOpenLoop : BuildDevice {
+    BuildMotorOpenLoop() {
+        deviceType = DeviceType::MotorOpenLoop;
+    }
+    byte motorAddress;
+    byte eSwitchPin;
+    byte eSwitchType;
+
+}__attribute__((__packed__));
+
 struct BuildServo : BuildDevice {
     BuildServo() {
         deviceType = DeviceType::Servo;
@@ -303,11 +338,27 @@ struct UltrasonicFeedback : DeviceMessage {
     uint16_t currentRead;
 }__attribute__((__packed__));
 
+
+struct MotorFeedback : DeviceMessage {
+    MotorFeedback() {
+        deviceMessageType = DeviceMessageType::MotorFeedback;
+    }
+    float rad;
+    float rad_s;
+}__attribute__((__packed__));
+
 struct ServoSetPoint : DeviceMessage {
     ServoSetPoint() {
         deviceMessageType = DeviceMessageType::ServoSetPoint;
     }
     float pos;
+}__attribute__((__packed__));
+
+struct MotorSetPoint : DeviceMessage {
+    MotorSetPoint() {
+        deviceMessageType = DeviceMessageType::MotorSetPointMsg;
+    }
+    float point;
 }__attribute__((__packed__));
 
 
