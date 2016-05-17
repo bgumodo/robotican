@@ -37,9 +37,11 @@ namespace robotican_hardware {
     }
 
     void CloseLoopMotor::update(const DeviceMessage *deviceMessage) {
-        MotorFeedback* feedback = (MotorFeedback*) deviceMessage;
-        _jointInfo.position = feedback->rad;
-        _jointInfo.velocity = feedback->rad_s;
+        if(isReady()) {
+            MotorFeedback *feedback = (MotorFeedback *) deviceMessage;
+            _jointInfo.position = feedback->rad;
+            _jointInfo.velocity = feedback->rad_s;
+        }
     }
 
     void CloseLoopMotor::write() {
@@ -95,7 +97,9 @@ namespace robotican_hardware {
     }
 
     OpenLoopMotor::OpenLoopMotor(byte id, TransportLayer *transportLayer, byte motorAddress, byte eSwitchPin,
-                                 byte eSwitchType) : RiCMotor(id, transportLayer, motorAddress, eSwitchPin, eSwitchType) {
+                                     byte eSwitchType, float maxSpeed) : RiCMotor(id, transportLayer, motorAddress, eSwitchPin, eSwitchType) {
+
+        _maxSpeed = maxSpeed;
         buildDevice();
     }
 
@@ -123,6 +127,7 @@ namespace robotican_hardware {
         buildMotorOpenLoop.motorAddress = getAddress();
         buildMotorOpenLoop.eSwitchPin = getESwitchPin();
         buildMotorOpenLoop.eSwitchType = getESwitchType();
+        buildMotorOpenLoop.maxSpeed = _maxSpeed;
 
         uint8_t* rawData = (uint8_t*) &buildMotorOpenLoop;
         buildMotorOpenLoop.checkSum = _transportLayer->calcChecksum(rawData, buildMotorOpenLoop.length);

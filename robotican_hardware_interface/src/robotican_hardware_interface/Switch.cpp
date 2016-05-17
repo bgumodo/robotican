@@ -5,10 +5,12 @@
 #include <robotican_hardware_interface/Switch.h>
 
 void robotican_hardware::Switch::update(const DeviceMessage* deviceMessage) {
-    SwitchFeedback feedback;
-    std_msgs::Bool state;
-    state.data = feedback.state;
-    _switchState.publish(state);
+    if(isReady()) {
+        SwitchFeedback *feedback = (SwitchFeedback *) deviceMessage;
+        std_msgs::Bool state;
+        state.data = feedback->state;
+        _switchState.publish(state);
+    }
 }
 
 void robotican_hardware::Switch::write() {

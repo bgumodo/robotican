@@ -35,8 +35,11 @@ namespace robotican_hardware {
     class OpenLoopMotor : public RiCMotor {
     private:
         JointInfo_t _jointInfo;
+        float _maxSpeed;
     public:
-        OpenLoopMotor(byte id, TransportLayer *transportLayer, byte motorAddress, byte eSwitchPin, byte eSwitchType);
+
+        OpenLoopMotor(byte id, TransportLayer *transportLayer, byte motorAddress, byte eSwitchPin,
+                              byte eSwitchType, float maxSpeed);
 
         virtual void update(const DeviceMessage *deviceMessage);
 
@@ -47,7 +50,6 @@ namespace robotican_hardware {
     protected:
 
         virtual void buildDevice();
-
     };
 
     struct CloseMotorParams {

@@ -7,32 +7,33 @@
 namespace robotican_hardware {
 
     void Imu::update(const DeviceMessage *deviceMessage) {
-        ImuFeedback *feedback = (ImuFeedback*) deviceMessage;
+        if(isReady()) {
+            ImuFeedback *feedback = (ImuFeedback *) deviceMessage;
 
-        sensor_msgs::Imu imuMsg;
-        imuMsg.header.frame_id = _frameId;
-        imuMsg.header.stamp = ros::Time::now();
-        imuMsg.orientation.x = feedback->orientationX;
-        imuMsg.orientation.y = feedback->orientationY;
-        imuMsg.orientation.z = feedback->orientationZ;
-        imuMsg.orientation.w = feedback->orientationW;
-        imuMsg.linear_acceleration.x = feedback->accelerationX;
-        imuMsg.linear_acceleration.y = feedback->accelerationY;
-        imuMsg.linear_acceleration.z = feedback->accelerationZ;
-        imuMsg.angular_velocity.x = feedback->velocityX;
-        imuMsg.angular_velocity.y = feedback->velocityY;
-        imuMsg.angular_velocity.z = feedback->velocityZ;
+            sensor_msgs::Imu imuMsg;
+            imuMsg.header.frame_id = _frameId;
+            imuMsg.header.stamp = ros::Time::now();
+            imuMsg.orientation.x = feedback->orientationX;
+            imuMsg.orientation.y = feedback->orientationY;
+            imuMsg.orientation.z = feedback->orientationZ;
+            imuMsg.orientation.w = feedback->orientationW;
+            imuMsg.linear_acceleration.x = feedback->accelerationX;
+            imuMsg.linear_acceleration.y = feedback->accelerationY;
+            imuMsg.linear_acceleration.z = feedback->accelerationZ;
+            imuMsg.angular_velocity.x = feedback->velocityX;
+            imuMsg.angular_velocity.y = feedback->velocityY;
+            imuMsg.angular_velocity.z = feedback->velocityZ;
 
-        sensor_msgs::MagneticField magneticField;
-        magneticField.header.frame_id = _frameId;
-        magneticField.header.stamp = ros::Time::now();
-        magneticField.magnetic_field.x = feedback->magnetometerX;
-        magneticField.magnetic_field.y = feedback->magnetometerY;
-        magneticField.magnetic_field.z = feedback->magnetometerZ;
+            sensor_msgs::MagneticField magneticField;
+            magneticField.header.frame_id = _frameId;
+            magneticField.header.stamp = ros::Time::now();
+            magneticField.magnetic_field.x = feedback->magnetometerX;
+            magneticField.magnetic_field.y = feedback->magnetometerY;
+            magneticField.magnetic_field.z = feedback->magnetometerZ;
 
-        _imuAMQ.publish(imuMsg);
-        _imuM.publish(magneticField);
-
+            _imuAMQ.publish(imuMsg);
+            _imuM.publish(magneticField);
+        }
 
     }
 

@@ -12,19 +12,21 @@ robotican_hardware::Ultrasonic::Ultrasonic(byte id, TransportLayer *transportLay
 }
 
 void robotican_hardware::Ultrasonic::update(const DeviceMessage *deviceMessage) {
-    UltrasonicFeedback *feedback = (UltrasonicFeedback*) deviceMessage;
-    uint16_t  currentRead = feedback->currentRead;
-    sensor_msgs::Range range;
-    range.header.frame_id = _frameId;
-    range.header.stamp = ros::Time::now();
+    if(isReady()) {
+        UltrasonicFeedback *feedback = (UltrasonicFeedback *) deviceMessage;
+        uint16_t currentRead = feedback->currentRead;
+        sensor_msgs::Range range;
+        range.header.frame_id = _frameId;
+        range.header.stamp = ros::Time::now();
 
-    range.max_range = MAX_RANGE_URF_HRLV_MaxSonar;
-    range.min_range = MIN_RANGE_URF_HRLV_MaxSonar;
-    range.field_of_view = FIELD_OF_VIEW_URF_HRLV_MaxSonar;
+        range.max_range = MAX_RANGE_URF_HRLV_MaxSonar;
+        range.min_range = MIN_RANGE_URF_HRLV_MaxSonar;
+        range.field_of_view = FIELD_OF_VIEW_URF_HRLV_MaxSonar;
 
-    range.radiation_type = sensor_msgs::Range::ULTRASOUND;
-    range.range = (float)currentRead * URF_HRLV_MaxSonar_an2m;
-    _ultrasonicRead.publish(range);
+        range.radiation_type = sensor_msgs::Range::ULTRASOUND;
+        range.range = (float) currentRead * URF_HRLV_MaxSonar_an2m;
+        _ultrasonicRead.publish(range);
+    }
 
 }
 

@@ -21,8 +21,10 @@ namespace robotican_hardware {
 
 
     void Servo::update(const DeviceMessage *deviceMessage) {
-        ServoFeedback* feedback = (ServoFeedback*) deviceMessage;
-        _jointInfo.position = feedback->pos;
+        if(isReady()) {
+            ServoFeedback *feedback = (ServoFeedback *) deviceMessage;
+            _jointInfo.position = feedback->pos;
+        }
     }
 
     void Servo::write() {

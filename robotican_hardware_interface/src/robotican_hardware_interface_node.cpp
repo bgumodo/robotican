@@ -26,9 +26,14 @@ int main(int argc, char **argv) {
     ros::Rate loopRate(50);
     while (manager.getConnectState() != ConnectEnum::Connected) { loopRate.sleep(); }
     manager.buildDevices();
-    ros::Duration(120.0).sleep();
+    ros::Duration(30).sleep();
+    ros::Rate loopSpeed(20);
+    while(ros::ok()) {
+        manager.write();
+        ros::spinOnce();
+        loopSpeed.sleep();
+    }
     manager.disconnect();
-    ros::spin();
 #endif
 
 #ifndef RIC_BOARD_TEST

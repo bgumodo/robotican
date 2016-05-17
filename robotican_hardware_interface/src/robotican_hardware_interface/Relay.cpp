@@ -14,6 +14,7 @@ namespace robotican_hardware {
         state.length = sizeof(state);
         state.checkSum = 0;
         state.id = getId();
+        state.state = _relayState;
 
         uint8_t *rawData = (uint8_t*)&state;
         state.checkSum = _transportLayer->calcChecksum(rawData, state.length);

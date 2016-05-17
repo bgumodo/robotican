@@ -283,6 +283,7 @@ struct BuildMotorOpenLoop : BuildDevice {
     byte motorAddress;
     byte eSwitchPin;
     byte eSwitchType;
+    float maxSpeed;
 
 }__attribute__((__packed__));
 

@@ -12,19 +12,21 @@ namespace robotican_hardware {
     }
 
     void Gps::update(const DeviceMessage *deviceMessage) {
-        GpsFeedback *feedback = (GpsFeedback*) deviceMessage;
-        sensor_msgs::NavSatFix msg;
-        msg.header.frame_id = _frameId;
-        msg.header.stamp = ros::Time::now();
-        msg.latitude = feedback->lat;
-        msg.longitude = feedback->lng;
-        msg.altitude = feedback->meters;
-        msg.status.status = feedback->fix;
-        msg.position_covariance[0] = feedback->HDOP * feedback->HDOP;
-        msg.position_covariance[4] = feedback->HDOP * feedback->HDOP;
-        msg.position_covariance[8] = feedback->HDOP * feedback->HDOP * 4;
-        msg.status.service = 1;
-        _gpsFeedback.publish(msg);
+        if(isReady()) {
+            GpsFeedback *feedback = (GpsFeedback *) deviceMessage;
+            sensor_msgs::NavSatFix msg;
+            msg.header.frame_id = _frameId;
+            msg.header.stamp = ros::Time::now();
+            msg.latitude = feedback->lat;
+            msg.longitude = feedback->lng;
+            msg.altitude = feedback->meters;
+            msg.status.status = feedback->fix;
+            msg.position_covariance[0] = feedback->HDOP * feedback->HDOP;
+            msg.position_covariance[4] = feedback->HDOP * feedback->HDOP;
+            msg.position_covariance[8] = feedback->HDOP * feedback->HDOP * 4;
+            msg.status.service = 1;
+            _gpsFeedback.publish(msg);
+        }
     }
 
     void Gps::write() {

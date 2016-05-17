@@ -195,6 +195,7 @@ namespace robotican_hardware {
 
 #ifndef RIC_BOARD_DEBUG
         if(_nodeHandle.hasParam("battery_pin")) {
+            ros_utils::rosInfo("GOT BAT PC");
             int pin;
             float voltageDividerRatio, max, min;
             if(_nodeHandle.getParam("battery_pin", pin)
@@ -212,8 +213,9 @@ namespace robotican_hardware {
         int ultrasonicSize = 0;
         ros::param::param("ultrasonic_size", ultrasonicSize, 0);
         for(int i = 0; i < ultrasonicSize; ++i) {
-            std::string ultrasonicIdentifier = "ultrasoic" + i, frameId, topicName;
+            std::string ultrasonicIdentifier = "ultrasonic" +  boost::lexical_cast<std::string>(i), frameId, topicName;
             int pin;
+            ros_utils::rosInfo(ultrasonicIdentifier.c_str());
             if(_nodeHandle.getParam(ultrasonicIdentifier + "_pin", pin)
                && _nodeHandle.getParam(ultrasonicIdentifier + "_frame_id", frameId)
                && _nodeHandle.getParam(ultrasonicIdentifier + "_topic_name", topicName)) {
@@ -250,7 +252,7 @@ namespace robotican_hardware {
         ros::param::param<int>("switch_size", switchSize, 0);
 
         for(int i = 0; i < switchSize; ++i) {
-            std::string switchIdentifier = "switch" + i, topicName;
+            std::string switchIdentifier = "switch" + boost::lexical_cast<std::string>(i), topicName;
             int pin;
             if(_nodeHandle.getParam(switchIdentifier + "_topic_name", topicName)
                && _nodeHandle.getParam(switchIdentifier + "_pin", pin)) {
@@ -262,12 +264,14 @@ namespace robotican_hardware {
         int relaySize = 0;
         ros::param::param<int>("relay_size", relaySize, 0);
         for(int i = 0; i < relaySize; ++i) {
-            std::string relayIdentifier = "switch" + i, serviceName;
+
+            std::string relayIdentifier = "relay" + boost::lexical_cast<std::string>(i), serviceName;
             int pin;
             if(_nodeHandle.getParam(relayIdentifier + "_service_name", serviceName)
                && _nodeHandle.getParam(relayIdentifier + "_pin", pin)) {
-                Device *switchDev = new Relay(_idGen++, &_transportLayer, (byte) pin, serviceName);
-                _devices.push_back(switchDev);
+                Device *relay = new Relay(_idGen++, &_transportLayer, (byte) pin, serviceName);
+                _devices.push_back(relay);
+
             }
         }
 
@@ -293,8 +297,12 @@ namespace robotican_hardware {
             switch ((DeviceMessageType::DeviceMessageType) deviceMsg->deviceMessageType) {
                 case DeviceMessageType::BuildDevice:
                     break;
-                case DeviceMessageType::Ack:
-                    _devices[deviceMsg->id]->deviceAck((DeviceAck*) deviceMsg);
+                case DeviceMessageType::Ack: {
+                    DeviceAck* ack = (DeviceAck *) deviceMsg;
+                    if(_devices.size() > ack->ackId) {
+                        _devices[ack->ackId]->deviceAck((DeviceAck *) deviceMsg);
+                    }
+                }
                     break;
                 case DeviceMessageType::MotorSetPointMsg:
                     break;
@@ -345,7 +353,7 @@ namespace robotican_hardware {
         int servoSize = 0;
         ros::param::param<int>("servo_size", servoSize, 0);
         for(int i = 0; i < servoSize; ++i) {
-            std::string servoIdentifier = "servo" + i, servoJointName = "";
+            std::string servoIdentifier = "servo" + boost::lexical_cast<std::string>(i), servoJointName = "";
             float a , b,  max,  min,  initPos;
             int pin;
 
@@ -380,7 +388,7 @@ namespace robotican_hardware {
         int closeMotorSize = 0;
         ros::param::param<int>("close_motor_size", closeMotorSize, 0);
         for(int i = 0; i < closeMotorSize; ++i) {
-            std::string closeMotorIdentifier = "motor" + i, jointName;
+            std::string closeMotorIdentifier = "motor" + boost::lexical_cast<std::string>(i), jointName;
             CloseMotorParams motorParams;
 
             int encoderPinA, encoderPinB, LPFHz, PIDHz, CPR, timeout, motorDirection, encoderDirection, motorAddress, eSwitchPin, eSwitchType;
@@ -450,7 +458,7 @@ namespace robotican_hardware {
                && _nodeHandle.getParam(openMotorIdentifier + "_motor_emergency_pin_type", eSwitchType)
                && _nodeHandle.getParam(openMotorIdentifier + "_joint", jointName)) {
                 OpenLoopMotor* openLoopMotor = new OpenLoopMotor(_idGen++, &_transportLayer, (byte) motorAddress,
-                                                                 (byte) eSwitchPin, (byte) eSwitchType);
+                                                                 (byte) eSwitchPin, (byte) eSwitchType, 0);
                 JointInfo_t* jointInfo = openLoopMotor->getJointInfo();
 
                 hardware_interface::JointStateHandle jointStateHandle(jointName,
