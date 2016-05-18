@@ -53,11 +53,9 @@ namespace robotican_hardware {
     };
 
     struct CloseMotorParams {
-        byte encoderPinA;
-        byte encoderPinB;
         uint16_t LPFHz;
         uint16_t PIDHz;
-        uint16_t CPR;
+        uint16_t PPR;
         uint16_t timeout;
         int8_t motorDirection;
         int8_t encoderDirection;
@@ -69,19 +67,40 @@ namespace robotican_hardware {
         float limit;
     };
 
+    struct  CloseMotorWithEncoderParam : CloseMotorParams {
+        byte encoderPinA;
+        byte encoderPinB;
+    };
+
     class CloseLoopMotor : public RiCMotor {
     private:
-        CloseMotorParams _params;
         JointInfo_t _jointInfo;
+        CloseMotorType::CloseMotorType _motorType;
+        CloseMotorMode::CloseMotorMode _mode;
     public:
         CloseLoopMotor(byte id, TransportLayer *transportLayer, byte motorAddress, byte eSwitchPin, byte eSwitchType,
-                               CloseMotorParams closeMotorParam);
+                               CloseMotorType::CloseMotorType motorType, CloseMotorMode::CloseMotorMode mode);
 
         JointInfo_t* getJointInfo();
 
         virtual void update(const DeviceMessage *deviceMessage);
 
         virtual void write();
+    protected:
+        CloseMotorType::CloseMotorType getCloseMotorType();
+        CloseMotorMode::CloseMotorMode getMode();
+        virtual void buildDevice() = 0;
+    };
+
+    class CloseLoopMotorWithEncoder : public CloseLoopMotor {
+    private:
+        CloseMotorWithEncoderParam _params;
+    public:
+        CloseLoopMotorWithEncoder(byte id, TransportLayer *transportLayer, byte motorAddress,
+                                          byte eSwitchPin, byte eSwitchType,
+                                          CloseMotorType::CloseMotorType motoryType,
+                                          CloseMotorMode::CloseMotorMode mode,
+                                          CloseMotorWithEncoderParam param);
 
     protected:
         virtual void buildDevice();

@@ -26,10 +26,10 @@ namespace robotican_hardware {
 
 
     CloseLoopMotor::CloseLoopMotor(byte id, TransportLayer *transportLayer, byte motorAddress, byte eSwitchPin, byte eSwitchType,
-                                       CloseMotorParams closeMotorParam)
+                                       CloseMotorType::CloseMotorType motorType, CloseMotorMode::CloseMotorMode mode)
             : RiCMotor(id, transportLayer, motorAddress, eSwitchPin, eSwitchType) {
-        _params = closeMotorParam;
-        buildDevice();
+        _motorType = motorType;
+        _mode = mode;
     }
 
     JointInfo_t *CloseLoopMotor::getJointInfo() {
@@ -55,34 +55,14 @@ namespace robotican_hardware {
         _transportLayer->write(rawData, point.length);
     }
 
-    void CloseLoopMotor::buildDevice() {
-
-        BuildMotorCloseLoop buildMotorCloseLoop;
-        buildMotorCloseLoop.length = sizeof(buildMotorCloseLoop);
-        buildMotorCloseLoop.checkSum = 0;
-        buildMotorCloseLoop.id = getId();
-        buildMotorCloseLoop.motorAddress = getAddress();
-        buildMotorCloseLoop.eSwitchPin = getESwitchPin();
-        buildMotorCloseLoop.eSwitchType = getESwitchType();
-        buildMotorCloseLoop.encoderPinA = _params.encoderPinA;
-        buildMotorCloseLoop.encoderPinB = _params.encoderPinB;
-        buildMotorCloseLoop.LPFHz = _params.LPFHz;
-        buildMotorCloseLoop.PIDHz = _params.PIDHz;
-        buildMotorCloseLoop.CPR = _params.CPR;
-        buildMotorCloseLoop.timeout = _params.timeout;
-        buildMotorCloseLoop.motorDirection = _params.motorDirection;
-        buildMotorCloseLoop.encoderDirection = _params.encoderDirection;
-        buildMotorCloseLoop.LPFAlpha = _params.LPFAlpha;
-        buildMotorCloseLoop.KP = _params.KP;
-        buildMotorCloseLoop.KI = _params.KI;
-        buildMotorCloseLoop.KD = _params.KD;
-        buildMotorCloseLoop.maxSpeed = _params.maxSpeed;
-        buildMotorCloseLoop.limit = _params.limit;
-
-        uint8_t* rawData = (uint8_t*) &buildMotorCloseLoop;
-        buildMotorCloseLoop.checkSum = _transportLayer->calcChecksum(rawData, buildMotorCloseLoop.length);
-        _transportLayer->write(rawData, buildMotorCloseLoop.length);
+    CloseMotorType::CloseMotorType CloseLoopMotor::getCloseMotorType() {
+        return _motorType;
     }
+
+    CloseMotorMode::CloseMotorMode CloseLoopMotor::getMode() {
+        return _mode;
+    }
+
 
     byte RiCMotor::getESwitchPin() {
         return _eSwitchPin;
@@ -100,6 +80,7 @@ namespace robotican_hardware {
                                      byte eSwitchType, float maxSpeed) : RiCMotor(id, transportLayer, motorAddress, eSwitchPin, eSwitchType) {
 
         _maxSpeed = maxSpeed;
+
         buildDevice();
     }
 
@@ -137,4 +118,47 @@ namespace robotican_hardware {
     JointInfo_t *OpenLoopMotor::getJointInfo() {
         return &_jointInfo;
     }
+
+
+    CloseLoopMotorWithEncoder::CloseLoopMotorWithEncoder(byte id, TransportLayer *transportLayer, byte motorAddress,
+                                                             byte eSwitchPin, byte eSwitchType,
+                                                             CloseMotorType::CloseMotorType motoryType,
+                                                             CloseMotorMode::CloseMotorMode mode,
+                                                             CloseMotorWithEncoderParam param)
+            : CloseLoopMotor(id, transportLayer, motorAddress, eSwitchPin, eSwitchType, motoryType, mode) {
+        _params = param;
+        buildDevice();
+
+    }
+
+    void CloseLoopMotorWithEncoder::buildDevice() {
+        BuildMotorCloseLoopWithEncoder buildMotorCloseLoop;
+        buildMotorCloseLoop.length = sizeof(buildMotorCloseLoop);
+        buildMotorCloseLoop.checkSum = 0;
+        buildMotorCloseLoop.id = getId();
+        buildMotorCloseLoop.motorAddress = getAddress();
+        buildMotorCloseLoop.eSwitchPin = getESwitchPin();
+        buildMotorCloseLoop.eSwitchType = getESwitchType();
+        buildMotorCloseLoop.encoderPinA = _params.encoderPinA;
+        buildMotorCloseLoop.encoderPinB = _params.encoderPinB;
+        buildMotorCloseLoop.LPFHz = _params.LPFHz;
+        buildMotorCloseLoop.PIDHz = _params.PIDHz;
+        buildMotorCloseLoop.PPR = _params.PPR;
+        buildMotorCloseLoop.timeout = _params.timeout;
+        buildMotorCloseLoop.motorDirection = _params.motorDirection;
+        buildMotorCloseLoop.encoderDirection = _params.encoderDirection;
+        buildMotorCloseLoop.LPFAlpha = _params.LPFAlpha;
+        buildMotorCloseLoop.KP = _params.KP;
+        buildMotorCloseLoop.KI = _params.KI;
+        buildMotorCloseLoop.KD = _params.KD;
+        buildMotorCloseLoop.maxSpeed = _params.maxSpeed;
+        buildMotorCloseLoop.limit = _params.limit;
+        buildMotorCloseLoop.motorType = getCloseMotorType();
+        buildMotorCloseLoop.motorMode = getMode();
+
+        uint8_t* rawData = (uint8_t*) &buildMotorCloseLoop;
+        buildMotorCloseLoop.checkSum = _transportLayer->calcChecksum(rawData, buildMotorCloseLoop.length);
+        _transportLayer->write(rawData, buildMotorCloseLoop.length);
+    }
+
 }

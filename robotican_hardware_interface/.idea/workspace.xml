@@ -91,14 +91,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/robotican_hardware_interface/Protocol.h" afterPath="$PROJECT_DIR$/include/robotican_hardware_interface/Protocol.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/robotican_hardware_interface/RiCMotor.h" afterPath="$PROJECT_DIR$/include/robotican_hardware_interface/RiCMotor.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/robotican_hardware_interface/Gps.cpp" afterPath="$PROJECT_DIR$/src/robotican_hardware_interface/Gps.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/robotican_hardware_interface/Imu.cpp" afterPath="$PROJECT_DIR$/src/robotican_hardware_interface/Imu.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/robotican_hardware_interface/Relay.cpp" afterPath="$PROJECT_DIR$/src/robotican_hardware_interface/Relay.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/robotican_hardware_interface/RiCBoardManager.cpp" afterPath="$PROJECT_DIR$/src/robotican_hardware_interface/RiCBoardManager.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/robotican_hardware_interface/RiCMotor.cpp" afterPath="$PROJECT_DIR$/src/robotican_hardware_interface/RiCMotor.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/robotican_hardware_interface/Servo.cpp" afterPath="$PROJECT_DIR$/src/robotican_hardware_interface/Servo.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/robotican_hardware_interface/Switch.cpp" afterPath="$PROJECT_DIR$/src/robotican_hardware_interface/Switch.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/robotican_hardware_interface/Ultrasonic.cpp" afterPath="$PROJECT_DIR$/src/robotican_hardware_interface/Ultrasonic.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/robotican_hardware_interface_node.cpp" afterPath="$PROJECT_DIR$/src/robotican_hardware_interface_node.cpp" />
     </list>
     <ignored path="robotican_hardware_interface.iws" />
@@ -130,31 +124,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RiCBoardManager.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/robotican_hardware_interface/RiCBoardManager.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-              <folding>
-                <element signature="e#1714#1887#0" expanded="false" />
-                <element signature="e#1893#2058#0" expanded="false" />
-                <element signature="e#3685#3814#0" expanded="false" />
-                <element signature="e#3820#3917#0" expanded="false" />
-                <element signature="e#3923#4045#0" expanded="false" />
-                <element signature="e#5217#5810#0" expanded="false" />
-                <element signature="e#6498#6939#0" expanded="false" />
-                <element signature="e#10758#11283#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Protocol.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/include/robotican_hardware_interface/Protocol.h">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="287" column="29" selection-start-line="287" selection-start-column="29" selection-end-line="287" selection-end-column="29" />
-              <folding />
+              <caret line="290" column="14" selection-start-line="290" selection-start-column="14" selection-end-line="290" selection-end-column="14" />
+              <folding>
+                <element signature="e#117#1884#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -163,17 +140,79 @@
         <entry file="file://$PROJECT_DIR$/include/robotican_hardware_interface/RiCMotor.h">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-              <folding />
+              <caret line="94" column="2" selection-start-line="94" selection-start-column="2" selection-end-line="94" selection-end-column="2" />
+              <folding>
+                <element signature="e#129#177#0" expanded="true" />
+                <element signature="e#325#880#1" expanded="false" />
+                <element signature="e#887#1367#1" expanded="false" />
+                <element signature="e#1815#2544#1" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RiCMotor.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RiCMotor.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/robotican_hardware_interface/RiCMotor.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5955056">
-              <caret line="129" column="48" selection-start-line="129" selection-start-column="48" selection-end-line="129" selection-end-column="48" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="151" column="44" selection-start-line="151" selection-start-column="44" selection-end-line="151" selection-end-column="44" />
+              <folding>
+                <element signature="e#125#468#0" expanded="false" />
+                <element signature="e#474#744#0" expanded="false" />
+                <element signature="e#752#1139#0" expanded="false" />
+                <element signature="e#1145#1224#0" expanded="false" />
+                <element signature="e#1230#1506#0" expanded="false" />
+                <element signature="e#1512#1870#0" expanded="false" />
+                <element signature="e#1876#1977#0" expanded="false" />
+                <element signature="e#1983#2069#0" expanded="false" />
+                <element signature="e#2076#2142#0" expanded="false" />
+                <element signature="e#2148#2216#0" expanded="false" />
+                <element signature="e#2222#2287#0" expanded="false" />
+                <element signature="e#2293#2602#0" expanded="false" />
+                <element signature="e#2608#2679#0" expanded="false" />
+                <element signature="e#2685#3150#0" expanded="false" />
+                <element signature="e#3156#3844#0" expanded="false" />
+                <element signature="e#3850#3928#0" expanded="false" />
+                <element signature="e#3935#4603#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RiCBoardManager.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/robotican_hardware_interface/RiCBoardManager.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="411" column="73" selection-start-line="411" selection-start-column="73" selection-end-line="411" selection-end-column="73" />
+              <folding>
+                <element signature="e#760#1219#0" expanded="false" />
+                <element signature="e#1225#1708#0" expanded="false" />
+                <element signature="e#1714#1887#0" expanded="false" />
+                <element signature="e#1893#2058#0" expanded="false" />
+                <element signature="e#2064#3679#0" expanded="false" />
+                <element signature="e#3685#3814#0" expanded="false" />
+                <element signature="e#3820#3917#0" expanded="false" />
+                <element signature="e#3923#4045#0" expanded="false" />
+                <element signature="e#4051#5211#0" expanded="false" />
+                <element signature="e#5217#5810#0" expanded="false" />
+                <element signature="e#5816#6276#0" expanded="false" />
+                <element signature="e#6282#6492#0" expanded="false" />
+                <element signature="e#6498#6939#0" expanded="false" />
+                <element signature="e#6945#11298#0" expanded="false" />
+                <element signature="e#11304#13331#0" expanded="false" />
+                <element signature="e#13337#13532#0" expanded="false" />
+                <element signature="e#13539#15522#0" expanded="false" />
+                <element signature="e#22825#23032#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Imu.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/robotican_hardware_interface/Imu.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="35" column="9" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -183,18 +222,16 @@
         <entry file="file://$PROJECT_DIR$/src/robotican_hardware_interface_node.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="28" column="30" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
-              <folding>
-                <element signature="e#1048#3365#0" expanded="true" />
-              </folding>
+              <caret line="38" column="6" selection-start-line="38" selection-start-column="6" selection-end-line="38" selection-end-column="6" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Relay.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Relay.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/robotican_hardware_interface/Relay.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="0.17335473">
               <caret line="6" column="30" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
               <folding />
             </state>
@@ -253,12 +290,12 @@
         <option value="$PROJECT_DIR$/src/robotican_hardware_interface/Imu.cpp" />
         <option value="$PROJECT_DIR$/src/robotican_hardware_interface/Servo.cpp" />
         <option value="$PROJECT_DIR$/src/robotican_hardware_interface/Ultrasonic.cpp" />
-        <option value="$PROJECT_DIR$/src/robotican_hardware_interface/RiCBoardManager.cpp" />
-        <option value="$PROJECT_DIR$/src/robotican_hardware_interface_node.cpp" />
         <option value="$PROJECT_DIR$/src/robotican_hardware_interface/Relay.cpp" />
-        <option value="$PROJECT_DIR$/include/robotican_hardware_interface/Protocol.h" />
-        <option value="$PROJECT_DIR$/include/robotican_hardware_interface/RiCMotor.h" />
         <option value="$PROJECT_DIR$/src/robotican_hardware_interface/RiCMotor.cpp" />
+        <option value="$PROJECT_DIR$/include/robotican_hardware_interface/RiCMotor.h" />
+        <option value="$PROJECT_DIR$/src/robotican_hardware_interface/RiCBoardManager.cpp" />
+        <option value="$PROJECT_DIR$/include/robotican_hardware_interface/Protocol.h" />
+        <option value="$PROJECT_DIR$/src/robotican_hardware_interface_node.cpp" />
       </list>
     </option>
   </component>
@@ -860,13 +897,13 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24290393" sideWeight="0.4946401" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295099" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3544576" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21272159" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15119916" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14285715" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31908238" sideWeight="0.5021834" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295099" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30344108" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24960877" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31908238" sideWeight="0.4978166" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31908238" sideWeight="0.4978166" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24290393" sideWeight="0.5053599" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4358578" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -911,7 +948,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="87" />
+      <option name="time" value="93" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -948,13 +985,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.29545453">
           <caret line="804" column="0" selection-start-line="804" selection-start-column="0" selection-end-line="804" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/robotican_hardware_interface/robot_sim_interface.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="334" column="20" selection-start-line="334" selection-start-column="20" selection-end-line="334" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -1105,13 +1135,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/include/robotican_hardware_interface/Device.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="26" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/include/robotican_hardware_interface/Servo.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.67585087">
@@ -1179,7 +1202,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="89" column="21" selection-start-line="89" selection-start-column="21" selection-end-line="89" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1191,19 +1213,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/robotican_hardware_interface/Imu.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.57929885">
-          <caret line="35" column="9" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/robotican_hardware_interface/Gps.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.84140235">
           <caret line="28" column="9" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1211,7 +1224,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.4123539">
           <caret line="47" column="51" selection-start-line="47" selection-start-column="51" selection-end-line="47" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1219,7 +1231,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.45075125">
           <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1227,7 +1238,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.21035059">
           <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="19" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robotican_hardware_interface/robot_sim_interface.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8956661">
+          <caret line="334" column="20" selection-start-line="334" selection-start-column="20" selection-end-line="334" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/robotican_hardware_interface/Device.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27310345">
+          <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -1239,37 +1263,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/robotican_hardware_interface/Relay.cpp">
+    <entry file="file://$PROJECT_DIR$/include/robotican_hardware_interface/Protocol.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="30" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
-          <folding />
+          <caret line="290" column="14" selection-start-line="290" selection-start-column="14" selection-end-line="290" selection-end-column="14" />
+          <folding>
+            <element signature="e#117#1884#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/robotican_hardware_interface_node.cpp">
+    <entry file="file://$PROJECT_DIR$/src/robotican_hardware_interface/Imu.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="30" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
-          <folding>
-            <element signature="e#1048#3365#0" expanded="true" />
-          </folding>
+          <caret line="35" column="9" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/robotican_hardware_interface/RiCBoardManager.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <caret line="411" column="73" selection-start-line="411" selection-start-column="73" selection-end-line="411" selection-end-column="73" />
           <folding>
+            <element signature="e#760#1219#0" expanded="false" />
+            <element signature="e#1225#1708#0" expanded="false" />
             <element signature="e#1714#1887#0" expanded="false" />
             <element signature="e#1893#2058#0" expanded="false" />
+            <element signature="e#2064#3679#0" expanded="false" />
             <element signature="e#3685#3814#0" expanded="false" />
             <element signature="e#3820#3917#0" expanded="false" />
             <element signature="e#3923#4045#0" expanded="false" />
+            <element signature="e#4051#5211#0" expanded="false" />
             <element signature="e#5217#5810#0" expanded="false" />
+            <element signature="e#5816#6276#0" expanded="false" />
+            <element signature="e#6282#6492#0" expanded="false" />
             <element signature="e#6498#6939#0" expanded="false" />
-            <element signature="e#10758#11283#0" expanded="true" />
+            <element signature="e#6945#11298#0" expanded="false" />
+            <element signature="e#11304#13331#0" expanded="false" />
+            <element signature="e#13337#13532#0" expanded="false" />
+            <element signature="e#13539#15522#0" expanded="false" />
+            <element signature="e#22825#23032#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1277,23 +1311,54 @@
     <entry file="file://$PROJECT_DIR$/include/robotican_hardware_interface/RiCMotor.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/robotican_hardware_interface/Protocol.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="287" column="29" selection-start-line="287" selection-start-column="29" selection-end-line="287" selection-end-column="29" />
-          <folding />
+          <caret line="94" column="2" selection-start-line="94" selection-start-column="2" selection-end-line="94" selection-end-column="2" />
+          <folding>
+            <element signature="e#129#177#0" expanded="true" />
+            <element signature="e#325#880#1" expanded="false" />
+            <element signature="e#887#1367#1" expanded="false" />
+            <element signature="e#1815#2544#1" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/robotican_hardware_interface/RiCMotor.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5955056">
-          <caret line="129" column="48" selection-start-line="129" selection-start-column="48" selection-end-line="129" selection-end-column="48" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="151" column="44" selection-start-line="151" selection-start-column="44" selection-end-line="151" selection-end-column="44" />
+          <folding>
+            <element signature="e#125#468#0" expanded="false" />
+            <element signature="e#474#744#0" expanded="false" />
+            <element signature="e#752#1139#0" expanded="false" />
+            <element signature="e#1145#1224#0" expanded="false" />
+            <element signature="e#1230#1506#0" expanded="false" />
+            <element signature="e#1512#1870#0" expanded="false" />
+            <element signature="e#1876#1977#0" expanded="false" />
+            <element signature="e#1983#2069#0" expanded="false" />
+            <element signature="e#2076#2142#0" expanded="false" />
+            <element signature="e#2148#2216#0" expanded="false" />
+            <element signature="e#2222#2287#0" expanded="false" />
+            <element signature="e#2293#2602#0" expanded="false" />
+            <element signature="e#2608#2679#0" expanded="false" />
+            <element signature="e#2685#3150#0" expanded="false" />
+            <element signature="e#3156#3844#0" expanded="false" />
+            <element signature="e#3850#3928#0" expanded="false" />
+            <element signature="e#3935#4603#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robotican_hardware_interface_node.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="38" column="6" selection-start-line="38" selection-start-column="6" selection-end-line="38" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/robotican_hardware_interface/Relay.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.17335473">
+          <caret line="6" column="30" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
           <folding />
         </state>
       </provider>

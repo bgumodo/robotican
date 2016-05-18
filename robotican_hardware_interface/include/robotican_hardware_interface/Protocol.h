@@ -39,6 +39,18 @@
             Realy = 8,
 
         };
+    namespace CloseMotorType {
+        enum CloseMotorType {
+            CloseLoopWithEncoder = 0,
+        };
+    }
+
+    namespace CloseMotorMode {
+        enum CloseMotorMode {
+            Speed = 0,
+            POSITION = 1,
+        };
+    }
 
     namespace DataType {
         enum DataType {
@@ -113,6 +125,19 @@
 
         };
     }
+    namespace CloseMotorType {
+            enum CloseMotorType {
+                CloseLoopWithEncoder = 0,
+            };
+    }
+
+    namespace CloseMotorMode {
+        enum CloseMotorMode {
+            Speed = 0,
+            POSITION = 1,
+        };
+    }
+
 
     namespace DataType {
         enum DataType {
@@ -257,14 +282,13 @@ struct BuildMotorCloseLoop : BuildDevice {
         deviceType = DeviceType::MotorCloseLoop;
     }
     byte motorAddress;
+    byte motorMode;
     byte eSwitchPin;
     byte eSwitchType;
-    byte channel;
-    byte encoderPinA;
-    byte encoderPinB;
+    byte motorType;
     uint16_t LPFHz;
     uint16_t PIDHz;
-    uint16_t CPR;
+    uint16_t PPR;
     uint16_t timeout;
     int8_t motorDirection;
     int8_t encoderDirection;
@@ -275,6 +299,16 @@ struct BuildMotorCloseLoop : BuildDevice {
     float maxSpeed;
     float limit;
 }__attribute__((__packed__));
+
+struct BuildMotorCloseLoopWithEncoder : BuildMotorCloseLoop {
+    BuildMotorCloseLoopWithEncoder() {
+        motorType = CloseMotorType::CloseLoopWithEncoder;
+    }
+    byte encoderPinA;
+    byte encoderPinB;
+}__attribute__((__packed__));
+
+
 
 struct BuildMotorOpenLoop : BuildDevice {
     BuildMotorOpenLoop() {
