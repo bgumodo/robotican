@@ -29,7 +29,6 @@ namespace robotican_hardware {
         _min = min;
         _currentRead = 0;
         _batteryPin = batteryPin;
-        buildDevice();
     }
 
     void Battery::buildDevice() {

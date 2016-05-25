@@ -20,11 +20,9 @@ namespace robotican_hardware {
         byte _batteryPin;
         ros::Publisher _pub;
 
-    protected:
 
-        virtual void buildDevice();
+
     public:
-
         Battery(byte id, float voltageDividerRatio, float max, float min, byte batteryPin,
                         TransportLayer *transportLayer);
 
@@ -33,6 +31,8 @@ namespace robotican_hardware {
         virtual void update(const DeviceMessage *deviceMessage);
 
         virtual void write();
+
+        virtual void buildDevice();
     };
 }
 

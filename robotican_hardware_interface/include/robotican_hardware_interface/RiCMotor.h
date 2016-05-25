@@ -5,12 +5,16 @@
 #ifndef ROBOTICAN_HARDWARE_INTERFACE_MOTOR_H
 #define ROBOTICAN_HARDWARE_INTERFACE_MOTOR_H
 
+
 #include <robotican_hardware_interface/Device.h>
 #include <robotican_hardware_interface/ros_utils.h>
 #include <robotican_hardware_interface/RiCBoardManager.h>
 
 
+
 namespace robotican_hardware {
+
+
     class RiCMotor : public Device {
     private:
         byte _motorAddress;
@@ -25,11 +29,13 @@ namespace robotican_hardware {
 
         virtual void write()=0;
 
+        virtual void buildDevice()=0;
+
     protected:
         byte getESwitchPin();
         byte getESwitchType();
         byte getAddress();
-        virtual void buildDevice()=0;
+
     };
 
     class OpenLoopMotor : public RiCMotor {
@@ -47,9 +53,10 @@ namespace robotican_hardware {
 
         JointInfo_t* getJointInfo();
 
-    protected:
-
         virtual void buildDevice();
+
+
+
     };
 
     struct CloseMotorParams {
@@ -77,6 +84,7 @@ namespace robotican_hardware {
         JointInfo_t _jointInfo;
         CloseMotorType::CloseMotorType _motorType;
         CloseMotorMode::CloseMotorMode _mode;
+
     public:
         CloseLoopMotor(byte id, TransportLayer *transportLayer, byte motorAddress, byte eSwitchPin, byte eSwitchType,
                                CloseMotorType::CloseMotorType motorType, CloseMotorMode::CloseMotorMode mode);
@@ -86,25 +94,33 @@ namespace robotican_hardware {
         virtual void update(const DeviceMessage *deviceMessage);
 
         virtual void write();
+
+        virtual void setParams(uint16_t lpfHz, uint16_t pidHz, float lpfAlpha, float KP, float KI,float KD)=0;
+
+        virtual void buildDevice() = 0;
     protected:
         CloseMotorType::CloseMotorType getCloseMotorType();
         CloseMotorMode::CloseMotorMode getMode();
-        virtual void buildDevice() = 0;
+
     };
 
     class CloseLoopMotorWithEncoder : public CloseLoopMotor {
     private:
         CloseMotorWithEncoderParam _params;
+        bool _isSetParam;
+        virtual void setParams(uint16_t lpfHz, uint16_t pidHz, float lpfAlpha, float KP, float KI,float KD);
     public:
         CloseLoopMotorWithEncoder(byte id, TransportLayer *transportLayer, byte motorAddress,
                                           byte eSwitchPin, byte eSwitchType,
                                           CloseMotorType::CloseMotorType motoryType,
                                           CloseMotorMode::CloseMotorMode mode,
                                           CloseMotorWithEncoderParam param);
-
-    protected:
         virtual void buildDevice();
+        virtual void write();
+
+
     };
+
 }
 
 #endif //ROBOTICAN_HARDWARE_INTERFACE_MOTOR_H

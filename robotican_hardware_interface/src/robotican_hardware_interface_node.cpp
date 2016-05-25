@@ -21,19 +21,20 @@ int main(int argc, char **argv) {
     ros::init(argc, argv, "robotican_hardware_interface_node");
     ros::NodeHandle nodeHandle;
 #ifdef RIC_BOARD_TEST
-    robotican_hardware::RiCBoardManager manager;
-    manager.connect();
+    robotican_hardware::RobotBase robot;
+    robot.registerInterfaces();
+    controller_manager::ControllerManager controllerManager(&robot);
+    ros::AsyncSpinner asyncSpinner(1);
+    asyncSpinner.start();
     ros::Rate loopRate(50);
-    while (manager.getConnectState() != ConnectEnum::Connected) { loopRate.sleep(); }
-    manager.buildDevices();
-    ros::Duration(30).sleep();
-    ros::Rate loopSpeed(20);
-    while(ros::ok()) {
-        manager.write();
-        ros::spinOnce();
-        loopSpeed.sleep();
+
+    while (ros::ok()) {
+        robot.read();
+        controllerManager.update(robot.getTime(), robot.getPeriod());
+        robot.write();
+        loopRate.sleep();
+
     }
-    manager.disconnect();
 #endif
 
 #ifndef RIC_BOARD_TEST
@@ -50,6 +51,7 @@ int main(int argc, char **argv) {
         exit(EXIT_FAILURE);
     }
     ros_utils::rosInfo("Active");
+
     if(isArmadilo) {
         if(robotType == "default") {
             robotican_hardware::ArmadilloRobot robot;

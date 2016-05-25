@@ -27,7 +27,6 @@ namespace robotican_hardware {
 
         virtual void write();
 
-    protected:
         virtual void buildDevice();
 
 

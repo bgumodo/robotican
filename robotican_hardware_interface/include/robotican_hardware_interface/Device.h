@@ -8,7 +8,7 @@
 #include <ros/ros.h>
 #include <robotican_hardware_interface/Protocol.h>
 #include <robotican_hardware_interface/TransportLayer.h>
-#include <robotican_hardware_interface/robot_base.h>
+#include <robotican_hardware_interface/jointInfo.h>
 
 namespace robotican_hardware {
 
@@ -19,7 +19,6 @@ namespace robotican_hardware {
     protected:
         ros::NodeHandle _nodeHandle;
         TransportLayer* _transportLayer;
-        virtual void buildDevice() =0;
     public:
         Device(byte id, TransportLayer *transportLayer);
         byte getId();
@@ -29,6 +28,7 @@ namespace robotican_hardware {
         virtual void deviceAck(const DeviceAck *ack);
         virtual void update(const DeviceMessage * deviceMessage)=0;
         virtual void write() =0;
+        virtual void buildDevice() =0;
     };
 }
 

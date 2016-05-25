@@ -29,10 +29,10 @@ namespace robotican_hardware {
 
         virtual void write();
 
-    protected:
         virtual void buildDevice();
 
         virtual void deviceAck(const DeviceAck *ack);
+
     };
 }
 

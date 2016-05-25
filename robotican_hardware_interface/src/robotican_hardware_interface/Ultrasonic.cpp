@@ -8,7 +8,7 @@ robotican_hardware::Ultrasonic::Ultrasonic(byte id, TransportLayer *transportLay
     _pin = pin;
     _topicName = topicName;
     _frameId = frameId;
-    buildDevice();
+
 }
 
 void robotican_hardware::Ultrasonic::update(const DeviceMessage *deviceMessage) {

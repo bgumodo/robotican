@@ -20,14 +20,14 @@ URF2/port: 3
 
 closeLoop0/publishHz: 20
 closeLoop0/name: left_motor
-closeLoop0/LPFAlpha: 0.7
-closeLoop0/LPFHz: 50
+closeLoop0/LPFAlpha: 0.495
+closeLoop0/LPFHz: 447
 closeLoop0/driverAddress: 999
 closeLoop0/channel: 0
 closeLoop0/port: 2
 closeLoop0/PIDHz: 1000
-closeLoop0/kP: 15.0
-closeLoop0/kI: 50.0
+closeLoop0/kP: 7.0
+closeLoop0/kI: 14.0
 closeLoop0/kD: 0
 closeLoop0/limit: 1.0
 closeLoop0/maxSpeed: 16.0

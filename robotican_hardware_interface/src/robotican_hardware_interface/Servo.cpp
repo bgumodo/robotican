@@ -15,7 +15,7 @@ namespace robotican_hardware {
         _min = min;
         _jointInfo.position = initPos;
         _jointInfo.cmd = initPos;
-        buildDevice();
+
 
     }
 
@@ -28,15 +28,17 @@ namespace robotican_hardware {
     }
 
     void Servo::write() {
-        ServoSetPoint point;
-        point.length = sizeof(point);
-        point.checkSum = 0;
-        point.id = getId();
-        point.pos = _jointInfo.cmd;
+        if(isReady()) {
+            ServoSetPoint point;
+            point.length = sizeof(point);
+            point.checkSum = 0;
+            point.id = getId();
+            point.pos = _jointInfo.cmd;
 
-        uint8_t *rawData = (uint8_t*)&point;
-        point.checkSum = _transportLayer->calcChecksum(rawData, point.length);
-        _transportLayer->write(rawData, point.length);
+            uint8_t *rawData = (uint8_t *) &point;
+            point.checkSum = _transportLayer->calcChecksum(rawData, point.length);
+            _transportLayer->write(rawData, point.length);
+        }
     }
 
     JointInfo_t* Servo::getJointInfo() {

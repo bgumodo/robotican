@@ -14,7 +14,7 @@
             Ack = 1,
             MotorSetPointMsg = 2,
             MotorFeedback = 3,
-            MotorSetPid = 4,
+            SetMotorParam = 4,
             ServoFeedback = 5,
             ServoSetPoint = 6,
             SwitchFeedBack = 7,
@@ -88,7 +88,6 @@
     }
 
 #endif
-
 #ifdef PC_SIDE
     #include <stdint.h>
     typedef uint8_t byte;
@@ -99,7 +98,7 @@
             Ack = 1,
             MotorSetPointMsg = 2,
             MotorFeedback = 3,
-            MotorSetPid = 4,
+            SetMotorParam = 4,
             ServoFeedback = 5,
             ServoSetPoint = 6,
             SwitchFeedback = 7,
@@ -425,6 +424,20 @@ struct RelaySetState : DeviceMessage {
         deviceMessageType = DeviceMessageType::RelySetState;
     }
     bool state;
+}__attribute__((__packed__));
+
+struct SetMotorParam : DeviceMessage{
+    SetMotorParam() {
+        deviceMessageType = DeviceMessageType::SetMotorParam;
+    }
+
+    uint16_t lpfHz;
+    uint16_t pidHz;
+    float lfpAlpha;
+    float KP;
+    float KI;
+    float KD;
+
 }__attribute__((__packed__));
 
 

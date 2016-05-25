@@ -28,7 +28,6 @@ namespace robotican_hardware {
 
         virtual void deviceAck(const DeviceAck *ack);
 
-    protected:
         virtual void buildDevice();
 
     };
