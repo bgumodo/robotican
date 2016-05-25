@@ -20,6 +20,7 @@ namespace robotican_hardware {
         float _max;
         float _min;
         JointInfo_t _jointInfo;
+
     public:
         Servo(byte id, TransportLayer *transportLayer, byte pin, float a, float b, float max, float min, float initPos);
         virtual void update(const DeviceMessage *deviceMessage);

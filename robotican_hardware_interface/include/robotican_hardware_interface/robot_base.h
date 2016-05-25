@@ -36,6 +36,7 @@ namespace robotican_hardware {
         ros::NodeHandle _nodeHandle;
         hardware_interface::JointStateInterface _jointStateInterface;
         hardware_interface::VelocityJointInterface _velocityJointInterface;
+        hardware_interface::PositionJointInterface _positionJointInterface;
         RiCBoardManager _boardManager;
 
     public:
