@@ -193,7 +193,6 @@ namespace robotican_hardware {
 
     void RiCBoardManager::buildDevices() {
 
-#ifndef RIC_BOARD_DEBUG
         if(_nodeHandle.hasParam("battery_pin")) {
             ros_utils::rosInfo("GOT BAT PC");
             int pin;
@@ -204,6 +203,7 @@ namespace robotican_hardware {
                && _nodeHandle.getParam("battery_min", min)) {
                 Device *battery = new Battery(_idGen++, voltageDividerRatio, max, min, (byte) pin, &_transportLayer);
                 _devices.push_back(battery);
+                battery->buildDevice();
             }
             else {
                 ros_utils::rosError("Can't build battery some of the parameters are missing");
@@ -221,6 +221,7 @@ namespace robotican_hardware {
                && _nodeHandle.getParam(ultrasonicIdentifier + "_topic_name", topicName)) {
                 Device *ultrasonic = new Ultrasonic(_idGen++, &_transportLayer, pin,  topicName, frameId);
                 _devices.push_back(ultrasonic);
+                ultrasonic->buildDevice();
             }
         }
 
@@ -234,6 +235,7 @@ namespace robotican_hardware {
                && _nodeHandle.getParam("imu_frame_id", frameId)) {
                 Device *imu = new Imu(_idGen++, &_transportLayer, (uint16_t) fusionHz, frameId, enableGyro);
                 _devices.push_back(imu);
+                imu->buildDevice();
             }
         }
 
@@ -246,6 +248,7 @@ namespace robotican_hardware {
                && _nodeHandle.getParam("gps_frame_id", frameId)) {
                 Device *gps = new Gps(_idGen++, &_transportLayer, (uint16_t) baudrate, topicName, frameId);
                 _devices.push_back(gps);
+                gps->buildDevice();
             }
         }
         int switchSize = 0;
@@ -258,6 +261,7 @@ namespace robotican_hardware {
                && _nodeHandle.getParam(switchIdentifier + "_pin", pin)) {
                 Device *switchDev = new Switch(_idGen++, &_transportLayer, (byte) pin, topicName);
                 _devices.push_back(switchDev);
+                switchDev->buildDevice();
             }
         }
 
@@ -271,24 +275,10 @@ namespace robotican_hardware {
                && _nodeHandle.getParam(relayIdentifier + "_pin", pin)) {
                 Device *relay = new Relay(_idGen++, &_transportLayer, (byte) pin, serviceName);
                 _devices.push_back(relay);
+                relay->buildDevice();
 
             }
         }
-
-
-#endif
-#ifdef  RIC_BOARD_DEBUG
-                int pin;
-                float voltageDividerRatio, max, min;
-                _nodeHandle.param<int>("battery_pin", pin, 17);
-                _nodeHandle.param<float>("battery_voltage_divider_ratio", voltageDividerRatio, 6.0);
-                _nodeHandle.param<float>("battery_max", max, 11.3);
-                _nodeHandle.param<float>("battery_min", min, 10.0);
-                Device *battery = new Battery(_idGen++, voltageDividerRatio, max, min, (byte) pin, &_transportLayer);
-                _devices.push_back(battery);
-
-#endif
-
     }
 
     void RiCBoardManager::deviceMessageHandler(DeviceMessage *deviceMsg) {
@@ -302,6 +292,11 @@ namespace robotican_hardware {
                     if(_devices.size() > ack->ackId) {
                         _devices[ack->ackId]->deviceAck((DeviceAck *) deviceMsg);
                     }
+                    else {
+                        char buff[128] = {'\0'};
+                        sprintf(buff, "worng size ack is: %d", ack->ackId);
+                        ros_utils::rosError(buff);
+                    }
                 }
                     break;
                 case DeviceMessageType::MotorSetPointMsg:
@@ -309,7 +304,7 @@ namespace robotican_hardware {
                 case DeviceMessageType::MotorFeedback:
                     _devices[deviceMsg->id]->update(deviceMsg);
                     break;
-                case DeviceMessageType::MotorSetPid:
+                case DeviceMessageType::SetMotorParam:
                     break;
                 case DeviceMessageType::ServoFeedback:
                     _devices[deviceMsg->id]->update(deviceMsg);
@@ -377,6 +372,7 @@ namespace robotican_hardware {
                                                                 &servoJointInfo->cmd);
                 jointPositionInterface->registerHandle(JointHandle);
                 _devices.push_back(servo);
+                servo->buildDevice();
             }
         }
 
@@ -452,6 +448,9 @@ namespace robotican_hardware {
                             jointVelocityInterface->registerHandle(JointHandle);
 
                             _devices.push_back(closeLoopMotor);
+                            _paramHandler.add(jointName, closeLoopMotor);
+                            closeLoopMotor->buildDevice();
+
                     }
                         break;
                 }
@@ -500,6 +499,77 @@ namespace robotican_hardware {
         }
 
     }
+
+
+
+        void CloseMotorParamHandler::dynamicCallback(robotican_hardware_interface::RiCBoardConfig &config, uint32_t level) {
+            if (!_motors.empty()) {
+                CloseLoopMotor *closeLoopMotor = checkIfJointValid(config.motor_joint_name);
+                if (closeLoopMotor != NULL) {
+                    closeLoopMotor->setParams((uint16_t) config.motor_lpf_hz, (uint16_t) config.motor_pid_hz,
+                                              (float) config.motor_lpf_alpha, (float) config.motor_kp,
+                                              (float) config.motor_ki, (float) config.motor_kd);
+
+                }
+                else {
+                    char buff[128] = {'\0'};
+                    sprintf(buff, "joint name: %s not in the list", config.motor_joint_name.c_str());
+                    ros_utils::rosError(buff);
+                    return;
+                }
+
+            }
+    }
+
+    CloseMotorParamHandler::CloseMotorParamHandler() {
+        _callbackType = boost::bind(&CloseMotorParamHandler::dynamicCallback, this, _1, _2);
+        _server.setCallback(_callbackType);
+
+    }
+
+    void CloseMotorParamHandler::add(std::string jointName, CloseLoopMotor *closeLoopMotor) {
+        if (!_motors.empty()) {
+            if (checkIfJointValid(jointName) == NULL) {
+                _motors.insert(std::pair<std::string, CloseLoopMotor *>(jointName, closeLoopMotor));
+            }
+            else {
+                char buff[128] = {'\0'};
+                sprintf(buff, "joint name: %s already in the list", jointName.c_str());
+                ros_utils::rosError(buff);
+                return;
+            }
+        }
+        else {
+            _motors.insert(std::pair<std::string, CloseLoopMotor *>(jointName, closeLoopMotor));
+        }
+    }
+
+
+    void CloseMotorParamHandler::remove(std::string jointName) {
+        if (!_motors.empty()) {
+            if (checkIfJointValid(jointName) != NULL) {
+                _motors.erase(jointName);
+            }
+            else {
+                char buff[128] = {'\0'};
+                sprintf(buff, "joint name: %s not in the list", jointName.c_str());
+                ros_utils::rosError(buff);
+                return;
+            }
+        }
+        else {
+            ros_utils::rosError("List is empty");
+        }
+
+    }
+
+    CloseLoopMotor *CloseMotorParamHandler::checkIfJointValid(std::string jointName) {
+        for (std::map<std::string, CloseLoopMotor *>::iterator motor = _motors.begin(); motor != _motors.end(); ++motor)
+            if (motor->first == jointName) return motor->second;
+
+        return NULL;
+    }
+
 }
 
 

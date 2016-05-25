@@ -10,15 +10,17 @@ namespace robotican_hardware {
     }
 
     void Relay::write() {
-        RelaySetState state;
-        state.length = sizeof(state);
-        state.checkSum = 0;
-        state.id = getId();
-        state.state = _relayState;
+        if(isReady()) {
+            RelaySetState state;
+            state.length = sizeof(state);
+            state.checkSum = 0;
+            state.id = getId();
+            state.state = _relayState;
 
-        uint8_t *rawData = (uint8_t*)&state;
-        state.checkSum = _transportLayer->calcChecksum(rawData, state.length);
-        _transportLayer->write(rawData, state.length);
+            uint8_t *rawData = (uint8_t *) &state;
+            state.checkSum = _transportLayer->calcChecksum(rawData, state.length);
+            _transportLayer->write(rawData, state.length);
+        }
     }
 
     void Relay::buildDevice() {
@@ -37,7 +39,7 @@ namespace robotican_hardware {
         Device::deviceAck(ack);
         if (isReady()) {
             _server = _nodeHandle.advertiseService(_serviceName, &Relay::relayCallback, this);
-            ros_utils::rosInfo("Switch is ready");
+            ros_utils::rosInfo("relay is ready");
         }
         else {
             ros_utils::rosError("RiCBoard can't build relay object for spme reason, this program will shut down now");
@@ -50,7 +52,7 @@ namespace robotican_hardware {
         _pin = pin;
         _serviceName = serviceName;
         _relayState = false;
-        buildDevice();
+
     }
 
     bool Relay::relayCallback(ric_board::RelayRequest &req, ric_board::RelayResponse &res) {

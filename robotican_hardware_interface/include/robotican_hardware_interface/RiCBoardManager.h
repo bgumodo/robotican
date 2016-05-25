@@ -21,13 +21,41 @@
 #include <robotican_hardware_interface/Switch.h>
 #include <robotican_hardware_interface/Relay.h>
 
+#include <map>
+#include <dynamic_reconfigure/server.h>
+#include <robotican_hardware_interface/RiCBoardManager.h>
+#include <robotican_hardware_interface/RiCBoardConfig.h>
+
+
 #define MAX_BUFF_SIZE 255
 #define PC_VERSION 100
-//#define RIC_BOARD_DEBUG
+#define RIC_BOARD_DEBUG
 
 namespace robotican_hardware {
+    class CloseLoopMotor;
+
+    class CloseMotorParamHandler {
+    private:
+        std::map<std::string, CloseLoopMotor *> _motors;
+        dynamic_reconfigure::Server <robotican_hardware_interface::RiCBoardConfig> _server;
+        dynamic_reconfigure::Server<robotican_hardware_interface::RiCBoardConfig>::CallbackType _callbackType;
+
+        void dynamicCallback(robotican_hardware_interface::RiCBoardConfig &config, uint32_t level);
+
+        CloseLoopMotor *checkIfJointValid(std::string jointName);
+
+    public:
+        CloseMotorParamHandler();
+
+        void add(std::string jointName, CloseLoopMotor *closeLoopMotor);
+
+        void remove(std::string jointName);
+
+    };
+
     class RiCBoardManager {
     private:
+        CloseMotorParamHandler _paramHandler;
         byte _rcvBuff[MAX_BUFF_SIZE];
         TransportLayer _transportLayer;
         ConnectEnum::ConnectEnum  _connectState;

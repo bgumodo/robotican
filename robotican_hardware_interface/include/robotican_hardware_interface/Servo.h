@@ -26,8 +26,8 @@ namespace robotican_hardware {
         virtual void write();
         virtual void deviceAck(const DeviceAck *ack);
         JointInfo_t* getJointInfo();
-    protected:
         virtual void buildDevice();
+
 
     };
 

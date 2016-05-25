@@ -53,6 +53,7 @@ namespace robotican_hardware {
 
         buildImu.checkSum = _transportLayer->calcChecksum(rawData, buildImu.length);
         _transportLayer->write(rawData, buildImu.length);
+        ros::Duration(1.0).sleep();
 
     }
 
@@ -75,7 +76,7 @@ namespace robotican_hardware {
         _fusionHz = fusionHz;
         _frameId = frameId;
         _enableGyro = enableGyro;
-        buildDevice();
+
     }
 
 

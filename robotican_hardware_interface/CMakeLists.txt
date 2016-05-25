@@ -24,6 +24,7 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   message_generation
   serial
+  dynamic_reconfigure
 )
 
 
@@ -116,10 +117,9 @@ generate_messages(
 ##     and list every .cfg file to be processed
 
 ## Generate dynamic reconfigure parameters in the 'cfg' folder
-# generate_dynamic_reconfigure_options(
-#   cfg/DynReconf1.cfg
-#   cfg/DynReconf2.cfg
-# )
+ generate_dynamic_reconfigure_options(
+         cfg/dyn_params.py
+ )
 
 ###################################
 ## catkin specific configuration ##
@@ -133,7 +133,7 @@ generate_messages(
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES ${PROJECT_NAME} robotican_hardware_interface_sim
-  CATKIN_DEPENDS cmake_modules realtime_tools control_msgs roscpp controller_manager pluginlib transmission_interface urdf
+  CATKIN_DEPENDS cmake_modules realtime_tools control_msgs roscpp controller_manager pluginlib transmission_interface urdf dynamic_reconfigure
   DEPENDS gazebo system_lib gazebo_ros_control serial dynamixel_motor message_runtime
 )
 
@@ -192,6 +192,7 @@ include_directories(include
          src/${PROJECT_NAME}/Switch.cpp
          include/${PROJECT_NAME}/Relay.h
          src/${PROJECT_NAME}/Relay.cpp
+         include/${PROJECT_NAME}/jointInfo.h
          )
 
 add_library(robotican_hardware_interface_sim
@@ -203,9 +204,10 @@ add_library(robotican_hardware_interface_sim
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
 # add_dependencies(robotican_hardware_interface ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-
 ## Declare a C++ executable
- add_executable(robotican_hardware_interface_node src/robotican_hardware_interface_node.cpp)
+add_executable(robotican_hardware_interface_node src/robotican_hardware_interface_node.cpp)
+
+add_dependencies(robotican_hardware_interface_node ${PROJECT_NAME}_gencfg)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above

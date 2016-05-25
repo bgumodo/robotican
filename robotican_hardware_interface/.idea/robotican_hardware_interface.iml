@@ -18,6 +18,7 @@
       <sourceFolder url="file://$MODULE_DIR$/include/robotican_hardware_interface/Ultrasonic.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/include/robotican_hardware_interface/dynamixel_pro_controller.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/include/robotican_hardware_interface/dynamixel_pro_driver.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/include/robotican_hardware_interface/jointInfo.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/include/robotican_hardware_interface/komodo.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/include/robotican_hardware_interface/robot_sim_interface.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/package.xml" isTestSource="false" />
@@ -96,6 +97,7 @@
           <root url="file://$MODULE_DIR$/include/robotican_hardware_interface/RiCBoardManager.h" />
           <root url="file://$MODULE_DIR$/include/robotican_hardware_interface/TransportLayer.h" />
           <root url="file://$MODULE_DIR$/include/robotican_hardware_interface/Imu.h" />
+          <root url="file://$MODULE_DIR$/include/robotican_hardware_interface/jointInfo.h" />
           <root url="file://$MODULE_DIR$/include/robotican_hardware_interface/dynamixel_pro_driver.h" />
           <root url="file://$MODULE_DIR$/include/robotican_hardware_interface/Ultrasonic.h" />
         </excluded>
