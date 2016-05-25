@@ -1,0 +1,4 @@
+<launch>
+<rosparam command="load" file="$(find robotican_gui)/config/robotican_gui.yaml" />
+<node name="robotican_gui" pkg="robotican_gui" type="robotican_gui" output="screen"></node>
+</launch>

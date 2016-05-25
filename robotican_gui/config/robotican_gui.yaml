@@ -1,0 +1,14 @@
+gripper_topic: gripper_controller/gripper_cmd/status
+arm_topic: arm_trajectory_controller/state
+pan_tilt_topic: pan_tilt_controller/command
+gps_topic: GPS/fix
+imu_topic: IMU/data
+rear_cam_topic: rear_camera/image_raw
+front_cam_topic: front_camera/image_raw
+urf_left_topic: URF/left
+urf_right_topic: URF/right
+urf_rear_topic: URF/rear
+lidar_topic: scan
+odom_topic: mobile_base_controller/odom
+
+
