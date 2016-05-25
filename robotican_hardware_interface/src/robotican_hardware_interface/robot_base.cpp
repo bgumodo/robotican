@@ -14,6 +14,7 @@ namespace robotican_hardware {
         while (_boardManager.getConnectState() != ConnectEnum::Connected) { loopRate.sleep(); }
         _boardManager.buildDevices();
         _boardManager.buildDevices(&_jointStateInterface, &_velocityJointInterface);
+        _boardManager.buildDevices(&_jointStateInterface, &_positionJointInterface);
 
 
 //#ifdef DEBUG_BASE_ROBOT
@@ -76,6 +77,7 @@ namespace robotican_hardware {
     void RobotBase::registerInterfaces() {
         registerInterface(&_jointStateInterface);
         registerInterface(&_velocityJointInterface);
+        registerInterface(&_positionJointInterface);
     }
 
     ros::Time RobotBase::getTime() {

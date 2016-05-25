@@ -13,8 +13,8 @@ namespace robotican_hardware {
         _b = b;
         _max = max;
         _min = min;
-        _jointInfo.position = initPos;
-        _jointInfo.cmd = initPos;
+        //_jointInfo.position = 0.0;
+        //_jointInfo.cmd = initPos;
 
 
     }
@@ -50,8 +50,9 @@ namespace robotican_hardware {
         buildServo.length = sizeof(buildServo);
         buildServo.checkSum = 0;
         buildServo.id = getId();
+        buildServo.pin = _pin;
         buildServo.a = _a;
-        buildServo.b = _a;
+        buildServo.b = _b;
         buildServo.max = _max;
         buildServo.min = _min;
 
