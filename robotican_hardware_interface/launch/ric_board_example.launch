@@ -1,0 +1,12 @@
+<launch>
+	<rosparam file="$(find robotican_hardware_interface)/config/ric_board_example.yaml" command="load"/>
+	<node name="robotican_hardware_interface" pkg="robotican_hardware_interface" type="robotican_hardware_interface_node" respawn="false" output="screen" >
+	</node>
+	
+	<rosparam file="$(find robotican_hardware_interface)/config/controllers.yaml" command="load"/>
+    
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="	  
+      robot_state_controller
+	  mobile_base_controller
+	  " />
+</launch>
