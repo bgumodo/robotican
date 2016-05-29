@@ -33,7 +33,6 @@ void robotican_hardware::Switch::buildDevice() {
 robotican_hardware::Switch::Switch(byte id, TransportLayer *transportLayer, byte pin, std::string topicName) : Device(id, transportLayer) {
     _pin = pin;
     _topicName = topicName;
-
 }
 
 void robotican_hardware::Switch::deviceAck(const DeviceAck *ack) {
@@ -47,3 +46,5 @@ void robotican_hardware::Switch::deviceAck(const DeviceAck *ack) {
         ros::shutdown();
     }
 }
+
+

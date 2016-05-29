@@ -10,7 +10,7 @@
 #include <robotican_hardware_interface/ros_utils.h>
 #include <robotican_hardware_interface/RiCBoardManager.h>
 
-
+#define MOTOR_EPSILON 0.001
 
 namespace robotican_hardware {
 
@@ -82,9 +82,10 @@ namespace robotican_hardware {
     class CloseLoopMotor : public RiCMotor {
     private:
         JointInfo_t _jointInfo;
+        float _lastCmd;
         CloseMotorType::CloseMotorType _motorType;
         CloseMotorMode::CloseMotorMode _mode;
-
+        bool checkIfLastCmdChange();
     public:
         CloseLoopMotor(byte id, TransportLayer *transportLayer, byte motorAddress, byte eSwitchPin, byte eSwitchType,
                                CloseMotorType::CloseMotorType motorType, CloseMotorMode::CloseMotorMode mode);

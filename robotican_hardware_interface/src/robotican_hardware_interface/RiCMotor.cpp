@@ -30,6 +30,7 @@ namespace robotican_hardware {
             : RiCMotor(id, transportLayer, motorAddress, eSwitchPin, eSwitchType) {
         _motorType = motorType;
         _mode = mode;
+        _lastCmd = 0.0;
     }
 
     JointInfo_t *CloseLoopMotor::getJointInfo() {
@@ -38,6 +39,7 @@ namespace robotican_hardware {
 
     void CloseLoopMotor::update(const DeviceMessage *deviceMessage) {
         if(isReady()) {
+
             MotorFeedback *feedback = (MotorFeedback *) deviceMessage;
             _jointInfo.position = feedback->rad;
             _jointInfo.velocity = feedback->rad_s;
@@ -46,19 +48,27 @@ namespace robotican_hardware {
 
     void CloseLoopMotor::write() {
         if(isReady()) {
-            MotorSetPoint point;
-            point.length = sizeof(point);
-            point.checkSum = 0;
-            point.id = getId();
-            point.point = (float) _jointInfo.cmd;
+            if(checkIfLastCmdChange()) {
+                MotorSetPoint point;
+                point.length = sizeof(point);
+                point.checkSum = 0;
+                point.id = getId();
+                point.point = (float) _jointInfo.cmd;
 
-            uint8_t *rawData = (uint8_t *) &point;
-            point.checkSum = _transportLayer->calcChecksum(rawData, point.length);
-            _transportLayer->write(rawData, point.length);
+                uint8_t *rawData = (uint8_t *) &point;
+                point.checkSum = _transportLayer->calcChecksum(rawData, point.length);
+                _transportLayer->write(rawData, point.length);
+                _lastCmd = (float) _jointInfo.cmd;
 //            char buff[128] = {'\0'};
 //            sprintf(buff, "point: %f", _jointInfo.cmd);
 //            ros_utils::rosInfo(buff);
+            }
         }
+    }
+
+    bool CloseLoopMotor::checkIfLastCmdChange() {
+        float delta = fabsf((float) (_jointInfo.cmd - _lastCmd));
+        return delta >= MOTOR_EPSILON;
     }
 
     CloseMotorType::CloseMotorType CloseLoopMotor::getCloseMotorType() {
@@ -205,5 +215,6 @@ namespace robotican_hardware {
             }
         }
     }
+
 
 }

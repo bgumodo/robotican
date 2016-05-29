@@ -11,15 +11,18 @@ namespace robotican_hardware {
 
     void Relay::write() {
         if(isReady()) {
-            RelaySetState state;
-            state.length = sizeof(state);
-            state.checkSum = 0;
-            state.id = getId();
-            state.state = _relayState;
+            if(_isChange) {
+                RelaySetState state;
+                state.length = sizeof(state);
+                state.checkSum = 0;
+                state.id = getId();
+                state.state = _relayState;
 
-            uint8_t *rawData = (uint8_t *) &state;
-            state.checkSum = _transportLayer->calcChecksum(rawData, state.length);
-            _transportLayer->write(rawData, state.length);
+                uint8_t *rawData = (uint8_t *) &state;
+                state.checkSum = _transportLayer->calcChecksum(rawData, state.length);
+                _transportLayer->write(rawData, state.length);
+                _isChange = false;
+            }
         }
     }
 
@@ -52,12 +55,14 @@ namespace robotican_hardware {
         _pin = pin;
         _serviceName = serviceName;
         _relayState = false;
+        _isChange = true;
 
     }
 
     bool Relay::relayCallback(ric_board::RelayRequest &req, ric_board::RelayResponse &res) {
         _relayState = req.req;
         res.ack = true;
+        _isChange = true;
         return true;
     }
 }

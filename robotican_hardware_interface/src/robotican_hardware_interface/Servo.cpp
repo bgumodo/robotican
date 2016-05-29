@@ -13,6 +13,7 @@ namespace robotican_hardware {
         _b = b;
         _max = max;
         _min = min;
+        _lastCmd = 0.0;
         //_jointInfo.position = 0.0;
         //_jointInfo.cmd = initPos;
 
@@ -29,15 +30,19 @@ namespace robotican_hardware {
 
     void Servo::write() {
         if(isReady()) {
-            ServoSetPoint point;
-            point.length = sizeof(point);
-            point.checkSum = 0;
-            point.id = getId();
-            point.pos = _jointInfo.cmd;
+            if(checkIfLastCmdChange()) {
+                ServoSetPoint point;
+                point.length = sizeof(point);
+                point.checkSum = 0;
+                point.id = getId();
+                point.pos = (float) _jointInfo.cmd;
 
-            uint8_t *rawData = (uint8_t *) &point;
-            point.checkSum = _transportLayer->calcChecksum(rawData, point.length);
-            _transportLayer->write(rawData, point.length);
+                uint8_t *rawData = (uint8_t *) &point;
+                point.checkSum = _transportLayer->calcChecksum(rawData, point.length);
+                _transportLayer->write(rawData, point.length);
+                _lastCmd = (float) _jointInfo.cmd;
+
+            }
         }
     }
 
@@ -71,5 +76,10 @@ namespace robotican_hardware {
             ros_utils::rosError("Can't build Servo for some reason");
             ros::shutdown();
         }
+    }
+
+    bool Servo::checkIfLastCmdChange() {
+        float delta = fabsf((float) (_jointInfo.cmd - _lastCmd));
+        return delta >= SERVO_EPSILON;
     }
 }
