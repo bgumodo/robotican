@@ -17,6 +17,7 @@ namespace robotican_hardware {
         std::string _topicName;
         ros::Publisher _switchState;
 
+
     public:
         Switch(byte id, TransportLayer *transportLayer, byte pin, std::string topicName);
 

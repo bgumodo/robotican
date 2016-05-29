@@ -17,7 +17,7 @@ namespace robotican_hardware {
         bool _relayState;
         std::string _serviceName;
         ros::ServiceServer _server;
-
+        bool _isChange;
         bool relayCallback(ric_board::RelayRequest &req, ric_board::RelayResponse &res);
 
     public:

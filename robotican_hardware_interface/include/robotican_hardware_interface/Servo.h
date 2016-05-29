@@ -10,6 +10,7 @@
 #include <robotican_hardware_interface/TransportLayer.h>
 #include <robotican_hardware_interface/Device.h>
 
+#define SERVO_EPSILON 0.001
 
 namespace robotican_hardware {
     class Servo : public Device {
@@ -20,6 +21,9 @@ namespace robotican_hardware {
         float _max;
         float _min;
         JointInfo_t _jointInfo;
+        float _lastCmd;
+
+        bool checkIfLastCmdChange();
 
     public:
         Servo(byte id, TransportLayer *transportLayer, byte pin, float a, float b, float max, float min, float initPos);
