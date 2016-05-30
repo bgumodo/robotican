@@ -1,0 +1,2 @@
+geometry_msgs/Vector3Stamped max
+geometry_msgs/Vector3Stamped min

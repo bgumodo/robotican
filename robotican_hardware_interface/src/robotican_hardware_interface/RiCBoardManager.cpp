@@ -328,6 +328,9 @@ namespace robotican_hardware {
                 case DeviceMessageType::BatteryFeedback:
                     _devices[deviceMsg->id]->update(deviceMsg);
                     break;
+                case DeviceMessageType::ImuClibFeedback:
+                    _devices[deviceMsg->id]->update(deviceMsg);
+                    break;
             }
         }
 

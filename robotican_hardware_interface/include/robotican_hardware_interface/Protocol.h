@@ -24,6 +24,8 @@
             ImuFeedback = 11,
             BatteryFeedback = 12,
             SetServoParam = 13,
+            ImuClibFeedback = 14,
+            ImuSetClibState = 15,
         };
     }
 
@@ -109,6 +111,8 @@
             ImuFeedback = 11,
             BatteryFeedback = 12,
             SetServoParam = 13,
+            ImuClibFeedback = 14,
+            ImuSetClibState = 15,
         };
     }
 
@@ -389,6 +393,16 @@ struct ImuFeedback : DeviceMessage {
 
 }__attribute__((__packed__));
 
+struct ImuClibFeedback : DeviceMessage {
+    ImuClibFeedback() {
+        deviceMessageType = DeviceMessageType::ImuClibFeedback;
+    }
+
+    float max[3];
+    float min[3];
+
+}__attribute__((__packed__));
+
 
 
 struct UltrasonicFeedback : DeviceMessage {
@@ -450,6 +464,15 @@ struct SetServoParam : DeviceMessage {
     float b;
     float max;
     float min;
+}__attribute__((__packed__));
+
+struct ImuSetClibState : DeviceMessage {
+    ImuSetClibState(){
+        deviceMessageType = DeviceMessageType::ImuSetClibState;
+    }
+
+    byte state;
+
 }__attribute__((__packed__));
 
 
