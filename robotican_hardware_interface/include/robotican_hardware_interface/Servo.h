@@ -22,6 +22,7 @@ namespace robotican_hardware {
         float _min;
         JointInfo_t _jointInfo;
         float _lastCmd;
+        bool _isChangeParam;
 
         bool checkIfLastCmdChange();
 
@@ -31,6 +32,7 @@ namespace robotican_hardware {
         virtual void write();
         virtual void deviceAck(const DeviceAck *ack);
         JointInfo_t* getJointInfo();
+        void setParam(float a, float b, float max, float min);
         virtual void buildDevice();
 
 

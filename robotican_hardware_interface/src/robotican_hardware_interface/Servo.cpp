@@ -14,6 +14,7 @@ namespace robotican_hardware {
         _max = max;
         _min = min;
         _lastCmd = 0.0;
+        _isChangeParam = false;
         //_jointInfo.position = 0.0;
         //_jointInfo.cmd = initPos;
 
@@ -41,7 +42,21 @@ namespace robotican_hardware {
                 point.checkSum = _transportLayer->calcChecksum(rawData, point.length);
                 _transportLayer->write(rawData, point.length);
                 _lastCmd = (float) _jointInfo.cmd;
+            }
+            if(_isChangeParam) {
+                _isChangeParam = false;
+                SetServoParam param;
+                param.length = sizeof(param);
+                param.checkSum = 0;
+                param.id = getId();
+                param.a = _a;
+                param.b = _b;
+                param.max = _max;
+                param.min = _min;
 
+                uint8_t *rawData = (uint8_t*) &param;
+                param.checkSum = _transportLayer->calcChecksum(rawData, param.length);
+                _transportLayer->write(rawData, param.length);
             }
         }
     }
@@ -81,5 +96,14 @@ namespace robotican_hardware {
     bool Servo::checkIfLastCmdChange() {
         float delta = fabsf((float) (_jointInfo.cmd - _lastCmd));
         return delta >= SERVO_EPSILON;
+    }
+
+    void Servo::setParam(float a, float b, float max, float min) {
+        _isChangeParam = true;
+        _a = a;
+        _b = b;
+        _max = max;
+        _min = min;
+
     }
 }

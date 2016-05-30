@@ -118,7 +118,8 @@ generate_messages(
 
 ## Generate dynamic reconfigure parameters in the 'cfg' folder
  generate_dynamic_reconfigure_options(
-         cfg/dyn_params.py
+         cfg/dyn_params.cfg #MOTOR
+         cfg/dyn_params_servo.cfg
  )
 
 ###################################

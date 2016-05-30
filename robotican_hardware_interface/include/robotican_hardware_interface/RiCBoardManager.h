@@ -25,6 +25,7 @@
 #include <dynamic_reconfigure/server.h>
 #include <robotican_hardware_interface/RiCBoardManager.h>
 #include <robotican_hardware_interface/RiCBoardConfig.h>
+#include <robotican_hardware_interface/RiCBoardServoConfig.h>
 
 
 #define MAX_BUFF_SIZE 255
@@ -36,6 +37,7 @@ namespace robotican_hardware {
 
     class CloseMotorParamHandler {
     private:
+        ros::NodeHandle _nodeHandle;
         std::map<std::string, CloseLoopMotor *> _motors;
         dynamic_reconfigure::Server <robotican_hardware_interface::RiCBoardConfig> _server;
         dynamic_reconfigure::Server<robotican_hardware_interface::RiCBoardConfig>::CallbackType _callbackType;
@@ -53,9 +55,30 @@ namespace robotican_hardware {
 
     };
 
+    class ServoParamHandler {
+    private:
+        ros::NodeHandle _nodeHandle;
+        std::map<std::string, Servo*> _servos;
+        dynamic_reconfigure::Server <robotican_hardware_interface::RiCBoardServoConfig> _server;
+        dynamic_reconfigure::Server<robotican_hardware_interface::RiCBoardServoConfig>::CallbackType _callbackType;
+
+        void dynamicCallback(robotican_hardware_interface::RiCBoardServoConfig &config, uint32_t level);
+
+        Servo* checkIfJointValid(std::string jointName);
+
+    public:
+        ServoParamHandler();
+
+        void add(std::string jointName, Servo* servo);
+
+        void remove(std::string jointName);
+
+    };
+
     class RiCBoardManager {
     private:
-        CloseMotorParamHandler _paramHandler;
+        CloseMotorParamHandler _closeMotorParamHandler;
+        ServoParamHandler _servoParamHandler;
         byte _rcvBuff[MAX_BUFF_SIZE];
         TransportLayer _transportLayer;
         ConnectEnum::ConnectEnum  _connectState;

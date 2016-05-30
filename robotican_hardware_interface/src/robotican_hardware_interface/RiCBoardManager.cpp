@@ -336,7 +336,7 @@ namespace robotican_hardware {
     void RiCBoardManager::clear() {
         size_t size = _devices.size();
         if(size > 0) {
-            for(int i = 0; i < size; ++i) _devices[i];
+            for(int i = 0; i < size; ++i) delete _devices[i];
             _devices.clear();
         }
 
@@ -372,6 +372,7 @@ namespace robotican_hardware {
                                                                 &servoJointInfo->cmd);
                 jointPositionInterface->registerHandle(JointHandle);
                 _devices.push_back(servo);
+                _servoParamHandler.add(servoJointName, servo);
                 servo->buildDevice();
             }
         }
@@ -448,7 +449,7 @@ namespace robotican_hardware {
                             jointVelocityInterface->registerHandle(JointHandle);
 
                             _devices.push_back(closeLoopMotor);
-                            _paramHandler.add(jointName, closeLoopMotor);
+                            _closeMotorParamHandler.add(jointName, closeLoopMotor);
                             closeLoopMotor->buildDevice();
 
                     }
@@ -502,26 +503,26 @@ namespace robotican_hardware {
 
 
 
-        void CloseMotorParamHandler::dynamicCallback(robotican_hardware_interface::RiCBoardConfig &config, uint32_t level) {
-            if (!_motors.empty()) {
-                CloseLoopMotor *closeLoopMotor = checkIfJointValid(config.motor_joint_name);
-                if (closeLoopMotor != NULL) {
-                    closeLoopMotor->setParams((uint16_t) config.motor_lpf_hz, (uint16_t) config.motor_pid_hz,
-                                              (float) config.motor_lpf_alpha, (float) config.motor_kp,
-                                              (float) config.motor_ki, (float) config.motor_kd);
-
-                }
-                else {
-                    char buff[128] = {'\0'};
-                    sprintf(buff, "joint name: %s not in the list", config.motor_joint_name.c_str());
-                    ros_utils::rosError(buff);
-                    return;
-                }
+    void CloseMotorParamHandler::dynamicCallback(robotican_hardware_interface::RiCBoardConfig &config, uint32_t level) {
+        if (!_motors.empty()) {
+            CloseLoopMotor *closeLoopMotor = checkIfJointValid(config.motor_joint_name);
+            if (closeLoopMotor != NULL) {
+                closeLoopMotor->setParams((uint16_t) config.motor_lpf_hz, (uint16_t) config.motor_pid_hz,
+                                          (float) config.motor_lpf_alpha, (float) config.motor_kp,
+                                          (float) config.motor_ki, (float) config.motor_kd);
 
             }
+            else {
+                char buff[128] = {'\0'};
+                sprintf(buff, "joint name: %s not in the list", config.motor_joint_name.c_str());
+                ros_utils::rosError(buff);
+                return;
+            }
+
+        }
     }
 
-    CloseMotorParamHandler::CloseMotorParamHandler() {
+    CloseMotorParamHandler::CloseMotorParamHandler() : _nodeHandle("~/Motors"), _server(_nodeHandle){
         _callbackType = boost::bind(&CloseMotorParamHandler::dynamicCallback, this, _1, _2);
         _server.setCallback(_callbackType);
 
@@ -570,6 +571,70 @@ namespace robotican_hardware {
         return NULL;
     }
 
+    ServoParamHandler::ServoParamHandler() : _nodeHandle("~/Servos") , _server(_nodeHandle){
+        _callbackType = boost::bind(&ServoParamHandler::dynamicCallback, this, _1, _2);
+        _server.setCallback(_callbackType);
+
+    }
+
+    void ServoParamHandler::add(std::string jointName, Servo *servo) {
+        if (!_servos.empty()) {
+            if (checkIfJointValid(jointName) == NULL) {
+                _servos.insert(std::pair<std::string, Servo* >(jointName, servo));
+            }
+            else {
+                char buff[128] = {'\0'};
+                sprintf(buff, "joint name: %s already in the list", jointName.c_str());
+                ros_utils::rosError(buff);
+                return;
+            }
+        }
+        else {
+            _servos.insert(std::pair<std::string, Servo* >(jointName, servo));
+        }
+    }
+
+    void ServoParamHandler::remove(std::string jointName) {
+        if (!_servos.empty()) {
+            if (checkIfJointValid(jointName) != NULL) {
+                _servos.erase(jointName);
+            }
+            else {
+                char buff[128] = {'\0'};
+                sprintf(buff, "joint name: %s not in the list", jointName.c_str());
+                ros_utils::rosError(buff);
+                return;
+            }
+        }
+        else {
+            ros_utils::rosError("List is empty");
+        }
+    }
+
+    Servo *ServoParamHandler::checkIfJointValid(std::string jointName) {
+        for (std::map<std::string, Servo* >::iterator servo = _servos.begin(); servo != _servos.end(); ++servo)
+            if (servo->first == jointName) return servo->second;
+
+        return NULL;
+    }
+
+    void ServoParamHandler::dynamicCallback(robotican_hardware_interface::RiCBoardServoConfig &config, uint32_t level) {
+        if(!_servos.empty()) {
+            Servo *servo = checkIfJointValid(config.servo_joint_name);
+            if(servo != NULL) {
+                servo->setParam((float) config.A, (float) config.B, (float) config.max, (float) config.min);
+            }
+            else {
+                char buff[128] = {'\0'};
+                sprintf(buff, "the joint %s is not on the list", config.servo_joint_name.c_str());
+                ros_utils::rosError(buff);
+            }
+        }
+        else {
+          ros_utils::rosError("servos list is empty");
+        }
+
+    }
 }
 
 
