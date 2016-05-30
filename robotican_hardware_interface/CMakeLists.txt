@@ -75,18 +75,19 @@ endif(NOT ${yaml-cpp_VERSION} VERSION_LESS "0.5")
 ## Generate messages in the 'msg' folder
  add_message_files(
    FILES
-  JointEnable.msg
-  ChainEnable.msg
-  JointLimits.msg
-  ChainLimits.msg
+   JointEnable.msg
+   ChainEnable.msg
+   JointLimits.msg
+   ChainLimits.msg
+   imuClib.msg
  )
 
 ## Generate services in the 'srv' folder
-# add_service_files(
-#   FILES
-#   Service1.srv
+ add_service_files(
+   FILES
+   setImuClib.srv
 #   Service2.srv
-# )
+ )
 
 ## Generate actions in the 'action' folder
 # add_action_files(

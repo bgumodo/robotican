@@ -1,0 +1,8 @@
+
+int32 CALIBRATION = 1
+int32 SAVE = 2
+int32 STOP = 3
+
+int32 state
+---
+bool ack
