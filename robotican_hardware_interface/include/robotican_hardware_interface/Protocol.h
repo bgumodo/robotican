@@ -23,6 +23,7 @@
             GpsFeedback = 10,
             ImuFeedback = 11,
             BatteryFeedback = 12,
+            SetServoParam = 13,
         };
     }
 
@@ -107,6 +108,7 @@
             GpsFeedback = 10,
             ImuFeedback = 11,
             BatteryFeedback = 12,
+            SetServoParam = 13,
         };
     }
 
@@ -438,6 +440,16 @@ struct SetMotorParam : DeviceMessage{
     float KI;
     float KD;
 
+}__attribute__((__packed__));
+
+struct SetServoParam : DeviceMessage {
+    SetServoParam() {
+        deviceMessageType = DeviceMessageType::SetServoParam;
+    }
+    float a;
+    float b;
+    float max;
+    float min;
 }__attribute__((__packed__));
 
 
