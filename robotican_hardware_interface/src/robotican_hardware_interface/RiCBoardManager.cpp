@@ -380,6 +380,86 @@ namespace robotican_hardware {
             }
         }
 
+        int closeMotorsWithPotentiometerSize = 0;
+        ros::param::param("position_motor_size", closeMotorsWithPotentiometerSize, 0);
+        for(int i = 0; i < closeMotorsWithPotentiometerSize; ++i) {
+            std::string motorIdentifier = "positionMotor" + boost::lexical_cast<std::string>(i), positionMotorJointName = "";
+            int readPin,  LPFHz, PIDHz, PPR, timeout, motorDirection, encoderDirection, motorAddress
+            , eSwitchPin, eSwitchType, motorType, motorMode;
+            float LPFAlpha, KP, KI, KD, maxSpeed, limit, a, b;
+            if(_nodeHandle.getParam(motorIdentifier + "_motor_type", motorType)) {
+                switch ((CloseMotorType::CloseMotorType) motorType) {
+                    case CloseMotorType::CloseLoopWithEncoder:break;
+
+                    case CloseMotorType::CloseLoopWithPotentiometer:
+
+                        if (_nodeHandle.getParam(motorIdentifier + "_a", a)
+                            && _nodeHandle.getParam(motorIdentifier + "_b", b)
+                            && _nodeHandle.getParam(motorIdentifier + "_lpf_hz", LPFHz)
+                            && _nodeHandle.getParam(motorIdentifier + "_pid_hz", PIDHz)
+                            && _nodeHandle.getParam(motorIdentifier + "_ppr", PPR)
+                            && _nodeHandle.getParam(motorIdentifier + "_timeout", timeout)
+                            && _nodeHandle.getParam(motorIdentifier + "_motor_direction", motorDirection)
+                            && _nodeHandle.getParam(motorIdentifier + "_encoder_direction", encoderDirection)
+                            && _nodeHandle.getParam(motorIdentifier + "_lpf_alpha", LPFAlpha)
+                            && _nodeHandle.getParam(motorIdentifier + "_kp", KP)
+                            && _nodeHandle.getParam(motorIdentifier + "_ki", KI)
+                            && _nodeHandle.getParam(motorIdentifier + "_kd", KD)
+                            && _nodeHandle.getParam(motorIdentifier + "_max_speed", maxSpeed)
+                            && _nodeHandle.getParam(motorIdentifier + "_limit", limit)
+                            && _nodeHandle.getParam(motorIdentifier + "_motor_address", motorAddress)
+                            && _nodeHandle.getParam(motorIdentifier + "_motor_emergency_pin", eSwitchPin)
+                            && _nodeHandle.getParam(motorIdentifier + "_motor_emergency_pin_type", eSwitchType)
+                            && _nodeHandle.getParam(motorIdentifier + "_joint", positionMotorJointName)
+                            && _nodeHandle.getParam(motorIdentifier + "_mode", motorMode)
+                            && _nodeHandle.getParam(motorIdentifier + "_read_pin", readPin)) {
+                            CloseMotorWithPotentiometerParam motorParams;
+                            motorParams.LPFHz = (uint16_t) LPFHz;
+                            motorParams.PIDHz = (uint16_t) PIDHz;
+                            motorParams.PPR = (uint16_t) PPR;
+                            motorParams.timeout = (uint16_t) timeout;
+                            motorParams.motorDirection = motorDirection;
+                            motorParams.encoderDirection = encoderDirection;
+                            motorParams.LPFAlpha = LPFAlpha;
+                            motorParams.KP = KP;
+                            motorParams.KI = KI;
+                            motorParams.KD = KD;
+                            motorParams.maxSpeed = maxSpeed;
+                            motorParams.limit = limit;
+                            motorParams.a = a;
+                            motorParams.b =  b;
+                            motorParams.pin =  readPin;
+
+                            CloseLoopMotorWithPotentiometer *closeLoopMotor = new CloseLoopMotorWithPotentiometer(_idGen++, &_transportLayer,
+                                                                                           (byte) motorAddress,
+                                                                                           eSwitchPin, eSwitchType,
+                                                                                           CloseMotorType::CloseLoopWithPotentiometer,
+                                                                                           (CloseMotorMode::CloseMotorMode) motorMode,
+                                                                                           motorParams);
+                            JointInfo_t *jointInfo = closeLoopMotor->getJointInfo();
+
+                            hardware_interface::JointStateHandle jointStateHandle(positionMotorJointName,
+                                                                                  &jointInfo->position,
+                                                                                  &jointInfo->velocity,
+                                                                                  &jointInfo->effort);
+
+                            jointStateInterface->registerHandle(jointStateHandle);
+
+                            hardware_interface::JointHandle JointHandle(jointStateInterface->getHandle(positionMotorJointName),
+                                                                        &jointInfo->cmd);
+                            jointPositionInterface->registerHandle(JointHandle);
+
+
+                            _devices.push_back(closeLoopMotor);
+                            _potentiometerParamHandler.add(positionMotorJointName, closeLoopMotor);
+                            closeLoopMotor->buildDevice();
+
+                        }
+                        break;
+                }
+            }
+        }
+
 
     }
 
@@ -635,6 +715,75 @@ namespace robotican_hardware {
         }
         else {
           ros_utils::rosError("servos list is empty");
+        }
+
+    }
+
+    MotorWithPotentiometerParamHandler::MotorWithPotentiometerParamHandler() : _nodeHandle("~/Position_motors") , _server(_nodeHandle) {
+        _callbackType = boost::bind(&MotorWithPotentiometerParamHandler::dynamicCallback, this, _1, _2);
+        _server.setCallback(_callbackType);
+    }
+
+    CloseLoopMotorWithPotentiometer *MotorWithPotentiometerParamHandler::checkIfJointValid(std::string jointName) {
+        for (std::map<std::string, CloseLoopMotorWithPotentiometer* >::iterator motor = _motors.begin(); motor != _motors.end(); ++motor)
+            if (motor->first == jointName) return motor->second;
+
+        return NULL;
+    }
+
+    void MotorWithPotentiometerParamHandler::dynamicCallback(robotican_hardware_interface::RiCBoardPotentiometerConfig &config,
+                                                             uint32_t level) {
+        if(!_motors.empty()) {
+            CloseLoopMotorWithPotentiometer *motor = checkIfJointValid(config.motor_joint_name);
+            if(motor != NULL) {
+                motor->setParams((uint16_t) config.motor_lpf_hz, (uint16_t) config.motor_pid_hz,
+                                 (float) config.motor_lpf_alpha, (float) config.motor_kp,
+                                 (float) config.motor_ki, (float) config.motor_kd,
+                                 (float)config.motor_a, (float)config.motor_b);
+            }
+            else {
+                char buff[128] = {'\0'};
+                sprintf(buff, "the joint %s is not on the list", config.motor_joint_name.c_str());
+                ros_utils::rosError(buff);
+            }
+        }
+        else {
+            ros_utils::rosError("position motor list is empty");
+        }
+
+    }
+
+    void MotorWithPotentiometerParamHandler::add(std::string jointName, CloseLoopMotorWithPotentiometer *motor) {
+        if (!_motors.empty()) {
+            if (checkIfJointValid(jointName) == NULL) {
+                _motors.insert(std::pair<std::string, CloseLoopMotorWithPotentiometer* >(jointName, motor));
+            }
+            else {
+                char buff[128] = {'\0'};
+                sprintf(buff, "joint name: %s already in the list", jointName.c_str());
+                ros_utils::rosError(buff);
+                return;
+            }
+        }
+        else {
+            _motors.insert(std::pair<std::string, CloseLoopMotorWithPotentiometer* >(jointName, motor));
+        }
+    }
+
+    void MotorWithPotentiometerParamHandler::remove(std::string jointName) {
+        if (!_motors.empty()) {
+            if (checkIfJointValid(jointName) != NULL) {
+                _motors.erase(jointName);
+            }
+            else {
+                char buff[128] = {'\0'};
+                sprintf(buff, "joint name: %s not in the list", jointName.c_str());
+                ros_utils::rosError(buff);
+                return;
+            }
+        }
+        else {
+            ros_utils::rosError("List is empty");
         }
 
     }
