@@ -217,4 +217,91 @@ namespace robotican_hardware {
     }
 
 
+    void CloseLoopMotorWithPotentiometer::setParams(uint16_t lpfHz, uint16_t pidHz, float lpfAlpha, float KP, float KI,
+                                                    float KD) {
+
+    }
+
+    void CloseLoopMotorWithPotentiometer::buildDevice() {
+        BuildCloseLoopWithPotentiometer buildCloseLoopWithPotentiometer;
+        buildCloseLoopWithPotentiometer.length = sizeof(buildCloseLoopWithPotentiometer);
+        buildCloseLoopWithPotentiometer.checkSum = 0;
+        buildCloseLoopWithPotentiometer.id = getId();
+
+        buildCloseLoopWithPotentiometer.motorAddress = getAddress();
+        buildCloseLoopWithPotentiometer.motorMode = getMode();
+        buildCloseLoopWithPotentiometer.eSwitchPin = getESwitchPin();
+        buildCloseLoopWithPotentiometer.eSwitchType = getESwitchType();
+        buildCloseLoopWithPotentiometer.motorType = getCloseMotorType();
+        buildCloseLoopWithPotentiometer.LPFHz = _param.LPFHz;
+        buildCloseLoopWithPotentiometer.PIDHz = _param.PIDHz;
+        buildCloseLoopWithPotentiometer.PPR = _param.PPR;
+        buildCloseLoopWithPotentiometer.timeout = _param.timeout;
+        buildCloseLoopWithPotentiometer.motorDirection = _param.motorDirection;
+        buildCloseLoopWithPotentiometer.encoderDirection = _param.encoderDirection;
+        buildCloseLoopWithPotentiometer.LPFAlpha = _param.LPFAlpha;
+        buildCloseLoopWithPotentiometer.KP = _param.KP;
+        buildCloseLoopWithPotentiometer.KI = _param.KI;
+        buildCloseLoopWithPotentiometer.KD = _param.KD;
+        buildCloseLoopWithPotentiometer.maxSpeed = _param.maxSpeed;
+        buildCloseLoopWithPotentiometer.limit = _param.limit;
+        buildCloseLoopWithPotentiometer.a = _param.a;
+        buildCloseLoopWithPotentiometer.b = _param.b;
+        buildCloseLoopWithPotentiometer.pin = _param.pin;
+
+        uint8_t* rawData = (uint8_t*)&buildCloseLoopWithPotentiometer;
+        buildCloseLoopWithPotentiometer.checkSum = _transportLayer->calcChecksum(rawData, buildCloseLoopWithPotentiometer.length);
+        _transportLayer->write(rawData, buildCloseLoopWithPotentiometer.length);
+
+    }
+
+    CloseLoopMotorWithPotentiometer::CloseLoopMotorWithPotentiometer(byte id, TransportLayer *transportLayer, byte motorAddress, byte eSwitchPin,
+                                                                         byte eSwitchType, CloseMotorType::CloseMotorType motorType,
+                                                                         CloseMotorMode::CloseMotorMode mode, CloseMotorWithPotentiometerParam motorParam)
+            : CloseLoopMotor(id, transportLayer, motorAddress, eSwitchPin, eSwitchType, motorType, mode) {
+        _param = motorParam;
+        _isParamChange = false;
+    }
+
+    void CloseLoopMotorWithPotentiometer::setParams(uint16_t lpfHz, uint16_t pidHz, float lpfAlpha, float KP, float KI,
+                                                    float KD, float a, float b) {
+        _param.LPFHz = lpfHz;
+        _param.PIDHz = pidHz;
+        _param.LPFAlpha = lpfAlpha;
+        _param.KP = KP;
+        _param.KI = KI;
+        _param.KD = KD;
+        _param.a = a;
+        _param.b = b;
+        _isParamChange = true;
+
+    }
+
+
+    void CloseLoopMotorWithPotentiometer::write() {
+        CloseLoopMotor::write();
+        if(_isParamChange) {
+            _isParamChange = false;
+            SetCloseMotorWithPotentiometer setCloseMotorWithPotentiometer;
+            setCloseMotorWithPotentiometer.length = sizeof(setCloseMotorWithPotentiometer);
+            setCloseMotorWithPotentiometer.checkSum = 0;
+            setCloseMotorWithPotentiometer.id = getId();
+
+            setCloseMotorWithPotentiometer.lpfHz = _param.LPFHz;
+            setCloseMotorWithPotentiometer.pidHz = _param.PIDHz;
+            setCloseMotorWithPotentiometer.lfpAlpha = _param.LPFAlpha;
+            setCloseMotorWithPotentiometer.KP = _param.KP;
+            setCloseMotorWithPotentiometer.KI = _param.KI;
+            setCloseMotorWithPotentiometer.KD = _param.KD;
+            setCloseMotorWithPotentiometer.a = _param.a;
+            setCloseMotorWithPotentiometer.b = _param.b;
+
+            uint8_t *rawData = (uint8_t*)&setCloseMotorWithPotentiometer;
+
+            setCloseMotorWithPotentiometer.checkSum = _transportLayer->calcChecksum(rawData, setCloseMotorWithPotentiometer.length);
+            _transportLayer->write(rawData, setCloseMotorWithPotentiometer.length);
+
+        }
+
+    }
 }

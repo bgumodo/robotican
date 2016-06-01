@@ -79,6 +79,12 @@ namespace robotican_hardware {
         byte encoderPinB;
     };
 
+    struct CloseMotorWithPotentiometerParam : CloseMotorParams {
+        byte pin;
+        float a;
+        float b;
+    };
+
     class CloseLoopMotor : public RiCMotor {
     private:
         JointInfo_t _jointInfo;
@@ -120,6 +126,24 @@ namespace robotican_hardware {
         virtual void write();
 
 
+    };
+
+    class CloseLoopMotorWithPotentiometer : public CloseLoopMotor {
+    private:
+        bool _isParamChange;
+        CloseMotorWithPotentiometerParam _param;
+    public:
+        CloseLoopMotorWithPotentiometer(byte id, TransportLayer *transportLayer, byte motorAddress, byte eSwitchPin,
+                                                byte eSwitchType, CloseMotorType::CloseMotorType motorType,
+                                                CloseMotorMode::CloseMotorMode mode, CloseMotorWithPotentiometerParam motorParam);
+
+        virtual void setParams(uint16_t lpfHz, uint16_t pidHz, float lpfAlpha, float KP, float KI, float KD);
+
+        virtual void setParams(uint16_t lpfHz, uint16_t pidHz, float lpfAlpha, float KP, float KI, float KD, float a, float b);
+
+        virtual void buildDevice();
+
+        virtual void write();
     };
 
 }

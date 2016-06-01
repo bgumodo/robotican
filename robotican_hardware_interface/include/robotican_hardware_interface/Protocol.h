@@ -113,6 +113,7 @@
             SetServoParam = 13,
             ImuClibFeedback = 14,
             ImuSetClibState = 15,
+            CloseLoopMotorWithPotentiometerSetParam = 16,
         };
     }
 
@@ -127,12 +128,12 @@
             Ultrasonic = 6,
             Switch = 7,
             Relay = 8,
-
         };
     }
     namespace CloseMotorType {
             enum CloseMotorType {
                 CloseLoopWithEncoder = 0,
+                CloseLoopWithPotentiometer = 1,
             };
     }
 
@@ -281,7 +282,6 @@ struct BuildRelay : BuildDevice {
     byte pin;
 };
 
-
 struct BuildMotorCloseLoop : BuildDevice {
     BuildMotorCloseLoop() {
         deviceType = DeviceType::MotorCloseLoop;
@@ -313,7 +313,14 @@ struct BuildMotorCloseLoopWithEncoder : BuildMotorCloseLoop {
     byte encoderPinB;
 }__attribute__((__packed__));
 
-
+struct BuildCloseLoopWithPotentiometer : BuildMotorCloseLoop {
+    BuildCloseLoopWithPotentiometer() {
+        motorType = CloseMotorType::CloseLoopWithPotentiometer;
+    }
+    byte pin;
+    float a;
+    float b;
+}__attribute__((__packed__));
 
 struct BuildMotorOpenLoop : BuildDevice {
     BuildMotorOpenLoop() {
@@ -403,15 +410,12 @@ struct ImuClibFeedback : DeviceMessage {
 
 }__attribute__((__packed__));
 
-
-
 struct UltrasonicFeedback : DeviceMessage {
     UltrasonicFeedback() {
         deviceMessageType = DeviceMessageType::UltrasonicFeedback;
     }
     uint16_t currentRead;
 }__attribute__((__packed__));
-
 
 struct MotorFeedback : DeviceMessage {
     MotorFeedback() {
@@ -456,6 +460,22 @@ struct SetMotorParam : DeviceMessage{
 
 }__attribute__((__packed__));
 
+struct SetCloseMotorWithPotentiometer : DeviceMessage {
+    SetCloseMotorWithPotentiometer() {
+        deviceMessageType = DeviceMessageType::CloseLoopMotorWithPotentiometerSetParam;
+    }
+
+    uint16_t lpfHz;
+    uint16_t pidHz;
+    float lfpAlpha;
+    float KP;
+    float KI;
+    float KD;
+    float a;
+    float b;
+
+}__attribute__((__packed__));
+
 struct SetServoParam : DeviceMessage {
     SetServoParam() {
         deviceMessageType = DeviceMessageType::SetServoParam;
@@ -474,6 +494,7 @@ struct ImuSetClibState : DeviceMessage {
     byte state;
 
 }__attribute__((__packed__));
+
 
 
 #endif //RIC_BOARD_PROTOCOL_H
