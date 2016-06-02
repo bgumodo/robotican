@@ -25,13 +25,16 @@ namespace robotican_hardware {
         ros::Publisher _imuAMQ;
         ros::Publisher _imuM;
         bool _enableGyro;
+        bool _fuseCompass;
         bool _isStopClib;
-        bool _isStateChange;
 
+        bool _isStateChange;
         bool onSetImuClib(robotican_hardware_interface::setImuClib::Request &request, robotican_hardware_interface::setImuClib::Response &response);
+
     public:
 
-        Imu(byte id, TransportLayer *transportLayer, uint16_t fusionHz, std::string frameId, bool enableGyro);
+        Imu(byte id, TransportLayer *transportLayer, uint16_t fusionHz, std::string frameId, bool enableGyro,
+                    bool fuseCompass);
 
         virtual void update(const DeviceMessage *deviceMessage);
 

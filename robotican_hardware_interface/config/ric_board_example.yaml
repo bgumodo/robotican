@@ -24,6 +24,7 @@ switch1_pin: 12
 
 imu_fusion_hz: 50
 imu_enable_gyro: true
+imu_enable_fuse_compass: true
 imu_frame_id: 'base_link'
 
 relay_size: 1

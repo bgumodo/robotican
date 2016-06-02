@@ -85,6 +85,7 @@ namespace robotican_hardware {
         buildImu.id = getId();
         buildImu.fusionHz = _fusionHz;
         buildImu.enableGyro =_enableGyro;
+        buildImu.fuseCompass =_fuseCompass;
 
         uint8_t  *rawData = (uint8_t*) &buildImu;
 
@@ -108,13 +109,15 @@ namespace robotican_hardware {
         }
     }
 
-    Imu::Imu(byte id, TransportLayer *transportLayer, uint16_t fusionHz, std::string frameId, bool enableGyro)
+    Imu::Imu(byte id, TransportLayer *transportLayer, uint16_t fusionHz, std::string frameId, bool enableGyro,
+                 bool fuseCompass)
             : Device(id, transportLayer) {
         _fusionHz = fusionHz;
         _frameId = frameId;
         _isStopClib = true;
         _isStateChange = false;
         _enableGyro = enableGyro;
+        _fuseCompass = fuseCompass;
         _imuState = robotican_hardware_interface::setImuClibRequest::STOP;
         _setImuClibService = _nodeHandle.advertiseService("set_imu_calibration_state", &Imu::onSetImuClib, this);
 
