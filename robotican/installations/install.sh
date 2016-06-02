@@ -33,7 +33,7 @@ if [ $? == 0 ]; then
 	sudo ./setup.sh
 	
 	#Changing to user.
-	chown -R $(logname):$(logname) ~/catkin_ws
+	sudo chown -R $(logname):$(logname) ~/catkin_ws
 	
 	echo "Do you want to install f200/r200 camera package [y/n]: "
 	read asf
