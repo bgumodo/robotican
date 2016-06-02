@@ -1,17 +1,5 @@
 armadilo: true
 
-elevator_topic_pub: 'elevator/command'
-elevator_topic_sub: 'elevator/feedback'
-elevator_joint: 'base_elevator_joint'
-
-pan_topic_pub: 'pan/command'
-pan_topic_sub: 'pan/feedback'
-pan_joint: 'head_pan_joint'
-
-tilt_topic_pub: 'tilt/command'
-tilt_topic_sub: 'tilt/feedback'
-tilt_joint: 'head_tilt_joint'
-
 left_finger_topic_pub: 'left_finger_controller/command'
 left_finger_topic_sub: 'left_finger_controller/state'
 left_finger_joint: 'left_finger_joint'
@@ -20,12 +8,154 @@ right_finger_topic_pub: 'right_finger_controller/command'
 right_finger_topic_sub: 'right_finger_controller/state'
 right_finger_joint: 'right_finger_joint'
 
-left_motor_pub: 'left_motor/command'
-left_motor_sub: 'left_motor/feedback'
-right_motor_pub: 'right_motor/command'
-right_motor_sub: 'right_motor/feedback'
-left_motor_joint_name: 'left_wheel_joint'
-right_motor_joint_name: 'right_wheel_joint'
+
+# RiCBoard                                
+battery_pin: 17
+battery_voltage_divider_ratio: 6.0
+battery_max: 11.3
+battery_min: 10.0
+
+ultrasonic_size: 2
+
+ultrasonic0_pin: 14
+ultrasonic0_frame_id: 'left_urf_link'
+ultrasonic0_topic_name: 'urf/left'
+
+ultrasonic1_pin: 15
+ultrasonic1_frame_id: 'right_urf_link'
+ultrasonic1_topic_name: 'urf/right'
+
+
+switch_size: 2
+
+switch0_topic_name: 'test_first'
+switch0_pin: 11
+
+switch1_topic_name: 'test_second'
+switch1_pin: 12
+
+imu_fusion_hz: 50
+imu_enable_gyro: true
+imu_enable_fuse_compass: true
+imu_frame_id: 'base_link'
+
+relay_size: 1
+
+relay0_service_name: 'on/off'
+relay0_pin: 6
+
+
+close_motor_size: 2
+
+motor0_motor_type: 0
+motor0_encoder_pin_A: 20
+motor0_encoder_pin_B: 21
+motor0_lpf_hz: 63
+motor0_lpf_alpha: 0.21
+motor0_pid_hz: 1000
+motor0_ppr: 2503
+motor0_timeout: 0
+motor0_motor_direction: 1
+motor0_encoder_direction: -1
+motor0_kp: 2.0
+motor0_ki: 12.0
+motor0_kd: 0.0
+motor0_max_speed: 16.0
+motor0_limit: 1.0
+motor0_motor_address: 0
+motor0_motor_emergency_pin: 11
+motor0_motor_emergency_pin_type: 0
+motor0_joint: 'left_wheel_joint'
+motor0_mode: 0
+
+motor1_motor_type: 0
+
+motor1_encoder_pin_A: 22
+motor1_encoder_pin_B: 23
+motor1_encoder_direction: 1
+
+motor1_lpf_hz: 63
+motor1_lpf_alpha: 0.21
+
+motor1_pid_hz: 1000
+motor1_ppr: 2503
+motor1_timeout: 0
+motor1_motor_direction: -1
+
+motor1_kp: 2.0
+motor1_ki: 12.0
+motor1_kd: 0.0
+motor1_max_speed: 16.0
+motor1_limit: 1.0
+motor1_motor_address: 1
+motor1_motor_emergency_pin: 11
+motor1_motor_emergency_pin_type: 0
+motor1_joint: 'right_wheel_joint'
+motor1_mode: 0
+
+#~ motor2_motor_type: 0
+#~ 
+#~ motor2_lpf_hz: 63
+#~ motor2_lpf_alpha: 0.21
+#~ 
+#~ motor2_pid_hz: 1000
+#~ motor2_ppr: 2503
+#~ motor2_timeout: 0
+#~ motor2_motor_direction: -1
+#~ 
+#~ motor2_kp: 2.0
+#~ motor2_ki: 12.0
+#~ motor2_kd: 0.0
+#~ motor2_max_speed: 16.0
+#~ motor2_limit: 1.0
+#~ motor2_motor_address: 10
+#~ motor2_motor_emergency_pin: 11
+#~ motor2_motor_emergency_pin_type: 0
+#~ motor2_joint: 'right_wheel_joint'
+#~ motor2_mode: 0
+
+position_motor_size: 1
+
+positionMotor0_motor_type: 1
+positionMotor0_a: 0.0421
+positionMotor0_b: 0.0622
+positionMotor0_lpf_hz: 63
+positionMotor0_pid_hz: 1000
+positionMotor0_ppr: 2503
+positionMotor0_timeout: 0
+positionMotor0_motor_direction: 1
+positionMotor0_encoder_direction: 1
+positionMotor0_lpf_alpha: 0.21
+positionMotor0_kp: 2.0
+positionMotor0_ki: 12.0
+positionMotor0_kd: 0.0
+positionMotor0_max_speed: 16.0
+positionMotor0_limit: 1.0
+positionMotor0_motor_address: 27
+positionMotor0_motor_emergency_pin: 11
+positionMotor0_motor_emergency_pin_type: 0
+positionMotor0_joint: 'torso_joint'
+positionMotor0_mode: 1
+positionMotor0_read_pin: 28
+
+servo_size: 2
+
+servo0_pin: 3
+servo0_a: -301.5567343
+servo0_b: 1450.0
+servo0_max: 1.57
+servo0_min: -1.57
+servo0_init_pos: 0
+servo0_joint_name: 'head_tilt_joint'
+
+servo1_pin: 4
+servo1_a: -318.4713376
+servo1_b: 1500
+servo1_max: 1.57
+servo1_min: -1.57
+servo1_init_pos: 0
+servo1_joint_name: 'head_pan_joint'
+#RiCBoard
 
 
 left_finger_controller:

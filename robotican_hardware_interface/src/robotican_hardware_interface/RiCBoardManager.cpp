@@ -227,13 +227,14 @@ namespace robotican_hardware {
 
         if(_nodeHandle.hasParam("imu_fusion_hz")) {
             int fusionHz;
-            bool enableGyro;
+            bool enableGyro, fuseCompass;
             std::string frameId;
 
             if(_nodeHandle.getParam("imu_fusion_hz", fusionHz)
                && _nodeHandle.getParam("imu_enable_gyro", enableGyro)
+               && _nodeHandle.getParam("imu_enable_fuse_compass", fuseCompass)
                && _nodeHandle.getParam("imu_frame_id", frameId)) {
-                Device *imu = new Imu(_idGen++, &_transportLayer, (uint16_t) fusionHz, frameId, enableGyro);
+                Device *imu = new Imu(_idGen++, &_transportLayer, (uint16_t) fusionHz, frameId, enableGyro, fuseCompass);
                 _devices.push_back(imu);
                 imu->buildDevice();
             }

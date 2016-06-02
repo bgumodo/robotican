@@ -266,6 +266,7 @@ struct BuildImu : BuildDevice {
     }
     uint16_t fusionHz;
     bool enableGyro;
+    bool fuseCompass;
 }__attribute__((__packed__));
 
 struct BuildSwitch : BuildDevice {

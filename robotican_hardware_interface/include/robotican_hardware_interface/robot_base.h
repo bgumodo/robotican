@@ -21,22 +21,11 @@ namespace robotican_hardware {
 
     class RobotBase : public hardware_interface::RobotHW {
     private:
-//        std::pair<std::string, JointInfo_t> _leftMotorJointInfo;
-//        std::pair<std::string, JointInfo_t> _rightMotorJointInfo;
-//        ros::Publisher _leftMotorCmd;
-//        ros::Publisher _rightMotorCmd;
-//        ros::Subscriber _leftMotorState;
-//        ros::Subscriber _rightMotorState;
         ros::Time _time;
-
-//        void rightMotorStateCallback(const ric_board::Motor::ConstPtr &msg);
-//        void leftMotorStateCallback(const ric_board::Motor::ConstPtr &msg);
-
     protected:
         ros::NodeHandle _nodeHandle;
         hardware_interface::JointStateInterface _jointStateInterface;
         hardware_interface::VelocityJointInterface _velocityJointInterface;
-        hardware_interface::PositionJointInterface _positionJointInterface;
         RiCBoardManager _boardManager;
 
     public:
