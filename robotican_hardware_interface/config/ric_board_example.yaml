@@ -38,15 +38,15 @@ close_motor_size: 2
 motor0_motor_type: 0
 motor0_encoder_pin_A: 20
 motor0_encoder_pin_B: 21
-motor0_lpf_hz: 40
-motor0_lpf_alpha: 0.5
+motor0_lpf_hz: 70
+motor0_lpf_alpha: 0.3
 motor0_pid_hz: 1000
 motor0_ppr: 3192
 motor0_timeout: 0
 motor0_motor_direction: 1
 motor0_encoder_direction: -1
-motor0_kp: 50.0
-motor0_ki: 30.0
+motor0_kp: 40.0
+motor0_ki: 60.0
 motor0_kd: 0.0
 motor0_max_speed: 16.0
 motor0_limit: 1.0
@@ -62,16 +62,16 @@ motor1_encoder_pin_A: 22
 motor1_encoder_pin_B: 23
 motor1_encoder_direction: 1
 
-motor1_lpf_hz: 40
-motor1_lpf_alpha: 0.5
+motor1_lpf_hz: 70
+motor1_lpf_alpha: 0.3
 
 motor1_pid_hz: 1000
 motor1_ppr: 3192
 motor1_timeout: 0
 motor1_motor_direction: -1
 
-motor1_kp: 50.0
-motor1_ki: 30.0
+motor1_kp: 40.0
+motor1_ki: 60.0
 motor1_kd: 0.0
 motor1_max_speed: 16.0
 motor1_limit: 1.0
