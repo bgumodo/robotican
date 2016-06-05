@@ -33,10 +33,10 @@
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
     <end_effector name="eep" parent_link="wrist_link" group="arm" />
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
-    <virtual_joint name="varm" type="fixed" parent_frame="base_link" child_link="base_elevator_link" />
+    <virtual_joint name="varm" type="fixed" parent_frame="base_link" child_link="torso_link" />
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
     <disable_collisions link1="arm_link" link2="base_arm_link" reason="Adjacent" />
-    <disable_collisions link1="arm_link" link2="base_elevator_link" reason="Adjacent" />
+    <disable_collisions link1="arm_link" link2="torso_link" reason="Adjacent" />
     <disable_collisions link1="arm_link" link2="base_link" reason="Never" />
     <disable_collisions link1="arm_link" link2="f200_link" reason="User" />
     <disable_collisions link1="arm_link" link2="front_cam_link" reason="Never" />
@@ -59,7 +59,7 @@
     <disable_collisions link1="arm_link" link2="shoulder2_link" reason="User" />
     <disable_collisions link1="arm_link" link2="shoulder3_link" reason="User" />
     <disable_collisions link1="arm_link" link2="wrist_link" reason="User" />
-    <disable_collisions link1="base_arm_link" link2="base_elevator_link" reason="Never" />
+    <disable_collisions link1="base_arm_link" link2="torso_link" reason="Never" />
     <disable_collisions link1="base_arm_link" link2="base_link" reason="Never" />
     <disable_collisions link1="base_arm_link" link2="f200_link" reason="User" />
     <disable_collisions link1="base_arm_link" link2="front_cam_link" reason="Never" />
@@ -82,28 +82,28 @@
     <disable_collisions link1="base_arm_link" link2="shoulder2_link" reason="Never" />
     <disable_collisions link1="base_arm_link" link2="shoulder3_link" reason="User" />
     <disable_collisions link1="base_arm_link" link2="wrist_link" reason="User" />
-    <disable_collisions link1="base_elevator_link" link2="base_link" reason="Adjacent" />
-    <disable_collisions link1="base_elevator_link" link2="f200_link" reason="User" />
-    <disable_collisions link1="base_elevator_link" link2="front_cam_link" reason="Never" />
-    <disable_collisions link1="base_elevator_link" link2="head_link" reason="Adjacent" />
-    <disable_collisions link1="base_elevator_link" link2="head_pan_link" reason="Never" />
-    <disable_collisions link1="base_elevator_link" link2="head_tilt_link" reason="User" />
-    <disable_collisions link1="base_elevator_link" link2="kinect2_link" reason="User" />
-    <disable_collisions link1="base_elevator_link" link2="laser_link" reason="Never" />
-    <disable_collisions link1="base_elevator_link" link2="left_finger_link" reason="User" />
-    <disable_collisions link1="base_elevator_link" link2="left_urf_link" reason="Never" />
-    <disable_collisions link1="base_elevator_link" link2="left_wheel_link" reason="Never" />
-    <disable_collisions link1="base_elevator_link" link2="rear_cam_link" reason="Adjacent" />
-    <disable_collisions link1="base_elevator_link" link2="rear_urf_link" reason="Never" />
-    <disable_collisions link1="base_elevator_link" link2="right_finger_link" reason="User" />
-    <disable_collisions link1="base_elevator_link" link2="right_urf_link" reason="Never" />
-    <disable_collisions link1="base_elevator_link" link2="right_wheel_link" reason="Never" />
-    <disable_collisions link1="base_elevator_link" link2="rotation1_link" reason="Never" />
-    <disable_collisions link1="base_elevator_link" link2="rotation2_link" reason="Never" />
-    <disable_collisions link1="base_elevator_link" link2="shoulder1_link" reason="Never" />
-    <disable_collisions link1="base_elevator_link" link2="shoulder2_link" reason="Never" />
-    <disable_collisions link1="base_elevator_link" link2="shoulder3_link" reason="User" />
-    <disable_collisions link1="base_elevator_link" link2="wrist_link" reason="User" />
+    <disable_collisions link1="torso_link" link2="base_link" reason="Adjacent" />
+    <disable_collisions link1="torso_link" link2="f200_link" reason="User" />
+    <disable_collisions link1="torso_link" link2="front_cam_link" reason="Never" />
+    <disable_collisions link1="torso_link" link2="head_link" reason="Adjacent" />
+    <disable_collisions link1="torso_link" link2="head_pan_link" reason="Never" />
+    <disable_collisions link1="torso_link" link2="head_tilt_link" reason="User" />
+    <disable_collisions link1="torso_link" link2="kinect2_link" reason="User" />
+    <disable_collisions link1="torso_link" link2="laser_link" reason="Never" />
+    <disable_collisions link1="torso_link" link2="left_finger_link" reason="User" />
+    <disable_collisions link1="torso_link" link2="left_urf_link" reason="Never" />
+    <disable_collisions link1="torso_link" link2="left_wheel_link" reason="Never" />
+    <disable_collisions link1="torso_link" link2="rear_cam_link" reason="Adjacent" />
+    <disable_collisions link1="torso_link" link2="rear_urf_link" reason="Never" />
+    <disable_collisions link1="torso_link" link2="right_finger_link" reason="User" />
+    <disable_collisions link1="torso_link" link2="right_urf_link" reason="Never" />
+    <disable_collisions link1="torso_link" link2="right_wheel_link" reason="Never" />
+    <disable_collisions link1="torso_link" link2="rotation1_link" reason="Never" />
+    <disable_collisions link1="torso_link" link2="rotation2_link" reason="Never" />
+    <disable_collisions link1="torso_link" link2="shoulder1_link" reason="Never" />
+    <disable_collisions link1="torso_link" link2="shoulder2_link" reason="Never" />
+    <disable_collisions link1="torso_link" link2="shoulder3_link" reason="User" />
+    <disable_collisions link1="torso_link" link2="wrist_link" reason="User" />
     <disable_collisions link1="base_link" link2="f200_link" reason="Never" />
     <disable_collisions link1="base_link" link2="front_cam_link" reason="Adjacent" />
     <disable_collisions link1="base_link" link2="head_link" reason="Never" />

@@ -7,7 +7,7 @@
 	<!--      END          -->
 	
 	<!--    ELEV ROBOT     -->
-	<xacro:include filename="$(find robotican_armadillo)/description/models/armadillo_elevator.xacro" />
+	<xacro:include filename="$(find robotican_armadillo)/description/models/armadillo_torso.xacro" />
 	<!--      END          -->
 	
 	<!--    ELEV ROBOT     -->
@@ -15,10 +15,10 @@
 	<!--      END          -->
 	
 	<!--    LOAD JOINTS    -->
-	<joint name="base_elevator_joint" type="prismatic">
+	<joint name="torso_joint" type="prismatic">
 		<origin xyz="-0.1403 0 0.49381" rpy="0 0 0" />
 		<parent link="base_link" />
-		<child link="base_elevator_link" />
+		<child link="torso_link" />
 		<axis xyz="0 0 1" />
 		<dynamics damping="1000.0" friction="100000.0"/>
 		<limit effort="1.765196" velocity="0.1" lower="0.0125" upper="0.4" />

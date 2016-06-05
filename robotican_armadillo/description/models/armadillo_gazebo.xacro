@@ -421,12 +421,12 @@
 	  </actuator>
 	</transmission>
 	
-	<transmission name="base_elevator_joint_trans">
+	<transmission name="torso_joint_trans">
 	  <type>transmission_interface/SimpleTransmission</type>
-	  <joint name="base_elevator_joint">
+	  <joint name="torso_joint">
 	    <hardwareInterface>PositionJointInterface</hardwareInterface>
 	  </joint>
-	  <actuator name="base_elevator_joint_motor">
+	  <actuator name="torso_joint_motor">
 	    <mechanicalReduction>1</mechanicalReduction>
 	  </actuator>
 	</transmission>
@@ -594,7 +594,7 @@
 	</transmission>
 	
 	
-	<gazebo reference="base_elevator_link">
+	<gazebo reference="torso_joint_link">
 	  <turnGravityOff>true</turnGravityOff>
 	</gazebo>
 </xacro:if>

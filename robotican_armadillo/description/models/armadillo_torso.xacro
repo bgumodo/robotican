@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <robot
-  name="armadillo_elevator_urdf" description="Armadillo robot elevator">
+  name="armadillo_torso_urdf" description="Armadillo robot torso">
     
   <link
-    name="base_elevator_link">
+    name="torso_link">
     <inertial>
       <origin
         xyz="0.0042842 2.8149E-05 0.03255"
@@ -24,7 +24,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robotican_armadillo/description/meshes/base_elevator_link.STL" />
+          filename="package://robotican_armadillo/description/meshes/torso_link.STL" />
       </geometry>
       <material
         name="">
@@ -38,7 +38,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://robotican_armadillo/description/meshes/base_elevator_link.STL" />
+          filename="package://robotican_armadillo/description/meshes/torso_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -89,7 +89,7 @@
       xyz="-0.09712 0 0.13354"
       rpy="0 0 3.1416" />
     <parent
-      link="base_elevator_link" />
+      link="torso_link" />
     <child
       link="rear_cam_link" />
     <axis
@@ -142,7 +142,7 @@
       xyz="0.19338 0 -0.25204"
       rpy="0 0 0" />
     <parent
-      link="base_elevator_link" />
+      link="torso_link" />
     <child
       link="arm_link" />
     <axis
@@ -195,7 +195,7 @@
       xyz="0.11288 0 0.26399"
       rpy="0 0 0" />
     <parent
-      link="base_elevator_link" />
+      link="torso_link" />
     <child
       link="head_link" />
     <axis
