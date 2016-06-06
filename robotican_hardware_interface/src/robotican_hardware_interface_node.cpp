@@ -14,7 +14,7 @@
 #include <robotican_hardware_interface/RiCBoardManager.h>
 
 
-#define RIC_BOARD_TEST
+//#define RIC_BOARD_TEST
 
 int main(int argc, char **argv) {
 
@@ -60,11 +60,12 @@ int main(int argc, char **argv) {
 
             ros::AsyncSpinner asyncSpinner(1);
             asyncSpinner.start();
+            ros::Rate loopRate(50);
             while (ros::ok()) {
                 robot.read();
                 controllerManager.update(robot.getTime(), robot.getPeriod());
                 robot.write();
-
+                loopRate.sleep();
             }
         }
     }
