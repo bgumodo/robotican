@@ -1,0 +1,50 @@
+<launch>
+		<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/>
+		
+		<param name="robot_description" command="$(find xacro)/xacro.py '$(find robotican_h_manipulator)/description/models/h_manipulator.xacro' "/>
+		<rosparam file="$(find robotican_h_manipulator)/config/controllers.yaml" command="load"/>
+		<rosparam file="$(find robotican_h_manipulator)/config/gripper_config.yaml" command="load"/>
+		<node name="dynamixel_manager" pkg="dynamixel_controllers" type="controller_manager.py" required="true" output="screen">          
+         <rosparam>
+           namespace: dxl_manager
+           serial_ports:
+            gripper_port:
+             port_name: "/dev/ttyS0"
+             baud_rate: 57142
+             min_motor_id: 1
+             max_motor_id: 2
+             update_rate: 20
+         </rosparam>
+		</node>
+		
+		<node name="arm_controller_spawner" pkg="dynamixel_controllers" type="controller_spawner.py"
+		  args="--manager=dxl_manager
+				--port=gripper_port
+				left_finger_controller
+				right_finger_controller"
+				output="screen"/>
+		
+		<node name="arm_node" pkg="robotican_h_manipulator" type="robotican_h_manipulator_node" >
+			<rosparam file="$(find robotican_h_manipulator)/config/arm_config.yaml" command="load"/>
+		</node>
+		
+		
+		
+		
+		
+		<node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="	  
+		robot_state_controller
+		arm_trajectory_controller" />
+		
+	
+		<include file="$(find robotican_h_manipulator)/moveit/launch/move_group.launch">
+		</include>
+	
+	
+<!--
+	<include file="$(find robotican_h_manipulator)/moveit/launch/demo.launch">
+	</include>
+-->
+
+
+</launch>

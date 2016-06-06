@@ -1,0 +1,7 @@
+left_finger_topic_pub: 'left_finger_controller/command'
+left_finger_topic_sub: 'left_finger_controller/state'
+left_finger_joint: 'left_finger_joint'
+
+right_finger_topic_pub: 'right_finger_controller/command'
+right_finger_topic_sub: 'right_finger_controller/state'
+right_finger_joint: 'right_finger_joint'
