@@ -35,6 +35,14 @@ if [ $? == 0 ]; then
 	#Changing to user.
 	sudo chown -R $(logname):$(logname) ~/catkin_ws
 	
+	echo "Do you want to install kinect2 package [y/n]: "
+	
+	read asfK
+	if [ $asfK == "y" ]; then
+		cd ~/catkin_ws/src/robotican/robotican/installations/third_pkg_setup
+		./kinect2.sh
+	fi
+	
 	echo "Do you want to install f200/r200 camera package [y/n]: "
 	read asf
 	
@@ -43,7 +51,7 @@ if [ $? == 0 ]; then
 		./f200.sh
 	fi
 	
-	chown -R $(logname):$(logname) ~/catkin_ws
+	sudo chown -R $(logname):$(logname) ~/catkin_ws
 	
 	#Do this in the end of the installation.
 	if [ $asf == "y" ]; then
