@@ -1,0 +1,4 @@
+<launch>
+	<rosparam file="$(find robotican_demos)/config/simple_move_group_config.yaml" command="load"/>
+	<node name="moveit_api_demo" pkg="robotican_demos" type="simple_move_group_goals" output="screen" />
+</launch>

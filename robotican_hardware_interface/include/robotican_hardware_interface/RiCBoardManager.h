@@ -7,6 +7,7 @@
 
 #include <vector>
 #include <ros/ros.h>
+#include <ros/package.h>
 #include <boost/thread/thread.hpp>
 #include <robotican_hardware_interface/Device.h>
 #include <robotican_hardware_interface/Battery.h>

@@ -31,7 +31,6 @@ namespace robotican_hardware {
     }
 
     void RiCBoardManager::disconnect() {
-
         ConnectState connectState;
         connectState.length = sizeof(connectState);
         connectState.state = ConnectEnum::Disconnected;
@@ -97,6 +96,7 @@ namespace robotican_hardware {
 
         _timeoutKeepAliveTimer.stop();
         _sendKeepAliveTimer.stop();
+        ros_utils::rosInfo("by");
     }
 
     void RiCBoardManager::resetBuff() {
@@ -117,6 +117,25 @@ namespace robotican_hardware {
         switch(connectState->state) {
             case ConnectEnum::Connected:
                 if(getConnectState() == ConnectEnum::Disconnected) {
+                    if(connectState->version != PC_VERSION) {
+                        ros_utils::rosError("Version not match");
+                        std::string hex = ros::package::getPath("robotican_common") + "/exec/firmware.hex";
+                        std::string exec = ros::package::getPath("robotican_common") + "/exec/RiCBoardLoader --mcu=mk20dx256 -sv " + hex;
+                        ros_utils::rosInfo(exec.c_str());
+                        FILE *process = popen(exec.c_str(), "r");
+
+                        if(process == 0) {
+                            ros_utils::rosError("Can't start process");
+                        }
+                        else {
+                            ros_utils::rosInfo("Upload current firmware, this action will restart the process please wait");
+                            ros::Duration(5.0).sleep();
+                            ros_utils::rosInfo("Upload current firmware: Done");
+                            ros_utils::rosInfo("Restarting the process");
+                        }
+                        ros::shutdown();
+                        return;
+                    }
                     setConnectState(ConnectEnum::Connected);
                     _sendKeepAliveTimer.start();
                     _timeoutKeepAliveTimer.setPeriod(ros::Duration(3.0), true);

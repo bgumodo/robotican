@@ -51,7 +51,7 @@
 	  <arg name="joystick_dev" value="$(arg joystick_dev)"/>
 	 </include>
 	 <node name="pan_tilt_joy_node" pkg="robotican_armadillo" type="pan_tilt_joy_node" output="screen" />
-	 <node name="joy_increment_node" pkg="robotican_armadillo" type="joy_increment_node" output="screen" />
+	 <node name="joy_increment_node" pkg="robotican_armadillo" type="joy_increment_node" output="screen" respawn="true"/>
   </group>
   
   <group if="$(arg gazebo)">

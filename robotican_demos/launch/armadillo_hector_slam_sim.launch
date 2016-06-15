@@ -2,14 +2,14 @@
 <launch>
   
     <include file="$(find robotican_armadillo)/launch/armadillo.launch">
-     <arg name="gazebo" value="true"/>
-     <arg name="world_name" value="$(find robotican_common)/worlds/small_office.world"/> 
-     <arg name="x" value="0.0"/>
-     <arg name="y" value="0.0"/>
-     <arg name="lidar" value="true"/>
-     <arg name="hector_slam" value="true"/> 
-     <arg name="rqt" value="true"/> 
-     <arg name="move_base" value="true"/> 
+		 <arg name="gazebo" value="true"/>
+		 <arg name="world_name" value="$(find robotican_common)/worlds/small_office.world"/> 
+		 <arg name="x" value="1000.0"/>
+		 <arg name="y" value="0.0"/>
+		 <arg name="lidar" value="true"/>
+		 <arg name="hector_slam" value="true"/> 
+		 <arg name="rqt" value="true"/> 
+		 <arg name="move_base" value="true"/> 
     </include>
     
   

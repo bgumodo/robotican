@@ -13,6 +13,7 @@ find_package(catkin REQUIRED COMPONENTS
   moveit_core
   moveit_ros_planning
   moveit_ros_planning_interface
+
 )
 
 ## System dependencies are found with CMake's conventions
@@ -123,8 +124,12 @@ include_directories(
 )
 add_executable(simple_navigation_goals src/simple_navigation_goals.cpp)
 add_executable(simple_move_group_goals src/simple_move_group_goal.cpp)
+add_executable(simple_object_recognition src/object_recognition_node.cpp)
+add_executable(moveit_motion_planner src/moveit_motion_planner_node.cpp)
 target_link_libraries(simple_navigation_goals ${catkin_LIBRARIES})
 target_link_libraries(simple_move_group_goals ${catkin_LIBRARIES})
+target_link_libraries(simple_object_recognition ${catkin_LIBRARIES})
+target_link_libraries(moveit_motion_planner ${catkin_LIBRARIES})
 ## Declare a C++ library
 # add_library(robotican_demos
 #   src/${PROJECT_NAME}/robotican_demos.cpp

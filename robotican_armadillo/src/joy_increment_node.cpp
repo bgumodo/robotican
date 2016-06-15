@@ -60,7 +60,7 @@ private:
         size_t size = msg->name.size();
         bool found = false;
         for(int i = 0; i < size && !found; ++i) {
-            if(msg->name[i] == "base_elevator_joint") {
+            if(msg->name[i] == "torso_joint") {
                 _elevPos = msg->position[i];
                 found = true;
             }
@@ -87,7 +87,7 @@ private:
         control_msgs::FollowJointTrajectoryGoal goal;
         goal.goal_time_tolerance = ros::Duration(5.0);
         goal.trajectory.header.frame_id = "base_link";
-        goal.trajectory.joint_names.push_back("base_elevator_joint");
+        goal.trajectory.joint_names.push_back("torso_joint");
         trajectory_msgs::JointTrajectoryPoint point;
         point.time_from_start = ros::Duration(5.0);
         point.positions.push_back(elevPos);
@@ -98,9 +98,9 @@ private:
 
 
 public:
-    JoyIncrement() : _actionClient("elevator_trajectory_controller/follow_joint_trajectory", true) {
+    JoyIncrement() : _actionClient("torso_trajectory_controller/follow_joint_trajectory", true) {
         _isStop = true;
-        if(_actionClient.waitForServer(ros::Duration(20.0))) {
+        if(_actionClient.waitForServer()) {
             if(!_nodeHandle.getParam("elevator_increment", _incElev)
                ||!_nodeHandle.getParam("elevator_up_button", _upButtonIndex)
                ||!_nodeHandle.getParam("elevator_down_button", _downButtonIndex)
