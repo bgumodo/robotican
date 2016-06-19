@@ -195,7 +195,7 @@ struct DebugMsg : Header {
         dataType = DataType::Debug;
     }
     byte level;
-    char message[128];
+    char message[110];
 }__attribute__((__packed__));
 
 struct ConnectState : Header{

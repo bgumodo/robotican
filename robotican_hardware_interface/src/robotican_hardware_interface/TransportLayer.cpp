@@ -25,6 +25,7 @@ bool TransportLayer::read(byte *buff, byte buffLength) {
         buff[0] = size[0];
         for(int i = 1; i <= size[0] - 1; ++i) {
             buff[i] = message[i-1];
+
         }
         return true;
     }

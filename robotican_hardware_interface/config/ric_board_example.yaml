@@ -3,36 +3,36 @@ battery_voltage_divider_ratio: 6.0
 battery_max: 11.3
 battery_min: 10.0
 
-#~ ultrasonic_size: 2
-#~ 
-#~ ultrasonic0_pin: 14
-#~ ultrasonic0_frame_id: 'left_urf_link'
-#~ ultrasonic0_topic_name: 'urf/left'
-#~ 
-#~ ultrasonic1_pin: 15
-#~ ultrasonic1_frame_id: 'right_urf_link'
-#~ ultrasonic1_topic_name: 'urf/right'
-#~ 
-#~ 
-#~ switch_size: 2
-#~ 
-#~ switch0_topic_name: 'test_first'
-#~ switch0_pin: 11
-#~ 
-#~ switch1_topic_name: 'test_second'
-#~ switch1_pin: 12
-#~ 
-#~ imu_fusion_hz: 50
-#~ imu_enable_gyro: true
-#~ imu_enable_fuse_compass: true
-#~ imu_frame_id: 'base_link'
-#~ 
-#~ relay_size: 1
-#~ 
-#~ relay0_service_name: 'on/off'
-#~ relay0_pin: 6
+ultrasonic_size: 2
+
+ultrasonic0_pin: 14
+ultrasonic0_frame_id: 'left_urf_link'
+ultrasonic0_topic_name: 'urf/left'
+
+ultrasonic1_pin: 15
+ultrasonic1_frame_id: 'right_urf_link'
+ultrasonic1_topic_name: 'urf/right'
 
 
+switch_size: 2
+
+switch0_topic_name: 'test_first'
+switch0_pin: 11
+
+switch1_topic_name: 'test_second'
+switch1_pin: 12
+
+imu_fusion_hz: 50
+imu_enable_gyro: true
+imu_enable_fuse_compass: true
+imu_frame_id: 'base_link'
+
+relay_size: 1
+
+relay0_service_name: 'on/off'
+relay0_pin: 6
+
+#~ 
 close_motor_size: 2
 
 motor0_motor_type: 0

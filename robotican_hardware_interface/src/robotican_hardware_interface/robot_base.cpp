@@ -11,9 +11,11 @@ namespace robotican_hardware {
         _time = ros::Time::now();
         _boardManager.connect();
         ros::Rate loopRate(50);
-        while (_boardManager.getConnectState() != ConnectEnum::Connected) { loopRate.sleep(); }
-        _boardManager.buildDevices();
-        _boardManager.buildDevices(&_jointStateInterface, &_velocityJointInterface);
+        while (ros::ok() && _boardManager.getConnectState() != ConnectEnum::Connected) { loopRate.sleep(); }
+        if(ros::ok()) {
+            _boardManager.buildDevices();
+            _boardManager.buildDevices(&_jointStateInterface, &_velocityJointInterface);
+        }
     }
 
     void RobotBase::registerInterfaces() {

@@ -31,7 +31,6 @@ namespace robotican_hardware {
     }
 
     void RiCBoardManager::disconnect() {
-
         ConnectState connectState;
         connectState.length = sizeof(connectState);
         connectState.state = ConnectEnum::Disconnected;
@@ -63,7 +62,9 @@ namespace robotican_hardware {
                 Header *header = (Header*) _rcvBuff;
                 crc prevCheckSum = header->checkSum;
                 header->checkSum = 0;
+
                 crc curCheckSum = _transportLayer.calcChecksum(_rcvBuff, header->length);
+
                 if(curCheckSum == prevCheckSum) {
                     switch (header->dataType) {
                         case DataType::ConnectionState:
@@ -86,7 +87,7 @@ namespace robotican_hardware {
                 else {
 #ifdef RIC_BOARD_DEBUG
                     char errorBuff[128] = {'\0'};
-                    sprintf(errorBuff, "Invalid checksum {cur: %d, prev: %d}", curCheckSum, prevCheckSum);
+                    sprintf(errorBuff, "Invalid checksum {cur: %d, prev: %d}, msg_data_Type: %d, msg_len: %d", curCheckSum, prevCheckSum, header->dataType, header->length);
                     ros_utils::rosError(errorBuff);
 #endif
                 }
@@ -97,6 +98,7 @@ namespace robotican_hardware {
 
         _timeoutKeepAliveTimer.stop();
         _sendKeepAliveTimer.stop();
+        ros_utils::rosInfo("by");
     }
 
     void RiCBoardManager::resetBuff() {
@@ -117,6 +119,25 @@ namespace robotican_hardware {
         switch(connectState->state) {
             case ConnectEnum::Connected:
                 if(getConnectState() == ConnectEnum::Disconnected) {
+                    if(connectState->version != PC_VERSION) {
+                        ros_utils::rosError("Version not match");
+                        std::string hex = ros::package::getPath("robotican_common") + "/exec/firmware.hex";
+                        std::string exec = ros::package::getPath("robotican_common") + "/exec/RiCBoardLoader --mcu=mk20dx256 -sv " + hex;
+                        ros_utils::rosInfo(exec.c_str());
+                        FILE *process = popen(exec.c_str(), "r");
+
+                        if(process == 0) {
+                            ros_utils::rosError("Can't start process");
+                        }
+                        else {
+                            ros_utils::rosInfo("Upload current firmware, this action will restart the process please wait");
+                            ros::Duration(5.0).sleep();
+                            ros_utils::rosInfo("Upload current firmware: Done");
+                            ros_utils::rosInfo("Restarting the process");
+                        }
+                        ros::shutdown();
+                        return;
+                    }
                     setConnectState(ConnectEnum::Connected);
                     _sendKeepAliveTimer.start();
                     _timeoutKeepAliveTimer.setPeriod(ros::Duration(3.0), true);
@@ -194,7 +215,6 @@ namespace robotican_hardware {
     void RiCBoardManager::buildDevices() {
 
         if(_nodeHandle.hasParam("battery_pin")) {
-            ros_utils::rosInfo("GOT BAT PC");
             int pin;
             float voltageDividerRatio, max, min;
             if(_nodeHandle.getParam("battery_pin", pin)
