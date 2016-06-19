@@ -6,18 +6,15 @@
 		 <arg name="world_name" value="$(find robotican_common)/worlds/building6.sdf"/> 
 		 <arg name="x" value="0.0"/>
 		 <arg name="y" value="-1.0"/>
-		 <arg name="kinect2" value="false"/> 
+		 <arg name="kinect2" value="true"/> 
 		 <arg name="rqt" value="false"/> 
-		 <arg name="moveit" value="false"/>
-		 <arg name="joystick_dev" value="/dev/input/js0"/>
-		 <arg name="joystick" value="false"/>
+		 <arg name="moveit" value="true"/>
 		 <arg name="use_depth" value='false'/>
 		 <arg name="move_base" value="true"/> 
 		 <arg name="amcl" value="true"/>
 		 <arg name="have_map_file" value="true"/>
 		 <arg name="map_file" value="$(find robotican_common)/maps/building6.1.yaml"/>
 		 <arg name="lidar" value="true"/>
-		 <arg name="hector_slam" value="false"/>
     </include>
 
 </launch>
