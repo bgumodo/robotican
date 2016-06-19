@@ -3,7 +3,7 @@
   
     <include file="$(find robotican_armadillo)/launch/armadillo.launch">
      <arg name="gazebo" value="true"/>
-     <arg name="world_name" value="$(find robotican_common)/worlds/small_office.world"/> 
+     <arg name="world_name" value="$(find robotican_common)/worlds/building.sdf"/> 
      <arg name="x" value="0.0"/>
      <arg name="y" value="0.0"/>
      <arg name="lidar" value="true"/>
