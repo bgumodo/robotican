@@ -10,7 +10,7 @@
 #include <robotican_hardware_interface/ros_utils.h>
 #include <robotican_hardware_interface/RiCBoardManager.h>
 
-#define URF_HRLV_MaxSonar_an2m 5120.0/65535.0/1000.0
+#define URF_HRLV_MaxSonar_an2m 5.0/ 1000.0 
 #define MIN_RANGE_URF_HRLV_MaxSonar 0.3f // min 0.16f
 #define MAX_RANGE_URF_HRLV_MaxSonar 5.0f //max 6.45f
 #define FIELD_OF_VIEW_URF_HRLV_MaxSonar 0.7f //0.7f

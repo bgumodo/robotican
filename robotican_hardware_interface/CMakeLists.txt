@@ -208,6 +208,10 @@ add_library(robotican_hardware_interface_sim
 ## either from message generation or dynamic reconfigure
 # add_dependencies(robotican_hardware_interface ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 ## Declare a C++ executable
+
+## Uncomment if you want to test the ricboard itself
+#add_definitions(-DRIC_BOARD_TEST)
+
 add_executable(robotican_hardware_interface_node src/robotican_hardware_interface_node.cpp)
 
 add_dependencies(robotican_hardware_interface_node ${PROJECT_NAME}_gencfg)

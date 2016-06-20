@@ -15,7 +15,7 @@ namespace robotican_hardware {
             BatteryFeedback *feedback = (BatteryFeedback *) deviceMessage;
             _currentRead = feedback->currentRead;
             ric_board::Battery msg;
-            msg.data = (float) (_currentRead * 3.3 / 65535.0 * _voltageDividerRatio);
+            msg.data = (float) (_currentRead * 3.3 / 1023.0 * _voltageDividerRatio);
             msg.max = _max;
             msg.min = _min;
             _pub.publish(msg);

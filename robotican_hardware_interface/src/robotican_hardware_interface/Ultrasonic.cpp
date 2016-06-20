@@ -15,6 +15,7 @@ void robotican_hardware::Ultrasonic::update(const DeviceMessage *deviceMessage) 
     if(isReady()) {
         UltrasonicFeedback *feedback = (UltrasonicFeedback *) deviceMessage;
         uint16_t currentRead = feedback->currentRead;
+        //ROS_INFO("%d", feedback->currentRead);
         sensor_msgs::Range range;
         range.header.frame_id = _frameId;
         range.header.stamp = ros::Time::now();
@@ -24,7 +25,7 @@ void robotican_hardware::Ultrasonic::update(const DeviceMessage *deviceMessage) 
         range.field_of_view = FIELD_OF_VIEW_URF_HRLV_MaxSonar;
 
         range.radiation_type = sensor_msgs::Range::ULTRASOUND;
-        range.range = (float) currentRead * URF_HRLV_MaxSonar_an2m;
+        range.range = (float) (currentRead * URF_HRLV_MaxSonar_an2m);
         _ultrasonicRead.publish(range);
     }
 

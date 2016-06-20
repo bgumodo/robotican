@@ -4,7 +4,7 @@
 
 #include "robotican_hardware_interface/robot_base.h"
 
-//#define DEBUG_BASE_ROBOT
+#define DEBUG_BASE_ROBOT
 
 namespace robotican_hardware {
     RobotBase::RobotBase() {
@@ -15,12 +15,18 @@ namespace robotican_hardware {
         if(ros::ok()) {
             _boardManager.buildDevices();
             _boardManager.buildDevices(&_jointStateInterface, &_velocityJointInterface);
+#ifdef RIC_BOARD_TEST
+            _boardManager.buildDevices(&_jointStateInterface, &_positionJointInterface);
+#endif
         }
     }
 
     void RobotBase::registerInterfaces() {
         registerInterface(&_jointStateInterface);
         registerInterface(&_velocityJointInterface);
+#ifdef RIC_BOARD_TEST
+        registerInterface(&_positionJointInterface);
+#endif
     }
 
     ros::Time RobotBase::getTime() {
