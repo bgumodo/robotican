@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <launch>
-  
+	<arg name="rviz_display" default="$(find robotican_demos)/config/amcl.rviz" />
+	<node name="rviz_node" pkg="rviz" type="rviz" args="-d $(arg rviz_display)"/>
+    
     <include file="$(find robotican_armadillo)/launch/armadillo.launch">
      <arg name="gazebo" value="true"/>
      <arg name="have_map_file" value="true"/>
@@ -10,7 +12,6 @@
 	 <arg name="y" value="-1.0"/>
      <arg name="lidar" value="true"/>
      <arg name="amcl" value="true"/> 
-     <arg name="rqt" value="true"/> 
      <arg name="move_base" value="true"/> 
     </include>
     
