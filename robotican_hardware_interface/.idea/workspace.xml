@@ -5,76 +5,76 @@
       <config projectName="robotican_hardware_interface" targetName="control_msgs_generate_messages_cpp" />
       <config projectName="robotican_hardware_interface" targetName="tf_generate_messages_py" />
       <config projectName="robotican_hardware_interface" targetName="control_toolbox_generate_messages_cpp" />
-      <config projectName="robotican_hardware_interface" targetName="_robotican_hardware_interface_generate_messages_check_deps_ChainEnable" />
-      <config projectName="robotican_hardware_interface" targetName="dynamic_reconfigure_generate_messages_py" />
+      <config projectName="robotican_hardware_interface" targetName="control_toolbox_generate_messages_py" />
+      <config projectName="robotican_hardware_interface" targetName="sensor_msgs_generate_messages_py" />
       <config projectName="robotican_hardware_interface" targetName="_robotican_hardware_interface_generate_messages_check_deps_setImuClib" />
-      <config projectName="robotican_hardware_interface" targetName="actionlib_msgs_generate_messages_py" />
+      <config projectName="robotican_hardware_interface" targetName="rosgraph_msgs_generate_messages_py" />
+      <config projectName="robotican_hardware_interface" targetName="robotican_hardware_interface_generate_messages_py" />
       <config projectName="robotican_hardware_interface" targetName="dynamixel_pro_controller_generate_messages_cpp" />
       <config projectName="robotican_hardware_interface" targetName="actionlib_generate_messages_cpp" />
-      <config projectName="robotican_hardware_interface" targetName="roscpp_generate_messages_cpp" />
+      <config projectName="robotican_hardware_interface" targetName="run_tests" />
       <config projectName="robotican_hardware_interface" targetName="tf2_msgs_generate_messages_lisp" />
-      <config projectName="robotican_hardware_interface" targetName="controller_manager" />
-      <config projectName="robotican_hardware_interface" targetName="sensor_msgs_generate_messages_lisp" />
+      <config projectName="robotican_hardware_interface" targetName="clean_test_results" />
       <config projectName="robotican_hardware_interface" targetName="robotican_hardware_interface" />
       <config projectName="robotican_hardware_interface" targetName="_robotican_hardware_interface_generate_messages_check_deps_JointLimits" />
       <config projectName="robotican_hardware_interface" targetName="trajectory_msgs_generate_messages_py" />
       <config projectName="robotican_hardware_interface" targetName="control_msgs_generate_messages_py" />
-      <config projectName="robotican_hardware_interface" targetName="robotican_hardware_interface_generate_messages_lisp" />
+      <config projectName="robotican_hardware_interface" targetName="dynamic_reconfigure_generate_messages_py" />
       <config projectName="robotican_hardware_interface" targetName="robotican_hardware_interface_genlisp" />
       <config projectName="robotican_hardware_interface" targetName="dynamixel_pro_controller_generate_messages_py" />
       <config projectName="robotican_hardware_interface" targetName="geometry_msgs_generate_messages_lisp" />
       <config projectName="robotican_hardware_interface" targetName="_robotican_hardware_interface_generate_messages_check_deps_imuClib" />
       <config projectName="robotican_hardware_interface" targetName="tf_generate_messages_lisp" />
-      <config projectName="robotican_hardware_interface" targetName="rosgraph_msgs_generate_messages_py" />
-      <config projectName="robotican_hardware_interface" targetName="robotican_hardware_interface_gencpp" />
+      <config projectName="robotican_hardware_interface" targetName="roscpp_generate_messages_cpp" />
       <config projectName="robotican_hardware_interface" targetName="dynamic_reconfigure_gencfg" />
       <config projectName="robotican_hardware_interface" targetName="_robotican_hardware_interface_generate_messages_check_deps_ChainLimits" />
       <config projectName="robotican_hardware_interface" targetName="actionlib_msgs_generate_messages_lisp" />
-      <config projectName="robotican_hardware_interface" targetName="gazebo_msgs_generate_messages_lisp" />
+      <config projectName="robotican_hardware_interface" targetName="controller_manager" />
       <config projectName="robotican_hardware_interface" targetName="std_srvs_generate_messages_lisp" />
       <config projectName="robotican_hardware_interface" targetName="roscpp_generate_messages_lisp" />
-      <config projectName="robotican_hardware_interface" targetName="tf2_msgs_generate_messages_py" />
-      <config projectName="robotican_hardware_interface" targetName="rosgraph_msgs_generate_messages_cpp" />
+      <config projectName="robotican_hardware_interface" targetName="controller_manager_msgs_generate_messages_lisp" />
+      <config projectName="robotican_hardware_interface" targetName="std_msgs_generate_messages_lisp" />
       <config projectName="robotican_hardware_interface" targetName="control_toolbox_generate_messages_lisp" />
       <config projectName="robotican_hardware_interface" targetName="clean_test_results_robotican_hardware_interface" />
-      <config projectName="robotican_hardware_interface" targetName="robotican_hardware_interface_genpy" />
-      <config projectName="robotican_hardware_interface" targetName="run_tests" />
-      <config projectName="robotican_hardware_interface" targetName="std_msgs_generate_messages_py" />
+      <config projectName="robotican_hardware_interface" targetName="rosgraph_msgs_generate_messages_cpp" />
       <config projectName="robotican_hardware_interface" targetName="control_toolbox_gencfg" />
       <config projectName="robotican_hardware_interface" targetName="robotican_hardware_interface_generate_messages" />
       <config projectName="robotican_hardware_interface" targetName="geometry_msgs_generate_messages_cpp" />
-      <config projectName="robotican_hardware_interface" targetName="clean_test_results" />
-      <config projectName="robotican_hardware_interface" targetName="sensor_msgs_generate_messages_py" />
+      <config projectName="robotican_hardware_interface" targetName="actionlib_msgs_generate_messages_py" />
+      <config projectName="robotican_hardware_interface" targetName="std_msgs_generate_messages_py" />
       <config projectName="robotican_hardware_interface" targetName="std_msgs_generate_messages_cpp" />
-      <config projectName="robotican_hardware_interface" targetName="tf_generate_messages_cpp" />
-      <config projectName="robotican_hardware_interface" targetName="control_toolbox_generate_messages_py" />
+      <config projectName="robotican_hardware_interface" targetName="_robotican_hardware_interface_generate_messages_check_deps_ChainEnable" />
       <config projectName="robotican_hardware_interface" targetName="control_msgs_generate_messages_lisp" />
-      <config projectName="robotican_hardware_interface" targetName="controller_manager_msgs_generate_messages_lisp" />
+      <config projectName="robotican_hardware_interface" targetName="robotican_hardware_interface_genpy" />
       <config projectName="robotican_hardware_interface" targetName="actionlib_generate_messages_py" />
       <config projectName="robotican_hardware_interface" targetName="std_srvs_generate_messages_py" />
       <config projectName="robotican_hardware_interface" targetName="rosgraph_msgs_generate_messages_lisp" />
       <config projectName="robotican_hardware_interface" targetName="trajectory_msgs_generate_messages_cpp" />
       <config projectName="robotican_hardware_interface" targetName="gtest_main" />
       <config projectName="robotican_hardware_interface" targetName="gazebo_msgs_generate_messages_py" />
+      <config projectName="robotican_hardware_interface" targetName="sensor_msgs_generate_messages_lisp" />
       <config projectName="robotican_hardware_interface" targetName="gtest" />
       <config projectName="robotican_hardware_interface" targetName="tests" />
-      <config projectName="robotican_hardware_interface" targetName="download_extra_data" />
+      <config projectName="robotican_hardware_interface" targetName="robotican_hardware_interface_node" />
       <config projectName="robotican_hardware_interface" targetName="actionlib_generate_messages_lisp" />
       <config projectName="robotican_hardware_interface" targetName="trajectory_msgs_generate_messages_lisp" />
       <config projectName="robotican_hardware_interface" targetName="dynamic_reconfigure_generate_messages_lisp" />
       <config projectName="robotican_hardware_interface" targetName="geometry_msgs_generate_messages_py" />
+      <config projectName="robotican_hardware_interface" targetName="robotican_hardware_interface_gencpp" />
       <config projectName="robotican_hardware_interface" targetName="controller_manager_msgs_generate_messages_cpp" />
       <config projectName="robotican_hardware_interface" targetName="doxygen" />
       <config projectName="robotican_hardware_interface" targetName="std_srvs_generate_messages_cpp" />
-      <config projectName="robotican_hardware_interface" targetName="robotican_hardware_interface_gencfg" />
+      <config projectName="robotican_hardware_interface" targetName="gazebo_ros_gencfg" />
       <config projectName="robotican_hardware_interface" targetName="roscpp_generate_messages_py" />
+      <config projectName="robotican_hardware_interface" targetName="gazebo_msgs_generate_messages_lisp" />
       <config projectName="robotican_hardware_interface" targetName="sensor_msgs_generate_messages_cpp" />
-      <config projectName="robotican_hardware_interface" targetName="std_msgs_generate_messages_lisp" />
       <config projectName="robotican_hardware_interface" targetName="controller_manager_msgs_generate_messages_py" />
       <config projectName="robotican_hardware_interface" targetName="dynamixel_pro_controller_generate_messages_lisp" />
-      <config projectName="robotican_hardware_interface" targetName="robotican_hardware_interface_node" />
-      <config projectName="robotican_hardware_interface" targetName="robotican_hardware_interface_generate_messages_py" />
-      <config projectName="robotican_hardware_interface" targetName="gazebo_ros_gencfg" />
+      <config projectName="robotican_hardware_interface" targetName="download_extra_data" />
+      <config projectName="robotican_hardware_interface" targetName="robotican_hardware_interface_gencfg" />
+      <config projectName="robotican_hardware_interface" targetName="robotican_hardware_interface_generate_messages_lisp" />
+      <config projectName="robotican_hardware_interface" targetName="tf2_msgs_generate_messages_py" />
+      <config projectName="robotican_hardware_interface" targetName="tf_generate_messages_cpp" />
       <config projectName="robotican_hardware_interface" targetName="_robotican_hardware_interface_generate_messages_check_deps_JointEnable" />
       <config projectName="robotican_hardware_interface" targetName="robotican_hardware_interface_sim" />
       <config projectName="robotican_hardware_interface" targetName="robotican_hardware_interface_generate_messages_cpp" />
@@ -90,7 +90,11 @@
     </ADDITIONAL_GENERATION_ENVIRONMENT>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5090c7e5-85e2-48e5-b18b-c7d9a39d63ef" name="Default" comment="" />
+    <list default="true" id="5090c7e5-85e2-48e5-b18b-c7d9a39d63ef" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/ric_board_example.yaml" afterPath="$PROJECT_DIR$/config/ric_board_example.yaml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/launch/ric_board_example.launch" afterPath="$PROJECT_DIR$/launch/ric_board_example.launch" />
+    </list>
     <ignored path="robotican_hardware_interface.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -113,8 +117,8 @@
       <file leaf-file-name="robotican_hardware_interface_node.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/robotican_hardware_interface_node.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2580645">
-              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+            <state vertical-scroll-proportion="-0.029032258">
+              <caret line="41" column="38" selection-start-line="41" selection-start-column="38" selection-end-line="41" selection-end-column="38" />
               <folding>
                 <element signature="e#40#60#0" expanded="true" />
               </folding>
@@ -189,8 +193,8 @@
         <option value="$PROJECT_DIR$/src/robotican_hardware_interface/Battery.cpp" />
         <option value="$PROJECT_DIR$/include/robotican_hardware_interface/robot_base.h" />
         <option value="$PROJECT_DIR$/src/robotican_hardware_interface/robot_base.cpp" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/src/robotican_hardware_interface_node.cpp" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
       </list>
     </option>
   </component>
@@ -202,9 +206,9 @@
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds">
     <option name="x" value="1431" />
-    <option name="y" value="24" />
+    <option name="y" value="-4" />
     <option name="width" value="1855" />
-    <option name="height" value="1056" />
+    <option name="height" value="1084" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -857,8 +861,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1431" y="24" width="1855" height="1056" extended-state="6" />
-    <editor active="false" />
+    <frame x="1431" y="-4" width="1855" height="1084" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1588428" sideWeight="0.4946401" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295099" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1279,8 +1283,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/robotican_hardware_interface_node.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2580645">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        <state vertical-scroll-proportion="-0.029032258">
+          <caret line="41" column="38" selection-start-line="41" selection-start-column="38" selection-end-line="41" selection-end-column="38" />
           <folding>
             <element signature="e#40#60#0" expanded="true" />
           </folding>
