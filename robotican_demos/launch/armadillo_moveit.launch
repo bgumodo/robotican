@@ -6,7 +6,8 @@
      <arg name="world_name" value="$(find robotican_common)/worlds/objects_on_table.world"/> 
      <arg name="x" value="0.0"/>
      <arg name="y" value="0.0"/>
-     <arg name="kinect2" value="true"/> 
+     <arg name="kinect2" value="true"/>  
+     <arg name="f200" value="true"/>  
      <arg name="rqt" value="true"/> 
      <arg name="moveit" value="true"/> 
     </include>

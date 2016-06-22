@@ -27,7 +27,7 @@
   <axis xyz="0 0 0" />   
   </joint>-->
   
-
+	
      <xacro:if value="$(arg f200)">
 
 		
@@ -38,7 +38,7 @@
 			<camera>
 			  <horizontal_fov>1.20772254</horizontal_fov>
 			  <image>
-				<format>R8G8B8</format>
+				<format>B8G8R8</format>
 				<width>640</width>
 				<height>480</height>
 			  </image>
@@ -66,6 +66,8 @@
 			  <distortionK3>0.0</distortionK3>
 			  <distortionT1>0.0</distortionT1>
 			  <distortionT2>0.0</distortionT2>
+
+
 			 <!-- <Cx>320</Cx>
 			  <Cy>240</Cy>
 			  <focalLength>463.888592</focalLength> -->
@@ -76,9 +78,10 @@
   
   
   <!-- kinect 2 -->
+  
   <xacro:if value="$(arg kinect2)">
      
-	    
+     
  <gazebo reference="kinect2_rgb_frame">        
       <sensor type="depth" name="kinect2">
         <always_on>true</always_on>
@@ -86,7 +89,7 @@
       <camera>
         <horizontal_fov>1.09606677025</horizontal_fov>
         <image>
-          <format>R8G8B8</format>
+          <format>B8G8R8</format>
           <height>1080</height>
           <width>1920</width>
         </image>
@@ -99,12 +102,12 @@
           <cameraName>kinect2</cameraName>
           <alwaysOn>true</alwaysOn>
           <updateRate>$(arg kinect2_hz)</updateRate>
-	  <imageTopicName>hd/image_color</imageTopicName>
-	  <cameraInfoTopicName>hd/camera_info</cameraInfoTopicName>
-	  <depthImageTopicName>hd/image_depth_rect</depthImageTopicName>
-	  <depthImageCameraInfoTopicName>hd/camera_info</depthImageCameraInfoTopicName>
-	  <pointCloudTopicName>hd/points</pointCloudTopicName>	  
-          <frameName>kinect2_depth_optical_frame</frameName>
+	      <imageTopicName>hd/image_color</imageTopicName>
+	      <cameraInfoTopicName>hd/camera_info</cameraInfoTopicName>
+	      <depthImageTopicName>hd/image_depth_rect</depthImageTopicName>
+	      <depthImageCameraInfoTopicName>hd/camera_info</depthImageCameraInfoTopicName>
+	      <pointCloudTopicName>hd/points</pointCloudTopicName>	  
+		  <frameName>kinect2_depth_optical_frame</frameName>
           <baseline>0.1</baseline>
           <distortion_k1>0.0</distortion_k1>
           <distortion_k2>0.0</distortion_k2>
@@ -112,12 +115,10 @@
           <distortion_t1>0.0</distortion_t1>
           <distortion_t2>0.0</distortion_t2>
        	  <pointCloudCutoff>0.4</pointCloudCutoff>
-	  <pointCloudCutoffMax>8.0</pointCloudCutoffMax> 
+		  <pointCloudCutoffMax>8.0</pointCloudCutoffMax> 
         </plugin>
       </sensor>
-    </gazebo>
-    
-	
+    </gazebo>	
 	</xacro:if>
 	
 	
