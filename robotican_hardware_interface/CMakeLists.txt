@@ -4,7 +4,7 @@ project(robotican_hardware_interface)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS
+find_package(catkin REQUIRED dynamic_reconfigure COMPONENTS
   roscpp
   control_toolbox
   hardware_interface
