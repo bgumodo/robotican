@@ -9,7 +9,7 @@
            namespace: dxl_manager
            serial_ports:
             gripper_port:
-             port_name: "/dev/ttyS0"
+             port_name: "/dev/ttyS1"
              baud_rate: 57142
              min_motor_id: 1
              max_motor_id: 2

@@ -125,8 +125,8 @@ positionMotor0_timeout: 0
 positionMotor0_motor_direction: 1
 positionMotor0_encoder_direction: 1
 positionMotor0_lpf_alpha: 0.21
-positionMotor0_kp: 2.0
-positionMotor0_ki: 12.0
+positionMotor0_kp: 1.0
+positionMotor0_ki: 0.0
 positionMotor0_kd: 0.0
 positionMotor0_max_speed: 16.0
 positionMotor0_limit: 1.0
@@ -139,7 +139,7 @@ positionMotor0_read_pin: 21
 
 servo_size: 2
 
-servo0_pin: 3
+servo0_pin: 4
 servo0_a: -301.5567343
 servo0_b: 1450.0
 servo0_max: 1.57
@@ -147,7 +147,7 @@ servo0_min: -1.57
 servo0_init_pos: 0
 servo0_joint_name: 'head_tilt_joint'
 
-servo1_pin: 4
+servo1_pin: 3
 servo1_a: -318.4713376
 servo1_b: 1500
 servo1_max: 1.57
