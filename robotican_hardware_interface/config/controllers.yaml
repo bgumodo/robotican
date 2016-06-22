@@ -47,9 +47,9 @@ robot_state_controller:
     type: joint_state_controller/JointStateController
     publish_rate: 50  
 
-elevator_controller:
+torso_position_controller:
   type: position_controllers/JointPositionController
-  joint: base_elevator_joint
+  joint: torso_joint
   
 left_motor_controller:
   type: velocity_controllers/JointVelocityController
