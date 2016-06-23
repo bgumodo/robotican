@@ -123,6 +123,7 @@ include_directories(
 )
 add_executable(simple_navigation_goals src/simple_navigation_goals.cpp)
 add_executable(simple_move_group_goals src/simple_move_group_goal.cpp)
+add_executable(demo_nav_node src/demo_nav_node.cpp)
 target_link_libraries(simple_navigation_goals ${catkin_LIBRARIES})
 target_link_libraries(simple_move_group_goals ${catkin_LIBRARIES})
 ## Declare a C++ library

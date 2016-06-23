@@ -210,7 +210,7 @@ add_library(robotican_hardware_interface_sim
 ## Declare a C++ executable
 
 ## Uncomment if you want to test the ricboard itself
-#add_definitions(-DRIC_BOARD_TEST)
+#~ add_definitions(-DRIC_BOARD_TEST)
 
 add_executable(robotican_hardware_interface_node src/robotican_hardware_interface_node.cpp)
 

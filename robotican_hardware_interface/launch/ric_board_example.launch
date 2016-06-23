@@ -7,6 +7,8 @@
     
     <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="true" respawn_delay="5" output="screen" args="
       robot_state_controller
-      torso_position_controller	  
+      left_motor_controller
+      right_motor_controller
+      torso_position_controller
 	  " />
 </launch>
