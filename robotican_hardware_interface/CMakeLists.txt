@@ -151,6 +151,8 @@ catkin_package(
 #include_directories(include)
 link_directories(${GAZEBO_LIBRARY_DIRS})
 
+set(_output_cpp ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_INCLUDE_DESTINATION}/${_cfgonly}Config.h)
+
 include_directories(include
         ${Boost_INCLUDE_DIR}
         ${catkin_INCLUDE_DIRS}
