@@ -13,6 +13,10 @@ find_package(catkin REQUIRED COMPONENTS
   moveit_core
   moveit_ros_planning
   moveit_ros_planning_interface
+  robotican_common
+cv_bridge
+ pcl_conversions
+   pcl_ros
 )
 
 ## System dependencies are found with CMake's conventions
@@ -127,6 +131,7 @@ add_executable(demo_nav_node src/demo_nav_node.cpp)
 target_link_libraries(simple_navigation_goals ${catkin_LIBRARIES})
 target_link_libraries(simple_move_group_goals ${catkin_LIBRARIES})
 target_link_libraries(demo_nav_node ${catkin_LIBRARIES})
+add_dependencies( demo_nav_node robotican_common_generate_messages_cpp )
 ## Declare a C++ library
 # add_library(robotican_demos
 #   src/${PROJECT_NAME}/robotican_demos.cpp

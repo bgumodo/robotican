@@ -4,10 +4,32 @@
 
 #include <ros/ros.h>
 #include <std_msgs/String.h>
+#include <cv_bridge/cv_bridge.h>
 #include <move_base_msgs/MoveBaseAction.h>
 #include <robotican_common/searchForColor.h>
 #include <actionlib/client/simple_action_client.h>
+#include <image_transport/image_transport.h>
+#include <opencv2/highgui/highgui.hpp>
+#include <cv_bridge/cv_bridge.h>
+#include <geometry_msgs/PointStamped.h>
+#include <pcl_conversions/pcl_conversions.h>
+#include <pcl/point_cloud.h>
+#include <pcl/filters/passthrough.h>
+#include <pcl/io/pcd_io.h>
+#include <pcl/point_types.h>
+#include <pcl/sample_consensus/method_types.h>
+#include <pcl/sample_consensus/model_types.h>
+
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
+
+using namespace cv;
+using namespace std;
+using namespace pcl;
+
+int image_w=0,image_h=0;
+
+image_transport::Publisher image_pub_;
+image_transport::Subscriber image_sub;
 
 class DemoNavNode {
 private:
@@ -87,9 +109,112 @@ public:
 };
 
 
+void imageCb(const sensor_msgs::ImageConstPtr& msg)
+{
+    cv_bridge::CvImagePtr cv_ptr;
+    try
+    {
+        cv_ptr = cv_bridge::toCvCopy(msg, sensor_msgs::image_encodings::BGR8);
+    }
+    catch (cv_bridge::Exception& e)
+    {
+        ROS_ERROR("cv_bridge exception: %s", e.what());
+        return;
+    }
+
+    Mat bgr=cv_ptr->image;
+
+    if (image_w==0) image_w=bgr.cols;
+    if (image_h==0) image_h=bgr.rows;
+//ROS_INFO("AA");
+
+}
+
+void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& input) {
+
+    if ((image_w==0)||(image_h==0)) return;
+
+    pcl::PointCloud<pcl::PointXYZRGBA> cloud;
+    pcl::fromROSMsg (*input, cloud);
+    pcl::PointCloud<pcl::PointXYZRGBA>::Ptr cloudp (new pcl::PointCloud<pcl::PointXYZRGBA> (cloud));
+
+    cv::Mat result;
+
+    result = cv::Mat(image_h, image_w, CV_8UC3);
+
+    if (!cloudp->empty()) {
+        for (int h=0; h<image_h; h++) {
+            for (int w=0; w<image_w; w++) {
+                int pcl_index = (h*image_w) + w;
+                pcl::PointXYZRGBA point = cloudp->at(pcl_index);
+                if (point.z>0.1) {
+                    Eigen::Vector3i rgb = point.getRGBVector3i();
+                    result.at<cv::Vec3b>(h,w)[0] = point.b;
+                    result.at<cv::Vec3b>(h,w)[1] = point.g;
+                    result.at<cv::Vec3b>(h,w)[2] = point.r;
+                }
+                else {
+                    result.at<cv::Vec3b>(h,w)[0]=0;
+                    result.at<cv::Vec3b>(h,w)[1]=0;
+                    result.at<cv::Vec3b>(h,w)[2]=0;
+                }
+            }
+        }
+
+    }
+    else ROS_WARN("empty cloud");
+
+
+    Point p=Point2f(result.cols/2.0,result.rows/2.0);
+    int pcl_index = (p.y*result.cols) + p.x;
+    circle( result, p, 8, Scalar(0,255,0), -1, 8, 0 );
+    Point3d pr;
+    pr.x=cloud[pcl_index].x;
+    pr.y=cloud[pcl_index].y;
+    pr.z=cloud[pcl_index].z;
+    char str[100];
+    if (isnan (pr.x) || isnan (pr.y) || isnan (pr.z) ) sprintf(str,"NaN");
+    else sprintf(str,"[%.3f,%.3f,%.3f]",pr.x,pr.y,pr.z);
+    putText( result, str, p, CV_FONT_HERSHEY_COMPLEX, 1, Scalar(0,0,255), 1, 8);
+
+
+
+
+    cv_bridge::CvImage out_msg;
+    out_msg.header.stamp =ros::Time::now(); // Same timestamp and tf frame as input image
+    out_msg.encoding = sensor_msgs::image_encodings::BGR8;
+    out_msg.image    = result; // Your cv::Mat
+
+
+    // Output modified video stream
+    image_pub_.publish(out_msg.toImageMsg());
+
+    // imshow("Cloud Image",result);
+
+
+    geometry_msgs::PointStamped m;
+    m.header.stamp=ros::Time::now();
+    m.header.frame_id=input->header.frame_id;
+    m.point.x=pr.x;
+    m.point.y=pr.y;
+    m.point.z=pr.z;
+
+}
+
 int main(int argc, char **argv) {
     ros::init(argc, argv, "demo_nav_node");
+    ros::NodeHandle n;
+    image_transport::ImageTransport it_(n);
 
+    image_sub = it_.subscribe("kinect2/hd/image_color", 1,imageCb);
+    image_pub_ = it_.advertise("demo_nav/output_video", 1);
+
+    ros::Subscriber pcl_sub = n.subscribe("kinect2/hd/points", 1, cloud_cb);
+
+    while (ros::ok())
+       {
+   ros::spinOnce();
+    }
 
 
     return 0;
