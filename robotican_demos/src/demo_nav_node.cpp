@@ -31,6 +31,28 @@ int image_w=0,image_h=0;
 image_transport::Publisher image_pub_;
 image_transport::Subscriber image_sub;
 
+
+/*
+ * //blue
+ * i *nt minH=90,maxH=130;
+ * int minS=70,maxS=255;
+ * int minV=105,maxV=255;
+ */
+//green
+//int minH=55,maxH=95;
+//int minS=50,maxS=255;
+//int minV=0,maxV=255;
+
+//yellow
+//int minH=18,maxH=43;
+//int minS=16,maxS=240;
+//int minV=132,maxV=212;
+
+//red
+int minH=10,maxH=160;
+int minS=100,maxS=255;
+int minV=100,maxV=255;
+int minA=3000,maxA=10000;
 class DemoNavNode {
 private:
     ros::NodeHandle _nodeHandle;
@@ -162,20 +184,99 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& input) {
         }
 
     }
-    else ROS_WARN("empty cloud");
+    else {
+        ROS_WARN("empty cloud");
+return;
+    }
 
 
-    Point p=Point2f(result.cols/2.0,result.rows/2.0);
-    int pcl_index = (p.y*result.cols) + p.x;
-    circle( result, p, 8, Scalar(0,255,0), -1, 8, 0 );
-    Point3d pr;
-    pr.x=cloud[pcl_index].x;
-    pr.y=cloud[pcl_index].y;
-    pr.z=cloud[pcl_index].z;
-    char str[100];
-    if (isnan (pr.x) || isnan (pr.y) || isnan (pr.z) ) sprintf(str,"NaN");
-    else sprintf(str,"[%.3f,%.3f,%.3f]",pr.x,pr.y,pr.z);
-    putText( result, str, p, CV_FONT_HERSHEY_COMPLEX, 1, Scalar(0,0,255), 1, 8);
+    Mat hsv,gray,mask,filtered,bw;
+    //HSV filtering:
+    cvtColor(result,hsv,CV_BGR2HSV);
+
+   // inRange(hsv,Scalar(minH,minS,minV),Scalar(maxH,maxS,maxV),mask);
+
+    // Threshold the HSV image, keep only the red pixels
+     Mat lower_red_hue_range;
+     Mat upper_red_hue_range;
+    inRange(hsv, cv::Scalar(0, minS, minV), cv::Scalar(minH, maxS, maxV), lower_red_hue_range);
+    inRange(hsv, cv::Scalar(maxH, minS, minV), cv::Scalar(179, maxS, maxV), upper_red_hue_range);
+    // Combine the above two images
+        Mat red_hue_image;
+        addWeighted(lower_red_hue_range, 1.0, upper_red_hue_range, 1.0, 0.0, red_hue_image);
+        GaussianBlur(red_hue_image, red_hue_image, cv::Size(9, 9), 2, 2);
+
+    hsv.copyTo(filtered,red_hue_image);
+
+    cvtColor(filtered,filtered,CV_HSV2BGR);
+
+      imshow("HSV",filtered);
+
+
+      cvtColor(filtered, gray, COLOR_BGR2GRAY);                       //back to gray
+
+          //  imshow("GRAY_WINDOW",gray);
+
+
+       /*   if (gaussian_ksize>0) {
+            if (gaussian_ksize % 2 == 0) gaussian_ksize++;
+            GaussianBlur( gray, gray, Size(gaussian_ksize,gaussian_ksize), gaussian_sigma , 0);
+          }*/
+
+          double otsu=threshold( gray, bw, 0, 255,  CV_THRESH_OTSU );
+
+          int morph_size=3;
+          if (morph_size>0) {
+            Mat element = getStructuringElement( MORPH_ELLIPSE, Size( 2*morph_size + 1, 2*morph_size+1 ), Point( morph_size, morph_size ) );
+            morphologyEx( bw, bw, MORPH_CLOSE, element, Point(-1,-1), 1 );
+          }
+
+
+            imshow("BW_WINDOW",bw);
+
+
+          vector<vector<Point> > contours;
+          vector<Vec4i> hierarchy;
+
+          findContours(bw, contours,hierarchy,CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE);
+
+       //   markers.clear();
+          for( int i = 0; i< contours.size(); i++ )
+          {
+            double area0 = contourArea(contours[i]);
+
+            //cout << " Contour " << i << "   A="<<area0<< endl;
+           if ((area0>minA)&&(area0<maxA)) {
+             //   drawContours(result, contours, (int)i,  Scalar(0,0,255), 0, 8, hierarchy, 0);
+                Moments mu=moments( contours[i], true );
+                Point2f mc = Point2f( mu.m10/mu.m00 , mu.m01/mu.m00 );
+                circle( result, mc, 4, Scalar(0,0,255), -1, 8, 0 );
+               // markers.push_back(mc);
+
+                Point p=Point2f(mc.x,mc.y);
+                int pcl_index = (p.y*result.cols) + p.x;
+                circle( result, p, 8, Scalar(0,255,0), -1, 8, 0 );
+                Point3d pr;
+                pr.x=cloud[pcl_index].x;
+                pr.y=cloud[pcl_index].y;
+                pr.z=cloud[pcl_index].z;
+                char str[100];
+                if (isnan (pr.x) || isnan (pr.y) || isnan (pr.z) ) sprintf(str,"NaN");
+                else sprintf(str,"[%.3f,%.3f,%.3f]",pr.x,pr.y,pr.z);
+                putText( result, str, p, CV_FONT_HERSHEY_COMPLEX, 1, Scalar(255,0,0), 1, 8);
+            }
+          //  else  drawContours(result, contours, (int)i,  Scalar(0,255,255), 0, 8, hierarchy, 0);
+
+          }
+
+          imshow("Blobs",result);
+
+
+      waitKey(10);
+
+
+
+
 
 
 
@@ -191,14 +292,17 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& input) {
 
     // imshow("Cloud Image",result);
 
-
+/*
     geometry_msgs::PointStamped m;
     m.header.stamp=ros::Time::now();
     m.header.frame_id=input->header.frame_id;
     m.point.x=pr.x;
     m.point.y=pr.y;
     m.point.z=pr.z;
-
+*/
+}
+void on_trackbar( int, void* )
+{
 }
 
 int main(int argc, char **argv) {
@@ -211,6 +315,15 @@ int main(int argc, char **argv) {
 
     ros::Subscriber pcl_sub = n.subscribe("kinect2/hd/points", 1, cloud_cb);
 
+    namedWindow("Trackbars",CV_WINDOW_AUTOSIZE);              // trackbars window
+       createTrackbar( "H min", "Trackbars", &minH, 180, on_trackbar );
+       createTrackbar( "H max", "Trackbars", &maxH, 180, on_trackbar );
+       createTrackbar( "S min", "Trackbars", &minS, 255, on_trackbar );
+       createTrackbar( "S max", "Trackbars", &maxS, 255, on_trackbar );
+       createTrackbar( "V min", "Trackbars", &minV, 255, on_trackbar );
+       createTrackbar( "V max", "Trackbars", &maxV, 255, on_trackbar );
+       createTrackbar( "A min", "Trackbars", &minA, 5000, on_trackbar );
+       createTrackbar( "A max", "Trackbars", &maxA, 500000, on_trackbar );
     while (ros::ok())
        {
    ros::spinOnce();
