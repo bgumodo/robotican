@@ -43,10 +43,10 @@
       <pose>0.8 0 0 0 0 0</pose>
     </include>
     <!-- Objects on the table -->
-    <include>
+   <!-- <include>
       <uri>model://pringles</uri>
       <pose>0.55 0 1.8 0 0 2.62</pose>
-    </include>
+    </include> -->
     <include>
       <uri>model://biscuits_pack</uri>
       <pose>0.8 0.3 1.8 0 0 1.5</pose>
