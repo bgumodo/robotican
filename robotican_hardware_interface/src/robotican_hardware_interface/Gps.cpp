@@ -51,6 +51,7 @@ namespace robotican_hardware {
         Device::deviceAck(ack);
         if(isReady()) {
             ros_utils::rosInfo("Gps is ready");
+            _gpsFeedback = _nodeHandle.advertise<sensor_msgs::NavSatFix>(_topicName, 10);
         }
         else {
             ros_utils::rosError("RiCBoard can't build gps object for spme reason, this program will shut down now");
