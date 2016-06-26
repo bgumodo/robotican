@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<launch>
+	<arg name="rviz_display" default="$(find robotican_demos)/config/amcl.rviz" />
+	<node name="rviz_node" pkg="rviz" type="rviz" args="-d $(arg rviz_display)"/>
+    
+    <include file="$(find robotican_armadillo)/launch/armadillo.launch">
+     <arg name="gazebo" value="true"/>
+     
+    <!--   <arg name="have_map_file" value="true"/>
+      <arg name="map_file" value="$(find robotican_common)/maps/building.yaml"/> -->
+     <arg name="world_name" value="$(find robotican_common)/worlds/objects_on_table.world"/> 
+	 <arg name="x" value="0.0"/>
+	 <arg name="y" value="0.0"/>
+	 <arg name="Y" value="0"/>
+     <arg name="lidar" value="true"/>
+     <arg name="hector_slam" value="true"/> 
+     <arg name="move_base" value="true"/> 
+      <arg name="kinect2" value="true"/> 
+      
+    </include>
+    
+  
+</launch>
+
