@@ -1776,21 +1776,6 @@
       </link>
       <pose>-9 0 0 0 -0 0</pose>
     </model>
-<!--
-    <light name='sun' type='directional'>
-      <cast_shadows>1</cast_shadows>
-      <pose>-9 -7.41003 10 0 -0 0</pose>
-      <diffuse>0.8 0.8 0.8 1</diffuse>
-      <specular>0.2 0.2 0.2 1</specular>
-      <attenuation>
-        <range>1000</range>
-        <constant>0.9</constant>
-        <linear>0.01</linear>
-        <quadratic>0.001</quadratic>
-      </attenuation>
-      <direction>-0.5 0.1 -0.9</direction>
-    </light>
--->
     <model name='bench_0'>
       <static>1</static>
       <link name='link'>
@@ -1931,65 +1916,6 @@
         <gravity>1</gravity>
       </link>
       <pose>-11.4229 6.55853 0 0 -0 0</pose>
-    </model>
-    <model name='cocacola_2'>
-      <static>0</static>
-      <link name='link'>
-        <inertial>
-          <mass>0.25</mass>
-          <inertia>
-            <ixx>0</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>0</iyy>
-            <iyz>0</iyz>
-            <izz>0</izz>
-          </inertia>
-        </inertial>
-        <collision name='collision'>
-          <pose>0 0 0.075 -3.14159 -0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.04</radius>
-              <length>0.15</length>
-            </cylinder>
-          </geometry>
-          <surface>
-            <bounce/>
-            <friction>
-              <ode/>
-            </friction>
-            <contact>
-              <ode/>
-            </contact>
-          </surface>
-          <max_contacts>10</max_contacts>
-        </collision>
-        <visual name='visual'>
-          <pose>0 0 0.075 -3.14159 -0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.04</radius>
-              <length>0.15</length>
-            </cylinder>
-          </geometry>
-          <material>
-            <script>
-              <uri>model://cocacola/material/scripts</uri>
-              <uri>model://cocacola/material/textures</uri>
-              <name>Custom/cocacola</name>
-            </script>
-          </material>
-        </visual>
-        <velocity_decay>
-          <linear>0</linear>
-          <angular>0</angular>
-        </velocity_decay>
-        <self_collide>0</self_collide>
-        <kinematic>0</kinematic>
-        <gravity>1</gravity>
-      </link>
-      <pose>-10 7 0 0 -0 0</pose>
     </model>
     <model name='citizen_extras_female_02_0'>
       <link name='link'>
@@ -2708,9 +2634,9 @@
       <pose>-4.52272 9 0 0 -0 0</pose>
     </model>
     <state world_name='default'>
-      <sim_time>252 747000000</sim_time>
-      <real_time>67 198823216</real_time>
-      <wall_time>1466927536 657048638</wall_time>
+      <sim_time>461 784000000</sim_time>
+      <real_time>192 908150132</real_time>
+      <wall_time>1466929409 938230020</wall_time>
       <model name='arm_chair'>
         <pose>-1 8.58646 0 0 -0 0</pose>
         <link name='link'>
@@ -2859,45 +2785,45 @@
         </link>
       </model>
       <model name='citizen_extras_female_02'>
-        <pose>-1.28791 -1.3e-05 0.000421 0.001575 -0.025118 0.655685</pose>
+        <pose>-1.28791 -1.3e-05 0.000423 0.001628 -0.025123 0.655682</pose>
         <link name='link'>
-          <pose>-1.28791 -1.3e-05 0.000421 0.001575 -0.025118 0.655685</pose>
+          <pose>-1.28791 -1.3e-05 0.000423 0.001628 -0.025123 0.655682</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='citizen_extras_female_02_0'>
-        <pose>-12 7.99998 0.000426 0.0016 -0.025034 1.08401</pose>
+        <pose>-12 7.99998 0.000423 0.00156 -0.025077 1.08401</pose>
         <link name='link'>
-          <pose>-12 7.99998 0.000426 0.0016 -0.025034 1.08401</pose>
+          <pose>-12 7.99998 0.000423 0.00156 -0.025077 1.08401</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='citizen_extras_female_03'>
-        <pose>-3.57615 3.6e-05 -0.0035 0.011287 0.01279 4.9e-05</pose>
+        <pose>-3.57615 3.6e-05 -0.003502 0.011379 0.012669 5.1e-05</pose>
         <link name='link'>
-          <pose>-3.57615 3.6e-05 -0.0035 0.011287 0.01279 4.9e-05</pose>
+          <pose>-3.57615 3.6e-05 -0.003502 0.011379 0.012669 5.1e-05</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='citizen_extras_female_03_0'>
-        <pose>-12 6.99996 -0.003501 0.011378 0.012644 1.52632</pose>
+        <pose>-12 6.99996 -0.003511 0.01135 0.012688 1.52632</pose>
         <link name='link'>
-          <pose>-12 6.99996 -0.003501 0.011378 0.012644 1.52632</pose>
+          <pose>-12 6.99996 -0.003511 0.01135 0.012688 1.52632</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='citizen_extras_male_03'>
-        <pose>-1.99988 -7.4e-05 0.010907 0.012584 0.002297 0.569522</pose>
+        <pose>-1.99988 -7.3e-05 0.010908 0.012577 0.002295 0.56951</pose>
         <link name='link'>
-          <pose>-1.99988 -7.4e-05 0.010907 0.012584 0.002297 0.569522</pose>
+          <pose>-1.99988 -7.3e-05 0.010908 0.012577 0.002295 0.56951</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
@@ -2940,45 +2866,36 @@
         </link>
       </model>
       <model name='cocacola'>
-        <pose>2.68091 -0.744272 0.30001 0.000128 -0.000203 1.7e-05</pose>
+        <pose>2.68091 -0.744272 0.3 -6.7e-05 -0.000239 1.7e-05</pose>
         <link name='link'>
-          <pose>2.68091 -0.744272 0.30001 0.000128 -0.000203 1.7e-05</pose>
+          <pose>2.68091 -0.744272 0.3 -6.7e-05 -0.000239 1.7e-05</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='cocacola_0'>
-        <pose>1 -0.177691 0.300008 4.2e-05 -0.000204 1e-06</pose>
+        <pose>1 -0.177691 0.299998 4.5e-05 -0.000196 1e-06</pose>
         <link name='link'>
-          <pose>1 -0.177691 0.300008 4.2e-05 -0.000204 1e-06</pose>
+          <pose>1 -0.177691 0.299998 4.5e-05 -0.000196 1e-06</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='cocacola_1'>
-        <pose>-9.25325 -3 0.660001 0.000257 4.1e-05 -4e-06</pose>
+        <pose>-9.25325 -3 0.659998 3.5e-05 -0.0002 -4e-06</pose>
         <link name='link'>
-          <pose>-9.25325 -3 0.660001 0.000257 4.1e-05 -4e-06</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='cocacola_2'>
-        <pose>-10.7885 7 0.660009 2.5e-05 -0.000212 -1e-06</pose>
-        <link name='link'>
-          <pose>-10.7885 7 0.660009 2.5e-05 -0.000212 -1e-06</pose>
+          <pose>-9.25325 -3 0.659998 3.5e-05 -0.0002 -4e-06</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='cocacola_3'>
-        <pose>-4.52272 9.0837 0.609998 2.9e-05 -0.000203 2e-06</pose>
+        <pose>-4.52272 9.0837 0.609998 4.4e-05 -0.0002 2e-06</pose>
         <link name='link'>
-          <pose>-4.52272 9.0837 0.609998 2.9e-05 -0.000203 2e-06</pose>
+          <pose>-4.52272 9.0837 0.609998 4.4e-05 -0.0002 2e-06</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
@@ -3012,9 +2929,9 @@
         </link>
       </model>
       <model name='first_2015_trash_can'>
-        <pose>4.77896 -3.10957 -4e-06 0 1.9e-05 0.006707</pose>
+        <pose>4.77917 -3.11056 -4e-06 0 1.9e-05 0.010059</pose>
         <link name='link'>
-          <pose>4.77896 -3.10957 -4e-06 0 1.9e-05 0.006707</pose>
+          <pose>4.77917 -3.11056 -4e-06 0 1.9e-05 0.010059</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
@@ -3167,7 +3084,7 @@
     </state>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose>6.11468 -7.14769 11.0311 0 0.653796 2.01233</pose>
+        <pose>15.5713 -14.3179 24.2535 -3.45472e-17 0.637796 2.25233</pose>
         <view_controller>orbit</view_controller>
       </camera>
     </gui>

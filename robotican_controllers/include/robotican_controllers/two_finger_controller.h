@@ -120,7 +120,7 @@ namespace gripper_action_controller
         }
         
         double pos2Gap(double pos) {
-            return 2 * (0.02f + 0.09 * sin(pos + 0.3));
+            return 2 * (0.02f + 0.09 * sin(pos + 0.18));
         }
         
     private:

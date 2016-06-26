@@ -211,7 +211,7 @@ namespace gripper_action_controller
     {
         command_struct_rt_ = *(command_.readFromRT());
 
-        double current_position = pos2Gap(leftjoint_.getPosition());
+        double current_position = pos2Gap(rightjoint_.getPosition());
         double current_velocity =  current_position - _lastPosition / period.toSec();
         double current_effort = leftjoint_.getEffort() + rightjoint_.getEffort();
 
