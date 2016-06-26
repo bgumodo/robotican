@@ -128,9 +128,11 @@ include_directories(
 )
 add_executable(simple_navigation_goals src/simple_navigation_goals.cpp)
 add_executable(simple_move_group_goals src/simple_move_group_goal.cpp)
+add_executable(button_node src/button_node.cpp)
 add_executable(demo_pick_node src/demo_pick_node.cpp)
 target_link_libraries(simple_navigation_goals ${catkin_LIBRARIES})
 target_link_libraries(simple_move_group_goals ${catkin_LIBRARIES})
+target_link_libraries(button_node ${catkin_LIBRARIES})
 target_link_libraries(demo_pick_node ${catkin_LIBRARIES})
 add_dependencies( demo_pick_node robotican_common_generate_messages_cpp )
 ## Declare a C++ library
