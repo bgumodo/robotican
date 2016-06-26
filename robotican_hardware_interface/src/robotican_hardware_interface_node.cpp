@@ -20,6 +20,7 @@ int main(int argc, char **argv) {
 
     ros::init(argc, argv, "robotican_hardware_interface_node");
     ros::NodeHandle nodeHandle;
+    
 #ifdef RIC_BOARD_TEST
     robotican_hardware::RobotBase robot;
     robot.registerInterfaces();
@@ -41,7 +42,7 @@ int main(int argc, char **argv) {
     bool isLizi = false, isArmadilo = false, isKomodo = false;
     std::string robotType;                                       //determent the robot type, e.g default.
     ros::param::param<bool>("komodo", isKomodo, false);
-    ros::param::param<bool>("armadilo", isArmadilo, false);
+    ros::param::param<bool>("armadillo", isArmadilo, false);
     ros::param::param<bool>("lizi", isLizi, false);
     ros::param::param<std::string>("robot_type", robotType, "default");
     ros::Duration(1.0).sleep();
@@ -53,7 +54,9 @@ int main(int argc, char **argv) {
     ros_utils::rosInfo("Active");
 
     if(isArmadilo) {
+		ROS_INFO("COOL");
         if(robotType == "default") {
+			
             robotican_hardware::ArmadilloRobot robot;
             robot.registerInterfaces();
             controller_manager::ControllerManager controllerManager(&robot);
