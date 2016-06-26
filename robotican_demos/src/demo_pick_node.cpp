@@ -1,6 +1,5 @@
-//
-// Created by tom on 22/06/16.
-//
+
+
 
 #include <ros/ros.h>
 #include <std_msgs/String.h>
@@ -12,6 +11,7 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <cv_bridge/cv_bridge.h>
 #include <geometry_msgs/PointStamped.h>
+#include <std_msgs/Empty.h>
 #include <pcl_conversions/pcl_conversions.h>
 #include <pcl/point_cloud.h>
 #include <pcl/filters/passthrough.h>
@@ -20,14 +20,37 @@
 #include <pcl/sample_consensus/method_types.h>
 #include <pcl/sample_consensus/model_types.h>
 #include <tf/transform_broadcaster.h>
+#include <tf/transform_datatypes.h>
+#include <tf/transform_listener.h>
+#include <actionlib/client/simple_action_client.h>
+#include <control_msgs/GripperCommandAction.h>
+#include <moveit/move_group_interface/move_group.h>
+#include <moveit/planning_scene_interface/planning_scene_interface.h>
+#include <moveit_msgs/DisplayRobotState.h>
+#include <moveit_msgs/DisplayTrajectory.h>
 
+
+typedef actionlib::SimpleActionClient<control_msgs::GripperCommandAction> GripperClient;
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
 
 using namespace cv;
 using namespace std;
 using namespace pcl;
 
+Point3d find_object(Mat input, pcl::PointCloud<pcl::PointXYZRGBA> cloud);
+void go(tf::Transform  dest);
+bool gripper_cmd(double gap,double effort);
+bool arm_cmd();
+bool base_cmd();
+
+tf::Transform *obj_transform_ptr,*dest_transform_ptr;
+GripperClient *gripperClient_ptr;
+MoveBaseClient *moveBaseClient_ptr;
+moveit::planning_interface::MoveGroup *moveit_ptr;
+
+bool tf_ok=false;
 int image_w=0,image_h=0;
+bool moving=false;
 
 image_transport::Publisher image_pub_;
 image_transport::Subscriber image_sub;
@@ -53,88 +76,10 @@ image_transport::Subscriber image_sub;
 int minH=3,maxH=160;
 int minS=70,maxS=255;
 int minV=70,maxV=255;
-int minA=20000,maxA=50000;
+int minA=15000,maxA=50000;
 int gaussian_ksize=0;
 int gaussian_sigma=0;
 int morph_size=0;
-
-class DemoNavNode {
-private:
-    ros::NodeHandle _nodeHandle;
-    ros::ServiceClient _searchForColorClient;
-    ros::Subscriber _setColor;
-    MoveBaseClient _moveBaseClient;
-
-    std::string _color;
-    bool _gotMission;
-
-    void onSetColor(const std_msgs::String::ConstPtr &msg) {
-
-        std::string prevColor = _color;
-        _color = msg->data;
-        _gotMission = true;
-        if (_color != prevColor)
-            ROS_INFO("[%s]: color set to: %s", ros::this_node::getName().c_str(), _color.c_str());
-
-    }
-
-public:
-    DemoNavNode() : _nodeHandle(), _moveBaseClient("move_base", true) {
-        std::string serviceName = "";
-        _gotMission = false;
-        if (_nodeHandle.getParam("search_for_color_topic", serviceName)) {
-
-            _searchForColorClient = _nodeHandle.serviceClient<robotican_common::searchForColor>(serviceName);
-            _setColor = _nodeHandle.subscribe<std_msgs::String>("set_color", 10, &DemoNavNode::onSetColor, this);
-
-            while (!_searchForColorClient.waitForExistence(ros::Duration(5.0)))
-                ROS_WARN("[%s]: Waiting for the %s server to come up", ros::this_node::getName().c_str(),
-                         serviceName.c_str());
-
-            while (!_moveBaseClient.waitForServer(ros::Duration(5.0)))
-                ROS_WARN("[%s]: Waiting for the move_base action server to come up", ros::this_node::getName().c_str());
-
-        }
-        else {
-            ROS_ERROR("[%s]: can't find 'search_for_color_topic' parameter", ros::this_node::getName().c_str());
-            ros::shutdown();
-        }
-    }
-
-    void run() {
-        ros::Rate loopRate(100);
-        while(ros::ok()) {
-            if(_gotMission) {
-                robotican_common::searchForColorResponse response;
-                robotican_common::searchForColorRequest request;
-                request.color = _color;
-                if(_searchForColorClient.call(request, response)) {
-                    if(response.valid) {
-                        _gotMission = false;
-                        move_base_msgs::MoveBaseGoal goal;
-                        goal.target_pose.header.frame_id = response.pose.header.frame_id;
-                        goal.target_pose.header.stamp = ros::Time::now();
-                        goal.target_pose.pose = response.pose.pose;
-                        ROS_INFO("[%s]: Sending goal", ros::this_node::getName().c_str());
-                        _moveBaseClient.sendGoal(goal);
-                        _moveBaseClient.waitForResult();
-                        if(_moveBaseClient.getState() == actionlib::SimpleClientGoalState::SUCCEEDED) {
-                            ROS_INFO("[%s]: SUCCEEDED", ros::this_node::getName().c_str());
-                        }
-                        else {
-                            ROS_ERROR("[%s]: FAILED ", ros::this_node::getName().c_str());
-                        }
-                    }
-
-                }
-            }
-            loopRate.sleep();
-        }
-
-    }
-
-};
-
 
 void imageCb(const sensor_msgs::ImageConstPtr& msg)
 {
@@ -153,13 +98,12 @@ void imageCb(const sensor_msgs::ImageConstPtr& msg)
 
     if (image_w==0) image_w=bgr.cols;
     if (image_h==0) image_h=bgr.rows;
-    //ROS_INFO("AA");
 
 }
 
 void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& input) {
 
-    if ((image_w==0)||(image_h==0)) return;
+    if ((image_w==0)||(image_h==0)||(moving)) return;
 
     pcl::PointCloud<pcl::PointXYZRGBA> cloud;
     pcl::fromROSMsg (*input, cloud);
@@ -175,7 +119,7 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& input) {
                 int pcl_index = (h*image_w) + w;
                 pcl::PointXYZRGBA point = cloudp->at(pcl_index);
                 if (point.z>0.1) {
-                    Eigen::Vector3i rgb = point.getRGBVector3i();
+                    // Eigen::Vector3i rgb = point.getRGBVector3i();
                     result.at<cv::Vec3b>(h,w)[0] = point.b;
                     result.at<cv::Vec3b>(h,w)[1] = point.g;
                     result.at<cv::Vec3b>(h,w)[2] = point.r;
@@ -195,10 +139,70 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& input) {
     }
 
 
-    Mat hsv,gray,bgr,filtered,bw;
+    Point3d obj = find_object(result,cloud);
+
+    if (isnan(obj.x)) {
+        tf_ok=false;
+        return;
+    }
+
+
+    static tf::Transform obj_transform,dest_transform;
+    if (obj_transform_ptr==NULL) {
+        obj_transform_ptr=&obj_transform;
+        dest_transform_ptr=&dest_transform;
+    }
+    tf_ok=true;
+    obj_transform.setOrigin( tf::Vector3(obj.x,obj.y,obj.z) );
+    tf::Quaternion q;
+    q.setRPY(0.0, 0, 0);
+    obj_transform.setRotation(q);
+
+
+
+    static tf::TransformListener listener;
+    try{
+        // listener.waitForTransform("base_link", "red_object", ros::Time(0), ros::Duration(4.0));
+        tf::StampedTransform transform_obj,transform_base;
+        listener.lookupTransform("map", "red_object", ros::Time(0), transform_obj);
+        listener.lookupTransform("map", "base_link", ros::Time(0), transform_base);
+        tf::Vector3 v_obj =transform_obj.getOrigin();
+        tf::Vector3 v_base =transform_base.getOrigin();
+        // tf::Quaternion q(transform1.getRotation().x(), transform1.getRotation().y(),transform1.getRotation().z(),transform1.getRotation().w());
+        // tf::Matrix3x3 m(q);
+        // double roll, pitch, yaw;
+        //  m.getRPY(roll, pitch, yaw);
+        //  ROS_INFO("%f %f %f",roll*180/CV_PI,pitch*180/CV_PI,yaw*180/CV_PI);
+
+        // ROS_INFO("BASE: %f %f %f",v_base.x(),v_base.y(),v_base.z());
+        // ROS_INFO("OBJECT: %f %f %f",v_obj.x(),v_obj.y(),v_obj.z());
+        tf::Vector3 v=v_obj-v_base;
+        // ROS_INFO("v: %f %f %f",v.x(),v.y(),v.z());
+        float yaw=atan2(v.y(),v.x());
+        // ROS_INFO("YAW: %f",yaw*180/CV_PI);
+        float away=0.4/sqrt(v.x()*v.x()+v.y()*v.y());
+        tf::Vector3 dest=v_base+v*(1-away);
+        dest.setZ(0);
+        //    ROS_INFO("dest: %f %f %f",dest.x(),dest.y(),dest.z());
+
+        dest_transform.setOrigin( dest );
+        tf::Quaternion q;
+        q.setRPY(0.0, 0, yaw);
+        dest_transform.setRotation(q);
+    }
+    catch (tf::TransformException ex){
+        ROS_ERROR("%s",ex.what());
+        ros::Duration(1.0).sleep();
+    }
+}
+
+Point3d find_object(Mat input, pcl::PointCloud<pcl::PointXYZRGBA> cloud) {
+
+    Mat hsv,bgr,filtered,bw;
     //HSV filtering:
 
-    cvtColor(result,hsv,CV_BGR2HSV);
+    Point3d pr = Point3d(NAN,NAN,NAN);
+    cvtColor(input,hsv,CV_BGR2HSV);
 
     // inRange(hsv,Scalar(minH,minS,minV),Scalar(maxH,maxS,maxV),mask);
 
@@ -220,18 +224,15 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& input) {
     resize(filtered, filtered2, Size(), 0.5, 0.5, INTER_LINEAR);
     imshow("filtered",filtered2);
 
-red_hue_image.copyTo(bw);
+    red_hue_image.copyTo(bw);
     //cvtColor(filtered, bw, COLOR_BGR2GRAY);                       //back to gray
-
     //  imshow("GRAY_WINDOW",gray);
     //threshold( gray, bw, 0, 255,  0 );
-
 
     if (gaussian_ksize>0) {
         if (gaussian_ksize % 2 == 0) gaussian_ksize++;
         GaussianBlur( bw, bw, Size(gaussian_ksize,gaussian_ksize), gaussian_sigma , 0);
     }
-
 
 
     if (morph_size>0) {
@@ -244,92 +245,184 @@ red_hue_image.copyTo(bw);
 
 
     vector<vector<Point> > contours;
-            vector<Vec4i> hierarchy;
+    vector<Vec4i> hierarchy;
 
     findContours(bw, contours,hierarchy,CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE);
 
-    static tf::TransformBroadcaster br;
-    tf::Transform transform;
+
     //   markers.clear();
+    double largest_area=0;
+    int largest_contour_index=0;
     for( int i = 0; i< contours.size(); i++ )
     {
         double area0 = contourArea(contours[i]);
-
-        //cout << " Contour " << i << "   A="<<area0<< endl;
-        if ((area0>minA)&&(area0<maxA)) {
-            //
-            drawContours(result, contours, (int)i,  Scalar(0,0,255), 1, 8, hierarchy, 0);
-            Moments mu=moments( contours[i], true );
-            Point2f mc = Point2f( mu.m10/mu.m00 , mu.m01/mu.m00 );
-            circle( result, mc, 4, Scalar(0,0,255), -1, 8, 0 );
-            // markers.push_back(mc);
-
-
-            int pcl_index = ((int)(mc.y)*result.cols) + (int)(mc.x);
-            circle( result, mc, 8, Scalar(0,255,0), -1, 8, 0 );
-            Point3d pr;
-            pr.x=cloud[pcl_index].x;
-            pr.y=cloud[pcl_index].y;
-            pr.z=cloud[pcl_index].z;
-            char str[100];
-            if (isnan (pr.x) || isnan (pr.y) || isnan (pr.z) ) sprintf(str,"NaN");
-            else sprintf(str,"[%.3f,%.3f,%.3f] ",pr.x,pr.y,pr.z);
-            putText( result, str, mc, CV_FONT_HERSHEY_COMPLEX, 1, Scalar(255,0,0), 1, 8);
-
-            transform.setOrigin( tf::Vector3(pr.x,pr.y,pr.z) );
-            tf::Quaternion q;
-            q.setRPY(0, 0, 0);
-            transform.setRotation(q);
-            br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "kinect2_link", "red"));
-            ROS_INFO("%d  -  A: %d",i,(int)area0);
+        if(area0>largest_area){
+            largest_area=area0;
+            largest_contour_index=i;
         }
-        //  else  drawContours(result, contours, (int)i,  Scalar(0,255,255), 0, 8, hierarchy, 0);
-
     }
-    resize(result, bgr, Size(), 0.5, 0.5, INTER_LINEAR);
+    //  cout << " Contour " << i << "   A="<<area0<< endl;
+    if ((largest_area>minA)&&(largest_area<maxA)) {
+
+        //
+        drawContours(input, contours, (int)largest_contour_index,  Scalar(0,0,255), 1, 8, hierarchy, 0);
+        Moments mu=moments( contours[largest_contour_index], true );
+        Point2f mc = Point2f( mu.m10/mu.m00 , mu.m01/mu.m00 );
+        circle( input, mc, 4, Scalar(0,0,255), -1, 8, 0 );
+        int pcl_index = ((int)(mc.y)*input.cols) + (int)(mc.x);
+        circle( input, mc, 8, Scalar(0,255,0), -1, 8, 0 );
+
+        pr.x=cloud[pcl_index].x;
+        pr.y=cloud[pcl_index].y;
+        pr.z=cloud[pcl_index].z;
+        char str[100];
+        if (isnan (pr.x) || isnan (pr.y) || isnan (pr.z) ) sprintf(str,"NaN");
+        else sprintf(str,"[%.3f,%.3f,%.3f] A=%lf",pr.x,pr.y,pr.z,largest_area);
+        putText( input, str, mc, CV_FONT_HERSHEY_COMPLEX, 1, Scalar(255,0,0), 1, 8);
+
+
+
+        // ROS_INFO("%d  -  A: %d",largest_contour_index,(int)largest_area);
+    }
+    //  else  drawContours(result, contours, (int)i,  Scalar(0,255,255), 0, 8, hierarchy, 0);
+
+
+    resize(input, bgr, Size(), 0.5, 0.5, INTER_LINEAR);
     imshow("Blobs",bgr);
 
 
-    waitKey(10);
 
 
-
-
-
-
-
-    /*
-    cv_bridge::CvImage out_msg;
-    out_msg.header.stamp =ros::Time::now(); // Same timestamp and tf frame as input image
-    out_msg.encoding = sensor_msgs::image_encodings::BGR8;
-    out_msg.image    = result; // Your cv::Mat
-    // Output modified video stream
-    image_pub_.publish(out_msg.toImageMsg());
-*/
-    // imshow("Cloud Image",result);
-
-    /*
-    geometry_msgs::PointStamped m;
-    m.header.stamp=ros::Time::now();
-    m.header.frame_id=input->header.frame_id;
-    m.point.x=pr.x;
-    m.point.y=pr.y;
-    m.point.z=pr.z;
-*/
+    return pr;
 }
-void on_trackbar( int, void* )
-{
+
+void on_trackbar( int, void* ){}
+
+void pick_go_cb(std_msgs::Empty) {
+
+    if (moving) return;
+    else if (!moving) moving=true;
+
+    ROS_INFO("%f %f",(*dest_transform_ptr).getOrigin().x(),(*dest_transform_ptr).getOrigin().y());
+
+
+  if (base_cmd()) {
+       if(gripper_cmd(0.014,0.0)) {
+
+           if (arm_cmd()) {
+
+           moving=false;
+
+           }
+       }
+  }
 }
+
+bool arm_cmd() {
+
+    geometry_msgs::PoseStamped target_pose1;
+    target_pose1.header.frame_id="map";
+    target_pose1.header.stamp=ros::Time::now();
+    target_pose1.pose.position.x = obj_transform_ptr->getOrigin().x();
+    target_pose1.pose.position.y = obj_transform_ptr->getOrigin().y();
+    target_pose1.pose.position.z = obj_transform_ptr->getOrigin().z();
+     target_pose1.pose.orientation.x=dest_transform_ptr->getRotation().x();
+    target_pose1.pose.orientation.y=dest_transform_ptr->getRotation().y();
+     target_pose1.pose.orientation.z=dest_transform_ptr->getRotation().z();
+    target_pose1.pose.orientation.w=dest_transform_ptr->getRotation().w();
+     moveit_ptr->setPoseTarget(target_pose1);
+
+    moveit::planning_interface::MoveGroup::Plan my_plan;
+    bool success = moveit_ptr->plan(my_plan);
+    ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"SUCCESS":"FAILED");
+    if(success) {
+        moveit_ptr->move();
+
+    }
+    return success;
+}
+
+bool base_cmd() {
+    move_base_msgs::MoveBaseGoal goal;
+    goal.target_pose.header.frame_id = "map";
+    goal.target_pose.header.stamp = ros::Time::now();
+    goal.target_pose.pose.position.x=dest_transform_ptr->getOrigin().x();
+    goal.target_pose.pose.position.y=dest_transform_ptr->getOrigin().y();
+    goal.target_pose.pose.position.z=0;
+    goal.target_pose.pose.orientation.x=dest_transform_ptr->getRotation().x();
+    goal.target_pose.pose.orientation.y=dest_transform_ptr->getRotation().y();
+    goal.target_pose.pose.orientation.z=dest_transform_ptr->getRotation().z();
+    goal.target_pose.pose.orientation.w=dest_transform_ptr->getRotation().w();
+
+    ROS_INFO("[%s]: Sending goal", ros::this_node::getName().c_str());
+    moveBaseClient_ptr->sendGoal(goal);
+    moveBaseClient_ptr->waitForResult();
+    if(moveBaseClient_ptr->getState() == actionlib::SimpleClientGoalState::SUCCEEDED) {
+        ROS_INFO("[%s]: SUCCEEDED", ros::this_node::getName().c_str());
+
+
+        return true;
+
+
+    }
+    else {
+        ROS_ERROR("[%s]: FAILED ", ros::this_node::getName().c_str());
+        return false;
+    }
+}
+
+bool gripper_cmd(double gap,double effort) {
+
+    control_msgs::GripperCommandGoal openGoal;
+
+    openGoal.command.position = gap;
+    openGoal.command.max_effort = effort;
+    gripperClient_ptr->sendGoal(openGoal);
+
+   /* gripperClient_ptr->waitForResult();
+
+    if(gripperClient_ptr->getState() == actionlib::SimpleClientGoalState::SUCCEEDED) {
+        ROS_INFO("Gripper is now open");
+        return true;
+    }
+    else {
+        ROS_ERROR("Gripper can't open");
+        return false;
+    }*/
+    return true;
+}
+
 
 int main(int argc, char **argv) {
-    ros::init(argc, argv, "demo_nav_node");
+
+    ros::init(argc, argv, "demo_pick_node");
+
     ros::NodeHandle n;
     image_transport::ImageTransport it_(n);
 
     image_sub = it_.subscribe("kinect2/hd/image_color", 1,imageCb);
     image_pub_ = it_.advertise("demo_nav/output_video", 1);
 
+    GripperClient gripperClient("/gripper_controller/gripper_cmd", true);
+    if (!gripperClient.waitForServer(ros::Duration(5.0))) {
+        ROS_WARN("[%s]: No gripper action server", ros::this_node::getName().c_str());
+        return -1;
+    }
+    gripperClient_ptr=&gripperClient;
+
+    MoveBaseClient moveBaseClient("move_base", true);
+    if (!moveBaseClient.waitForServer(ros::Duration(5.0))) {
+        ROS_WARN("[%s]: No move_base action server", ros::this_node::getName().c_str());
+        return -1;
+    }
+    moveBaseClient_ptr=&moveBaseClient;
+
+
+     moveit::planning_interface::MoveGroup group("arm");
+     moveit_ptr=&group;
     ros::Subscriber pcl_sub = n.subscribe("kinect2/hd/points", 1, cloud_cb);
+
+    ros::Subscriber pick_sub = n.subscribe("pick_go", 1, pick_go_cb);
 
     namedWindow("Trackbars",CV_WINDOW_AUTOSIZE);              // trackbars window
     createTrackbar( "H min", "Trackbars", &minH, 180, on_trackbar );
@@ -344,9 +437,22 @@ int main(int argc, char **argv) {
     createTrackbar( "A max", "Trackbars", &maxA, 50000, on_trackbar );
     createTrackbar( "morph_size", "Trackbars", &morph_size, 50, on_trackbar );
 
+    tf::TransformBroadcaster br;
+    ros::Rate r(100); // 100 hz
     while (ros::ok())
     {
+        if (tf_ok) {
+            br.sendTransform(tf::StampedTransform(*obj_transform_ptr, ros::Time::now(), "kinect2_depth_optical_frame", "red_object"));
+            br.sendTransform(tf::StampedTransform(*dest_transform_ptr, ros::Time::now(), "map", "dest"));
+        }
         ros::spinOnce();
+        waitKey(1);
+
+
+
+
+
+        // r.sleep();
     }
 
 
