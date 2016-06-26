@@ -54,7 +54,6 @@ int main(int argc, char **argv) {
     ros_utils::rosInfo("Active");
 
     if(isArmadilo) {
-		ROS_INFO("COOL");
         if(robotType == "default") {
 			
             robotican_hardware::ArmadilloRobot robot;
