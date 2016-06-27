@@ -43,15 +43,16 @@ bool gripper_cmd(double gap,double effort);
 bool arm_cmd();
 bool base_cmd();
 
-tf::Transform *obj_transform_ptr,*dest_transform_ptr;
+tf::Transform *obj_transform_ptr=NULL,*dest_transform_ptr=NULL;
 GripperClient *gripperClient_ptr;
 MoveBaseClient *moveBaseClient_ptr;
 moveit::planning_interface::MoveGroup *moveit_ptr;
+ tf::TransformListener *listener_ptr;
 
 bool tf_ok=false;
 int image_w=0,image_h=0;
 bool moving=false;
-
+bool have_object=false;
 image_transport::Publisher image_pub_;
 image_transport::Subscriber image_sub;
 
@@ -141,7 +142,7 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& input) {
 
     Point3d obj = find_object(result,cloud);
 
-    if (isnan(obj.x)) {
+    if (!have_object) {
         tf_ok=false;
         return;
     }
@@ -160,31 +161,20 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& input) {
 
 
 
-    static tf::TransformListener listener;
     try{
-        // listener.waitForTransform("base_link", "red_object", ros::Time(0), ros::Duration(4.0));
         tf::StampedTransform transform_obj,transform_base;
-        listener.lookupTransform("map", "red_object", ros::Time(0), transform_obj);
-        listener.lookupTransform("map", "base_link", ros::Time(0), transform_base);
+        listener_ptr->lookupTransform("map", "red_object", ros::Time(0), transform_obj);
+        listener_ptr->lookupTransform("map", "base_link", ros::Time(0), transform_base);
         tf::Vector3 v_obj =transform_obj.getOrigin();
         tf::Vector3 v_base =transform_base.getOrigin();
-        // tf::Quaternion q(transform1.getRotation().x(), transform1.getRotation().y(),transform1.getRotation().z(),transform1.getRotation().w());
-        // tf::Matrix3x3 m(q);
-        // double roll, pitch, yaw;
-        //  m.getRPY(roll, pitch, yaw);
-        //  ROS_INFO("%f %f %f",roll*180/CV_PI,pitch*180/CV_PI,yaw*180/CV_PI);
 
-        // ROS_INFO("BASE: %f %f %f",v_base.x(),v_base.y(),v_base.z());
-        // ROS_INFO("OBJECT: %f %f %f",v_obj.x(),v_obj.y(),v_obj.z());
+
+
         tf::Vector3 v=v_obj-v_base;
-        // ROS_INFO("v: %f %f %f",v.x(),v.y(),v.z());
         float yaw=atan2(v.y(),v.x());
-        // ROS_INFO("YAW: %f",yaw*180/CV_PI);
         float away=0.4/sqrt(v.x()*v.x()+v.y()*v.y());
         tf::Vector3 dest=v_base+v*(1-away);
         dest.setZ(0);
-        //    ROS_INFO("dest: %f %f %f",dest.x(),dest.y(),dest.z());
-
         dest_transform.setOrigin( dest );
         tf::Quaternion q;
         q.setRPY(0.0, 0, yaw);
@@ -192,12 +182,12 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& input) {
     }
     catch (tf::TransformException ex){
         ROS_ERROR("%s",ex.what());
-        ros::Duration(1.0).sleep();
+
     }
 }
 
 Point3d find_object(Mat input, pcl::PointCloud<pcl::PointXYZRGBA> cloud) {
-
+have_object=false;
     Mat hsv,bgr,filtered,bw;
     //HSV filtering:
 
@@ -225,10 +215,6 @@ Point3d find_object(Mat input, pcl::PointCloud<pcl::PointXYZRGBA> cloud) {
     imshow("filtered",filtered2);
 
     red_hue_image.copyTo(bw);
-    //cvtColor(filtered, bw, COLOR_BGR2GRAY);                       //back to gray
-    //  imshow("GRAY_WINDOW",gray);
-    //threshold( gray, bw, 0, 255,  0 );
-
     if (gaussian_ksize>0) {
         if (gaussian_ksize % 2 == 0) gaussian_ksize++;
         GaussianBlur( bw, bw, Size(gaussian_ksize,gaussian_ksize), gaussian_sigma , 0);
@@ -240,8 +226,8 @@ Point3d find_object(Mat input, pcl::PointCloud<pcl::PointXYZRGBA> cloud) {
         morphologyEx( bw, bw, MORPH_CLOSE, element, Point(-1,-1), 1 );
     }
     Mat bw2;
-    resize(bw, bw2, Size(), 0.5, 0.5, INTER_LINEAR);
-    imshow("BW_WINDOW",bw2);
+   // resize(bw, bw2, Size(), 0.5, 0.5, INTER_LINEAR);
+ //   imshow("BW_WINDOW",bw2);
 
 
     vector<vector<Point> > contours;
@@ -249,8 +235,6 @@ Point3d find_object(Mat input, pcl::PointCloud<pcl::PointXYZRGBA> cloud) {
 
     findContours(bw, contours,hierarchy,CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE);
 
-
-    //   markers.clear();
     double largest_area=0;
     int largest_contour_index=0;
     for( int i = 0; i< contours.size(); i++ )
@@ -261,11 +245,10 @@ Point3d find_object(Mat input, pcl::PointCloud<pcl::PointXYZRGBA> cloud) {
             largest_contour_index=i;
         }
     }
-    //  cout << " Contour " << i << "   A="<<area0<< endl;
     if ((largest_area>minA)&&(largest_area<maxA)) {
 
         //
-        drawContours(input, contours, (int)largest_contour_index,  Scalar(0,0,255), 1, 8, hierarchy, 0);
+        drawContours(input, contours, (int)largest_contour_index,  Scalar(255,0,0), 3, 8, hierarchy, 0);
         Moments mu=moments( contours[largest_contour_index], true );
         Point2f mc = Point2f( mu.m10/mu.m00 , mu.m01/mu.m00 );
         circle( input, mc, 4, Scalar(0,0,255), -1, 8, 0 );
@@ -279,19 +262,12 @@ Point3d find_object(Mat input, pcl::PointCloud<pcl::PointXYZRGBA> cloud) {
         if (isnan (pr.x) || isnan (pr.y) || isnan (pr.z) ) sprintf(str,"NaN");
         else sprintf(str,"[%.3f,%.3f,%.3f] A=%lf",pr.x,pr.y,pr.z,largest_area);
         putText( input, str, mc, CV_FONT_HERSHEY_COMPLEX, 1, Scalar(255,0,0), 1, 8);
-
-
-
-        // ROS_INFO("%d  -  A: %d",largest_contour_index,(int)largest_area);
+        have_object=true;
     }
-    //  else  drawContours(result, contours, (int)i,  Scalar(0,255,255), 0, 8, hierarchy, 0);
 
 
     resize(input, bgr, Size(), 0.5, 0.5, INTER_LINEAR);
     imshow("Blobs",bgr);
-
-
-
 
     return pr;
 }
@@ -307,7 +283,7 @@ void pick_go_cb(std_msgs::Empty) {
 
 
   if (base_cmd()) {
-       if(gripper_cmd(0.014,0.0)) {
+       if(gripper_cmd(0.14,0.0)) {
 
            if (arm_cmd()) {
 
@@ -320,21 +296,45 @@ void pick_go_cb(std_msgs::Empty) {
 
 bool arm_cmd() {
 
+tf::StampedTransform transform_base_obj;
+    try{
+
+        listener_ptr->lookupTransform("base_link", "red_object", ros::Time(0), transform_base_obj);
+    }
+    catch (tf::TransformException ex){
+        ROS_ERROR("%s",ex.what());
+        return false;
+    }
+
+double 	roll=0;
+double 	pitch=0;
+double 	yaw=0;
+//tf::Quaternion tf::createQuaternionFromRPY(roll,pitch,yaw );
+tf::Quaternion quat=transform_base_obj.getRotation();
+tf::Quaternion q(quat.x(), quat.y(), quat.z(), quat.w());
+tf::Matrix3x3 m(q);
+m.getRPY(roll, pitch, yaw);
+std::cout << "Roll: " << roll << ", Pitch: " << pitch << ", Yaw: " << yaw << std::endl;
+    roll=0;
+    pitch=0;
     geometry_msgs::PoseStamped target_pose1;
-    target_pose1.header.frame_id="map";
+    target_pose1.header.frame_id="base_link";
     target_pose1.header.stamp=ros::Time::now();
-    target_pose1.pose.position.x = obj_transform_ptr->getOrigin().x();
-    target_pose1.pose.position.y = obj_transform_ptr->getOrigin().y();
-    target_pose1.pose.position.z = obj_transform_ptr->getOrigin().z();
-     target_pose1.pose.orientation.x=dest_transform_ptr->getRotation().x();
-    target_pose1.pose.orientation.y=dest_transform_ptr->getRotation().y();
-     target_pose1.pose.orientation.z=dest_transform_ptr->getRotation().z();
-    target_pose1.pose.orientation.w=dest_transform_ptr->getRotation().w();
+    target_pose1.pose.position.x =0.485298;// transform_base_obj.getOrigin().x();
+    target_pose1.pose.position.y = 0.0198514;//transform_base_obj.getOrigin().y();
+    target_pose1.pose.position.z = 0.668352;//transform_base_obj.getOrigin().z();
+    target_pose1.pose.orientation.x=-0.00371295;
+            target_pose1.pose.orientation.y=0.577184;
+    target_pose1.pose.orientation.z=-0.00925086;
+    target_pose1.pose.orientation.w= 0.816553;//1.0;
+   //target_pose1.pose.orientation= tf::createQuaternionMsgFromRollPitchYaw(roll,pitch,yaw );
+   //  tf::quaternionTFToMsg( transform_base_obj.getRotation(), target_pose1.pose.orientation);
      moveit_ptr->setPoseTarget(target_pose1);
 
     moveit::planning_interface::MoveGroup::Plan my_plan;
+   // my_plan.planning_time_=10.0;
     bool success = moveit_ptr->plan(my_plan);
-    ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"SUCCESS":"FAILED");
+  //  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"SUCCESS":"FAILED");
     if(success) {
         moveit_ptr->move();
 
@@ -419,6 +419,13 @@ int main(int argc, char **argv) {
 
 
      moveit::planning_interface::MoveGroup group("arm");
+     moveit::planning_interface::PlanningSceneInterface planning_scene_interface;
+     ROS_INFO("Reference frame: %s", group.getPlanningFrame().c_str());
+     ROS_INFO("Reference frame: %s", group.getEndEffectorLink().c_str());
+group.allowReplanning(true);
+group.setPlanningTime(10.0);
+group.setGoalPositionTolerance(0.1);
+group.setGoalOrientationTolerance(0.5);
      moveit_ptr=&group;
     ros::Subscriber pcl_sub = n.subscribe("kinect2/hd/points", 1, cloud_cb);
 
@@ -438,6 +445,10 @@ int main(int argc, char **argv) {
     createTrackbar( "morph_size", "Trackbars", &morph_size, 50, on_trackbar );
 
     tf::TransformBroadcaster br;
+
+     tf::TransformListener listener;
+     listener_ptr=&listener;
+
     ros::Rate r(100); // 100 hz
     while (ros::ok())
     {
