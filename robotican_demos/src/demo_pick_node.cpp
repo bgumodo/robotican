@@ -29,6 +29,14 @@
 #include <moveit_msgs/DisplayRobotState.h>
 #include <moveit_msgs/DisplayTrajectory.h>
 
+#include <moveit_msgs/PlanningScene.h>
+#include <moveit_msgs/AttachedCollisionObject.h>
+#include <moveit_msgs/GetStateValidity.h>
+#include <moveit_msgs/DisplayRobotState.h>
+
+#include <moveit/robot_model_loader/robot_model_loader.h>
+#include <moveit/robot_state/robot_state.h>
+#include <moveit/robot_state/conversions.h>
 
 typedef actionlib::SimpleActionClient<control_msgs::GripperCommandAction> GripperClient;
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
@@ -51,6 +59,8 @@ tf::TransformListener *listener_ptr;
 
 tf::StampedTransform obj_transform;
 
+geometry_msgs::PoseStamped target_pose1;
+bool have_goal=false;
 bool tf_ok=false;
 int image_w=0,image_h=0;
 bool moving=false;
@@ -58,6 +68,7 @@ bool have_object=false;
 image_transport::Publisher image_pub_;
 image_transport::Subscriber image_sub;
 
+ ros::Publisher planning_scene_diff_publisher;
 ros::Publisher goal_pub;
 
 /*
@@ -80,7 +91,7 @@ ros::Publisher goal_pub;
 int minH=3,maxH=160;
 int minS=70,maxS=255;
 int minV=70,maxV=255;
-int minA=15000,maxA=50000;
+int minA=7000,maxA=50000;
 int gaussian_ksize=0;
 int gaussian_sigma=0;
 int morph_size=0;
@@ -145,7 +156,7 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& input) {
 
     Point3d obj = find_object(result,cloud);
 
-     waitKey(1);
+    waitKey(1);
 
     if (!have_object) {
         tf_ok=false;
@@ -154,17 +165,17 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& input) {
 
 
 
-
+    if (moving) return;
     obj_transform.setOrigin( tf::Vector3(obj.x,obj.y,obj.z) );
     tf::Quaternion q;
     q.setRPY(0.0, 0, 0);
     obj_transform.setRotation(q);
     obj_transform.frame_id_="kinect2_depth_optical_frame";
-     obj_transform.child_frame_id_="red_object";
-      obj_transform.stamp_=ros::Time::now();
-//dest_transform.setRotation(q);
+    obj_transform.child_frame_id_="red_object";
+    obj_transform.stamp_=ros::Time::now();
+    //dest_transform.setRotation(q);
 
- tf_ok=true;
+    tf_ok=true;
 
 
 
@@ -263,19 +274,20 @@ void pick_go_cb(std_msgs::Empty) {
     if (moving) return;
     else if (!moving) {
         moving=true;
-
+        tf_ok=false;
+        destroyAllWindows();
     }
-     if (!tf_ok) tf_ok=true;
-tf::Transform dest_transform;
+
+    tf::Transform dest_transform;
     try{
 
         tf::StampedTransform transform_obj,transform_base;
         listener_ptr->lookupTransform("map", "red_object", ros::Time(0), transform_obj);
 
-       // obj_transform.frame_id_="map";
-        // obj_transform.child_frame_id_="red_object";
+        obj_transform.frame_id_="map";
+        obj_transform.child_frame_id_="red_object";
 
-          obj_transform.setData(transform_obj);
+        obj_transform.setData(transform_obj);
 
         listener_ptr->lookupTransform("map", "base_link", ros::Time(0), transform_base);
         tf::Vector3 v_obj =transform_obj.getOrigin();
@@ -285,7 +297,7 @@ tf::Transform dest_transform;
 
         tf::Vector3 v=v_obj-v_base;
         float yaw=atan2(v.y(),v.x());
-        float away=0.3/sqrt(v.x()*v.x()+v.y()*v.y());
+        float away=0.55/sqrt(v.x()*v.x()+v.y()*v.y());
         tf::Vector3 dest=v_base+v*(1-away);
         dest.setZ(0);
         dest_transform.setOrigin( dest );
@@ -296,13 +308,11 @@ tf::Transform dest_transform;
 
     catch (tf::TransformException ex){
         ROS_ERROR("%s",ex.what());
-return;
+        return;
     }
 
 
     ROS_INFO("%f %f",dest_transform.getOrigin().x(),dest_transform.getOrigin().y());
-
-
 
     move_base_msgs::MoveBaseGoal goal;
     goal.target_pose.header.frame_id = "map";
@@ -320,7 +330,56 @@ return;
             if (arm_cmd()) {
                 ROS_INFO("MOVING!");
                 moveit_ptr->move();
-                moving=false;
+                ROS_INFO("DONE MOVING!");
+                 if(gripper_cmd(0.01,4.0)) {
+                      ROS_INFO("HOLDING");
+/*
+                      moveit_msgs::AttachedCollisionObject attached_object;
+                      attached_object.link_name = "wrist_link";
+                     // The header must contain a valid TF frame
+                      attached_object.object.header.frame_id = "wrist_link";
+                     // The id of the object
+                      attached_object.object.id = "coke_can_slim";
+
+                      // A default pose
+                      geometry_msgs::Pose pose;
+                      pose.orientation.w = 1.0;
+
+                      // Define a box to be attached
+                      shape_msgs::SolidPrimitive primitive;
+                      primitive.type = primitive.CYLINDER;
+                      primitive.dimensions.resize(3);
+                      primitive.dimensions[0] = 0.1;
+                      primitive.dimensions[1] = 0.03;
+
+
+                      attached_object.object.primitives.push_back(primitive);
+                      attached_object.object.primitive_poses.push_back(pose);
+                      attached_object.object.operation = attached_object.object.ADD;
+
+                      ROS_INFO("Adding the object into the world at the location of the right wrist.");
+                      moveit_msgs::PlanningScene planning_scene;
+                      planning_scene.world.collision_objects.push_back(attached_object.object);
+                      planning_scene.is_diff = true;
+                      planning_scene_diff_publisher.publish(planning_scene);
+                      //sleep_time.sleep();
+
+
+                      // First, define the REMOVE object message
+                      moveit_msgs::CollisionObject remove_object;
+                      remove_object.id = "coke_can_slim";
+                      remove_object.header.frame_id = "map";
+                      remove_object.operation = remove_object.REMOVE;
+                      ROS_INFO("Attaching the object to the right wrist and removing it from the world.");
+                      planning_scene.world.collision_objects.clear();
+                      planning_scene.world.collision_objects.push_back(remove_object);
+
+                      planning_scene.robot_state.attached_collision_objects.push_back(attached_object);
+                      planning_scene_diff_publisher.publish(planning_scene);
+*/
+                     moving=false;
+                 }
+
 
             }
         }
@@ -339,36 +398,48 @@ bool arm_cmd() {
         return false;
     }
 
-    double 	roll=0;
-    double 	pitch=0;
-    double 	yaw=0;
+    //  double 	roll=0;
+    //  double 	pitch=0;
+    tf::Vector3 v= transform_base_obj.getOrigin();
+
+    double 	yaw=atan2(v.y(),v.x());
     //tf::Quaternion tf::createQuaternionFromRPY(roll,pitch,yaw );
-    tf::Quaternion quat=transform_base_obj.getRotation();
-    tf::Quaternion q(quat.x(), quat.y(), quat.z(), quat.w());
-    tf::Matrix3x3 m(q);
-    m.getRPY(roll, pitch, yaw);
-   // std::cout << "Roll: " << roll << ", Pitch: " << pitch << ", Yaw: " << yaw << std::endl;
-    roll=0;
-    pitch=0;
+    // tf::Quaternion quat=transform_base_obj.getRotation();
+    // tf::Quaternion q(quat.x(), quat.y(), quat.z(), quat.w());
+    //  tf::Matrix3x3 m(q);
+    //  m.getRPY(roll, pitch, yaw);
+    // std::cout << "Yaw: " << yaw << std::endl;
+    // roll=0;
+    // pitch=0;
+
+
     moveit_ptr->setStartStateToCurrentState();
-    geometry_msgs::PoseStamped target_pose1;
+
     target_pose1.header.frame_id="base_link";
     target_pose1.header.stamp=ros::Time::now();
-    target_pose1.pose.position.x = transform_base_obj.getOrigin().x()-0.07;
-    target_pose1.pose.position.y = transform_base_obj.getOrigin().y();
-    target_pose1.pose.position.z = transform_base_obj.getOrigin().z()-0.02;
-    target_pose1.pose.orientation.w=1.0;
 
+
+    float away=0.05/sqrt(v.x()*v.x()+v.y()*v.y());
+    tf::Vector3 dest=v*(1-away);
+
+
+    target_pose1.pose.position.x = dest.x();//transform_base_obj.getOrigin().x()-0.07;
+    target_pose1.pose.position.y =  dest.y();//transform_base_obj.getOrigin().y();
+    target_pose1.pose.position.z =  v.z()-0.02;//transform_base_obj.getOrigin().z();
+    // target_pose1.pose.orientation.w=1.0;
+    target_pose1.pose.orientation= tf::createQuaternionMsgFromRollPitchYaw(-yaw,CV_PI/2.0,0 );
     goal_pub.publish(target_pose1);
     std::cout << "goal in base_link frame    x: " << target_pose1.pose.position.x << ", y: " << target_pose1.pose.position.y << ", z: " << target_pose1.pose.position.z << std::endl;
-    //target_pose1.pose.orientation= tf::createQuaternionMsgFromRollPitchYaw(roll,pitch,yaw );
+
+    // std::cout << "GOAL      ROLL: " << roll << "      PITCH: " << pitch << "      YAW: " << yaw << std::endl;
+    //
     //  tf::quaternionTFToMsg( transform_base_obj.getRotation(), target_pose1.pose.orientation);
     moveit_ptr->setPoseTarget(target_pose1);
-
+have_goal=true;
     moveit::planning_interface::MoveGroup::Plan my_plan;
     // my_plan.planning_time_=10.0;
     bool success = moveit_ptr->plan(my_plan);
-      ROS_INFO("moveit plan (pose goal) %s",success?"SUCCESS":"FAILED");
+    ROS_INFO("moveit plan (pose goal) %s",success?"SUCCESS":"FAILED");
 
     return success;
 }
@@ -377,8 +448,10 @@ bool base_cmd(move_base_msgs::MoveBaseGoal goal) {
 
 
     ROS_INFO("[%s]: Sending goal", ros::this_node::getName().c_str());
+
     moveBaseClient_ptr->sendGoal(goal);
     moveBaseClient_ptr->waitForResult();
+
     if(moveBaseClient_ptr->getState() == actionlib::SimpleClientGoalState::SUCCEEDED) {
         ROS_INFO("[%s]: BASE NAV SUCCEEDED", ros::this_node::getName().c_str());
 
@@ -404,11 +477,11 @@ bool gripper_cmd(double gap,double effort) {
     gripperClient_ptr->waitForResult();
 
     if(gripperClient_ptr->getState() == actionlib::SimpleClientGoalState::SUCCEEDED) {
-        ROS_INFO("Gripper is now open");
+        ROS_INFO("Gripper done");
         return true;
     }
     else {
-        ROS_ERROR("Gripper can't open");
+        ROS_ERROR("Gripper fault");
         return false;
     }
     return true;
@@ -418,7 +491,7 @@ bool gripper_cmd(double gap,double effort) {
 int main(int argc, char **argv) {
 
     ros::init(argc, argv, "demo_pick_node");
-    ros::AsyncSpinner spinner(1);
+    ros::AsyncSpinner spinner(3);
 
     ros::NodeHandle n;
     image_transport::ImageTransport it_(n);
@@ -443,22 +516,34 @@ int main(int argc, char **argv) {
 
     moveit::planning_interface::MoveGroup group("arm");
     moveit::planning_interface::PlanningSceneInterface planning_scene_interface;
+
+  /*  planning_scene_diff_publisher = n.advertise<moveit_msgs::PlanningScene>("planning_scene", 1);
+    while(planning_scene_diff_publisher.getNumSubscribers() < 1)
+    {
+      ros::WallDuration sleep_t(0.5);
+      sleep_t.sleep();
+    }*/
+
+
+
     ROS_INFO("Reference frame: %s", group.getPlanningFrame().c_str());
     ROS_INFO("Reference frame: %s", group.getEndEffectorLink().c_str());
     group.allowReplanning(true);
     group.setPlanningTime(10.0);
-     group.setNumPlanningAttempts(5);
-group.setPlannerId("RRTConnectkConfigDefault");
-
-   // group.setGoalPositionTolerance(0.2);
-   // group.setGoalOrientationTolerance(0.5);
+    group.setNumPlanningAttempts(5);
+    group.setPlannerId("RRTConnectkConfigDefault");
+group.setMaxAccelerationScalingFactor(0.01);
+group.setMaxVelocityScalingFactor(0.01);
+    // group.setGoalPositionTolerance(0.2);
+    // group.setGoalOrientationTolerance(0.5);
 
     moveit_ptr=&group;
     ros::Subscriber pcl_sub = n.subscribe("kinect2/hd/points", 1, cloud_cb);
 
     ros::Subscriber pick_sub = n.subscribe("pick_go", 1, pick_go_cb);
 
-    goal_pub=n.advertise<geometry_msgs::PoseStamped>("piack_moveit_goal", 2, true);
+    goal_pub=n.advertise<geometry_msgs::PoseStamped>("pick_moveit_goal", 2, true);
+    ros::Publisher wr_pub=n.advertise<geometry_msgs::PoseStamped>("wrist", 2, true);
 
     namedWindow("Trackbars",CV_WINDOW_AUTOSIZE);              // trackbars window
     createTrackbar( "H min", "Trackbars", &minH, 180, on_trackbar );
@@ -480,23 +565,59 @@ group.setPlannerId("RRTConnectkConfigDefault");
 
     ros::Rate r(50); // 100 hz
 
-        spinner.start();
+    spinner.start();
     while (ros::ok())
     {
-        if (tf_ok) {
-            puts("tf ok");
-           // obj_transform.stamp_=ros::Time::now();
+        //  ROS_INFO("%d %d",tf_ok,moving);
+        if ((tf_ok)||(moving)) {
+            //ROS_INFO("sendTransform");
+            obj_transform.stamp_=ros::Time::now();
             br.sendTransform(obj_transform);
-           // br.sendTransform(tf::StampedTransform(dest_transform, ros::Time::now(), "map", "dest"));
+            //ROS_INFO("sendTransform done");
+            // br.sendTransform(tf::StampedTransform(dest_transform, ros::Time::now(), "map", "dest"));
+
+            if (have_goal) {
+                tf::StampedTransform wr_goal;
+                tf::Quaternion q;
+                tf::quaternionMsgToTF(target_pose1.pose.orientation,q);
+                wr_goal.setOrigin(tf::Vector3(target_pose1.pose.position.x,target_pose1.pose.position.y,target_pose1.pose.position.z));
+                wr_goal.setRotation((q));
+
+
+                wr_goal.stamp_=ros::Time::now();
+                wr_goal.child_frame_id_="wrist_goal";
+                wr_goal.frame_id_="base_link";
+                br.sendTransform(wr_goal);
+            }
         }
-        ros::spinOnce();
+        // ros::spinOnce();
+        tf::StampedTransform wr;
+        try{
+            listener_ptr->lookupTransform("base_link", "wrist_link", ros::Time(0), wr);
+            double roll,pitch,yaw;
+            tf::Quaternion quat=wr.getRotation();
+            tf::Quaternion q(quat.x(), quat.y(), quat.z(), quat.w());
+            tf::Matrix3x3 m(q);
+            m.getRPY(roll, pitch, yaw);
 
+           // std::cout << "WRIST      ROLL: " << roll << "      PITCH: " << pitch << "      YAW: " << yaw << std::endl;
 
+            geometry_msgs::PoseStamped target_pose2;
+            target_pose2.header.frame_id="base_link";
+            target_pose2.header.stamp=ros::Time::now();
+            target_pose2.pose.position.x = wr.getOrigin().x();
+            target_pose2.pose.position.y = wr.getOrigin().y();
+            target_pose2.pose.position.z = wr.getOrigin().z();
+            // target_pose1.pose.orientation.w=1.0;
+            tf::quaternionTFToMsg( wr.getRotation(), target_pose2.pose.orientation);
+            wr_pub.publish(target_pose2);
 
+        }
+        catch (tf::TransformException ex){
+           // ROS_ERROR("%s",ex.what());
+        }
 
-
-
-        // r.sleep();
+        r.sleep();
     }
 
 

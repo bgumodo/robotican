@@ -3,7 +3,7 @@
     <static>0</static>
     <link name="link">
       <inertial>
-        <mass>0.25</mass>
+        <mass>0.125</mass>
         <inertia>
           <ixx>0.000000</ixx>
           <ixy>0.000000</ixy>
