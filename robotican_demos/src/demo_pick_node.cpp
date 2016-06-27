@@ -41,13 +41,15 @@ Point3d find_object(Mat input, pcl::PointCloud<pcl::PointXYZRGBA> cloud);
 void go(tf::Transform  dest);
 bool gripper_cmd(double gap,double effort);
 bool arm_cmd();
-bool base_cmd();
+bool base_cmd(move_base_msgs::MoveBaseGoal goal);
 
-tf::Transform *obj_transform_ptr=NULL,*dest_transform_ptr=NULL;
+//tf::Transform *obj_transform_ptr=NULL,*dest_transform_ptr=NULL;
 GripperClient *gripperClient_ptr;
 MoveBaseClient *moveBaseClient_ptr;
 moveit::planning_interface::MoveGroup *moveit_ptr;
- tf::TransformListener *listener_ptr;
+tf::TransformListener *listener_ptr;
+
+tf::StampedTransform obj_transform;
 
 bool tf_ok=false;
 int image_w=0,image_h=0;
@@ -56,6 +58,7 @@ bool have_object=false;
 image_transport::Publisher image_pub_;
 image_transport::Subscriber image_sub;
 
+ros::Publisher goal_pub;
 
 /*
  * //blue
@@ -142,52 +145,33 @@ void cloud_cb(const sensor_msgs::PointCloud2ConstPtr& input) {
 
     Point3d obj = find_object(result,cloud);
 
+     waitKey(1);
+
     if (!have_object) {
         tf_ok=false;
         return;
     }
 
 
-    static tf::Transform obj_transform,dest_transform;
-    if (obj_transform_ptr==NULL) {
-        obj_transform_ptr=&obj_transform;
-        dest_transform_ptr=&dest_transform;
-    }
-    tf_ok=true;
+
+
     obj_transform.setOrigin( tf::Vector3(obj.x,obj.y,obj.z) );
     tf::Quaternion q;
     q.setRPY(0.0, 0, 0);
     obj_transform.setRotation(q);
+    obj_transform.frame_id_="kinect2_depth_optical_frame";
+     obj_transform.child_frame_id_="red_object";
+      obj_transform.stamp_=ros::Time::now();
+//dest_transform.setRotation(q);
+
+ tf_ok=true;
 
 
 
-    try{
-        tf::StampedTransform transform_obj,transform_base;
-        listener_ptr->lookupTransform("map", "red_object", ros::Time(0), transform_obj);
-        listener_ptr->lookupTransform("map", "base_link", ros::Time(0), transform_base);
-        tf::Vector3 v_obj =transform_obj.getOrigin();
-        tf::Vector3 v_base =transform_base.getOrigin();
-
-
-
-        tf::Vector3 v=v_obj-v_base;
-        float yaw=atan2(v.y(),v.x());
-        float away=0.4/sqrt(v.x()*v.x()+v.y()*v.y());
-        tf::Vector3 dest=v_base+v*(1-away);
-        dest.setZ(0);
-        dest_transform.setOrigin( dest );
-        tf::Quaternion q;
-        q.setRPY(0.0, 0, yaw);
-        dest_transform.setRotation(q);
-    }
-    catch (tf::TransformException ex){
-        ROS_ERROR("%s",ex.what());
-
-    }
 }
 
 Point3d find_object(Mat input, pcl::PointCloud<pcl::PointXYZRGBA> cloud) {
-have_object=false;
+    have_object=false;
     Mat hsv,bgr,filtered,bw;
     //HSV filtering:
 
@@ -226,8 +210,8 @@ have_object=false;
         morphologyEx( bw, bw, MORPH_CLOSE, element, Point(-1,-1), 1 );
     }
     Mat bw2;
-   // resize(bw, bw2, Size(), 0.5, 0.5, INTER_LINEAR);
- //   imshow("BW_WINDOW",bw2);
+    // resize(bw, bw2, Size(), 0.5, 0.5, INTER_LINEAR);
+    //   imshow("BW_WINDOW",bw2);
 
 
     vector<vector<Point> > contours;
@@ -277,26 +261,75 @@ void on_trackbar( int, void* ){}
 void pick_go_cb(std_msgs::Empty) {
 
     if (moving) return;
-    else if (!moving) moving=true;
+    else if (!moving) {
+        moving=true;
 
-    ROS_INFO("%f %f",(*dest_transform_ptr).getOrigin().x(),(*dest_transform_ptr).getOrigin().y());
+    }
+     if (!tf_ok) tf_ok=true;
+tf::Transform dest_transform;
+    try{
+
+        tf::StampedTransform transform_obj,transform_base;
+        listener_ptr->lookupTransform("map", "red_object", ros::Time(0), transform_obj);
+
+       // obj_transform.frame_id_="map";
+        // obj_transform.child_frame_id_="red_object";
+
+          obj_transform.setData(transform_obj);
+
+        listener_ptr->lookupTransform("map", "base_link", ros::Time(0), transform_base);
+        tf::Vector3 v_obj =transform_obj.getOrigin();
+        tf::Vector3 v_base =transform_base.getOrigin();
 
 
-  if (base_cmd()) {
-       if(gripper_cmd(0.14,0.0)) {
 
-           if (arm_cmd()) {
+        tf::Vector3 v=v_obj-v_base;
+        float yaw=atan2(v.y(),v.x());
+        float away=0.3/sqrt(v.x()*v.x()+v.y()*v.y());
+        tf::Vector3 dest=v_base+v*(1-away);
+        dest.setZ(0);
+        dest_transform.setOrigin( dest );
+        tf::Quaternion q;
+        q.setRPY(0.0, 0, yaw);
+        dest_transform.setRotation(q);
+    }
 
-           moving=false;
+    catch (tf::TransformException ex){
+        ROS_ERROR("%s",ex.what());
+return;
+    }
 
-           }
-       }
-  }
+
+    ROS_INFO("%f %f",dest_transform.getOrigin().x(),dest_transform.getOrigin().y());
+
+
+
+    move_base_msgs::MoveBaseGoal goal;
+    goal.target_pose.header.frame_id = "map";
+    goal.target_pose.header.stamp = ros::Time::now();
+    goal.target_pose.pose.position.x=dest_transform.getOrigin().x();
+    goal.target_pose.pose.position.y=dest_transform.getOrigin().y();
+    goal.target_pose.pose.position.z=0;
+    goal.target_pose.pose.orientation.x=dest_transform.getRotation().x();
+    goal.target_pose.pose.orientation.y=dest_transform.getRotation().y();
+    goal.target_pose.pose.orientation.z=dest_transform.getRotation().z();
+    goal.target_pose.pose.orientation.w=dest_transform.getRotation().w();
+
+    if (base_cmd(goal)) {
+        if(gripper_cmd(0.14,0.0)) {
+            if (arm_cmd()) {
+                ROS_INFO("MOVING!");
+                moveit_ptr->move();
+                moving=false;
+
+            }
+        }
+    }
 }
 
 bool arm_cmd() {
 
-tf::StampedTransform transform_base_obj;
+    tf::StampedTransform transform_base_obj;
     try{
 
         listener_ptr->lookupTransform("base_link", "red_object", ros::Time(0), transform_base_obj);
@@ -306,59 +339,48 @@ tf::StampedTransform transform_base_obj;
         return false;
     }
 
-double 	roll=0;
-double 	pitch=0;
-double 	yaw=0;
-//tf::Quaternion tf::createQuaternionFromRPY(roll,pitch,yaw );
-tf::Quaternion quat=transform_base_obj.getRotation();
-tf::Quaternion q(quat.x(), quat.y(), quat.z(), quat.w());
-tf::Matrix3x3 m(q);
-m.getRPY(roll, pitch, yaw);
-std::cout << "Roll: " << roll << ", Pitch: " << pitch << ", Yaw: " << yaw << std::endl;
+    double 	roll=0;
+    double 	pitch=0;
+    double 	yaw=0;
+    //tf::Quaternion tf::createQuaternionFromRPY(roll,pitch,yaw );
+    tf::Quaternion quat=transform_base_obj.getRotation();
+    tf::Quaternion q(quat.x(), quat.y(), quat.z(), quat.w());
+    tf::Matrix3x3 m(q);
+    m.getRPY(roll, pitch, yaw);
+   // std::cout << "Roll: " << roll << ", Pitch: " << pitch << ", Yaw: " << yaw << std::endl;
     roll=0;
     pitch=0;
+    moveit_ptr->setStartStateToCurrentState();
     geometry_msgs::PoseStamped target_pose1;
     target_pose1.header.frame_id="base_link";
     target_pose1.header.stamp=ros::Time::now();
-    target_pose1.pose.position.x =0.485298;// transform_base_obj.getOrigin().x();
-    target_pose1.pose.position.y = 0.0198514;//transform_base_obj.getOrigin().y();
-    target_pose1.pose.position.z = 0.668352;//transform_base_obj.getOrigin().z();
-    target_pose1.pose.orientation.x=-0.00371295;
-            target_pose1.pose.orientation.y=0.577184;
-    target_pose1.pose.orientation.z=-0.00925086;
-    target_pose1.pose.orientation.w= 0.816553;//1.0;
-   //target_pose1.pose.orientation= tf::createQuaternionMsgFromRollPitchYaw(roll,pitch,yaw );
-   //  tf::quaternionTFToMsg( transform_base_obj.getRotation(), target_pose1.pose.orientation);
-     moveit_ptr->setPoseTarget(target_pose1);
+    target_pose1.pose.position.x = transform_base_obj.getOrigin().x()-0.07;
+    target_pose1.pose.position.y = transform_base_obj.getOrigin().y();
+    target_pose1.pose.position.z = transform_base_obj.getOrigin().z()-0.02;
+    target_pose1.pose.orientation.w=1.0;
+
+    goal_pub.publish(target_pose1);
+    std::cout << "goal in base_link frame    x: " << target_pose1.pose.position.x << ", y: " << target_pose1.pose.position.y << ", z: " << target_pose1.pose.position.z << std::endl;
+    //target_pose1.pose.orientation= tf::createQuaternionMsgFromRollPitchYaw(roll,pitch,yaw );
+    //  tf::quaternionTFToMsg( transform_base_obj.getRotation(), target_pose1.pose.orientation);
+    moveit_ptr->setPoseTarget(target_pose1);
 
     moveit::planning_interface::MoveGroup::Plan my_plan;
-   // my_plan.planning_time_=10.0;
+    // my_plan.planning_time_=10.0;
     bool success = moveit_ptr->plan(my_plan);
-  //  ROS_INFO("Visualizing plan 1 (pose goal) %s",success?"SUCCESS":"FAILED");
-    if(success) {
-        moveit_ptr->move();
+      ROS_INFO("moveit plan (pose goal) %s",success?"SUCCESS":"FAILED");
 
-    }
     return success;
 }
 
-bool base_cmd() {
-    move_base_msgs::MoveBaseGoal goal;
-    goal.target_pose.header.frame_id = "map";
-    goal.target_pose.header.stamp = ros::Time::now();
-    goal.target_pose.pose.position.x=dest_transform_ptr->getOrigin().x();
-    goal.target_pose.pose.position.y=dest_transform_ptr->getOrigin().y();
-    goal.target_pose.pose.position.z=0;
-    goal.target_pose.pose.orientation.x=dest_transform_ptr->getRotation().x();
-    goal.target_pose.pose.orientation.y=dest_transform_ptr->getRotation().y();
-    goal.target_pose.pose.orientation.z=dest_transform_ptr->getRotation().z();
-    goal.target_pose.pose.orientation.w=dest_transform_ptr->getRotation().w();
+bool base_cmd(move_base_msgs::MoveBaseGoal goal) {
+
 
     ROS_INFO("[%s]: Sending goal", ros::this_node::getName().c_str());
     moveBaseClient_ptr->sendGoal(goal);
     moveBaseClient_ptr->waitForResult();
     if(moveBaseClient_ptr->getState() == actionlib::SimpleClientGoalState::SUCCEEDED) {
-        ROS_INFO("[%s]: SUCCEEDED", ros::this_node::getName().c_str());
+        ROS_INFO("[%s]: BASE NAV SUCCEEDED", ros::this_node::getName().c_str());
 
 
         return true;
@@ -366,7 +388,7 @@ bool base_cmd() {
 
     }
     else {
-        ROS_ERROR("[%s]: FAILED ", ros::this_node::getName().c_str());
+        ROS_ERROR("[%s]: BASE NAV FAILED ", ros::this_node::getName().c_str());
         return false;
     }
 }
@@ -379,7 +401,7 @@ bool gripper_cmd(double gap,double effort) {
     openGoal.command.max_effort = effort;
     gripperClient_ptr->sendGoal(openGoal);
 
-   /* gripperClient_ptr->waitForResult();
+    gripperClient_ptr->waitForResult();
 
     if(gripperClient_ptr->getState() == actionlib::SimpleClientGoalState::SUCCEEDED) {
         ROS_INFO("Gripper is now open");
@@ -388,7 +410,7 @@ bool gripper_cmd(double gap,double effort) {
     else {
         ROS_ERROR("Gripper can't open");
         return false;
-    }*/
+    }
     return true;
 }
 
@@ -396,6 +418,7 @@ bool gripper_cmd(double gap,double effort) {
 int main(int argc, char **argv) {
 
     ros::init(argc, argv, "demo_pick_node");
+    ros::AsyncSpinner spinner(1);
 
     ros::NodeHandle n;
     image_transport::ImageTransport it_(n);
@@ -418,18 +441,24 @@ int main(int argc, char **argv) {
     moveBaseClient_ptr=&moveBaseClient;
 
 
-     moveit::planning_interface::MoveGroup group("arm");
-     moveit::planning_interface::PlanningSceneInterface planning_scene_interface;
-     ROS_INFO("Reference frame: %s", group.getPlanningFrame().c_str());
-     ROS_INFO("Reference frame: %s", group.getEndEffectorLink().c_str());
-group.allowReplanning(true);
-group.setPlanningTime(10.0);
-group.setGoalPositionTolerance(0.1);
-group.setGoalOrientationTolerance(0.5);
-     moveit_ptr=&group;
+    moveit::planning_interface::MoveGroup group("arm");
+    moveit::planning_interface::PlanningSceneInterface planning_scene_interface;
+    ROS_INFO("Reference frame: %s", group.getPlanningFrame().c_str());
+    ROS_INFO("Reference frame: %s", group.getEndEffectorLink().c_str());
+    group.allowReplanning(true);
+    group.setPlanningTime(10.0);
+     group.setNumPlanningAttempts(5);
+group.setPlannerId("RRTConnectkConfigDefault");
+
+   // group.setGoalPositionTolerance(0.2);
+   // group.setGoalOrientationTolerance(0.5);
+
+    moveit_ptr=&group;
     ros::Subscriber pcl_sub = n.subscribe("kinect2/hd/points", 1, cloud_cb);
 
     ros::Subscriber pick_sub = n.subscribe("pick_go", 1, pick_go_cb);
+
+    goal_pub=n.advertise<geometry_msgs::PoseStamped>("piack_moveit_goal", 2, true);
 
     namedWindow("Trackbars",CV_WINDOW_AUTOSIZE);              // trackbars window
     createTrackbar( "H min", "Trackbars", &minH, 180, on_trackbar );
@@ -446,18 +475,22 @@ group.setGoalOrientationTolerance(0.5);
 
     tf::TransformBroadcaster br;
 
-     tf::TransformListener listener;
-     listener_ptr=&listener;
+    tf::TransformListener listener;
+    listener_ptr=&listener;
 
-    ros::Rate r(100); // 100 hz
+    ros::Rate r(50); // 100 hz
+
+        spinner.start();
     while (ros::ok())
     {
         if (tf_ok) {
-            br.sendTransform(tf::StampedTransform(*obj_transform_ptr, ros::Time::now(), "kinect2_depth_optical_frame", "red_object"));
-            br.sendTransform(tf::StampedTransform(*dest_transform_ptr, ros::Time::now(), "map", "dest"));
+            puts("tf ok");
+           // obj_transform.stamp_=ros::Time::now();
+            br.sendTransform(obj_transform);
+           // br.sendTransform(tf::StampedTransform(dest_transform, ros::Time::now(), "map", "dest"));
         }
         ros::spinOnce();
-        waitKey(1);
+
 
 
 
