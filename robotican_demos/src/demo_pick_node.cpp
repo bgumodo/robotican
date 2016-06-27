@@ -45,6 +45,8 @@ using namespace cv;
 using namespace std;
 using namespace pcl;
 
+bool debug_vision=false;
+
 Point3d find_object(Mat input, pcl::PointCloud<pcl::PointXYZRGBA> cloud);
 void go(tf::Transform  dest);
 bool gripper_cmd(double gap,double effort);
@@ -207,7 +209,7 @@ Point3d find_object(Mat input, pcl::PointCloud<pcl::PointXYZRGBA> cloud) {
 
     Mat filtered2;
     resize(filtered, filtered2, Size(), 0.5, 0.5, INTER_LINEAR);
-    imshow("filtered",filtered2);
+   if (debug_vision) imshow("filtered",filtered2);
 
     red_hue_image.copyTo(bw);
     if (gaussian_ksize>0) {
@@ -222,7 +224,7 @@ Point3d find_object(Mat input, pcl::PointCloud<pcl::PointXYZRGBA> cloud) {
     }
     Mat bw2;
     // resize(bw, bw2, Size(), 0.5, 0.5, INTER_LINEAR);
-    //   imshow("BW_WINDOW",bw2);
+    // if (debug_vision)   imshow("BW_WINDOW",bw2);
 
 
     vector<vector<Point> > contours;
@@ -262,7 +264,7 @@ Point3d find_object(Mat input, pcl::PointCloud<pcl::PointXYZRGBA> cloud) {
 
 
     resize(input, bgr, Size(), 0.5, 0.5, INTER_LINEAR);
-    imshow("Blobs",bgr);
+    if (debug_vision) imshow("Blobs",bgr);
 
     return pr;
 }
@@ -331,53 +333,26 @@ void pick_go_cb(std_msgs::Empty) {
                 ROS_INFO("MOVING!");
                 moveit_ptr->move();
                 ROS_INFO("DONE MOVING!");
-                 if(gripper_cmd(0.01,4.0)) {
+                 if(gripper_cmd(0.01,0.0)) {
                       ROS_INFO("HOLDING");
-/*
-                      moveit_msgs::AttachedCollisionObject attached_object;
-                      attached_object.link_name = "wrist_link";
-                     // The header must contain a valid TF frame
-                      attached_object.object.header.frame_id = "wrist_link";
-                     // The id of the object
-                      attached_object.object.id = "coke_can_slim";
 
-                      // A default pose
-                      geometry_msgs::Pose pose;
-                      pose.orientation.w = 1.0;
+                      target_pose1.pose.position.x = 0.4;
+                      target_pose1.pose.position.y =  0.0;
+                      target_pose1.pose.position.z =  0.845;
+                      target_pose1.pose.orientation= tf::createQuaternionMsgFromRollPitchYaw(0,CV_PI/2.0,0 );
+                      goal_pub.publish(target_pose1);
+                      moveit_ptr->setPoseTarget(target_pose1);
+                      moveit::planning_interface::MoveGroup::Plan my_plan;
+                      bool success = moveit_ptr->plan(my_plan);
+                      ROS_INFO("moveit final plan (pose goal) %s",success?"SUCCESS":"FAILED");
+                     // WRIST      ROLL: -0.162121      PITCH: 1.24426      YAW: -0.192632
+                     // WRIST    x: 0.407369, y: 0.0103332, z: 0.846887
+                     if (success)  {
+                         moveit_ptr->move();
+                         ROS_INFO("ALL DONE");
+                        // moving=false;
+                     }
 
-                      // Define a box to be attached
-                      shape_msgs::SolidPrimitive primitive;
-                      primitive.type = primitive.CYLINDER;
-                      primitive.dimensions.resize(3);
-                      primitive.dimensions[0] = 0.1;
-                      primitive.dimensions[1] = 0.03;
-
-
-                      attached_object.object.primitives.push_back(primitive);
-                      attached_object.object.primitive_poses.push_back(pose);
-                      attached_object.object.operation = attached_object.object.ADD;
-
-                      ROS_INFO("Adding the object into the world at the location of the right wrist.");
-                      moveit_msgs::PlanningScene planning_scene;
-                      planning_scene.world.collision_objects.push_back(attached_object.object);
-                      planning_scene.is_diff = true;
-                      planning_scene_diff_publisher.publish(planning_scene);
-                      //sleep_time.sleep();
-
-
-                      // First, define the REMOVE object message
-                      moveit_msgs::CollisionObject remove_object;
-                      remove_object.id = "coke_can_slim";
-                      remove_object.header.frame_id = "map";
-                      remove_object.operation = remove_object.REMOVE;
-                      ROS_INFO("Attaching the object to the right wrist and removing it from the world.");
-                      planning_scene.world.collision_objects.clear();
-                      planning_scene.world.collision_objects.push_back(remove_object);
-
-                      planning_scene.robot_state.attached_collision_objects.push_back(attached_object);
-                      planning_scene_diff_publisher.publish(planning_scene);
-*/
-                     moving=false;
                  }
 
 
@@ -423,13 +398,13 @@ bool arm_cmd() {
     tf::Vector3 dest=v*(1-away);
 
 
-    target_pose1.pose.position.x = dest.x();//transform_base_obj.getOrigin().x()-0.07;
-    target_pose1.pose.position.y =  dest.y();//transform_base_obj.getOrigin().y();
-    target_pose1.pose.position.z =  v.z()-0.02;//transform_base_obj.getOrigin().z();
+    target_pose1.pose.position.x = dest.x();
+    target_pose1.pose.position.y =  dest.y();
+    target_pose1.pose.position.z =  v.z()-0.02;
     // target_pose1.pose.orientation.w=1.0;
     target_pose1.pose.orientation= tf::createQuaternionMsgFromRollPitchYaw(-yaw,CV_PI/2.0,0 );
     goal_pub.publish(target_pose1);
-    std::cout << "goal in base_link frame    x: " << target_pose1.pose.position.x << ", y: " << target_pose1.pose.position.y << ", z: " << target_pose1.pose.position.z << std::endl;
+    //std::cout << "goal in base_link frame    x: " << target_pose1.pose.position.x << ", y: " << target_pose1.pose.position.y << ", z: " << target_pose1.pose.position.z << std::endl;
 
     // std::cout << "GOAL      ROLL: " << roll << "      PITCH: " << pitch << "      YAW: " << yaw << std::endl;
     //
@@ -473,7 +448,7 @@ bool gripper_cmd(double gap,double effort) {
     openGoal.command.position = gap;
     openGoal.command.max_effort = effort;
     gripperClient_ptr->sendGoal(openGoal);
-
+  ROS_INFO("Sent gripper goal");
     gripperClient_ptr->waitForResult();
 
     if(gripperClient_ptr->getState() == actionlib::SimpleClientGoalState::SUCCEEDED) {
@@ -482,9 +457,9 @@ bool gripper_cmd(double gap,double effort) {
     }
     else {
         ROS_ERROR("Gripper fault");
-        return false;
+       // return false;
     }
-    return true;
+    return false;
 }
 
 
@@ -517,12 +492,7 @@ int main(int argc, char **argv) {
     moveit::planning_interface::MoveGroup group("arm");
     moveit::planning_interface::PlanningSceneInterface planning_scene_interface;
 
-  /*  planning_scene_diff_publisher = n.advertise<moveit_msgs::PlanningScene>("planning_scene", 1);
-    while(planning_scene_diff_publisher.getNumSubscribers() < 1)
-    {
-      ros::WallDuration sleep_t(0.5);
-      sleep_t.sleep();
-    }*/
+
 
 
 
@@ -545,6 +515,7 @@ group.setMaxVelocityScalingFactor(0.01);
     goal_pub=n.advertise<geometry_msgs::PoseStamped>("pick_moveit_goal", 2, true);
     ros::Publisher wr_pub=n.advertise<geometry_msgs::PoseStamped>("wrist", 2, true);
 
+    if (debug_vision) {
     namedWindow("Trackbars",CV_WINDOW_AUTOSIZE);              // trackbars window
     createTrackbar( "H min", "Trackbars", &minH, 180, on_trackbar );
     createTrackbar( "H max", "Trackbars", &maxH, 180, on_trackbar );
@@ -557,7 +528,7 @@ group.setMaxVelocityScalingFactor(0.01);
     createTrackbar( "A min", "Trackbars", &minA, 50000, on_trackbar );
     createTrackbar( "A max", "Trackbars", &maxA, 50000, on_trackbar );
     createTrackbar( "morph_size", "Trackbars", &morph_size, 50, on_trackbar );
-
+}
     tf::TransformBroadcaster br;
 
     tf::TransformListener listener;
@@ -600,7 +571,7 @@ group.setMaxVelocityScalingFactor(0.01);
             tf::Matrix3x3 m(q);
             m.getRPY(roll, pitch, yaw);
 
-           // std::cout << "WRIST      ROLL: " << roll << "      PITCH: " << pitch << "      YAW: " << yaw << std::endl;
+        //    std::cout << "WRIST      ROLL: " << roll << "      PITCH: " << pitch << "      YAW: " << yaw << std::endl;
 
             geometry_msgs::PoseStamped target_pose2;
             target_pose2.header.frame_id="base_link";
@@ -611,6 +582,7 @@ group.setMaxVelocityScalingFactor(0.01);
             // target_pose1.pose.orientation.w=1.0;
             tf::quaternionTFToMsg( wr.getRotation(), target_pose2.pose.orientation);
             wr_pub.publish(target_pose2);
+          //  std::cout << "WRIST    x: " << target_pose2.pose.position.x << ", y: " << target_pose2.pose.position.y << ", z: " << target_pose2.pose.position.z << std::endl;
 
         }
         catch (tf::TransformException ex){
