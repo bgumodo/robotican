@@ -45,13 +45,15 @@ using namespace cv;
 using namespace std;
 using namespace pcl;
 
-bool debug_vision=false;
+bool debug_vision=true;
 
 Point3d find_object(Mat input, pcl::PointCloud<pcl::PointXYZRGBA> cloud);
 void go(tf::Transform  dest);
 bool gripper_cmd(double gap,double effort);
 bool arm_cmd();
 bool base_cmd(move_base_msgs::MoveBaseGoal goal);
+void pick_go_cb(std_msgs::Empty);
+void button_go_cb(std_msgs::Empty);
 
 //tf::Transform *obj_transform_ptr=NULL,*dest_transform_ptr=NULL;
 GripperClient *gripperClient_ptr;
@@ -88,7 +90,6 @@ ros::Publisher goal_pub;
 //int minH=18,maxH=43;
 //int minS=16,maxS=240;
 //int minV=132,maxV=212;
-
 //red
 int minH=3,maxH=160;
 int minS=70,maxS=255;
@@ -271,6 +272,30 @@ Point3d find_object(Mat input, pcl::PointCloud<pcl::PointXYZRGBA> cloud) {
 
 void on_trackbar( int, void* ){}
 
+void button_go_cb(std_msgs::Empty) {
+
+
+        move_base_msgs::MoveBaseGoal goal;
+        goal.target_pose.header.frame_id = "map";
+        goal.target_pose.header.stamp = ros::Time::now();
+        goal.target_pose.pose.position.x=-9.558070;
+        goal.target_pose.pose.position.y=4.108188;
+        goal.target_pose.pose.position.z=0;
+        goal.target_pose.pose.orientation= tf::createQuaternionMsgFromRollPitchYaw(0,0,CV_PI );
+
+        if (base_cmd(goal)) {
+
+            ROS_INFO("REACHED BUTTON");
+            goal.target_pose.pose.position.x=-9.024430;
+            goal.target_pose.pose.position.y=7.220850;
+            if (base_cmd(goal)) {
+
+                ROS_INFO("REACHED TABLE");
+                std_msgs::Empty e;
+                pick_go_cb(e);
+            }
+        }
+}
 void pick_go_cb(std_msgs::Empty) {
 
     if (moving) return;
@@ -335,7 +360,9 @@ void pick_go_cb(std_msgs::Empty) {
                 ROS_INFO("DONE MOVING!");
                  if(gripper_cmd(0.01,0.0)) {
                       ROS_INFO("HOLDING");
-
+                      ros::Duration w(5);
+                      w.sleep();
+                       ROS_INFO("LIFTING");
                       target_pose1.pose.position.x = 0.4;
                       target_pose1.pose.position.y =  0.0;
                       target_pose1.pose.position.z =  0.845;
@@ -511,6 +538,7 @@ group.setMaxVelocityScalingFactor(0.01);
     ros::Subscriber pcl_sub = n.subscribe("kinect2/hd/points", 1, cloud_cb);
 
     ros::Subscriber pick_sub = n.subscribe("pick_go", 1, pick_go_cb);
+    ros::Subscriber button_sub = n.subscribe("button_go",1,button_go_cb);
 
     goal_pub=n.advertise<geometry_msgs::PoseStamped>("pick_moveit_goal", 2, true);
     ros::Publisher wr_pub=n.advertise<geometry_msgs::PoseStamped>("wrist", 2, true);

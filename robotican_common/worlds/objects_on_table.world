@@ -41,7 +41,7 @@
     <include>
       <uri>model://kitchen_table</uri>
       <name>table1</name>
-      <pose>1.0 -0.8 0 0 0 0</pose>
+      <pose>1.35 -0.8 0 0 0 0</pose>
     </include>
     <!-- Objects on the table -->
    <!-- <include>
@@ -50,15 +50,15 @@
     </include> -->
     <include>
       <uri>model://biscuits_pack</uri>
-      <pose>1.1 0.3 0.79 0 0 1.5</pose>
+      <pose>1.4 0.3 0.79 0 0 1.5</pose>
     </include>
     <include>
       <uri>model://coke_can_slim</uri>
-      <pose>1.05 -0.3 0.79 0 0 0</pose>
+      <pose>1.4 -0.3 0.79 0 0 0</pose>
     </include>
     <include>
       <uri>model://bifrutas_tropical_can</uri>
-      <pose>1.1 0.0 0.79 0 0 -0.5</pose>
+      <pose>1.4 0.0 0.79 0 0 -0.5</pose>
     </include>
   <model name='table_with_objects'>
     <link name='Wall_0'>

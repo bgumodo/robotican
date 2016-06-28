@@ -7,113 +7,81 @@
 #include <tf/transform_listener.h>
 #include <gazebo_msgs/DeleteModel.h>
 #include <tf/transform_broadcaster.h>
-
-#define BUTTON_EP 0.1
-
-void onTfBroadcaster(const ros::TimerEvent& event) {
-    static tf::TransformBroadcaster transformBroadcaster;
-    tf::Transform transformFinger;
-    transformFinger.setOrigin(tf::Vector3(0.0, 0.0168, 0.093));
-
-    tf::Quaternion quaternionFinger;
-    quaternionFinger.setRPY(0.0, 0.0, 0.0);
-    transformFinger.setRotation(quaternionFinger);
-    transformBroadcaster.sendTransform(tf::StampedTransform(transformFinger, ros::Time::now(), "left_finger_link", "left_finger_tp"));
-
-    double button_x, button_y, button_z;
-
-    ros::param::param<double>("button_x", button_x, -4.9145);
-    ros::param::param<double>("button_y", button_y, 8.2331);
-    ros::param::param<double>("button_z", button_z, 0.7251);
-
-    tf::Transform transformButton;
-    tf::Quaternion quaternionButton;
-
-    transformButton.setOrigin(tf::Vector3(button_x, button_y, button_z));
-    quaternionButton.setRPY(0.0, 0.0, 0.0);
-    transformButton.setRotation(quaternionButton);
-    transformBroadcaster.sendTransform(tf::StampedTransform(transformButton, ros::Time::now(), "map", "button"));
-}
-
-
-float distance(float xDes, float yDes, float zDes, float xCur, float yCur, float zCur) {
-    return sqrtf(powf(xDes - xCur, 2) + powf(yDes - yCur, 2) + powf(zDes - zCur, 2));
-}
+#include <visualization_msgs/Marker.h>
 
 int main(int argc, char **argv) {
-    ros::init(argc, argv, "button_node");
-    ros::NodeHandle nodeHandle;
+    ros::init(argc, argv, "goal_node");
+    ros::NodeHandle nodeHandle("~");
     tf::TransformListener listener;
     tf::StampedTransform transform;
 
-    ros::AsyncSpinner spinner(1);
-    spinner.start();
+ros::Publisher marker_pub=nodeHandle.advertise<visualization_msgs::Marker>("goal_marker", 2, true);
 
-    ros::Timer transformBroadcasterTimer = nodeHandle.createTimer(ros::Duration(0.1), onTfBroadcaster);
+    ros::Rate loopRate(10);
 
+double goal_x,goal_y,goal_z,goal_tol;
+std::string moving_frame,sys_cmd;
+nodeHandle.getParam("goal_x", goal_x);
+nodeHandle.getParam("goal_y", goal_y);
+nodeHandle.getParam("goal_z", goal_z);
+nodeHandle.getParam("goal_tol", goal_tol);
+nodeHandle.getParam("moving_frame", moving_frame);
+nodeHandle.getParam("sys_cmd", sys_cmd);
 
-    ros::ServiceClient serviceClient = nodeHandle.serviceClient<gazebo_msgs::DeleteModel>("gazebo/delete_model");
-    ROS_INFO("[%s]: Waiting for gazebo/delete_mode service....", ros::this_node::getName().c_str());
-    serviceClient.waitForExistence();
-
-    ros::Rate loopRate(100);
-    double button_x, button_y, button_z, buttonEpsilon;
-
-    ros::param::param<double>("button_x", button_x, -4.9145);
-    ros::param::param<double>("button_y", button_y, 8.2331);
-    ros::param::param<double>("button_z", button_z, 0.7251);
-    ros::param::param<double>("button_epsilon", buttonEpsilon, 0.1);
-    bool deleteObject = false;
+    tf::Vector3 goal(goal_x,goal_y,goal_z);
     bool inPose = false;
-    ROS_INFO("[%s]: Robotican node button is active", ros::this_node::getName().c_str());
+
+    ROS_INFO("[%s]: Goal node is activ", ros::this_node::getName().c_str());
 
 
-    transformBroadcasterTimer.start();
+  visualization_msgs::Marker marker;
+  marker.header.frame_id = "map";
+  marker.header.stamp = ros::Time();
+  marker.ns = "/";
+  marker.id = 0;
+  marker.type = visualization_msgs::Marker::SPHERE;
+  marker.action = visualization_msgs::Marker::ADD;
+  marker.pose.position.x = goal_x;
+  marker.pose.position.y = goal_y;
+  marker.pose.position.z = goal_z;
+  marker.pose.orientation.x = 0.0;
+  marker.pose.orientation.y = 0.0;
+  marker.pose.orientation.z = 0.0;
+  marker.pose.orientation.w = 1.0;
+  marker.scale.x = 0.05;
+  marker.scale.y = 0.05;
+  marker.scale.z = 0.05;
+  marker.color.a = 1.0; // Don't forget to set the alpha!
+  marker.color.r = 1.0;
+  marker.color.g = 0.0;
+  marker.color.b = 0.0;
+  marker_pub.publish(marker);
+
     while (ros::ok()) {
+
         try {
-            listener.lookupTransform("/map", "left_finger_tp", ros::Time(0), transform);
-            float radToButton = distance(button_x, button_y, button_z, (float) transform.getOrigin().x(),
-                                         (float) transform.getOrigin().y(), (float) transform.getOrigin().z());
+            listener.lookupTransform("map", moving_frame.c_str(), ros::Time(0), transform);
 
-#ifdef DEBUG_NODE_BUTTON
-            std::string nodeName = ros::this_node::getName();
-            ROS_INFO("[%s]: current transform { x: %.4f, y: %.4f, z: %.4f }", nodeName.c_str(),
-                     transform.getOrigin().x(), transform.getOrigin().y(), transform.getOrigin().z());
-            ROS_INFO("[%s]: distance is %.4f", nodeName.c_str(), radToButton);
-#endif
+            tf::Vector3 mf=transform.getOrigin();
+            double dist=mf.distance(goal);
+            if (dist<1.0) ROS_INFO("dist: %f",dist);
 
-
-            if (radToButton <= buttonEpsilon) {
-                if (!inPose) {
+            if ((dist <= goal_tol)&&(!inPose)) {
                     inPose = true;
-                    if (!deleteObject) {
-                        gazebo_msgs::DeleteModelRequest request;
-                        request.model_name = "unit_box_2";
-                        gazebo_msgs::DeleteModelResponse response;
 
-                        if(serviceClient.call(request, response)) {
-                            if(response.success) {
-                                deleteObject = true;
-                            }
-                            ROS_INFO("[%s]: %s", ros::this_node::getName().c_str(), response.status_message.c_str());
-                        }
-                        else {
-                            ROS_ERROR("[%s]: Can't call service gazebo/delete_mode shuting down the node :(", ros::this_node::getName().c_str());
-                            ros::shutdown();
-                        }
-
-                    }
-                }
-            }
-            else {
-                inPose = false;
+                    ROS_INFO("GOAL REACHED");
+                    FILE *process=popen(sys_cmd.c_str(),"r");
+                    if (process!=NULL) ROS_INFO("System command done");
+                    else ROS_ERROR("System command fail");
+                     ros::shutdown();
             }
         }
         catch (tf::TransformException ex) {
-
+            // ROS_ERROR("Goal node error: %s",ex.what());
         }
 
 
+ros::spinOnce();
         loopRate.sleep();
     }
 }

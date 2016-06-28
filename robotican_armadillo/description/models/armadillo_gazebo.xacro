@@ -31,6 +31,9 @@
 		<palm_link>wrist_link</palm_link>
 	  </gripper>
 	</gazebo>
+	
+
+    
 	<!--
 	<gazebo reference="wrist_link">
       <kp>1000000.0</kp>
@@ -46,7 +49,7 @@
       <implicitSpringDamper>1</implicitSpringDamper>
       <provideFeedback>1</provideFeedback>
     </gazebo>
-    
+	-->
     
     	<gazebo reference="left_finger_link">
       <kp>1000000.0</kp>
@@ -76,7 +79,7 @@
       <implicitSpringDamper>1</implicitSpringDamper>
       <provideFeedback>1</provideFeedback>
     </gazebo>
-	-->
+	
 
   <!--  <link name="dummy_link">
   </link>
@@ -86,55 +89,7 @@
   <child link="base_link" />
   <axis xyz="0 0 0" />   
   </joint>-->
- <!--
-	<gazebo>
-   <plugin name="gazebo_grasp_fix" filename="libgazebo_grasp_fix.so">
-        <arm>
-         <gazebo>
-	  <gripper name="gripper">
-		<grasp_check>
-		  <attach_steps>5</attach_steps>
-		  <detach_steps>10</detach_steps>
-		</grasp_check>
-		<gripper_link>left_finger_link</gripper_link>
-		<gripper_link>right_finger_link</gripper_link>
-		<palm_link>wrist_link</palm_link>
-	  </gripper>
-	</gazebo>  <arm_name>arm</arm_name>
-           <palm_link> wrist_link  </palm_link>
-           <gripper_link> left_finger_link </gripper_link>
-           <gripper_link> right_finger_link </gripper_link>
-        </arm>
-       <forces_angle_tolerance>100</forces_angle_tolerance>
-       <update_rate>4</update_rate>
-       <grip_count_threshold>4</grip_count_threshold>
-       <max_grip_count>8</max_grip_count>
-       <release_tolerance>0.005</release_tolerance>
-       <disable_collisions_on_attach>false</disable_collisions_on_attach>
-       <contact_topic>__default_topic__</contact_topic>
-    </plugin>
-</gazebo>
 
-
-  
-
-   <gazebo reference="right_finger_joint">
-    <implicitSpringDamper>1</implicitSpringDamper>
-      <kp>1000000.0</kp>
-  <kd>1.0</kd>
-  <mu1>1.0</mu1>
-  <mu2>1.0</mu2>
-  <minDepth>0.001</minDepth>
-  </gazebo>
-   <gazebo reference="left_finger_joint">
-    <implicitSpringDamper>1</implicitSpringDamper>
-      <kp>1000000.0</kp>
-  <kd>1.0</kd>
-  <mu1>1.0</mu1>
-  <mu2>1.0</mu2>
-  <minDepth>0.001</minDepth>
-  </gazebo>
-  -->
      <xacro:if value="$(arg f200)">
 
 		
