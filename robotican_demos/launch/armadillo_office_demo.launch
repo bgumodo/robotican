@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<launch>
+	<arg name="rviz_display" default="$(find robotican_demos)/config/amcl.rviz" />
+	<node name="rviz_node" pkg="rviz" type="rviz" args="-d $(arg rviz_display)"/>
+    
+    <include file="$(find robotican_armadillo)/launch/armadillo.launch">
+     <arg name="gazebo" value="true"/>
+     <arg name="have_map_file" value="true"/>
+     <arg name="map_file" value="$(find robotican_common)/maps/building.yaml"/>
+     <arg name="world_name" value="$(find robotican_common)/worlds/building_with_elevator.sdf"/> 
+     <arg name="x" value="3.0"/> <!-- 3.0 -->
+	 <arg name="y" value="-2.5"/> <!-- -2.5 -->
+	 <arg name="Y" value="3.14"/>
+     <arg name="lidar" value="true"/>
+      <arg name="amcl" value="true"/> 
+     <arg name="move_base" value="true"/> 
+     <arg name="moveit" value="true"/>
+	 <arg name="kinect2" value="true"/> 
+    </include>
+    
+    <!--<node name="pick_node" pkg="robotican_demos" type="demo_pick_node" output="screen"/> -->
+    
+    <node name="button_node" pkg="robotican_demos" type="button_node" output="screen">
+       <param name="~moving_frame" value="left_finger_tip"/>
+       <param name="~goal_x" value="-10.059741"/>
+          <param name="~goal_y" value="4.108188"/>
+	     <param name="~goal_z" value="1.0"/>
+       <param name="~goal_tol" value="0.15"/>
+       <param name="~sys_cmd" value="espeak -v en-uk 'Button reached'; rosservice call gazebo/delete_model '{model_name: unit_box_2}'"/>
+          </node>
+   
+	  <node pkg="tf" type="static_transform_publisher" name="left_finger_tip_broadcaster" args="0.0 0.0168 0.093 0 0 0 left_finger_link left_finger_tip 50" />
+  
+</launch>
+

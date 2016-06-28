@@ -51,7 +51,7 @@
 	  <arg name="joystick_dev" value="$(arg joystick_dev)"/>
 	 </include>
 	 <node name="pan_tilt_joy_node" pkg="robotican_armadillo" type="pan_tilt_joy_node" output="screen" />
-	 <node name="joy_increment_node" pkg="robotican_armadillo" type="joy_increment_node" output="screen" respawn="true"/>
+	 <node name="joy_increment_node" pkg="robotican_armadillo" type="joy_increment_node" output="screen" />
   </group>
   
   <group if="$(arg gazebo)">
@@ -96,9 +96,9 @@
 			<include file="$(find robotican_hardware_interface)/launch/usb_cam.launch">
 				<arg name="input_dev" value="/dev/video0" />
 				<arg name="camera_frame_id" value="front_cam_link" />
-				<arg name="pixel_format" value="mjpeg" /> <!-- mjpeg, yuyv, uyvy  -->
-				<arg name="image_width" value="800" />
-				<arg name="image_height" value="800" />
+				<arg name="pixel_format" value="yuyv" /> <!-- mjpeg, yuyv, uyvy  -->
+				<arg name="image_width" value="640" />
+				<arg name="image_height" value="480" />
 				<arg name="node_name" value="front_cam" />
 			</include>
 		</group>
@@ -106,9 +106,9 @@
 			<include file="$(find robotican_hardware_interface)/launch/usb_cam.launch">
 				<arg name="input_dev" value="/dev/video1" />
 				<arg name="camera_frame_id" value="rear_cam_link" />
-				<arg name="pixel_format" value="mjpeg" /> <!-- mjpeg, yuyv, uyvy  -->
-				<arg name="image_width" value="800" />
-				<arg name="image_height" value="800" />
+				<arg name="pixel_format" value="yuyv" /> <!-- mjpeg, yuyv, uyvy  -->
+				<arg name="image_width" value="640" />
+				<arg name="image_height" value="480" />
 				<arg name="node_name" value="rear_cam" />
 			</include>
 		</group>
@@ -121,11 +121,11 @@
 			</include>
 		</group>
 		<group if="$(arg kinect2)">
-			<include file="$(find robotican_hardware_interface)/launch/usb_cam.launch">
+			<include file="$(find kinect2_bridge)/launch/kinect2_bridge.launch">
 				  <arg name="base_name"         value="kinect2"/>
 				  <arg name="sensor"            value=""/>
 				  <arg name="publish_tf"        value="true"/>
-				  <arg name="base_name_tf"      value="$(arg base_name)"/>
+				  <arg name="base_name_tf"      value="kinect2"/>
 				  <arg name="fps_limit"         value="-1.0"/>
 				  <arg name="calib_path"        value="$(find kinect2_bridge)/data/"/>
 				  <arg name="use_png"           value="false"/>
@@ -142,7 +142,7 @@
 				  <arg name="edge_aware_filter" value="true"/>
 				  <arg name="worker_threads"    value="4"/>
 				  <arg name="machine"           value="localhost"/>
-				  <arg name="nodelet_manager"   value="$(arg base_name)"/>
+				  <arg name="nodelet_manager"   value="kinect2"/>
 				  <arg name="start_manager"     value="true"/>
 				  <arg name="use_machine"       value="true"/>
 				  <arg name="respawn"           value="true"/>
@@ -173,7 +173,7 @@
                 namespace: dxl_manager
                 serial_ports:
                  gripper_port:
-                  port_name: "/dev/ttyS0"
+                  port_name: "/dev/ttyS1"
                   baud_rate: 57142
                   min_motor_id: 1
                   max_motor_id: 2
@@ -214,6 +214,7 @@
 	  arm_trajectory_controller
 	  gripper_controller
 	  " />
+
      </group>
 
 	<group if="$(arg move_base)">

@@ -13,7 +13,11 @@ find_package(catkin REQUIRED COMPONENTS
   moveit_core
   moveit_ros_planning
   moveit_ros_planning_interface
-
+  robotican_common
+cv_bridge
+ pcl_conversions
+   pcl_ros
+tf
 )
 
 ## System dependencies are found with CMake's conventions
@@ -119,17 +123,23 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 # include_directories(include)
+
+#add_definitions(-DDEBUG_NODE_BUTTON)
+
 include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 add_executable(simple_navigation_goals src/simple_navigation_goals.cpp)
 add_executable(simple_move_group_goals src/simple_move_group_goal.cpp)
-add_executable(simple_object_recognition src/object_recognition_node.cpp)
-add_executable(moveit_motion_planner src/moveit_motion_planner_node.cpp)
+add_executable(button_node src/button_node.cpp)
+add_executable(demo_pick_node src/demo_pick_node.cpp)
+add_executable(simple_moveit_full_api src/simple_moveit_full_api.cpp)
 target_link_libraries(simple_navigation_goals ${catkin_LIBRARIES})
 target_link_libraries(simple_move_group_goals ${catkin_LIBRARIES})
-target_link_libraries(simple_object_recognition ${catkin_LIBRARIES})
-target_link_libraries(moveit_motion_planner ${catkin_LIBRARIES})
+target_link_libraries(simple_moveit_full_api ${catkin_LIBRARIES})
+target_link_libraries(button_node ${catkin_LIBRARIES})
+target_link_libraries(demo_pick_node ${catkin_LIBRARIES})
+add_dependencies( demo_pick_node robotican_common_generate_messages_cpp )
 ## Declare a C++ library
 # add_library(robotican_demos
 #   src/${PROJECT_NAME}/robotican_demos.cpp

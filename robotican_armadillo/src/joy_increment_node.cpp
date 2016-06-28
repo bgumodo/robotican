@@ -98,9 +98,9 @@ private:
 
 
 public:
-    JoyIncrement() : _actionClient("torso_trajectory_controller/follow_joint_trajectory", true) {
+    JoyIncrement() : _actionClient("elevator_trajectory_controller/follow_joint_trajectory", true) {
         _isStop = true;
-        if(_actionClient.waitForServer()) {
+        if(_actionClient.waitForServer(ros::Duration(20.0))) {
             if(!_nodeHandle.getParam("elevator_increment", _incElev)
                ||!_nodeHandle.getParam("elevator_up_button", _upButtonIndex)
                ||!_nodeHandle.getParam("elevator_down_button", _downButtonIndex)
