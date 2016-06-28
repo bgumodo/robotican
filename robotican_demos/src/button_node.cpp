@@ -12,14 +12,27 @@
 
 void onTfBroadcaster(const ros::TimerEvent& event) {
     static tf::TransformBroadcaster transformBroadcaster;
-    tf::Transform transform;
-    transform.setOrigin(tf::Vector3(0.0, 0.0168, 0.093));
+    tf::Transform transformFinger;
+    transformFinger.setOrigin(tf::Vector3(0.0, 0.0168, 0.093));
 
-    tf::Quaternion quaternion;
-    quaternion.setRPY(0.0, 0.0, 0.0);
-    transform.setRotation(quaternion);
-    transformBroadcaster.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "left_finger_link", "left_finger_tp"));
+    tf::Quaternion quaternionFinger;
+    quaternionFinger.setRPY(0.0, 0.0, 0.0);
+    transformFinger.setRotation(quaternionFinger);
+    transformBroadcaster.sendTransform(tf::StampedTransform(transformFinger, ros::Time::now(), "left_finger_link", "left_finger_tp"));
 
+    double button_x, button_y, button_z;
+
+    ros::param::param<double>("button_x", button_x, -4.9145);
+    ros::param::param<double>("button_y", button_y, 8.2331);
+    ros::param::param<double>("button_z", button_z, 0.7251);
+
+    tf::Transform transformButton;
+    tf::Quaternion quaternionButton;
+
+    transformButton.setOrigin(tf::Vector3(button_x, button_y, button_z));
+    quaternionButton.setRPY(0.0, 0.0, 0.0);
+    transformButton.setRotation(quaternionButton);
+    transformBroadcaster.sendTransform(tf::StampedTransform(transformButton, ros::Time::now(), "map", "button"));
 }
 
 
@@ -37,25 +50,25 @@ int main(int argc, char **argv) {
     spinner.start();
 
     ros::Timer transformBroadcasterTimer = nodeHandle.createTimer(ros::Duration(0.1), onTfBroadcaster);
-    transformBroadcasterTimer.start();
+
 
     ros::ServiceClient serviceClient = nodeHandle.serviceClient<gazebo_msgs::DeleteModel>("gazebo/delete_model");
     ROS_INFO("[%s]: Waiting for gazebo/delete_mode service....", ros::this_node::getName().c_str());
     serviceClient.waitForExistence();
 
     ros::Rate loopRate(100);
-    float button_x, button_y, button_z, buttonEpsilon;
+    double button_x, button_y, button_z, buttonEpsilon;
 
-    ros::param::param<float>("button_x", button_x, 0.0);
-    ros::param::param<float>("button_y", button_y, 0.0);
-    ros::param::param<float>("button_z", button_z, 0.0);
-    ros::param::param<float>("button_epsilon", buttonEpsilon, 0.1);
-    bool spawnObject = false;
+    ros::param::param<double>("button_x", button_x, -4.9145);
+    ros::param::param<double>("button_y", button_y, 8.2331);
+    ros::param::param<double>("button_z", button_z, 0.7251);
+    ros::param::param<double>("button_epsilon", buttonEpsilon, 0.1);
+    bool deleteObject = false;
     bool inPose = false;
     ROS_INFO("[%s]: Robotican node button is active", ros::this_node::getName().c_str());
 
 
-
+    transformBroadcasterTimer.start();
     while (ros::ok()) {
         try {
             listener.lookupTransform("/map", "left_finger_tp", ros::Time(0), transform);
@@ -73,28 +86,14 @@ int main(int argc, char **argv) {
             if (radToButton <= buttonEpsilon) {
                 if (!inPose) {
                     inPose = true;
-                    if (!spawnObject) {
-                        char exec[128] = {'\0'};
-
-                        sprintf(exec, "rosrun gazebo_ros spawn_model -database coke_can -sdf -model coke_can2 -x %f -y %f -z %f",
-                                button_x, button_y, button_z);
-
-                        FILE *process = popen(exec, "r");
-                        if(process == 0) {
-                            ROS_ERROR("[%s]: can't start the procces shuting down the node :(", ros::this_node::getName().c_str());
-                            ros::shutdown();
-                        }
-                        else spawnObject = true;
-
-                    }
-                    else {
+                    if (!deleteObject) {
                         gazebo_msgs::DeleteModelRequest request;
-                        request.model_name = "coke_can2";
+                        request.model_name = "unit_box_2";
                         gazebo_msgs::DeleteModelResponse response;
 
                         if(serviceClient.call(request, response)) {
                             if(response.success) {
-                                spawnObject = false;
+                                deleteObject = true;
                             }
                             ROS_INFO("[%s]: %s", ros::this_node::getName().c_str(), response.status_message.c_str());
                         }
@@ -102,7 +101,6 @@ int main(int argc, char **argv) {
                             ROS_ERROR("[%s]: Can't call service gazebo/delete_mode shuting down the node :(", ros::this_node::getName().c_str());
                             ros::shutdown();
                         }
-
 
                     }
                 }
