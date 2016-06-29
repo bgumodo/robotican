@@ -5,7 +5,6 @@
 #include <std_msgs/String.h>
 #include <cv_bridge/cv_bridge.h>
 #include <move_base_msgs/MoveBaseAction.h>
-#include <robotican_common/searchForColor.h>
 #include <actionlib/client/simple_action_client.h>
 #include <image_transport/image_transport.h>
 #include <opencv2/highgui/highgui.hpp>
