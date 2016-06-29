@@ -27,7 +27,13 @@
 	     <param name="~goal_z" value="1.0"/>
        <param name="~goal_tol" value="0.15"/>
        <param name="~sys_cmd" value="espeak -v en-uk 'Button reached'; rosservice call gazebo/delete_model '{model_name: unit_box_2}'"/>
-          </node>
+    </node>
+    
+    <node name="nav_sim_node" pkg="robotican_demos" type="simple_navigation_goals" output="screen">
+    </node>
+    
+    <node name="mov_sim_node" pkg="robotican_demos" type="simple_move_group_goals" output="screen">
+    </node>
    
 	  <node pkg="tf" type="static_transform_publisher" name="left_finger_tip_broadcaster" args="0.0 0.0168 0.093 0 0 0 left_finger_link left_finger_tip 50" />
   

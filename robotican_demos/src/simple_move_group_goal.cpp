@@ -15,6 +15,7 @@ private:
     moveit::planning_interface::MoveGroup _group;
     ros::NodeHandle _nodeHandle;
     ros::Subscriber _moveSub;
+    ros::AsyncSpinner _spinner;
     bool _isFinish;
     void onMove(const geometry_msgs::PoseStamped::ConstPtr &poseStamped) {
         if(_isFinish) {
@@ -32,7 +33,7 @@ private:
         }
     }
 public:
-    MoveitNode() :  _group("arm") {
+    MoveitNode() : _spinner(1) ,_group("arm") {
         _isFinish = true;
         std::string topicName;
         ros::param::param<std::string>("moveit_topic_name", topicName, "move_arm");
